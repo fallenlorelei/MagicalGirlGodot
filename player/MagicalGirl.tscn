@@ -7,7 +7,7 @@
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 9.0
-height = 2.0
+height = 0.0
 
 [sub_resource type="Animation" id=25]
 length = 0.001
@@ -675,10 +675,11 @@ script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -8 )
-texture = ExtResource( 4 )
+texture = ExtResource( 1 )
 hframes = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 3 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -701,7 +702,6 @@ anims/run_up = SubResource( 10 )
 unique_name_in_owner = true
 tree_root = SubResource( 16 )
 anim_player = NodePath("../AnimationPlayer")
-active = true
 parameters/playback = SubResource( 17 )
 parameters/Idle/blend_position = Vector2( 0, 0 )
 parameters/Jump/blend_position = Vector2( 0, 0 )

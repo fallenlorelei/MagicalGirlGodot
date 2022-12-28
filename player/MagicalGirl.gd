@@ -65,7 +65,7 @@ func move_state(delta):
 #	if Input.is_action_just_pressed("attack"):
 #		state = ATTACK
 
-func jump_state(delta):
+func jump_state(_delta):
 	velocity = jump_vector * JUMP_SPEED
 	animationState.travel("Jump")
 	move()
