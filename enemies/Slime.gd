@@ -8,7 +8,7 @@ enum ElementalCrystals {
 
 onready var crystal_sprite = $"AnimatedSprite Crystal"
 
-var elementalCrystal = ElementalCrystals.keys()[randi() % ElementalCrystals.size()]
+var elementalCrystal
 
 
 func _ready():

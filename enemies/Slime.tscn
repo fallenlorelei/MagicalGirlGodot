@@ -45,7 +45,7 @@ script = ExtResource( 5 )
 position = Vector2( 0, -16 )
 frames = SubResource( 1 )
 animation = "slime_idle"
-frame = 1
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -56,5 +56,5 @@ position = Vector2( 0, -8 )
 scale = Vector2( 0.3, 0.3 )
 frames = SubResource( 3 )
 animation = "BLUE"
-frame = 2
+frame = 3
 playing = true
