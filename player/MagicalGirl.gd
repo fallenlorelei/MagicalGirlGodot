@@ -18,11 +18,11 @@ var jump_vector = Vector2.DOWN
 onready var animationPlayer = $"%AnimationPlayer"
 onready var animationTree = $"%AnimationTree"
 onready var animationState = animationTree.get("parameters/playback")
-#onready var swordHitbox = $"%SwordHitbox"
+
 
 func _ready():
 	animationTree.active = true
-#	swordHitbox.knockback_vector = jump_vector
+
 
 func _process(_delta):
 	pass
@@ -33,8 +33,8 @@ func _physics_process(delta):
 			move_state(delta)
 		JUMP:
 			jump_state(delta)
-#		ATTACK:
-#			attack_state(delta)
+		ATTACK:
+			attack_state(delta)
 	
 
 func move_state(delta):
@@ -48,7 +48,7 @@ func move_state(delta):
 #		swordHitbox.knockback_vector = input_vector
 		animationTree.set("parameters/Idle/blend_position", input_vector)
 		animationTree.set("parameters/Run/blend_position", input_vector)
-#		animationTree.set("parameters/Attack/blend_position", input_vector)
+		animationTree.set("parameters/Attack/blend_position", input_vector)
 		animationTree.set("parameters/Jump/blend_position", input_vector)
 		animationState.travel("Run")
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
@@ -62,17 +62,17 @@ func move_state(delta):
 	if Input.is_action_just_pressed("jump"):
 		state = JUMP
 #
-#	if Input.is_action_just_pressed("attack"):
-#		state = ATTACK
+	if Input.is_action_just_pressed("ability1"):
+		state = ATTACK
 
 func jump_state(_delta):
 	velocity = jump_vector * JUMP_SPEED
 	animationState.travel("Jump")
 	move()
 #
-#func attack_state(delta):
-#	velocity = Vector2.ZERO
-#	animationState.travel("Attack")
+func attack_state(delta):
+	velocity = Vector2.ZERO
+	animationState.travel("Attack")
 
 func move():
 	velocity = move_and_slide(velocity)
@@ -81,5 +81,5 @@ func jump_animation_finished():
 	velocity = Vector2.ZERO
 	state = MOVE
 #
-#func attack_animation_finished():
-#	state = MOVE
+func attack_animation_finished():
+	state = MOVE
