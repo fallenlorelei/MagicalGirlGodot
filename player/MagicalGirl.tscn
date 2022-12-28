@@ -35,6 +35,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [ 32 ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -12 ) ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "idle_down"
@@ -253,6 +265,18 @@ tracks/3/keys = {
 "method": "jump_animation_finished"
 } ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -8 ), Vector2( 0, -12 ), Vector2( 0, -16 ), Vector2( 0, -8 ) ]
+}
 
 [sub_resource type="Animation" id=27]
 resource_name = "jump_left"
@@ -306,6 +330,18 @@ tracks/3/keys = {
 "args": [  ],
 "method": "jump_animation_finished"
 } ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -8 ), Vector2( 0, -12 ), Vector2( 0, -16 ), Vector2( 0, -8 ) ]
 }
 
 [sub_resource type="Animation" id=28]
@@ -361,6 +397,18 @@ tracks/3/keys = {
 "method": "jump_animation_finished"
 } ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -8 ), Vector2( 0, -12 ), Vector2( 0, -16 ), Vector2( 0, -8 ) ]
+}
 
 [sub_resource type="Animation" id=29]
 resource_name = "jump_up"
@@ -414,6 +462,18 @@ tracks/3/keys = {
 "args": [  ],
 "method": "jump_animation_finished"
 } ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -8 ), Vector2( 0, -12 ), Vector2( 0, -16 ), Vector2( 0, -8 ) ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -674,8 +734,8 @@ graph_offset = Vector2( -413, -190 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -8 )
-texture = ExtResource( 1 )
+position = Vector2( 0, -12 )
+texture = ExtResource( 4 )
 hframes = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

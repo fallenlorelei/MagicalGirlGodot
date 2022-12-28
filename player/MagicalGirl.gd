@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export var ACCELERATION = 500
-export var MAX_SPEED = 80
+export var MAX_SPEED = 100
 export var FRICTION = 500
 export var JUMP_SPEED = 150
 
