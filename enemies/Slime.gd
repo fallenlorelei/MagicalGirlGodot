@@ -1,25 +1,13 @@
 extends KinematicBody2D
 
+onready var enemyManager = $EnemyManager
 
-enum ElementalCrystals {
-	BLUE,
-	GREEN,
-	PINK,
-	PURPLE,
-	RED
-}
+var velocity = Vector2.ZERO
 
-onready var crystal_sprite = $AnimatedSpriteCrystal
+#func _physics_process(delta):
+#	velocity = get_node("EnemyManager").velocity
+#	velocity = move_and_slide(velocity)
 
-
-func _ready():
-	random_element()
-
-func _process(delta):
-	pass
-	
-func random_element():
-	var elementalCrystal = ElementalCrystals.keys()[randi() % ElementalCrystals.size()]
-	print(elementalCrystal)
-	crystal_sprite.play(str(elementalCrystal))
-	
+func _on_EnemyManager_start_movement():
+	velocity = get_node("EnemyManager").velocity
+	velocity = move_and_slide(velocity)

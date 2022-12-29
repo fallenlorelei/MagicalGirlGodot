@@ -70,7 +70,7 @@ func jump_state(delta):
 	animationState.travel("Jump")
 	velocity = move_and_collide(velocity * delta)
 #
-func attack_state(delta):
+func attack_state(_delta):
 	velocity = Vector2.ZERO
 	animationState.travel("Attack")
 
