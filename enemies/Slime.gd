@@ -10,7 +10,6 @@ onready var crystal_sprite = $"AnimatedSprite Crystal"
 
 var elementalCrystal
 
-
 func _ready():
 	randomize()
 	random_element()
