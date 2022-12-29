@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/tiles/tilesets/city01_street.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/tiles/tilesets/city01_sidewalk.tres" type="TileSet" id=2]
@@ -6,8 +6,11 @@
 [ext_resource path="res://assets/tiles/tilesets/city01_props.tres" type="TileSet" id=4]
 [ext_resource path="res://player/MagicalGirl.tscn" type="PackedScene" id=5]
 [ext_resource path="res://enemies/Slime.tscn" type="PackedScene" id=6]
+[ext_resource path="res://InitialFunctions.tscn" type="PackedScene" id=7]
 
 [node name="Tilemap World" type="Node2D"]
+
+[node name="InitialFunctions" parent="." instance=ExtResource( 7 )]
 
 [node name="TileMap City Buildings" type="TileMap" parent="."]
 z_index = -98

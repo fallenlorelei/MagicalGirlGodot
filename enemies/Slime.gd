@@ -3,15 +3,16 @@ extends KinematicBody2D
 
 enum ElementalCrystals {
 	BLUE,
-	GREEN
+	GREEN,
+	PINK,
+	PURPLE,
+	RED
 }
 
-onready var crystal_sprite = $"AnimatedSprite Crystal"
+onready var crystal_sprite = $AnimatedSpriteCrystal
 
-var elementalCrystal
 
 func _ready():
-	randomize()
 	random_element()
 
 func _process(delta):
