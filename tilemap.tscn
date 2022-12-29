@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/tiles/tilesets/city01_street.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/tiles/tilesets/city01_sidewalk.tres" type="TileSet" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://assets/tiles/tilesets/city01_props.tres" type="TileSet" id=4]
 [ext_resource path="res://player/MagicalGirl.tscn" type="PackedScene" id=5]
 [ext_resource path="res://enemies/Slime.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scripts/attacks/AttackManager.gd" type="Script" id=7]
 
 [node name="Tilemap World" type="Node2D"]
 
@@ -47,9 +46,6 @@ smoothing_enabled = true
 
 [node name="MagicalGirl" parent="YSort" instance=ExtResource( 5 )]
 position = Vector2( 349, 242 )
-
-[node name="AttackManager" type="Node2D" parent="YSort/MagicalGirl"]
-script = ExtResource( 7 )
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSort/MagicalGirl"]
 remote_path = NodePath("../../../Camera2D")
