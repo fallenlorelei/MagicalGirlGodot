@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/tiles/tilesets/city01_street.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/tiles/tilesets/city01_sidewalk.tres" type="TileSet" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/tiles/tilesets/city01_props.tres" type="TileSet" id=4]
 [ext_resource path="res://player/MagicalGirl.tscn" type="PackedScene" id=5]
 [ext_resource path="res://enemies/Slime.tscn" type="PackedScene" id=6]
+[ext_resource path="res://AttackManager.gd" type="Script" id=7]
 
 [node name="Tilemap World" type="Node2D"]
 
@@ -40,6 +41,9 @@ tile_data = PoolIntArray( 0, -1610612734, 2, 1, 7, 131072, 2, -1610612736, 2, 17
 
 [node name="MagicalGirl" parent="YSort" instance=ExtResource( 5 )]
 position = Vector2( 349, 242 )
+
+[node name="AttackManager" type="Node2D" parent="YSort/MagicalGirl"]
+script = ExtResource( 7 )
 
 [node name="Slime" parent="YSort" instance=ExtResource( 6 )]
 position = Vector2( 443, 230 )
