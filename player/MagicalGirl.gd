@@ -1,9 +1,9 @@
 extends KinematicBody2D
 
-export var ACCELERATION = 500
-export var MAX_SPEED = 100
-export var FRICTION = 500
-export var JUMP_SPEED = 150
+export var ACCELERATION = 600
+export var MAX_SPEED = 130
+export var FRICTION = 650
+export var JUMP_SPEED = 200
 
 enum {
 	MOVE,
@@ -65,10 +65,10 @@ func move_state(delta):
 	if Input.is_action_just_pressed("ability1") or Input.is_action_just_pressed("left_click"):
 		state = ATTACK
 		
-func jump_state(_delta):
+func jump_state(delta):
 	velocity = jump_vector * JUMP_SPEED
 	animationState.travel("Jump")
-	move()
+	velocity = move_and_collide(velocity * delta)
 #
 func attack_state(delta):
 	velocity = Vector2.ZERO
@@ -76,6 +76,11 @@ func attack_state(delta):
 
 func move():
 	velocity = move_and_slide(velocity)
+
+func jump_landed():
+	# I want to remove the slide when the sprite lands
+	velocity = Vector2.ZERO
+	print("landed")
 
 func jump_animation_finished():
 	velocity = Vector2.ZERO
