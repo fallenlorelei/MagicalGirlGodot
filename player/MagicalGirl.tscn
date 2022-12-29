@@ -931,11 +931,11 @@ blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=35]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=36]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=47]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=48]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=49]
 
 [sub_resource type="AnimationNodeStateMachine" id=16]
 states/Attack/node = SubResource( 46 )
@@ -946,9 +946,9 @@ states/Jump/node = SubResource( 34 )
 states/Jump/position = Vector2( 24, 13 )
 states/Run/node = SubResource( 22 )
 states/Run/position = Vector2( -14, -77 )
-transitions = [ "Idle", "Run", SubResource( 23 ), "Run", "Idle", SubResource( 24 ), "Run", "Jump", SubResource( 35 ), "Jump", "Idle", SubResource( 36 ), "Idle", "Attack", SubResource( 47 ), "Attack", "Idle", SubResource( 48 ) ]
+transitions = [ "Idle", "Run", SubResource( 23 ), "Run", "Idle", SubResource( 24 ), "Run", "Jump", SubResource( 35 ), "Idle", "Attack", SubResource( 47 ), "Attack", "Idle", SubResource( 48 ), "Jump", "Run", SubResource( 49 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -413, -190 )
+graph_offset = Vector2( -404, -109 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=17]
 
@@ -994,7 +994,3 @@ parameters/Attack/blend_position = Vector2( -0.00356507, 0 )
 parameters/Idle/blend_position = Vector2( 0, 0 )
 parameters/Jump/blend_position = Vector2( 0, 0 )
 parameters/Run/blend_position = Vector2( 0, 0 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-smoothing_enabled = true
