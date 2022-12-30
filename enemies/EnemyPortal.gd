@@ -12,7 +12,7 @@ var randomEnemy
 
 var enemy_dict = {
 	"Slime": load("res://enemies/Slime.tscn"),
-	"MagicalGirl": load("res://player/MagicalGirl.tscn")
+#	"MagicalGirl": load("res://player/MagicalGirl.tscn")
 }
 
 
