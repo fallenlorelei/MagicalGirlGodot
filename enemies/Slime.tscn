@@ -34,7 +34,7 @@ script = ExtResource( 5 )
 position = Vector2( 0, -17 )
 frames = SubResource( 1 )
 animation = "slime_idle"
-frame = 2
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -46,7 +46,7 @@ shape = SubResource( 6 )
 MAX_SPEED = 50
 
 [node name="RandomCrystal" parent="EnemyManager" index="0"]
-frame = 0
+frame = 3
 ElementalCrystals = {
 "BLUE": 0,
 "GREEN": 1,

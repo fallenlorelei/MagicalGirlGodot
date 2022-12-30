@@ -26,26 +26,26 @@ func _ready():
 func _physics_process(delta):
 #	knockback = knockback.move_toward(Vector2.ZERO, FRICTION * delta)
 #	knockback = move_and_slide(knockback)
+
+	seek_player()
 	
 	match state:
 		IDLE:
 			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
-			seek_player()			
-			if wanderController.get_time_left() == 0:
-				update_wander()
-			
-			
-		WANDER:
-			seek_player()
-			if wanderController.get_time_left() == 0:
-				update_wander()			
-			accelerate_towards_point(wanderController.target_position, delta)
 					
-			if global_position.distance_to(wanderController.target_position) <= TOLERANCE * delta:
+			if wanderController.get_time_left() == 0:
 				update_wander()
 
 			
-			
+		WANDER:			
+			if wanderController.get_time_left() == 0:
+				update_wander()
+
+			accelerate_towards_point(wanderController.target_position, delta)
+
+			if global_position.distance_to(wanderController.target_position) <= TOLERANCE * delta:
+				update_wander()
+
 			
 		CHASE:
 			var player = playerDetectionZone.player
@@ -55,12 +55,10 @@ func _physics_process(delta):
 			else:
 				state = IDLE
 			
-				
+
 	if softCollision.is_colliding():
 		velocity += softCollision.get_push_vector() * delta * 400
 
-
-	
 
 
 func update_wander():
