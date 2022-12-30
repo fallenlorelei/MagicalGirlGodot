@@ -14,7 +14,7 @@ func _physics_process(delta):
   velocity = velocity.normalized() * speed
   position += velocity * delta
 
- 
 
+# Is destroyed when it hits something (only hits enemies right now but should eventually hit buildings)
 func _on_Hitbox_area_entered(area):
 	queue_free()

@@ -18,6 +18,8 @@ onready var playerDetectionZone = $PlayerDetectionZone
 onready var softCollision = $SoftCollision
 onready var wanderController = $WanderController
 
+# There's a godot rule to "call down" and "signal up." 
+# Can't move_and_slide this node, so I send a signal up.
 signal start_movement
 
 func _ready():
@@ -31,18 +33,16 @@ func _physics_process(delta):
 	
 	match state:
 		IDLE:
-			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
-					
-			if wanderController.get_time_left() == 0:
-				update_wander()
+			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)					
+			check_wander_timer()
 
 			
 		WANDER:			
-			if wanderController.get_time_left() == 0:
-				update_wander()
-
+			check_wander_timer()
 			accelerate_towards_point(wanderController.target_position, delta)
-
+			
+			# This keeps the slime from overshooting its target position and running back and forth
+			# "Tolerance" is a pretty random number that I think should be similar to half the sprite's width
 			if global_position.distance_to(wanderController.target_position) <= TOLERANCE * delta:
 				update_wander()
 
@@ -50,17 +50,20 @@ func _physics_process(delta):
 		CHASE:
 			var player = playerDetectionZone.player
 			if player != null:
-				accelerate_towards_point(player.global_position, delta)
-			
+				accelerate_towards_point(player.global_position, delta)			
 			else:
 				state = IDLE
 			
-
+	# Soft collision is enemies hitting each other and not overlapping
 	if softCollision.is_colliding():
 		velocity += softCollision.get_push_vector() * delta * 400
 
 
-
+#Wander timer updates every 1-3 seconds to change from wander to idle
+func check_wander_timer():
+	if wanderController.get_time_left() == 0:
+		update_wander()
+	
 func update_wander():
 	state = pick_random_state([IDLE, WANDER])
 	wanderController.start_wander_timer(rand_range(1,3))

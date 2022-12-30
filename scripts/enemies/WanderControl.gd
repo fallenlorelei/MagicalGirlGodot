@@ -13,6 +13,7 @@ onready var timer = $Timer
 func _ready():
 	update_target_position()
 
+# "Wander range" keeps the enemy from wandering too far from their original starting position
 func update_target_position():
 	var target_vector = Vector2(rand_range(-wander_range,wander_range), rand_range(-wander_range,wander_range))
 	target_position = start_position + target_vector

@@ -71,6 +71,9 @@ func jump_state(delta):
 	velocity = jump_vector * JUMP_SPEED
 	animationState.travel("Jump")
 	velocity = move_and_collide(velocity * delta)
+	# Sets collision mask so that girl can jump through enemies
+	# This is reset when jump animation is finished
+	# Current problem: I would like the slimes to still "see" her when she's jumping, to chase, just not collide
 	set_collision_mask_bit(2, false)
 	set_collision_layer_bit(1, false)
 	set_collision_layer_bit(4, true)
@@ -85,12 +88,13 @@ func move():
 	velocity = move_and_slide(velocity)
 
 func jump_landed():
-	# I want to remove the slide when the sprite lands
+	# I want to remove the slide when the sprite lands but it doesn't do much right now
 	velocity = Vector2.ZERO
 
 
 func jump_animation_finished():
 	velocity = Vector2.ZERO
+	# Resetting collision mask so player once again collides with enemies after jumping
 	set_collision_mask_bit(2, true)
 	set_collision_layer_bit(1, true)
 	set_collision_layer_bit(4, false)

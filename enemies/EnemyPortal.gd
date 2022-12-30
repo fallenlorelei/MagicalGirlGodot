@@ -19,7 +19,6 @@ var enemy_dict = {
 export var spawnAmount = 1
 
 func _ready():
-#	enemy_list = "Slime"
 	randomEnemy = get_random_enemy()
 	print(randomEnemy)
 
