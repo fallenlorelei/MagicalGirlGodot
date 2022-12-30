@@ -23,7 +23,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 func spawn_enemies():
 	var slimeSpawn = Slime.instance()
-	add_child(slimeSpawn)
+	get_parent().add_child(slimeSpawn)
 	slimeSpawn.global_position = global_position
 	spawnAmount -= 1
 	timer.start()
