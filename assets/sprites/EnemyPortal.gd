@@ -1,9 +1,11 @@
-extends Node2D
+extends KinematicBody2D
 
-const Slime = preload("res://enemies/Slime.tscn")
+
 
 onready var animationPlayer = $AnimationPlayer
 onready var timer = $Timer
+
+onready var Slime = preload("res://enemies/Slime.tscn")
 
 func _ready():
 	pass
@@ -17,7 +19,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 func spawn_enemies():
 	var slimeSpawn = Slime.instance()
-	get_parent().add_child(slimeSpawn)
+	add_child(slimeSpawn)
 	slimeSpawn.global_position = global_position
 	timer.start()
 	
