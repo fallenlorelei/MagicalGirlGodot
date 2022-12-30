@@ -63,18 +63,21 @@ func move_state(delta):
 		state = JUMP
 #
 	if Input.is_action_just_pressed("ability1") or Input.is_action_just_pressed("left_click"):
-		var mouseclick = (get_global_mouse_position() - position).normalized()
-		animationTree.set("parameters/Attack/blend_position", mouseclick)
-		animationState.travel("Attack")
 		state = ATTACK
+		
 		
 func jump_state(delta):
 	velocity = jump_vector * JUMP_SPEED
 	animationState.travel("Jump")
 	velocity = move_and_collide(velocity * delta)
+	set_collision_mask_bit(2, false)
+	set_collision_layer_bit(1, false)
+	set_collision_layer_bit(4, true)
 #
 func attack_state(_delta):
 	velocity = Vector2.ZERO
+	var mouseclick = (get_global_mouse_position() - position).normalized()
+	animationTree.set("parameters/Attack/blend_position", mouseclick)
 	animationState.travel("Attack")
 
 func move():
@@ -83,10 +86,13 @@ func move():
 func jump_landed():
 	# I want to remove the slide when the sprite lands
 	velocity = Vector2.ZERO
-	print("landed")
+
 
 func jump_animation_finished():
 	velocity = Vector2.ZERO
+	set_collision_mask_bit(2, true)
+	set_collision_layer_bit(1, true)
+	set_collision_layer_bit(4, false)
 	state = MOVE
 #
 func attack_animation_finished():
