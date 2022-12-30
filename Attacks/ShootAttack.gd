@@ -14,10 +14,7 @@ func _physics_process(delta):
   velocity = velocity.normalized() * speed
   position += velocity * delta
 
+ 
 
-
-  
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _on_Hitbox_area_entered(area):
+	queue_free()

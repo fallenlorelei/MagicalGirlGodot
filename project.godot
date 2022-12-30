@@ -161,6 +161,8 @@ left_click={
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="EnemySoftCollisions"
 2d_physics/layer_5="JumpLayer"
+2d_physics/layer_6="PlayerHurtbox"
+2d_physics/layer_7="EnemyHurtbox"
 
 [mono]
 

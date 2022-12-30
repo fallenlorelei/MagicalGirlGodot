@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/sprites/slime/idle/Slime_Idle4.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/slime/idle/Slime_Idle2.png" type="Texture" id=2]
@@ -25,6 +25,10 @@ radius = 86.0058
 [sub_resource type="CircleShape2D" id=7]
 radius = 4.0
 
+[sub_resource type="CapsuleShape2D" id=9]
+radius = 6.0
+height = 14.0
+
 [node name="Slime" type="KinematicBody2D"]
 collision_layer = 4
 collision_mask = 3
@@ -34,7 +38,6 @@ script = ExtResource( 5 )
 position = Vector2( 0, -17 )
 frames = SubResource( 1 )
 animation = "slime_idle"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -46,7 +49,7 @@ shape = SubResource( 6 )
 MAX_SPEED = 50
 
 [node name="RandomCrystal" parent="EnemyManager" index="0"]
-frame = 3
+frame = 2
 ElementalCrystals = {
 "BLUE": 0,
 "GREEN": 1,
@@ -62,6 +65,17 @@ shape = SubResource( 8 )
 position = Vector2( 0, -1 )
 shape = SubResource( 7 )
 
+[node name="Hurtbox" parent="EnemyManager" index="5"]
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="EnemyManager/Hurtbox" index="0"]
+position = Vector2( 1, -2 )
+rotation = 1.5708
+shape = SubResource( 9 )
+
 [connection signal="start_movement" from="EnemyManager" to="." method="_on_EnemyManager_start_movement"]
 
 [editable path="EnemyManager"]
+[editable path="EnemyManager/Hitbox"]
+[editable path="EnemyManager/Hurtbox"]

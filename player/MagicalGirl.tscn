@@ -1032,7 +1032,7 @@ script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -8 )
-texture = ExtResource( 4 )
+texture = ExtResource( 1 )
 hframes = 24
 frame = 1
 
