@@ -19,11 +19,11 @@ animations = [ {
 radius = 5.0
 height = 8.0
 
-[sub_resource type="CircleShape2D" id=4]
-radius = 102.02
+[sub_resource type="CircleShape2D" id=8]
+radius = 86.0058
 
-[sub_resource type="CircleShape2D" id=5]
-radius = 3.0
+[sub_resource type="CircleShape2D" id=7]
+radius = 4.0
 
 [node name="Slime" type="KinematicBody2D"]
 collision_layer = 4
@@ -31,13 +31,14 @@ collision_mask = 3
 script = ExtResource( 5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -16 )
+position = Vector2( 0, -17 )
 frames = SubResource( 1 )
 animation = "slime_idle"
-frame = 3
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1, -2 )
 rotation = 1.5708
 shape = SubResource( 6 )
 
@@ -45,6 +46,7 @@ shape = SubResource( 6 )
 MAX_SPEED = 50
 
 [node name="RandomCrystal" parent="EnemyManager" index="0"]
+frame = 0
 ElementalCrystals = {
 "BLUE": 0,
 "GREEN": 1,
@@ -53,12 +55,12 @@ ElementalCrystals = {
 "RED": 4
 }
 
-[node name="CollisionShape2D" parent="EnemyManager/PlayerDetectionZone" index="0"]
-self_modulate = Color( 0.811765, 0.0470588, 0.0470588, 0.466667 )
-shape = SubResource( 4 )
+[node name="PDZCollisionShape" parent="EnemyManager/PlayerDetectionZone" index="0"]
+shape = SubResource( 8 )
 
-[node name="CollisionShape2D" parent="EnemyManager/SoftCollision" index="0"]
-shape = SubResource( 5 )
+[node name="SoftCollisionShape2D" parent="EnemyManager/SoftCollision" index="0"]
+position = Vector2( 0, -1 )
+shape = SubResource( 7 )
 
 [connection signal="start_movement" from="EnemyManager" to="." method="_on_EnemyManager_start_movement"]
 

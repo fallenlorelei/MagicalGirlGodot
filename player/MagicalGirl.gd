@@ -63,6 +63,9 @@ func move_state(delta):
 		state = JUMP
 #
 	if Input.is_action_just_pressed("ability1") or Input.is_action_just_pressed("left_click"):
+		var mouseclick = (get_global_mouse_position() - position).normalized()
+		animationTree.set("parameters/Attack/blend_position", mouseclick)
+		animationState.travel("Attack")
 		state = ATTACK
 		
 func jump_state(delta):
