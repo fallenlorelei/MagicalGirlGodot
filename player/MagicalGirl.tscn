@@ -25,18 +25,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 1 ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 24 ]
-}
 
 [sub_resource type="Animation" id=38]
 resource_name = "attack1_down"
@@ -90,18 +78,6 @@ tracks/3/keys = {
 "args": [  ],
 "method": "attack_animation_finished"
 } ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("AttackManager/AttackOrigin:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0.2 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -4, 5 ) ]
 }
 
 [sub_resource type="Animation" id=39]
@@ -157,18 +133,6 @@ tracks/3/keys = {
 "method": "attack_animation_finished"
 } ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("AttackManager/AttackOrigin:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0.2 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -5, -3 ) ]
-}
 
 [sub_resource type="Animation" id=40]
 resource_name = "attack1_right"
@@ -223,18 +187,6 @@ tracks/3/keys = {
 "method": "attack_animation_finished"
 } ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("AttackManager/AttackOrigin:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0.2 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 5, -3 ) ]
-}
 
 [sub_resource type="Animation" id=41]
 resource_name = "attack1_up"
@@ -288,18 +240,6 @@ tracks/3/keys = {
 "args": [  ],
 "method": "attack_animation_finished"
 } ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("AttackManager/AttackOrigin:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0.2 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 6, -12 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -512,12 +452,9 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.5, 0.8 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [  ],
-"method": "jump_landed"
-}, {
 "args": [  ],
 "method": "jump_animation_finished"
 } ]
@@ -581,12 +518,9 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.5, 0.8 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [  ],
-"method": "jump_landed"
-}, {
 "args": [  ],
 "method": "jump_animation_finished"
 } ]
@@ -650,12 +584,9 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.5, 0.8 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [  ],
-"method": "jump_landed"
-}, {
 "args": [  ],
 "method": "jump_animation_finished"
 } ]
@@ -719,12 +650,9 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.5, 0.8 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [  ],
-"method": "jump_landed"
-}, {
 "args": [  ],
 "method": "jump_animation_finished"
 } ]

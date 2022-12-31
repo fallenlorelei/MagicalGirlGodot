@@ -15,6 +15,8 @@ var state = MOVE
 var velocity = Vector2.ZERO
 var jump_vector = Vector2.DOWN
 
+var attack_manager : Node2D
+
 onready var animationPlayer = $"%AnimationPlayer"
 onready var animationTree = $"%AnimationTree"
 onready var animationState = animationTree.get("parameters/playback")
@@ -22,19 +24,23 @@ onready var animationState = animationTree.get("parameters/playback")
 
 func _ready():
 	animationTree.active = true
+	attack_manager = get_node("AttackManager") 
 
 
 func _process(_delta):
 	pass
 
-func _physics_process(delta):
+func _physics_process(delta): 
+	if Input.is_action_pressed("ability1") or Input.is_action_pressed("left_click"):
+		if state != JUMP:
+			attack_state(delta)
 	match state:
 		MOVE:
 			move_state(delta)
 		JUMP:
 			jump_state(delta)
-		ATTACK:
-			attack_state(delta)
+	# ATTACK:
+	#   attack_state(delta)
 	
 
 func move_state(delta):
@@ -62,9 +68,6 @@ func move_state(delta):
 	if Input.is_action_just_pressed("jump"):
 		state = JUMP
 #
-	if Input.is_action_just_pressed("ability1") or Input.is_action_just_pressed("left_click"):
-		if state != JUMP:
-			state = ATTACK
 		
 		
 func jump_state(delta):
@@ -79,7 +82,8 @@ func jump_state(delta):
 	set_collision_layer_bit(4, true)
 #
 func attack_state(_delta):
-	velocity = Vector2.ZERO
+	# velocity = Vector2.ZERO
+	attack_manager.attack('basic', 'shoot', 250)
 	var mouseclick = (get_global_mouse_position() - position).normalized()
 	animationTree.set("parameters/Attack/blend_position", mouseclick)
 	animationState.travel("Attack")
