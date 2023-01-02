@@ -4,6 +4,7 @@ export var ACCELERATION = 200
 export var MAX_SPEED = 20
 export var FRICTION = 150
 export var TOLERANCE = 60
+export var invincibleDuration = .5
 
 enum {
 	IDLE,
@@ -14,11 +15,13 @@ enum {
 var velocity = Vector2.ZERO
 var state = IDLE
 
+
 onready var playerDetectionZone = $PlayerDetectionZone
 onready var softCollision = $SoftCollision
 onready var wanderController = $WanderController
 onready var stats = $EnemyStats
 onready var randomCrystal = $RandomCrystal
+onready var hurtbox = $Hurtbox
 
 # There's a godot rule to "call down" and "signal up." 
 # Can't move_and_slide this node, so I send a signal up.
@@ -88,9 +91,11 @@ func pick_random_state(state_list):
 
 
 func _on_Hurtbox_area_entered(area):
-	stats.health -= area.damage
+	if hurtbox.invincible == false:
+		stats.health -= area.damage
+		hurtbox.start_invincibility(invincibleDuration)
 
 func _on_EnemyStats_no_health():
-	randomCrystal.drop_crystal("BLUE")
+	randomCrystal.drop_crystal()
 	emit_signal("death_effect")
 	get_parent().queue_free()

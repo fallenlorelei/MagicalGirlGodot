@@ -8,7 +8,7 @@ onready var randomCrystalScript = $RandomizeCrystal
 func _ready():
 	pass
 
-func drop_crystal(type):
+func drop_crystal():
 	var crystalDrop = CrystalDrop.instance()
 	crystalDrop.crystalType = randomCrystalScript.elementalCrystal
 	get_parent().get_parent().get_parent().add_child(crystalDrop)
