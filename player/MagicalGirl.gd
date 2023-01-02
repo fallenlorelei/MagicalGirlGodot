@@ -39,8 +39,6 @@ func _physics_process(delta):
 			move_state(delta)
 		JUMP:
 			jump_state(delta)
-	# ATTACK:
-	#   attack_state(delta)
 	
 
 func move_state(delta):
@@ -83,10 +81,11 @@ func jump_state(delta):
 #
 func attack_state(_delta):
 	# velocity = Vector2.ZERO
-	attack_manager.attack('basic', 'shoot', 250)
 	var mouseclick = (get_global_mouse_position() - position).normalized()
 	animationTree.set("parameters/Attack/blend_position", mouseclick)
 	animationState.travel("Attack")
+	
+	attack_manager.attack('basic', 'shoot', 250)
 
 func move():
 	velocity = move_and_slide(velocity)

@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/tiles/tilesets/city01_street.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/tiles/tilesets/city01_sidewalk.tres" type="TileSet" id=2]
 [ext_resource path="res://assets/tiles/tilesets/city01_buildings.tres" type="TileSet" id=3]
 [ext_resource path="res://assets/tiles/tilesets/city01_props.tres" type="TileSet" id=4]
 [ext_resource path="res://player/MagicalGirl.tscn" type="PackedScene" id=5]
-[ext_resource path="res://enemies/Slime.tscn" type="PackedScene" id=6]
 [ext_resource path="res://InitialFunctions.tscn" type="PackedScene" id=7]
 [ext_resource path="res://enemies/EnemyPortal.tscn" type="PackedScene" id=8]
 
@@ -56,9 +55,6 @@ smoothing_enabled = true
 [node name="EnemyPortal" parent="YSort" instance=ExtResource( 8 )]
 position = Vector2( 523, 170 )
 spawnAmount = 5
-
-[node name="Slime" parent="YSort/EnemyPortal" instance=ExtResource( 6 )]
-position = Vector2( 8, 42 )
 
 [node name="MagicalGirl" parent="YSort" instance=ExtResource( 5 )]
 position = Vector2( 349, 242 )
