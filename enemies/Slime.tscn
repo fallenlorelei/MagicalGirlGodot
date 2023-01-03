@@ -38,10 +38,11 @@ script = ExtResource( 5 )
 position = Vector2( 0, -17 )
 frames = SubResource( 1 )
 animation = "slime_idle"
-frame = 1
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 1, -2 )
 rotation = 1.5708
 shape = SubResource( 6 )
@@ -52,31 +53,32 @@ TOLERANCE = 40
 
 [node name="RandomCrystal" parent="EnemyManager" index="0"]
 frame = 3
-ElementalCrystals = {
-"BLUE": 0,
-"GREEN": 1,
-"PINK": 2,
-"PURPLE": 3,
-"RED": 4
-}
 
 [node name="PDZCollisionShape" parent="EnemyManager/PlayerDetectionZone" index="0"]
+visible = false
 shape = SubResource( 8 )
 
 [node name="SoftCollisionShape2D" parent="EnemyManager/SoftCollision" index="0"]
+visible = false
 position = Vector2( 0, -1 )
 shape = SubResource( 7 )
 
-[node name="Hurtbox" parent="EnemyManager" index="5"]
+[node name="CollisionShape2D" parent="EnemyManager/Hitbox" index="0"]
+visible = false
+
+[node name="Hurtbox" parent="EnemyManager" index="6"]
 collision_layer = 64
 collision_mask = 0
 
 [node name="CollisionShape2D" parent="EnemyManager/Hurtbox" index="0"]
+visible = false
 position = Vector2( 1, -2 )
 rotation = 1.5708
 shape = SubResource( 9 )
 
+[connection signal="death_effect" from="EnemyManager" to="." method="_on_EnemyManager_death_effect"]
 [connection signal="start_movement" from="EnemyManager" to="." method="_on_EnemyManager_start_movement"]
+[connection signal="area_entered" from="EnemyManager/Hurtbox" to="EnemyManager" method="_on_Hurtbox_area_entered"]
 
 [editable path="EnemyManager"]
 [editable path="EnemyManager/Hitbox"]

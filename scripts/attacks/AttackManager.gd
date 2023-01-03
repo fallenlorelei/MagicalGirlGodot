@@ -21,6 +21,7 @@ func attack(id, attack_type, timing, params = {}):
 		currentAttacks[id]["attack_type"] = attack_type
 		currentAttacks[id]["timing"] = timing
 		currentAttacks[id]["last_play"] = -1000
+		
 	if id in currentAttacks and current_time - currentAttacks[id]['last_play'] > currentAttacks[id]['timing']:
 		var instance = scenes[attack_type].instance()
 		if 'origin' in params.keys():
