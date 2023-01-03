@@ -24,6 +24,5 @@ func _ready():
 
 func random_element():
 	elementalCrystal = ElementalCrystals.keys()[randi() % ElementalCrystals.size()]
-	print(elementalCrystal)
 	randomCrystalSprite.play(str(elementalCrystal))
 	spawned = true

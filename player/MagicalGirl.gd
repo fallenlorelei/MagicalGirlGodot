@@ -14,12 +14,13 @@ enum {
 var state = MOVE
 var velocity = Vector2.ZERO
 var jump_vector = Vector2.DOWN
-
 var attack_manager : Node2D
 
 onready var animationPlayer = $"%AnimationPlayer"
 onready var animationTree = $"%AnimationTree"
 onready var animationState = animationTree.get("parameters/playback")
+
+signal picking_up_item
 
 
 func _ready():
@@ -106,3 +107,7 @@ func jump_animation_finished():
 #
 func attack_animation_finished():
 	state = MOVE
+
+
+func _on_Area2D_area_entered(area):
+	emit_signal("picking_up_item")

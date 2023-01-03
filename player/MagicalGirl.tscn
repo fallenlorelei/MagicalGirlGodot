@@ -972,12 +972,11 @@ visible = false
 position = Vector2( 0, 3 )
 shape = SubResource( 1 )
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 2
+[node name="ItemPickUpArea" type="Area2D" parent="."]
+collision_layer = 0
 collision_mask = 128
 
-[node name="ItemPickUpCollision" type="CollisionShape2D" parent="Area2D"]
-visible = false
+[node name="ItemPickUpCollision" type="CollisionShape2D" parent="ItemPickUpArea"]
 shape = SubResource( 50 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -1014,5 +1013,7 @@ parameters/Run/blend_position = Vector2( 0, 0 )
 
 [node name="AttackOrigin" parent="AttackManager" index="0"]
 position = Vector2( -4, 5 )
+
+[connection signal="area_entered" from="ItemPickUpArea" to="." method="_on_Area2D_area_entered"]
 
 [editable path="AttackManager"]

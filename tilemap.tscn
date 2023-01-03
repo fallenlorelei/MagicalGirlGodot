@@ -54,6 +54,7 @@ smoothing_enabled = true
 
 [node name="EnemyPortal" parent="YSort" instance=ExtResource( 8 )]
 position = Vector2( 523, 170 )
+spawnTimer = 0.2
 spawnAmount = 5
 
 [node name="MagicalGirl" parent="YSort" instance=ExtResource( 5 )]
