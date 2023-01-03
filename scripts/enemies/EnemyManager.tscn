@@ -4,65 +4,10 @@
 [ext_resource path="res://scripts/enemies/WanderControl.gd" type="Script" id=2]
 [ext_resource path="res://scripts/enemies/PlayerDetectionZone.gd" type="Script" id=3]
 [ext_resource path="res://scripts/enemies/SoftCollision.gd" type="Script" id=4]
-<<<<<<< HEAD
-[ext_resource path="res://assets/crystals/green/green_crystal_0000.png" type="Texture" id=5]
-[ext_resource path="res://assets/crystals/blue/blue_crystal_0002.png" type="Texture" id=6]
-[ext_resource path="res://assets/crystals/blue/blue_crystal_0000.png" type="Texture" id=7]
-[ext_resource path="res://assets/crystals/blue/blue_crystal_0001.png" type="Texture" id=8]
-[ext_resource path="res://assets/crystals/green/green_crystal_0002.png" type="Texture" id=9]
-[ext_resource path="res://assets/crystals/green/green_crystal_0003.png" type="Texture" id=10]
-[ext_resource path="res://assets/crystals/blue/blue_crystal_0003.png" type="Texture" id=11]
-[ext_resource path="res://assets/crystals/pink/pink_crystal_0003.png" type="Texture" id=12]
-[ext_resource path="res://assets/crystals/red/red_crystal_0003.png" type="Texture" id=13]
-[ext_resource path="res://assets/crystals/purple/purple_crystal_0002.png" type="Texture" id=14]
-[ext_resource path="res://assets/crystals/pink/pink_crystal_0002.png" type="Texture" id=15]
-[ext_resource path="res://assets/crystals/purple/purple_crystal_0001.png" type="Texture" id=16]
-[ext_resource path="res://assets/crystals/red/red_crystal_0000.png" type="Texture" id=17]
-[ext_resource path="res://assets/crystals/red/red_crystal_0002.png" type="Texture" id=18]
-[ext_resource path="res://assets/crystals/red/red_crystal_0001.png" type="Texture" id=19]
-[ext_resource path="res://assets/crystals/purple/purple_crystal_0000.png" type="Texture" id=20]
-[ext_resource path="res://assets/crystals/green/green_crystal_0001.png" type="Texture" id=21]
-[ext_resource path="res://assets/crystals/pink/pink_crystal_0000.png" type="Texture" id=22]
-[ext_resource path="res://assets/crystals/pink/pink_crystal_0001.png" type="Texture" id=23]
-[ext_resource path="res://assets/crystals/purple/purple_crystal_0003.png" type="Texture" id=24]
-[ext_resource path="res://scripts/enemies/AnimatedSpriteCrystal.gd" type="Script" id=25]
+[ext_resource path="res://items/RandomCrystal.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Attacks/Hitbox.tscn" type="PackedScene" id=26]
 [ext_resource path="res://Attacks/Hurtbox.tscn" type="PackedScene" id=27]
-
-
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 11 ) ],
-"loop": true,
-"name": "BLUE",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ), ExtResource( 21 ), ExtResource( 9 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "GREEN",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 22 ), ExtResource( 23 ), ExtResource( 15 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "PINK",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 20 ), ExtResource( 16 ), ExtResource( 14 ), ExtResource( 24 ) ],
-"loop": true,
-"name": "PURPLE",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 17 ), ExtResource( 19 ), ExtResource( 18 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "RED",
-"speed": 5.0
-} ]
-=======
-[ext_resource path="res://items/RandomCrystal.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scripts/attacks/Hitbox.tscn" type="PackedScene" id=26]
-[ext_resource path="res://scripts/attacks/Hurtbox.tscn" type="PackedScene" id=27]
 [ext_resource path="res://enemies/EnemyStats.tscn" type="PackedScene" id=28]
->>>>>>> 384861e5c7e0b3a0f07322732d3fcf982e6af255
 
 [node name="EnemyManager" type="Area2D"]
 collision_layer = 4
