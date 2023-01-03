@@ -10,7 +10,7 @@ var distance = 20
 var distanceX = rand_range(-distance, distance)
 var distanceY = rand_range(-distance, distance)
 var new_distance = Vector2(distanceX, distanceY)
-
+var pickingUp = false
 
 func _physics_process(_delta):
 	pass
@@ -29,7 +29,7 @@ func _ready():
 # Crystal moves to player
 # I want to edit so that the crystals follow the player when they move
 func pick_up_item():
-	# Removing collision stops duplicates
+	# Removing collision kinda stops duplicates
 	set_deferred("monitorable", false)
 	set_collision_layer_bit(7, false)
 		
@@ -41,7 +41,10 @@ func pick_up_item():
 	TW.tween_property(animatedCrystal, "scale", Vector2(0,0), .5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	TW.tween_callback(self, "queue_free")
 	
-	crystalCounter.update_crystals(element, 1)
+	# Also stops duplicates
+	if pickingUp == false:
+		crystalCounter.update_crystals(element, 1)
+		pickingUp = true
 
 # Updates position of the collision
 func update_pos():
