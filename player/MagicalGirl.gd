@@ -31,9 +31,11 @@ func _process(_delta):
 	pass
 
 func _physics_process(delta): 
-	if Input.is_action_pressed("ability1") or Input.is_action_pressed("left_click"):
-		if state != JUMP:
-			attack_state(delta)
+	if state != JUMP:
+		if Input.is_action_pressed("ability1") or Input.is_action_pressed("left_click"):
+			attack_state(delta, 'shoot', 'shootAttack', 250, { 'origin': get_global_position() })
+		if Input.is_action_pressed("ability2"):
+			attack_state(delta, 'gem', 'staticAttack', 3000, { 'origin': get_global_mouse_position() })
 	match state:
 		MOVE:
 			move_state(delta)
@@ -79,8 +81,9 @@ func jump_state(delta):
 	set_collision_layer_bit(1, false)
 	set_collision_layer_bit(4, true)
 #
-func attack_state(_delta):
+func attack_state(_delta, uid, type, time, params = {}):
 	# velocity = Vector2.ZERO
+	attack_manager.attack(uid, type, time, params)
 	var mouseclick = (get_global_mouse_position() - position).normalized()
 	animationTree.set("parameters/Attack/blend_position", mouseclick)
 	animationState.travel("Attack")
