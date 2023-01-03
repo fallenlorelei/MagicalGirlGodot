@@ -7,18 +7,13 @@ onready var sprite = $Sprite
 export(float) var spawnTimer = 1.0
 var randomEnemy
 
-
-#export(String,"Slime","BiggerSlime") var enemy_list
-
-
-var enemy_dict
+var enemy_dict = {
+	"Slime": preload("res://enemies/Slime.tscn"),
+	}
 
 export var spawnAmount = 1
 
 func _ready():
-	enemy_dict = {
-		"Slime": preload("res://enemies/Slime.tscn"),
-	}
 	randomEnemy = get_random_enemy()
 
 func get_random_enemy():
