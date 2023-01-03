@@ -17,6 +17,8 @@ animations = [ {
 } ]
 
 [node name="StaticAttack" type="Area2D"]
+collision_layer = 0
+collision_mask = 64
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -25,4 +27,5 @@ shape = SubResource( 50 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 51 )
+frame = 1
 playing = true

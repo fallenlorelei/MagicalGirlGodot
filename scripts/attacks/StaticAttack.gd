@@ -1,5 +1,7 @@
 extends Area2D
 
+export var damage = 1
+
 var attack_cool_down = 250
 var duration = 2000
 var last_attack_time = 0
