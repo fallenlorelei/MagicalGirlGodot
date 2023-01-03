@@ -4,7 +4,7 @@ onready var animationPlayer = $AnimationPlayer
 onready var timer = $Timer
 onready var sprite = $Sprite
 
-export(float) var spawnTimer = 1
+export(float) var spawnTimer = 1.0
 var randomEnemy
 
 
