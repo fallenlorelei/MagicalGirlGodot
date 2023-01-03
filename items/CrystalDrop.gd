@@ -1,7 +1,7 @@
 extends Area2D
 
 onready var animatedCrystal = $AnimatedSpriteCrystal
-onready var tween = get_node("Tween")
+onready var tween = $Tween
 
 var crystalType
 var distance = 20
@@ -16,3 +16,5 @@ func _ready():
 	Tween.TRANS_BOUNCE, Tween.EASE_OUT)
 	tween.start()
 
+func _on_CrystalDrop_area_entered(area):
+	print("picked up")

@@ -4,6 +4,7 @@ onready var animationPlayer = $AnimationPlayer
 onready var timer = $Timer
 onready var sprite = $Sprite
 
+export(float) var spawnTimer = 1
 var randomEnemy
 
 
@@ -40,7 +41,7 @@ func spawn_enemies():
 	get_parent().add_child(enemySpawn)
 	spawnAmount -= 1
 	if spawnAmount >= 0:
-		timer.start()
+		timer.start(spawnTimer)
 
 
 func _on_Timer_timeout():

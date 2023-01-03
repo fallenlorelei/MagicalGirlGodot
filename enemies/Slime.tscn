@@ -38,7 +38,6 @@ script = ExtResource( 5 )
 position = Vector2( 0, -17 )
 frames = SubResource( 1 )
 animation = "slime_idle"
-frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -50,9 +49,6 @@ shape = SubResource( 6 )
 [node name="EnemyManager" parent="." instance=ExtResource( 26 )]
 MAX_SPEED = 50
 TOLERANCE = 40
-
-[node name="RandomCrystal" parent="EnemyManager" index="0"]
-frame = 3
 
 [node name="PDZCollisionShape" parent="EnemyManager/PlayerDetectionZone" index="0"]
 visible = false
