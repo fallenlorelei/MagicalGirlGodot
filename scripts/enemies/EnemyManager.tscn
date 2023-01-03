@@ -25,8 +25,9 @@
 [ext_resource path="res://assets/crystals/pink/pink_crystal_0001.png" type="Texture" id=23]
 [ext_resource path="res://assets/crystals/purple/purple_crystal_0003.png" type="Texture" id=24]
 [ext_resource path="res://scripts/enemies/AnimatedSpriteCrystal.gd" type="Script" id=25]
-[ext_resource path="res://scripts/attacks/Hitbox.tscn" type="PackedScene" id=26]
-[ext_resource path="res://scripts/attacks/Hurtbox.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Attacks/Hitbox.tscn" type="PackedScene" id=26]
+[ext_resource path="res://Attacks/Hurtbox.tscn" type="PackedScene" id=27]
+
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {

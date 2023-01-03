@@ -1,17 +1,19 @@
 extends Node2D
 
-var scene
+var scenes = {}
 var currentAttacks = {}
 
 onready var attack_origin = $AttackOrigin
 
 func _ready():
-	scene = preload("res://Attacks//ShootAttack.tscn")
-
+	scenes = {
+		'shootAttack': preload("res://Attacks//ShootAttack.tscn"),
+		'staticAttack': preload("res://Attacks//StaticAttack.tscn"),
+	}
 # 
-# orgin : Can pass offset of 
+#  
 # 
-func attack(id, attack_type, timing):
+func attack(id, attack_type, timing, params = {}):
 	# Use htis to switch attack_type to correct function
 	var current_time = Time.get_ticks_msec()
 	if !(id in currentAttacks):
@@ -20,9 +22,10 @@ func attack(id, attack_type, timing):
 		currentAttacks[id]["timing"] = timing
 		currentAttacks[id]["last_play"] = -1000
 	if id in currentAttacks and current_time - currentAttacks[id]['last_play'] > currentAttacks[id]['timing']:
-		var instance = scene.instance()
-		instance.position = attack_origin.position
-		add_child(instance)
+		var instance = scenes[attack_type].instance()
+		if 'origin' in params.keys():
+			instance.global_position = params['origin']
+		get_parent().get_parent().add_child(instance)
 		currentAttacks[id]["last_play"] = Time.get_ticks_msec()
 
-#TODO ON DESTROY REMOVE FROM CURRENT ATTACKS
+#TODO At some point this method will need cleanup so the array doesn't grow like crazy

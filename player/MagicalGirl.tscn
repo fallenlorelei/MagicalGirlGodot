@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/sprites/magicalgirl/girl_run.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/magicalgirl/girl_jump.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/magicalgirl/girl_attack1.png" type="Texture" id=5]
-[ext_resource path="res://scripts/attacks/AttackManager.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Attacks/AttackManager.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 9.0
