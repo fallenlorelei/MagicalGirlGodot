@@ -11,17 +11,15 @@ var randomEnemy
 #export(String,"Slime","BiggerSlime") var enemy_list
 
 
-var enemy_dict = {
-	"Slime": load("res://enemies/Slime.tscn"),
-#	"MagicalGirl": load("res://player/MagicalGirl.tscn")
-}
-
+var enemy_dict
 
 export var spawnAmount = 1
 
 func _ready():
+	enemy_dict = {
+		"Slime": preload("res://enemies/Slime.tscn"),
+	}
 	randomEnemy = get_random_enemy()
-	print(randomEnemy)
 
 func get_random_enemy():
 	var random_id = randi() % enemy_dict.size()
