@@ -12,10 +12,6 @@ var crystalsThunder = 0
 
 signal crystals_changed
 
-func _ready():
-	pass
-
-
 func update_crystals(element, amount):
 	match element:
 		"BLUE":
@@ -29,10 +25,4 @@ func update_crystals(element, amount):
 		"RED":
 			crystalsFire += 1
 			
-	print("blue: ", crystalsWater)
-	print("green: ", crystalsEarth)
-	print("pink: ", crystalsPsychic)
-	print("purple: ", crystalsDark)
-	print("red: ", crystalsFire)
-	
 	emit_signal("crystals_changed")
