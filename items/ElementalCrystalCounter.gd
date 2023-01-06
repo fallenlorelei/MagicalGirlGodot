@@ -15,14 +15,14 @@ signal crystals_changed
 func update_crystals(element, amount):
 	match element:
 		"BLUE":
-			crystalsWater += 1			
+			crystalsWater += amount			
 		"GREEN":
-			crystalsEarth += 1			
+			crystalsEarth += amount			
 		"PINK":
-			crystalsPsychic += 1			
+			crystalsPsychic += amount			
 		"PURPLE":
-			crystalsDark += 1			
+			crystalsDark += amount			
 		"RED":
-			crystalsFire += 1
+			crystalsFire += amount
 			
 	emit_signal("crystals_changed")

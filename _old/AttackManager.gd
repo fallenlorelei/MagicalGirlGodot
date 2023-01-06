@@ -7,8 +7,8 @@ onready var attack_origin = $AttackOrigin
 
 func _ready():
 	scenes = {
-		'shootAttack': preload("res://Attacks//ShootAttack.tscn"),
-		'staticAttack': preload("res://Attacks//StaticAttack.tscn"),
+		'shootAttack': preload("res://attacks//ShootAttack.tscn"),
+		'staticAttack': preload("res://attacks//StaticAttack.tscn"),
 	}
 # 
 #  

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://scripts/attacks/AttackManager.gd" type="Script" id=1]
+[ext_resource path="res://_old/AttackManager.gd" type="Script" id=1]
 
 [node name="AttackManager" type="Node2D"]
 script = ExtResource( 1 )
