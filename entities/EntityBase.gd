@@ -4,10 +4,10 @@ signal hp_max_changed(new_hp_max)
 signal hp_changed(new_hp)
 signal died
 
-onready var sprite = $Sprite
-onready var collisionShape = $CollisionShape2D
-onready var animationPlayer = $AnimationPlayer
-onready var hurtbox = $Hurtbox
+#onready var sprite = $Sprite
+#onready var collisionShape = $CollisionShape2D
+#onready var animationPlayer = $AnimationPlayer
+#onready var hurtbox = $Hurtbox
 
 export(int) var hp_max = 100 setget set_hp_max
 export(int) var hp = hp_max setget set_hp

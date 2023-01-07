@@ -7,7 +7,7 @@ var abilityPressed setget set_attack
 var mouseclick = Vector2()
 var clickLocation = Vector2()
 
-
+onready var hurtbox = $Hurtbox
 onready var attackManager = $AttackManager
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
@@ -42,7 +42,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump") and state != JUMP:
 		state = JUMP
 			
-func move_state(_delta):	
+func move_state(_delta):
 	move.execute(self)
 	
 func set_attack(value):
@@ -64,7 +64,9 @@ func jump_animation_finished():
 	jump.animation_finished(self)
 	
 func attack_animation_finished():
+	print("finished")
 	state = MOVE
+	move()
 
 func dead_state():
 	animationState.travel("death")
