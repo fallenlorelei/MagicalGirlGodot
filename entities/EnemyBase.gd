@@ -1,24 +1,21 @@
 extends "res://entities/EntityBase.gd"
 
 onready var sprite = $Sprite
+onready var animationPlayer = $AnimationPlayer
 onready var playerDetectionZone = $PlayerDetectionZone
 onready var softCollision = $SoftCollision
 onready var wanderTimer = $WanderTimer
 onready var randomCrystal = $RandomCrystal
+
 onready var wanderStartPos = global_position
 onready var wanderTargetPos = global_position
 
-export(int) var wander_range = 32
+export(int) var TOLERANCE = 30
+export(int) var wander_range = 40
 
 func _ready():
-	ACCELERATION = 300
-	MAX_SPEED = 40
-	FRICTION = 250
-	TOLERANCE = sprite.texture.get_width()
-	ATTACK_FRICTION = 100
-	
+	TOLERANCE = sprite.texture.get_width() / 2
 	update_wander_target_position()
-	
 	pick_random_state([IDLE, WANDER])
 	
 
@@ -30,6 +27,8 @@ func _physics_process(delta):
 			wander(delta)
 		CHASE:
 			chase(delta)
+		DEAD:
+			dead_state()
 			
 	seek_player()
 	
@@ -49,7 +48,7 @@ func wander(delta):
 
 # This keeps the slime from overshooting its target position and running back and forth
 # "Tolerance" is a pretty random number that I think should be similar to half the sprite's width
-	if global_position.distance_to(wanderTargetPos) <= TOLERANCE * delta:
+	if global_position.distance_to(wanderTargetPos) <= TOLERANCE:
 		update_wander_timer()
 
 func update_wander_target_position():
@@ -90,7 +89,12 @@ func _on_WanderTimer_timeout():
 	update_wander_target_position()
 
 
-#func _on_EnemyStats_no_health():
-#	randomCrystal.drop_crystal()
-#	emit_signal("death_effect")
-#	get_parent().queue_free()
+func _on_EnemyBase_died():
+	velocity = Vector2.ZERO
+	randomCrystal.drop_crystal()
+	randomCrystal.queue_free()
+	state = DEAD
+
+func dead_state():
+	animationPlayer.play("death")
+	

@@ -17,7 +17,6 @@ export(float) var invincibleDuration = .5
 export(int) var ACCELERATION = 450
 export(int) var MAX_SPEED = 80
 export(int) var FRICTION = 550
-export(int) var TOLERANCE = 60
 export(int) var ATTACK_FRICTION = 100
 
 var knockback = Vector2.ZERO
@@ -49,6 +48,7 @@ func set_hp(value):
 	if value != hp:
 		hp = clamp(value, 0, hp_max)
 		emit_signal("hp_changed", hp)
+		
 		if hp == 0:
 			emit_signal("died")
 
@@ -84,8 +84,11 @@ func _on_Hurtbox_area_entered(hitbox):
 	if hitbox.is_in_group("Projectile"):
 		hitbox.destroy()
 		
-	print(name + " received " + str(actual_damage) + " damage.")
+	print(name + " received " + str(actual_damage) + " damage. Now has " + str(hp))
 
 func _on_EntityBase_died():
 	velocity = Vector2.ZERO
 	state = DEAD
+
+func death_animation_finished():
+	die()

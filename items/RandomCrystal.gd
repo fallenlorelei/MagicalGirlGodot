@@ -11,6 +11,6 @@ func _ready():
 func drop_crystal():
 	var crystalDrop = CrystalDrop.instance()
 	crystalDrop.crystalType = randomCrystalScript.elementalCrystal
-	get_parent().get_parent().get_parent().call_deferred("add_child", crystalDrop)
+	get_parent().get_parent().call_deferred("add_child", crystalDrop)
 	crystalDrop.global_position = global_position
 	
