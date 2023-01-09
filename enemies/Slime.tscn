@@ -135,6 +135,9 @@ height = 6.0
 
 [node name="Slime" instance=ExtResource( 1 )]
 hp_max = 20
+ACCELERATION = 300
+MAX_SPEED = 30
+FRICTION = 150
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2( 0, -16 )

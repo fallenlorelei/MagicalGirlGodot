@@ -85,3 +85,4 @@ func _on_Hurtbox_area_entered(hitbox):
 		hitbox.destroy()
 		
 	print(name + " received " + str(actual_damage) + " damage. Now has " + str(hp))
+

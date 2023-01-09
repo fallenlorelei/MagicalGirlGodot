@@ -13,14 +13,14 @@ onready var wanderStartPos = global_position
 onready var wanderTargetPos = global_position
 
 export(int) var TOLERANCE = 30
-export(int) var wander_range = 40
+export(int) var wander_range = 80
 
 func _ready():
 	TOLERANCE = sprite.texture.get_width() / 2
 	update_wander_target_position()
-	pick_random_state([IDLE, WANDER])
+	state = WANDER
+#	pick_random_state([IDLE, WANDER])
 	
-
 func _physics_process(delta):	
 	match state:
 		IDLE:
@@ -49,7 +49,6 @@ func wander(delta):
 	accelerate_towards_point(wanderTargetPos, delta)
 
 # This keeps the slime from overshooting its target position and running back and forth
-# "Tolerance" is a pretty random number that I think should be similar to half the sprite's width
 	if global_position.distance_to(wanderTargetPos) <= TOLERANCE:
 		update_wander_timer()
 
@@ -90,6 +89,7 @@ func pick_random_state(state_list):
 func _on_WanderTimer_timeout():
 	update_wander_target_position()
 
+# == DYING ==
 
 func _on_EnemyBase_died():
 	velocity = Vector2.ZERO

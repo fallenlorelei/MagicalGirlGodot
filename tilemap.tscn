@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/tiles/tilesets/city01_sidewalk.tres" type="TileSet" id=2]
 [ext_resource path="res://assets/tiles/tilesets/city01_buildings.tres" type="TileSet" id=3]
 [ext_resource path="res://assets/tiles/tilesets/city01_props.tres" type="TileSet" id=4]
-[ext_resource path="res://enemies/Slime.tscn" type="PackedScene" id=5]
+[ext_resource path="res://enemies/EnemyPortal.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui/CrystalCounter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://InitialFunctions.tscn" type="PackedScene" id=7]
 [ext_resource path="res://entities/Player.tscn" type="PackedScene" id=9]
@@ -60,17 +60,9 @@ position = Vector2( 201, 265 )
 position = Vector2( 0, -2 )
 remote_path = NodePath("../../../Camera2D")
 
-[node name="Slime" parent="YSort" instance=ExtResource( 5 )]
-position = Vector2( 372, 256 )
-
-[node name="Slime2" parent="YSort" instance=ExtResource( 5 )]
-position = Vector2( 388, 290 )
-
-[node name="Slime3" parent="YSort" instance=ExtResource( 5 )]
-position = Vector2( 342, 216 )
-
-[node name="Slime4" parent="YSort" instance=ExtResource( 5 )]
-position = Vector2( 400, 213 )
+[node name="EnemyPortal" parent="YSort" instance=ExtResource( 5 )]
+position = Vector2( 369, 251 )
+spawnAmount = 5
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

@@ -8,8 +8,7 @@ export(float) var spawnTimer = 1.0
 var randomEnemy
 
 var enemy_dict = {
-#	"Slime": preload("res://enemies/Slime.tscn"),
-	"Slime2": preload("res://entities/EnemySlime.tscn"),
+	"Slime": preload("res://enemies/Slime.tscn"),
 	}
 
 export var spawnAmount = 1
@@ -34,6 +33,7 @@ func spawn_enemies():
 	enemySpawn.global_position = global_position
 	get_parent().add_child(enemySpawn)
 	spawnAmount -= 1
+	enemySpawn.state = 3
 	if spawnAmount >= 0:
 		timer.start(spawnTimer)
 
