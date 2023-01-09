@@ -36,10 +36,15 @@ script = ExtResource( 6 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SoftCollision"]
 modulate = Color( 0.827451, 0.494118, 0.792157, 1 )
 
-[node name="Hitbox" parent="." instance=ExtResource( 3 )]
+[node name="HitboxPivot" type="Position2D" parent="."]
+
+[node name="Hitbox" parent="HitboxPivot" instance=ExtResource( 3 )]
 collision_mask = 32
 monitoring = false
 damage = 50
+
+[node name="CollisionShape2D" parent="HitboxPivot/Hitbox" index="0"]
+disabled = true
 
 [node name="Hurtbox" parent="." instance=ExtResource( 4 )]
 collision_layer = 64
@@ -50,5 +55,5 @@ monitorable = false
 [connection signal="timeout" from="WanderTimer" to="." method="_on_WanderTimer_timeout"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 
-[editable path="Hitbox"]
+[editable path="HitboxPivot/Hitbox"]
 [editable path="Hurtbox"]

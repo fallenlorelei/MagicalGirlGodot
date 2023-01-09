@@ -1243,6 +1243,7 @@ parameters/Jump/blend_position = Vector2( 0, 0 )
 parameters/Run/blend_position = Vector2( 0, 0 )
 
 [node name="ItemPickUp" type="Area2D" parent="." index="4"]
+visible = false
 collision_layer = 0
 collision_mask = 128
 

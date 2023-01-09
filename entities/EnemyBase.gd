@@ -2,7 +2,8 @@ extends "res://entities/EntityBase.gd"
 
 onready var sprite = $Sprite
 onready var hurtbox = $Hurtbox
-onready var hitbox = $Hitbox
+onready var hitbox = $HitboxPivot/Hitbox
+onready var hitboxPivot = $HitboxPivot
 onready var animationPlayer = $AnimationPlayer
 onready var playerDetectionZone = $PlayerDetectionZone
 onready var softCollision = $SoftCollision
@@ -14,6 +15,8 @@ onready var wanderTargetPos = global_position
 
 export(int) var TOLERANCE = 30
 export(int) var wander_range = 80
+
+var direction
 
 func _ready():
 	TOLERANCE = sprite.texture.get_width() / 2
@@ -31,7 +34,7 @@ func _physics_process(delta):
 			chase(delta)
 		DEAD:
 			dead_state()
-			
+		
 	seek_player()
 	
 # Soft collision is so enemies don't overlap each other
@@ -47,7 +50,7 @@ func wander(delta):
 	check_wander_timer()
 	
 	accelerate_towards_point(wanderTargetPos, delta)
-
+	
 # This keeps the slime from overshooting its target position and running back and forth
 	if global_position.distance_to(wanderTargetPos) <= TOLERANCE:
 		update_wander_timer()
@@ -57,11 +60,12 @@ func update_wander_target_position():
 	wanderTargetPos = wanderStartPos + wanderTargetVector
 
 func accelerate_towards_point(wanderTargetPos, delta):
-	var direction = global_position.direction_to(wanderTargetPos)
+	direction = global_position.direction_to(wanderTargetPos)
 	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
+	sprite.flip_h = velocity.x > 0
 	move()
 
-func seek_player():
+func seek_player():		
 	if playerDetectionZone.can_see_player():
 		state = CHASE
 	
@@ -69,10 +73,28 @@ func seek_player():
 func chase(delta):
 	var player = playerDetectionZone.player
 	if player != null:
-		accelerate_towards_point(player.global_position, delta)			
+		accelerate_towards_point(player.global_position, delta)
+		var collisionSize = get_node("CollisionShape2D").shape.height
+		var hitboxSize = hitbox.get_node("CollisionShape2D").shape.radius
+		var attackDistance = collisionSize + hitboxSize
+		if global_position.distance_to(player.global_position) <= attackDistance:
+			state = attack()
 	else:
 		state = IDLE
 
+#== ATTACKING ==
+func attack():
+	if direction.x > 0:
+		hitboxPivot.rotation_degrees = 90
+	animationPlayer.play("attack")
+	
+func attackAnimation_hitbox_on():
+	hitbox.get_node("CollisionShape2D").disabled = false
+	
+func attackAnimation_hitbox_off():
+	hitbox.get_node("CollisionShape2D").disabled = true
+#	state = CHASE
+	
 # == WANDER TIMER ==
 func check_wander_timer():
 	if wanderTimer.time_left == 0:
@@ -90,15 +112,6 @@ func _on_WanderTimer_timeout():
 	update_wander_target_position()
 
 # == DYING ==
-
-#func _on_EnemyBase_died():
-#	velocity = Vector2.ZERO
-#	hurtbox.set_deferred("monitoring", false)
-#	hitbox.set_deferred("monitorable", false)
-#	if is_instance_valid(randomCrystal):
-#		randomCrystal.drop()
-#	state = DEAD
-
 func dead_state():
 	velocity = Vector2.ZERO
 	hurtbox.set_deferred("monitoring", false)
