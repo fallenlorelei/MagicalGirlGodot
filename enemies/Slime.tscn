@@ -35,9 +35,6 @@ collision_mask = 2
 [node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
 shape = SubResource( 2 )
 
-[node name="WanderTimer" parent="." index="6"]
-autostart = true
-
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2( 1, 0 )
 rotation = 1.5708

@@ -17,12 +17,13 @@ export(float) var invincibleDuration = .5
 export(int) var ACCELERATION = 450
 export(int) var MAX_SPEED = 80
 export(int) var FRICTION = 550
-export(int) var ATTACK_FRICTION = 100
 export(int) var TOLERANCE = 60
+export(int) var ATTACK_FRICTION = 100
 
 var knockback = Vector2.ZERO
 var input_vector = Vector2.ZERO
 
+# Move 0, Jump 1, Attack 2, Wander 3, Idle 4, Chase 5, Dead 6
 enum {
 	MOVE,
 	JUMP,
@@ -76,6 +77,7 @@ func receive_damage(base_damage):
 	
 func _on_Hurtbox_area_entered(hitbox):
 	var actual_damage = receive_damage(hitbox.damage)
+	
 	if hitbox.knocksback == true and hitbox.is_in_group("Player"):
 		knockback = hitbox.knockback_vector * hitbox.knockbackModifier
 		
@@ -87,4 +89,3 @@ func _on_Hurtbox_area_entered(hitbox):
 func _on_EntityBase_died():
 	velocity = Vector2.ZERO
 	state = DEAD
-

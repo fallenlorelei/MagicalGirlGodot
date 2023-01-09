@@ -30,6 +30,8 @@ script = ExtResource( 5 )
 modulate = Color( 0.403922, 0.627451, 0.843137, 1 )
 
 [node name="WanderTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
 
 [node name="SoftCollision" type="Area2D" parent="."]
 script = ExtResource( 6 )
@@ -45,6 +47,8 @@ collision_layer = 64
 
 [connection signal="body_entered" from="PlayerDetectionZone" to="PlayerDetectionZone" method="_on_PlayerDetectionZone_body_entered"]
 [connection signal="body_exited" from="PlayerDetectionZone" to="PlayerDetectionZone" method="_on_PlayerDetectionZone_body_exited"]
+[connection signal="timeout" from="WanderTimer" to="." method="_on_WanderTimer_timeout"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 
 [editable path="Hitbox"]
 [editable path="Hurtbox"]

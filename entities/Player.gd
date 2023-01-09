@@ -29,6 +29,7 @@ func _physics_process(delta):
 		DEAD:
 			dead_state()
 			
+			
 #	== USE ABILITIES ==
 	if state != JUMP or state != DEAD:
 		if Input.is_action_just_pressed("left_click"):
@@ -41,10 +42,12 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("jump") and state != JUMP:
 		state = JUMP
-			
+
+#	== MOVING ==
 func move_state(_delta):
 	move.execute(self)
-	
+
+#	== ATTACKING ==
 func set_attack(value):
 	mouseclick = (get_global_mouse_position() - position).normalized()
 	clickLocation = get_global_mouse_position()
@@ -53,7 +56,11 @@ func set_attack(value):
 
 	attackManager.begin_attack(value)
 
-	
+func attack_animation_finished():
+	state = MOVE
+	move()
+
+#	== JUMPING ==	
 func jump_state():
 	jump.execute(self)
 
@@ -63,10 +70,7 @@ func jump_landed():
 func jump_animation_finished():
 	jump.animation_finished(self)
 	
-func attack_animation_finished():
-	print("finished")
-	state = MOVE
-	move()
 
+#	== DYING ==	
 func dead_state():
 	animationState.travel("death")
