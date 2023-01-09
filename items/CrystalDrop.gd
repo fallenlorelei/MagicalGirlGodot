@@ -2,7 +2,6 @@ extends Area2D
 
 onready var animatedCrystal = $AnimatedSpriteCrystal
 onready var pickupCollision = $ItemPickUpCollision
-onready var player = get_node("../MagicalGirl")
 onready var crystalCounter = ElementalCrystalCounter
 
 var crystalType
@@ -13,7 +12,7 @@ var new_distance = Vector2(distanceX, distanceY)
 var pickingUp = false
 
 	
-func _ready():	
+func _ready():
 	animatedCrystal.play(str(crystalType))
 	
 	# Crystal drops and bounces
@@ -22,13 +21,14 @@ func _ready():
 	
 	update_pos()
 
-
 # Updates position of the collision when crystal drops
 func update_pos():
 	pickupCollision.position = new_distance
 
 
 func _on_CrystalDrop_area_entered(area):
+	var player = area
+
 	# Removing collision kinda stops duplicates
 	set_deferred("monitorable", false)
 	set_collision_layer_bit(7, false)
@@ -38,9 +38,9 @@ func _on_CrystalDrop_area_entered(area):
 	# Crystal moves to player
 	# I want to edit so that the crystals follow the player when they move		
 	var TW = create_tween()
-	var playerPosition = to_local(player.position)
-	TW.tween_property(animatedCrystal, "position", playerPosition, .3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
-	TW.tween_property(animatedCrystal, "scale", Vector2(0,0), .3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	var playerPosition = player.global_position
+	TW.tween_property(self, "position", playerPosition, .5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
+	TW.tween_property(self, "scale", Vector2(0,0), .5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	TW.tween_callback(self, "queue_free")
 	
 	# Also stops duplicates

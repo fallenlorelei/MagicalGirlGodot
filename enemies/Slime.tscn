@@ -142,7 +142,6 @@ texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "idle"
-playback_speed = 0.5
 anims/RESET = SubResource( 8 )
 anims/death = SubResource( 10 )
 anims/idle = SubResource( 9 )

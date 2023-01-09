@@ -41,10 +41,12 @@ modulate = Color( 0.827451, 0.494118, 0.792157, 1 )
 
 [node name="Hitbox" parent="." instance=ExtResource( 3 )]
 collision_mask = 32
+monitoring = false
 damage = 50
 
 [node name="Hurtbox" parent="." instance=ExtResource( 4 )]
 collision_layer = 64
+monitorable = false
 
 [connection signal="died" from="." to="." method="_on_EnemyBase_died"]
 [connection signal="body_entered" from="PlayerDetectionZone" to="PlayerDetectionZone" method="_on_PlayerDetectionZone_body_entered"]

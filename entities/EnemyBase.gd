@@ -1,6 +1,8 @@
 extends "res://entities/EntityBase.gd"
 
 onready var sprite = $Sprite
+onready var hurtbox = $Hurtbox
+onready var hitbox = $Hitbox
 onready var animationPlayer = $AnimationPlayer
 onready var playerDetectionZone = $PlayerDetectionZone
 onready var softCollision = $SoftCollision
@@ -91,10 +93,16 @@ func _on_WanderTimer_timeout():
 
 func _on_EnemyBase_died():
 	velocity = Vector2.ZERO
-	randomCrystal.drop_crystal()
-	randomCrystal.queue_free()
+	hurtbox.set_deferred("monitoring", false)
+	hitbox.set_deferred("monitorable", false)
+	if is_instance_valid(randomCrystal):
+		randomCrystal.drop()
 	state = DEAD
 
 func dead_state():
+	if is_instance_valid(randomCrystal):
+		randomCrystal.queue_free()
 	animationPlayer.play("death")
 	
+func death_animation_finished():
+	die()

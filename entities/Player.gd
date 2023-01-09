@@ -72,5 +72,12 @@ func jump_animation_finished():
 	
 
 #	== DYING ==	
+func _on_Player_died():
+	velocity = Vector2.ZERO
+	state = DEAD
+
 func dead_state():
 	animationState.travel("death")
+	
+func death_animation_finished():
+	die()

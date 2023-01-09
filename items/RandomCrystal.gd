@@ -8,9 +8,10 @@ onready var randomCrystalScript = $RandomizeCrystal
 func _ready():
 	pass
 
-func drop_crystal():
+func drop():
 	var crystalDrop = CrystalDrop.instance()
 	crystalDrop.crystalType = randomCrystalScript.elementalCrystal
 	get_parent().get_parent().call_deferred("add_child", crystalDrop)
 	crystalDrop.global_position = global_position
+#	queue_free()
 	

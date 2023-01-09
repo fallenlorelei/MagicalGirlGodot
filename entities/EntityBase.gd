@@ -85,10 +85,3 @@ func _on_Hurtbox_area_entered(hitbox):
 		hitbox.destroy()
 		
 	print(name + " received " + str(actual_damage) + " damage. Now has " + str(hp))
-
-func _on_EntityBase_died():
-	velocity = Vector2.ZERO
-	state = DEAD
-
-func death_animation_finished():
-	die()
