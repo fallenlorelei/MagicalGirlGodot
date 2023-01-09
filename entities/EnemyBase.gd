@@ -63,6 +63,7 @@ func accelerate_towards_point(wanderTargetPos, delta):
 	direction = global_position.direction_to(wanderTargetPos)
 	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta)
 	sprite.flip_h = velocity.x > 0
+
 	move()
 
 func seek_player():		
@@ -84,8 +85,11 @@ func chase(delta):
 
 #== ATTACKING ==
 func attack():
-	if direction.x > 0:
+	if direction.x >= 0:
 		hitboxPivot.rotation_degrees = 90
+	else:
+		hitboxPivot.rotation_degrees = 0
+		
 	animationPlayer.play("attack")
 	
 func attackAnimation_hitbox_on():
@@ -93,7 +97,7 @@ func attackAnimation_hitbox_on():
 	
 func attackAnimation_hitbox_off():
 	hitbox.get_node("CollisionShape2D").disabled = true
-#	state = CHASE
+	state = IDLE
 	
 # == WANDER TIMER ==
 func check_wander_timer():
