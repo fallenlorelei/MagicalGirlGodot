@@ -50,7 +50,7 @@ func set_hp(value):
 		emit_signal("hp_changed", hp)
 		
 		if hp == 0:
-			emit_signal("died")
+			state = DEAD
 
 
 func _physics_process(delta):
@@ -78,11 +78,12 @@ func receive_damage(base_damage):
 func _on_Hurtbox_area_entered(hitbox):
 	var actual_damage = receive_damage(hitbox.damage)
 	
+	# Knockback only works on enemies right now
 	if hitbox.knocksback == true and hitbox.is_in_group("Player"):
 		knockback = hitbox.knockback_vector * hitbox.knockbackModifier
 		
 	if hitbox.is_in_group("Projectile"):
 		hitbox.destroy()
 		
-	print(name + " received " + str(actual_damage) + " damage. Now has " + str(hp))
+	print(name + " received " + str(actual_damage) + " damage. Now has " + str(hp) + " hp.")
 

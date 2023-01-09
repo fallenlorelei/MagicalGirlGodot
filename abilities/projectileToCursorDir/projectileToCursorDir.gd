@@ -23,10 +23,10 @@ func execute(mouseclick):
 func destroy():
 	queue_free()
 
-func _on_ProjectileToCursorDir_area_entered(area):
+func _on_ProjectileToCursorDir_area_entered(_area):
 	destroy()
 	
-func _on_ProjectileToCursorDir_body_entered(body):
+func _on_ProjectileToCursorDir_body_entered(_body):
 	destroy()
 	
 func _on_VisibilityNotifier2D_screen_exited():

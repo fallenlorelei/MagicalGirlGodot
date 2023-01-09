@@ -28,31 +28,39 @@ func begin_attack(abilityPressed):
 	
 	if abilityPressed == 0:
 		attack_animation()
-		projectile_toclick()
+#		projectile_toclick()
+		spawn_ability(projectileToClick,clickLocation)
 	
 	if abilityPressed == 1:
 		attack_animation()
-		projectile_tocursordir()
+#		projectile_tocursordir()
+		spawn_ability(projectileToCursorDir,mouseclick)
 
 func attack_animation():
 	get_parent().animationState.travel("Attack")
 	if attackAnimationTimer.is_stopped():
 		attackAnimationTimer.start()
 	
-func projectile_toclick():
-#	projectileTimer.start()
-	var projectile = projectileToClick.instance()
+func spawn_ability(ability,mouseBehavior):
+	var projectile = ability.instance()
 	get_tree().get_current_scene().add_child(projectile)
 	projectile.global_position = self.global_position		
 	var projectile_rotation = self.global_position.direction_to(clickLocation).angle()
 	projectile.rotation = projectile_rotation
-	projectile.execute(clickLocation)
-#
-func projectile_tocursordir():
-#	projectileTimer.start()
-	var projectile = projectileToCursorDir.instance()
-	get_tree().get_current_scene().add_child(projectile)
-	projectile.global_position = self.global_position		
-	var projectile_rotation = self.global_position.direction_to(clickLocation).angle()
-	projectile.rotation = projectile_rotation
-	projectile.execute(mouseclick)
+	projectile.execute(mouseBehavior)
+	
+#func projectile_toclick():
+#	var projectile = projectileToClick.instance()
+#	get_tree().get_current_scene().add_child(projectile)
+#	projectile.global_position = self.global_position		
+#	var projectile_rotation = self.global_position.direction_to(clickLocation).angle()
+#	projectile.rotation = projectile_rotation
+#	projectile.execute(clickLocation)
+##
+#func projectile_tocursordir():
+#	var projectile = projectileToCursorDir.instance()
+#	get_tree().get_current_scene().add_child(projectile)
+#	projectile.global_position = self.global_position		
+#	var projectile_rotation = self.global_position.direction_to(clickLocation).angle()
+#	projectile.rotation = projectile_rotation
+#	projectile.execute(mouseclick)

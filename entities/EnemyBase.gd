@@ -91,15 +91,21 @@ func _on_WanderTimer_timeout():
 
 # == DYING ==
 
-func _on_EnemyBase_died():
+#func _on_EnemyBase_died():
+#	velocity = Vector2.ZERO
+#	hurtbox.set_deferred("monitoring", false)
+#	hitbox.set_deferred("monitorable", false)
+#	if is_instance_valid(randomCrystal):
+#		randomCrystal.drop()
+#	state = DEAD
+
+func dead_state():
 	velocity = Vector2.ZERO
 	hurtbox.set_deferred("monitoring", false)
 	hitbox.set_deferred("monitorable", false)
 	if is_instance_valid(randomCrystal):
 		randomCrystal.drop()
-	state = DEAD
-
-func dead_state():
+		
 	if is_instance_valid(randomCrystal):
 		randomCrystal.queue_free()
 	animationPlayer.play("death")

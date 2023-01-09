@@ -1197,7 +1197,8 @@ height = 8.0
 collision_layer = 2
 collision_mask = 133
 script = ExtResource( 2 )
-JUMP_SPEED = 110
+MAX_SPEED = 100
+JUMP_SPEED = 120
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 position = Vector2( 0, -8 )
@@ -1248,16 +1249,19 @@ collision_mask = 128
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ItemPickUp" index="0"]
 shape = SubResource( 90 )
 
-[node name="AttackManager" type="Node2D" parent="." index="5"]
+[node name="Position2D" type="Position2D" parent="ItemPickUp" index="1"]
+position = Vector2( 20, 0 )
+
+[node name="move" parent="." index="5" instance=ExtResource( 10 )]
+
+[node name="jump" parent="." index="6" instance=ExtResource( 9 )]
+
+[node name="AttackManager" type="Node2D" parent="." index="7"]
 script = ExtResource( 8 )
 
 [node name="AttackAnimationTimer" type="Timer" parent="AttackManager" index="0"]
 wait_time = 0.6
 one_shot = true
-
-[node name="move" parent="." index="6" instance=ExtResource( 10 )]
-
-[node name="jump" parent="." index="7" instance=ExtResource( 9 )]
 
 [node name="Hurtbox" parent="." index="8" instance=ExtResource( 11 )]
 visible = false
@@ -1267,7 +1271,6 @@ collision_layer = 32
 position = Vector2( 0, -4 )
 shape = SubResource( 89 )
 
-[connection signal="died" from="." to="." method="_on_Player_died"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 
 [editable path="Hurtbox"]
