@@ -12,14 +12,14 @@ onready var randomCrystal = $RandomCrystal
 
 onready var wanderStartPos = global_position
 onready var wanderTargetPos = global_position
+onready var TOLERANCE = sprite.texture.get_width() / 2
 
-export(int) var TOLERANCE = 30
 export(int) var wander_range = 80
 
 var direction
+var beginAttack = false
 
 func _ready():
-	TOLERANCE = sprite.texture.get_width() / 2
 	update_wander_target_position()
 	state = WANDER
 #	pick_random_state([IDLE, WANDER])
@@ -38,8 +38,8 @@ func _physics_process(delta):
 	seek_player()
 	
 # Soft collision is so enemies don't overlap each other
-	if softCollision.is_colliding():
-		velocity += softCollision.get_push_vector() * delta * 400
+	if softCollision.is_colliding() and beginAttack == false:
+		velocity += softCollision.get_push_vector() * delta * ACCELERATION
 
 func idle(delta):
 	velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)					
@@ -48,7 +48,6 @@ func idle(delta):
 # == WANDERING AND MOVING ==
 func wander(delta):
 	check_wander_timer()
-	
 	accelerate_towards_point(wanderTargetPos, delta)
 	
 # This keeps the slime from overshooting its target position and running back and forth
@@ -73,31 +72,39 @@ func seek_player():
 # == CHASING ==
 func chase(delta):
 	var player = playerDetectionZone.player
-	if player != null:
+
+	if player != null and beginAttack == false:
 		accelerate_towards_point(player.global_position, delta)
-		var collisionSize = get_node("CollisionShape2D").shape.height
-		var hitboxSize = hitbox.get_node("CollisionShape2D").shape.radius
-		var attackDistance = collisionSize + hitboxSize
-		if global_position.distance_to(player.global_position) <= attackDistance:
-			state = attack()
+		
+		if global_position.distance_to(player.global_position) <= check_range():
+			velocity = velocity.move_toward(Vector2.ZERO, ATTACK_FRICTION)
+			melee_attack()
 	else:
 		state = IDLE
 
+func check_range():
+	var collisionSize = get_node("CollisionShape2D").shape.height
+	var hitboxSize = hitbox.get_node("CollisionShape2D").shape.radius
+	var attackDistance = collisionSize + hitboxSize
+	return attackDistance
+
 #== ATTACKING ==
-func attack():
+func melee_attack():
+	beginAttack = true
 	if direction.x >= 0:
 		hitboxPivot.rotation_degrees = 90
 	else:
 		hitboxPivot.rotation_degrees = 0
 		
-	animationPlayer.play("attack")
+	animationPlayer.play("melee_attack")
 	
 func attackAnimation_hitbox_on():
 	hitbox.get_node("CollisionShape2D").disabled = false
 	
 func attackAnimation_hitbox_off():
 	hitbox.get_node("CollisionShape2D").disabled = true
-	state = IDLE
+	beginAttack = false
+	state = CHASE
 	
 # == WANDER TIMER ==
 func check_wander_timer():
@@ -129,3 +136,6 @@ func dead_state():
 	
 func death_animation_finished():
 	die()
+
+
+

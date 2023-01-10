@@ -4,7 +4,7 @@ export(int) var JUMP_SPEED = 110
 
 var jump_vector = Vector2.LEFT
 var abilityPressed setget set_attack
-var mouseclick = Vector2()
+var cursorDirection = Vector2()
 var clickLocation = Vector2()
 
 onready var hurtbox = $Hurtbox
@@ -38,6 +38,9 @@ func _physics_process(delta):
 									
 		if Input.is_action_just_pressed("ability1"):
 			self.abilityPressed = 1
+			
+		if Input.is_action_just_pressed("ability2"):
+			self.abilityPressed = 2
 
 
 	if Input.is_action_just_pressed("jump") and state != JUMP:
@@ -49,12 +52,13 @@ func move_state(_delta):
 
 #	== ATTACKING ==
 func set_attack(value):
-	mouseclick = (get_global_mouse_position() - position).normalized()
+	cursorDirection = (get_global_mouse_position() - position).normalized()
 	clickLocation = get_global_mouse_position()
-
+	
 	velocity = velocity.move_toward(Vector2.ZERO, ATTACK_FRICTION)
-
-	attackManager.begin_attack(value)
+	
+	if attackManager.check_global_cooldown():
+		attackManager.begin_attack(value)
 
 func attack_animation_finished():
 	state = MOVE

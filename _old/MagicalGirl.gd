@@ -85,8 +85,8 @@ func jump_state(delta):
 func attack_state(_delta, uid, type, time, params = {}):
 	# velocity = Vector2.ZERO
 	attack_manager.attack(uid, type, time, params)
-	var mouseclick = (get_global_mouse_position() - position).normalized()
-	animationTree.set("parameters/Attack/blend_position", mouseclick)
+	var cursorDirection = (get_global_mouse_position() - position).normalized()
+	animationTree.set("parameters/Attack/blend_position", cursorDirection)
 	animationState.travel("Attack")
 
 func move():

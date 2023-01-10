@@ -23,8 +23,8 @@ func _ready():
 	update_pos()
 
 func _physics_process(delta):
-#	playerPosition = get_node("../Player").get_position()
-	pass	
+	playerPosition = get_node("../Player").get_position()
+#	pass	
 	
 # Updates position of the collision when crystal drops
 func update_pos():
@@ -41,7 +41,7 @@ func _on_CrystalDrop_area_entered(area):
 	# Crystal moves to player
 	# I want to edit so that the crystals follow the player when they move	
 	var player = area
-	var playerPosition = player.get_node("Position2D").global_position
+#	var playerPosition = player.get_node("Position2D").global_position
 		
 	var TW = create_tween()
 	TW.tween_property(self, "position", playerPosition, .5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)

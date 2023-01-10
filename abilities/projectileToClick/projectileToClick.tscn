@@ -27,12 +27,5 @@ position = Vector2( 0, -1 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="." index="2"]
-position = Vector2( -1, 0 )
-
-[node name="Line2D" type="Line2D" parent="." index="3"]
+[node name="Line2D" type="Line2D" parent="." index="2"]
 default_color = Color( 0.898039, 0, 0, 1 )
-
-[connection signal="area_entered" from="." to="." method="_on_PlayerProjectile_area_entered"]
-[connection signal="body_entered" from="." to="." method="_on_PlayerProjectile_body_entered"]
-[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

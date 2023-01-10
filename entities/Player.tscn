@@ -1250,9 +1250,6 @@ collision_mask = 128
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ItemPickUp" index="0"]
 shape = SubResource( 90 )
 
-[node name="Position2D" type="Position2D" parent="ItemPickUp" index="1"]
-position = Vector2( 20, 0 )
-
 [node name="move" parent="." index="5" instance=ExtResource( 10 )]
 
 [node name="jump" parent="." index="6" instance=ExtResource( 9 )]
@@ -1262,6 +1259,10 @@ script = ExtResource( 8 )
 
 [node name="AttackAnimationTimer" type="Timer" parent="AttackManager" index="0"]
 wait_time = 0.6
+one_shot = true
+
+[node name="GlobalCooldown" type="Timer" parent="AttackManager" index="1"]
+wait_time = 0.3
 one_shot = true
 
 [node name="Hurtbox" parent="." index="8" instance=ExtResource( 11 )]

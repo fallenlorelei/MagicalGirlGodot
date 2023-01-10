@@ -2,11 +2,12 @@ extends Node2D
 
 onready var projectileToClick = preload("res://abilities/projectileToClick/projectileToClick.tscn")
 onready var projectileToCursorDir = preload("res://abilities/projectileToCursorDir/projectileToCursorDir.tscn")
-
+onready var atCursor = preload("res://abilities/atCursor/atCursor.tscn")
 
 onready var attackAnimationTimer = $AttackAnimationTimer
+onready var globalCooldown = $GlobalCooldown
 
-var mouseclick
+var cursorDirection
 var clickLocation
 
 func _ready():
@@ -15,52 +16,49 @@ func _ready():
 func _physics_process(_delta):
 	pass
 
+func check_global_cooldown():
+	return globalCooldown.is_stopped()
+
 func attack_towards_mouse():
-	get_parent().animationTree.set("parameters/Attack/blend_position", mouseclick)
-	get_parent().animationTree.set("parameters/Idle/blend_position", mouseclick)
-	get_parent().animationTree.set("parameters/Run/blend_position", mouseclick)
+	get_parent().animationTree.set("parameters/Attack/blend_position", cursorDirection)
+	get_parent().animationTree.set("parameters/Idle/blend_position", cursorDirection)
+	get_parent().animationTree.set("parameters/Run/blend_position", cursorDirection)
 	
 	
 func begin_attack(abilityPressed):
-	mouseclick = get_parent().mouseclick
+	cursorDirection = get_parent().cursorDirection
 	clickLocation = get_parent().clickLocation
+	
+	globalCooldown.start()
 	attack_towards_mouse()
 	
 	if abilityPressed == 0:
 		attack_animation()
-#		projectile_toclick()
-		spawn_ability(projectileToClick,clickLocation)
+		spawn_projectile(projectileToClick,clickLocation)
 	
 	if abilityPressed == 1:
 		attack_animation()
-#		projectile_tocursordir()
-		spawn_ability(projectileToCursorDir,mouseclick)
+		spawn_projectile(projectileToCursorDir,cursorDirection)
+		
+	if abilityPressed == 2:
+		attack_animation()
+		spawn_atCursor(atCursor)
 
 func attack_animation():
 	get_parent().animationState.travel("Attack")
 	if attackAnimationTimer.is_stopped():
 		attackAnimationTimer.start()
 	
-func spawn_ability(ability,mouseBehavior):
-	var projectile = ability.instance()
-	get_tree().get_current_scene().add_child(projectile)
-	projectile.global_position = self.global_position		
-	var projectile_rotation = self.global_position.direction_to(clickLocation).angle()
-	projectile.rotation = projectile_rotation
-	projectile.execute(mouseBehavior)
-	
-#func projectile_toclick():
-#	var projectile = projectileToClick.instance()
-#	get_tree().get_current_scene().add_child(projectile)
-#	projectile.global_position = self.global_position		
-#	var projectile_rotation = self.global_position.direction_to(clickLocation).angle()
-#	projectile.rotation = projectile_rotation
-#	projectile.execute(clickLocation)
-##
-#func projectile_tocursordir():
-#	var projectile = projectileToCursorDir.instance()
-#	get_tree().get_current_scene().add_child(projectile)
-#	projectile.global_position = self.global_position		
-#	var projectile_rotation = self.global_position.direction_to(clickLocation).angle()
-#	projectile.rotation = projectile_rotation
-#	projectile.execute(mouseclick)
+func spawn_projectile(scene,mouseBehavior):
+	var ability = scene.instance()
+	get_tree().get_current_scene().add_child(ability)
+	ability.global_position = self.global_position		
+	var ability_rotation = self.global_position.direction_to(clickLocation).angle()
+	ability.rotation = ability_rotation
+	ability.execute(mouseBehavior)
+
+func spawn_atCursor(scene):
+	var ability = scene.instance()
+	get_tree().get_current_scene().add_child(ability)
+	ability.global_position = clickLocation
+	ability.execute()

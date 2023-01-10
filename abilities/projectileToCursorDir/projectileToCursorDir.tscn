@@ -26,12 +26,3 @@ show_behind_parent = true
 position = Vector2( -1, -1 )
 rotation = 1.5708
 shape = SubResource( 1 )
-
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="." index="2"]
-show_behind_parent = true
-position = Vector2( -0.5, -0.5 )
-scale = Vector2( 0.65, 0.55 )
-
-[connection signal="area_entered" from="." to="." method="_on_ProjectileToCursorDir_area_entered"]
-[connection signal="body_entered" from="." to="." method="_on_ProjectileToCursorDir_body_entered"]
-[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
