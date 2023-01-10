@@ -16,3 +16,6 @@ func destroy():
 func _on_Hitbox_area_entered(area):
 	if destroyOnImpact == true:
 		destroy()
+
+func _on_Hitbox_body_entered(body):
+	destroy()
