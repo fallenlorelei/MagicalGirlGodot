@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var projectileToClick = preload("res://abilities/projectileToClick/projectileToClick.tscn")
+#onready var projectileToClick = preload("res://abilities/projectileToClick/projectileToClick.tscn")
 onready var projectileToCursorDir = preload("res://abilities/projectileToCursorDir/projectileToCursorDir.tscn")
 onready var atCursor = preload("res://abilities/atCursor/atCursor.tscn")
 
@@ -8,7 +8,9 @@ onready var attackAnimationTimer = $AttackAnimationTimer
 onready var globalCooldown = $GlobalCooldown
 
 var cursorDirection
-var clickLocation
+var cursorLocation
+var skillName
+var loadedAbility
 
 func _ready():
 	pass
@@ -24,25 +26,25 @@ func attack_towards_mouse():
 	get_parent().animationTree.set("parameters/Idle/blend_position", cursorDirection)
 	get_parent().animationTree.set("parameters/Run/blend_position", cursorDirection)
 	
-	
-func begin_attack(abilityPressed):
+func use_ability(skillName):
+	loadedAbility = load_ability(skillName)
 	cursorDirection = get_parent().cursorDirection
-	clickLocation = get_parent().clickLocation
-	
+	cursorLocation = get_parent().cursorLocation
 	globalCooldown.start()
-	attack_towards_mouse()
-	
-	if abilityPressed == 0:
-		attack_animation()
-		spawn_projectile(projectileToClick,clickLocation)
-	
-	if abilityPressed == 1:
-		attack_animation()
-		spawn_projectile(projectileToCursorDir,cursorDirection)
+	attack_towards_mouse()	
+	attack_animation()
 		
-	if abilityPressed == 2:
-		attack_animation()
-		spawn_atCursor(atCursor)
+	match skillName:
+		"projectileToClick":
+			spawn_projectile(loadedAbility,cursorLocation)
+		"projectileToCursorDir":
+			spawn_projectile(loadedAbility,cursorDirection)
+		"atCursor":
+			spawn_atCursor(atCursor)
+
+func load_ability(skillName):
+	var path = "res://abilities/" + skillName + "/" + skillName + ".tscn"
+	return load(path)
 
 func attack_animation():
 	get_parent().animationState.travel("Attack")
@@ -53,12 +55,12 @@ func spawn_projectile(scene,mouseBehavior):
 	var ability = scene.instance()
 	get_tree().get_current_scene().add_child(ability)
 	ability.global_position = self.global_position		
-	var ability_rotation = self.global_position.direction_to(clickLocation).angle()
+	var ability_rotation = self.global_position.direction_to(cursorLocation).angle()
 	ability.rotation = ability_rotation
 	ability.execute(mouseBehavior)
 
 func spawn_atCursor(scene):
 	var ability = scene.instance()
 	get_tree().get_current_scene().add_child(ability)
-	ability.global_position = clickLocation
+	ability.global_position = cursorLocation
 	ability.execute()

@@ -132,6 +132,7 @@ func dead_state():
 		
 	if is_instance_valid(randomCrystal):
 		randomCrystal.queue_free()
+		
 	animationPlayer.play("death")
 	
 func death_animation_finished():

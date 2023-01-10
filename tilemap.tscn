@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/tiles/tilesets/city01_street.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/tiles/tilesets/city01_sidewalk.tres" type="TileSet" id=2]
@@ -7,7 +7,9 @@
 [ext_resource path="res://enemies/EnemyPortal.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui/CrystalCounter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://InitialFunctions.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ui/SkillBar.tscn" type="PackedScene" id=8]
 [ext_resource path="res://entities/Player.tscn" type="PackedScene" id=9]
+[ext_resource path="res://ui/SkillBar.gd" type="Script" id=10]
 
 [node name="Tilemap World" type="Node2D"]
 
@@ -67,4 +69,5 @@ spawnAmount = 5
 
 [node name="CrystalCounter" parent="CanvasLayer" instance=ExtResource( 6 )]
 
-[connection signal="died" from="YSort/Player" to="YSort/Player" method="_on_EntityBase_died"]
+[node name="SkillBar" parent="CanvasLayer" instance=ExtResource( 8 )]
+script = ExtResource( 10 )

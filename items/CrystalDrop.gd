@@ -22,7 +22,7 @@ func _ready():
 	
 	update_pos()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	playerPosition = get_node("../Player").get_position()
 #	pass	
 	
@@ -31,7 +31,7 @@ func update_pos():
 	pickupCollision.position = new_distance
 
 
-func _on_CrystalDrop_area_entered(area):
+func _on_CrystalDrop_area_entered(_area):
 	# Removing collision kinda stops duplicates
 	set_deferred("monitorable", false)
 	set_collision_layer_bit(7, false)
@@ -40,7 +40,7 @@ func _on_CrystalDrop_area_entered(area):
 	
 	# Crystal moves to player
 	# I want to edit so that the crystals follow the player when they move	
-	var player = area
+#	var player = area
 #	var playerPosition = player.get_node("Position2D").global_position
 		
 	var TW = create_tween()

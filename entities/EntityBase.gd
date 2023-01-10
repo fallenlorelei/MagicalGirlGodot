@@ -2,7 +2,7 @@ class_name EntityBase extends KinematicBody2D
 
 signal hp_max_changed(new_hp_max)
 signal hp_changed(new_hp)
-signal died
+#signal died
 
 #onready var sprite = $Sprite
 #onready var collisionShape = $CollisionShape2D

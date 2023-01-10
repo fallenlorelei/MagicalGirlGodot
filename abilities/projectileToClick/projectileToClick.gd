@@ -9,11 +9,11 @@ func _ready():
 func _physics_process(_delta):
 	pass
 #
-func execute(clickLocation):
+func execute(cursorLocation):
 	var direction = Vector2.RIGHT.rotated(rotation)
 	knockback_vector = direction
-	var distance = global_position.distance_to(clickLocation)
+	var distance = global_position.distance_to(cursorLocation)
 	var duration = distanceModifier * distance
 	var TW = get_tree().create_tween()
-	TW.tween_property(self, "position", clickLocation, duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	TW.tween_property(self, "position", cursorLocation, duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	TW.tween_callback(self, "destroy")
