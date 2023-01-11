@@ -11,6 +11,8 @@ var cooldown
 var cooldownDuration
 var canDamage
 var skillDamage
+var canHeal
+var healAmount
 var knocksback
 var knockbackModifier
 var skillRadius
@@ -29,6 +31,8 @@ func _ready():
 	cooldownDuration = DataImport.skill_data[skillName].CooldownDuration
 	canDamage = DataImport.skill_data[skillName].CanDamage
 	skillDamage = DataImport.skill_data[skillName].SkillDamage
+	canHeal = DataImport.skill_data[skillName].CanHeal
+	healAmount = DataImport.skill_data[skillName].HealAmount
 	knocksback = DataImport.skill_data[skillName].Knocksback
 	knockbackModifier = DataImport.skill_data[skillName].KnockbackModifier
 	skillRadius = DataImport.skill_data[skillName].SkillRadius
@@ -38,7 +42,11 @@ func _ready():
 	aoeDamageDelayTime = DataImport.skill_data[skillName].AoEDamageDelayTime
 	destroyDelayTime = DataImport.skill_data[skillName].DestroyDelayTime
 
-	get_node("CollisionShape2D").get_shape().radius = skillRadius
+	if skillRadius != null:
+		get_node("CollisionShape2D").get_shape().radius = skillRadius
+	
+	if canHeal == true:
+		heal()
 	
 # == PROJECTILES ==
 func projectile():
@@ -57,7 +65,13 @@ func at_cursor_starting_animation_finished():
 
 func at_cursor_ending_animation_finished():
 	destroy()
-
+	
+# == SELF_UTILITY ==
+func heal():
+	get_parent().get_parent().heal(healAmount)
+	yield(get_tree().create_timer(animationPlayer.current_animation_length),"timeout")
+	queue_free()
+	
 # == OTHER ==
 func _on_Skillsheet_area_entered(area):
 	if destroyOnImpact == true:

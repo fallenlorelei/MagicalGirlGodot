@@ -8,6 +8,7 @@ var cursorDirection = Vector2()
 var cursorLocation = Vector2()
 var selected_skill = "skill" setget set_attack
 
+onready var sprite = $Sprite
 onready var hurtbox = $Hurtbox
 onready var attackManager = $AttackManager
 onready var animationTree = $AnimationTree
@@ -99,6 +100,13 @@ func jump_animation_finished():
 	hurtbox.set_collision_layer_bit(5, true)
 	state = 0
 	
+
+# == UTILITY ==
+func heal(healAmount):
+	hp += healAmount
+	var TW = create_tween()
+	TW.tween_property(sprite, "modulate", Color.green, .2)
+	TW.tween_property(sprite, "modulate", Color(1, 1, 1), .2)
 
 #	== DYING ==	
 func dead_state():

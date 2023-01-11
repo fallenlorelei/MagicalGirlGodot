@@ -42,8 +42,11 @@ func use_ability(selected_skill):
 			get_tree().get_current_scene().add_child(ability)
 
 
-	#	"self_utility":
-	#		pass
+		"self_utility":
+			loadedAbility = load_ability(selected_skill)
+			var ability = loadedAbility.instance()
+			ability.skillName = selected_skill
+			add_child(ability)
 
 
 

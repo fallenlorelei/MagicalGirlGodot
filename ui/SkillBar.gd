@@ -8,7 +8,7 @@ onready var shortcuts_path = "Background/HBoxContainer/"
 var loaded_skills = {
 	"Skill1": "Basic",
 	"Skill2": "Smite",
-	"Skill3": "Starry_Eyed",
+	"Skill3": "Healing_Light",
 	"Skill4": "Prismatica"
 }
 
