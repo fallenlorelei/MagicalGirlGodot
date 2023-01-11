@@ -7,15 +7,21 @@ var jump_vector = Vector2.LEFT
 var cursorDirection = Vector2()
 var cursorLocation = Vector2()
 var selected_skill = "skill" setget set_attack
+var mouse_over_ui = false
 
 onready var sprite = $Sprite
 onready var hurtbox = $Hurtbox
 onready var attackManager = $AttackManager
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
+onready var skillbar = get_node("../../CanvasLayer/SkillBar")
 
 func _ready():
 	animationTree.active = true
+	
+	# Connecting skillbar to stop left-click attack when dragging abilities
+#	skillbar = get_node("../../CanvasLayer/SkillBar")
+	skillbar.connect("mouseover", self, "set_mouseover")
 
 func _physics_process(delta): 
 	match state:
@@ -29,7 +35,7 @@ func _physics_process(delta):
 			
 #	== USE ABILITIES ==
 	if state != JUMP or state != DEAD:
-		if Input.is_action_just_pressed("left_click"):
+		if Input.is_action_just_pressed("left_click") and mouse_over_ui == false:
 			self.selected_skill = "Basic"
 
 	if Input.is_action_just_pressed("jump") and state != JUMP:
@@ -70,6 +76,12 @@ func set_attack(value):
 func attack_animation_finished():
 	state = MOVE
 	move()
+
+func set_mouseover():
+	if skillbar.mouse_over_ui == true:
+		mouse_over_ui = true
+	else:
+		mouse_over_ui = false
 
 #	== JUMPING ==	
 func jump_state():

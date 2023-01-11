@@ -24,52 +24,51 @@ func attack_towards_mouse():
 	get_parent().animationTree.set("parameters/Run/blend_position", cursorDirection)
 	
 func use_ability(selected_skill):
-	cursorDirection = get_parent().cursorDirection
-	cursorLocation = get_parent().cursorLocation
-	
-	globalCooldown.start()
-	attack_towards_mouse()	
-	attack_animation()
-	
-	skillElement = DataImport.skill_data[selected_skill].Element
-	
-	match DataImport.skill_data[selected_skill].SkillType:
-		"at_cursor":
-			loadedAbility = load_ability(selected_skill)
-			var ability = loadedAbility.instance()
-			ability.skillName = selected_skill
-			ability.global_position = cursorLocation
-			get_tree().get_current_scene().add_child(ability)
+	if selected_skill != null:
+		cursorDirection = get_parent().cursorDirection
+		cursorLocation = get_parent().cursorLocation
+		attack_towards_mouse()	
+		attack_animation()
+		globalCooldown.start()
+		skillElement = DataImport.skill_data[selected_skill].Element
+		
+		match DataImport.skill_data[selected_skill].SkillType:
+			"at_cursor":
+				loadedAbility = load_ability(selected_skill)
+				var ability = loadedAbility.instance()
+				ability.skillName = selected_skill
+				ability.global_position = cursorLocation
+				get_tree().get_current_scene().add_child(ability)
 
 
-		"self_utility":
-			loadedAbility = load_ability(selected_skill)
-			var ability = loadedAbility.instance()
-			ability.skillName = selected_skill
-			add_child(ability)
-
-
-
-	#	"around_self":
-	#		pass
+			"self_utility":
+				loadedAbility = load_ability(selected_skill)
+				var ability = loadedAbility.instance()
+				ability.skillName = selected_skill
+				add_child(ability)
 
 
 
-	#	"front_arc":
-	#		pass
+		#	"around_self":
+		#		pass
 
 
 
-		"projectile":
-			loadedAbility = load_ability(selected_skill)
-			var ability = loadedAbility.instance()
-			ability.skillName = selected_skill
-			ability.cursorDirection = cursorDirection
-			ability.global_position = self.global_position
-			var ability_rotation = self.global_position.direction_to(cursorLocation).angle()
-			ability.rotation = ability_rotation
-			get_tree().get_current_scene().add_child(ability)
-			ability.projectile()
+		#	"front_arc":
+		#		pass
+
+
+
+			"projectile":
+				loadedAbility = load_ability(selected_skill)
+				var ability = loadedAbility.instance()
+				ability.skillName = selected_skill
+				ability.cursorDirection = cursorDirection
+				ability.global_position = self.global_position
+				var ability_rotation = self.global_position.direction_to(cursorLocation).angle()
+				ability.rotation = ability_rotation
+				get_tree().get_current_scene().add_child(ability)
+				ability.projectile()
 
 
 

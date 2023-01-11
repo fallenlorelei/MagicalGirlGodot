@@ -1,6 +1,14 @@
 extends Control
 
+signal mouseover
+
 onready var shortcuts_path = "Background/HBoxContainer/"
+onready var skill1 = $Background/HBoxContainer/Skill1/TextureButton
+onready var skill2 = $Background/HBoxContainer/Skill2/TextureButton
+onready var skill3 = $Background/HBoxContainer/Skill3/TextureButton
+onready var skill4 = $Background/HBoxContainer/Skill4/TextureButton
+
+var mouse_over_ui
 
 # Skills are hardcoded for testing purpose.
 # Otherwise, should pull from save file.
@@ -9,7 +17,7 @@ var loaded_skills = {
 	"Skill1": "Basic",
 	"Skill2": "Smite",
 	"Skill3": "Healing_Light",
-	"Skill4": "Prismatica"
+	"Skill4": null
 }
 
 func _ready():
@@ -25,3 +33,12 @@ func load_shortcuts():
 
 func SelectShortcut(shortcut):
 	get_parent().get_parent().get_node("YSort/Player").selected_skill = loaded_skills[shortcut]
+
+
+func _on_TextureButton_mouse_entered():
+	mouse_over_ui = true
+	emit_signal("mouseover")
+
+func _on_TextureButton_mouse_exited():
+	mouse_over_ui = false
+	emit_signal("mouseover")
