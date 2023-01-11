@@ -78,7 +78,7 @@ func receive_damage(base_damage):
 	return actual_damage
 	
 func _on_Hurtbox_area_entered(hitbox):
-	var actual_damage = receive_damage(hitbox.damage)
+	var actual_damage = receive_damage(hitbox.skillDamage)
 	
 	# Knockback only works on enemies right now
 	if hitbox.knocksback == true and hitbox.is_in_group("Player"):

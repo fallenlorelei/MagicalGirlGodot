@@ -70,7 +70,7 @@ func accelerate_towards_point(wanderTargetPos, delta):
 	move()
 
 func seek_player():		
-	if playerDetectionZone.can_see_player():
+	if playerDetectionZone.can_see_player() and state != DYING:
 		state = CHASE
 	
 # == CHASING ==
@@ -129,8 +129,8 @@ func _on_WanderTimer_timeout():
 
 # == DYING ==
 func dying_state():
-	hurtbox.set_deferred("monitoring", false)
-	hitbox.set_deferred("monitorable", false)
+	hurtbox.monitoring = false
+	hitbox.monitorable = false
 	
 	animationState.travel("Dying")
 	velocity = Vector2.ZERO

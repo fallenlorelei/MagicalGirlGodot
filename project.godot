@@ -33,6 +33,7 @@ config/icon="res://icon.png"
 [autoload]
 
 ElementalCrystalCounter="*res://ui/ElementalCrystalCounter.tscn"
+DataImport="*res://data/DataImport.gd"
 
 [display]
 

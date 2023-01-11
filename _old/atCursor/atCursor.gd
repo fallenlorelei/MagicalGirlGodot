@@ -2,6 +2,8 @@ extends "res://attacks/Hitbox.gd"
 
 onready var animationPlayer = $AnimationPlayer
 
+var skillName
+
 func _ready():
 	pass
 

@@ -5,10 +5,10 @@ onready var shortcuts_path = "Background/HBoxContainer/"
 # Should not hardcode the skills here. Should pull from save file (which skills player
 # has access to).
 var loaded_skills = {
-	"Skill1": "projectileToCursorDir",
-	"Skill2": "atCursor",
-	"Skill3": null,
-	"Skill4": null
+	"Skill1": "Basic",
+	"Skill2": "Smite",
+	"Skill3": "Starry_Eyed",
+	"Skill4": "Prismatica"
 }
 
 func _ready():
