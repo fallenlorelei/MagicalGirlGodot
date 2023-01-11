@@ -60,10 +60,10 @@ func set_attack(value):
 	cursorDirection = (get_global_mouse_position() - position).normalized()
 	cursorLocation = get_global_mouse_position()
 	
-	velocity = velocity.move_toward(Vector2.ZERO, ATTACK_FRICTION)
+#	velocity = velocity.move_toward(Vector2.ZERO, ATTACK_FRICTION)
 	
 	if attackManager.check_global_cooldown():
-		print("player use ability: ", value)
+		print("Used ability: ", value)
 		attackManager.use_ability(value)
 		
 func attack_animation_finished():

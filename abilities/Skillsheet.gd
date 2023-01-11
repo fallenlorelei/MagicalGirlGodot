@@ -2,7 +2,7 @@ extends Area2D
 
 onready var animationPlayer = $AnimationPlayer
 
-var skillName
+var skillName = skillName
 var cursorDirection
 
 var hasCastTime
@@ -22,7 +22,7 @@ var destroyDelayTime
 
 var knockback_vector = Vector2.ZERO
 
-func _ready():
+func _ready():	
 	hasCastTime = DataImport.skill_data[skillName].HasCastTime
 	castTime = DataImport.skill_data[skillName].CastTime
 	cooldown = DataImport.skill_data[skillName].Cooldown
@@ -39,10 +39,10 @@ func _ready():
 	destroyDelayTime = DataImport.skill_data[skillName].DestroyDelayTime
 
 	get_node("CollisionShape2D").get_shape().radius = skillRadius
-
+	
+# == PROJECTILES ==
 func projectile():
 	var projectileRotation = Vector2.RIGHT.rotated(rotation)
-	print(cursorDirection, distance)
 	var direction = cursorDirection * distance
 	var location = global_position + direction
 	knockback_vector = projectileRotation
@@ -51,12 +51,14 @@ func projectile():
 	TW.tween_property(self, "position", location, .5).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	TW.tween_callback(self, "destroy")
 
+# == AT_CURSORS ==
 func at_cursor_starting_animation_finished():
 	animationPlayer.play("end")
 
 func at_cursor_ending_animation_finished():
 	destroy()
 
+# == OTHER ==
 func _on_Skillsheet_area_entered(area):
 	if destroyOnImpact == true:
 		destroy()

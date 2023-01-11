@@ -2,8 +2,9 @@ extends Control
 
 onready var shortcuts_path = "Background/HBoxContainer/"
 
-# Should not hardcode the skills here. Should pull from save file (which skills player
-# has access to).
+# Skills are hardcoded for testing purpose.
+# Otherwise, should pull from save file.
+
 var loaded_skills = {
 	"Skill1": "Basic",
 	"Skill2": "Smite",

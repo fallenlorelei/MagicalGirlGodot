@@ -7,6 +7,7 @@ var cursorDirection
 var cursorLocation
 var skillName
 var loadedAbility
+var skillElement
 
 func _ready():
 	pass
@@ -30,9 +31,11 @@ func use_ability(selected_skill):
 	attack_towards_mouse()	
 	attack_animation()
 	
+	skillElement = DataImport.skill_data[selected_skill].Element
+	
 	match DataImport.skill_data[selected_skill].SkillType:
 		"at_cursor":
-			loadedAbility = load_ability("at_cursor")
+			loadedAbility = load_ability(selected_skill)
 			var ability = loadedAbility.instance()
 			ability.skillName = selected_skill
 			ability.global_position = cursorLocation
@@ -55,7 +58,7 @@ func use_ability(selected_skill):
 
 
 		"projectile":
-			loadedAbility = load_ability("projectile")
+			loadedAbility = load_ability(selected_skill)
 			var ability = loadedAbility.instance()
 			ability.skillName = selected_skill
 			ability.cursorDirection = cursorDirection
@@ -66,36 +69,15 @@ func use_ability(selected_skill):
 			ability.projectile()
 
 
-#	match skillName:
-#		"projectileToClick":
-#			spawn_projectile(loadedAbility,cursorLocation)
-#		"projectileToCursorDir":
-#			spawn_projectile(loadedAbility,cursorDirection)
-#		"atCursor":
-#			spawn_atCursor(loadedAbility)
-#
-func load_ability(skillType):
-	if skillType != null:
-		var path = "res://abilities/" + skillType + "/" + skillType + ".tscn"
+
+func load_ability(skillName):
+	if skillName != null:
+		var path = "res://abilities/" + skillElement + "/" + skillName + "/" + skillName + ".tscn"
 		return load(path)
 	else:
-		print("This ability doesn't exist.")
+		print("There is no ability assigned to this shortcut.")
 
 func attack_animation():
 	get_parent().animationState.travel("Attack")
 	if attackAnimationTimer.is_stopped():
 		attackAnimationTimer.start()
-#
-#func spawn_projectile(scene,mouseBehavior):
-#	var ability = scene.instance()
-#	get_tree().get_current_scene().add_child(ability)
-#	ability.global_position = self.global_position		
-#	var ability_rotation = self.global_position.direction_to(cursorLocation).angle()
-#	ability.rotation = ability_rotation
-#	ability.execute(mouseBehavior)
-#
-#func spawn_atCursor(scene):
-#	var ability = scene.instance()
-#	get_tree().get_current_scene().add_child(ability)
-#	ability.global_position = cursorLocation
-#	ability.execute()
