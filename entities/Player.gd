@@ -39,7 +39,7 @@ func move_state(delta):
 	if attackManager.attackAnimationTimer.is_stopped():
 		if input_vector != Vector2.ZERO:
 			jump_vector = input_vector
-	#		
+			
 			animationTree.set("parameters/Idle/blend_position", input_vector)
 			animationTree.set("parameters/Run/blend_position", input_vector)
 			animationTree.set("parameters/Jump/blend_position", input_vector)
@@ -60,7 +60,7 @@ func set_attack(value):
 	cursorDirection = (get_global_mouse_position() - position).normalized()
 	cursorLocation = get_global_mouse_position()
 	
-#	velocity = velocity.move_toward(Vector2.ZERO, ATTACK_FRICTION)
+	velocity = velocity.move_toward(Vector2.ZERO, ATTACK_FRICTION)
 	
 	if attackManager.check_global_cooldown():
 		print("Used ability: ", value)
