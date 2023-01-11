@@ -43,8 +43,11 @@ func use_ability(skillName):
 			spawn_atCursor(atCursor)
 
 func load_ability(skillName):
-	var path = "res://abilities/" + skillName + "/" + skillName + ".tscn"
-	return load(path)
+	if skillName != null:
+		var path = "res://abilities/" + skillName + "/" + skillName + ".tscn"
+		return load(path)
+	else:
+		print("This ability doesn't exist.")
 
 func attack_animation():
 	get_parent().animationState.travel("Attack")

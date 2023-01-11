@@ -27,7 +27,7 @@ func _physics_process(delta):
 			move_state(delta)
 		JUMP:
 			jump_state()
-		DEAD:
+		DYING:
 			dead_state()
 			
 			

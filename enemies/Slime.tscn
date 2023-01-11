@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://entities/EnemyBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/slime/idle/Slime_Idle1.png" type="Texture" id=2]
@@ -73,31 +73,31 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 15 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 9 ), ExtResource( 12 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 16 ), null ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimationPlayer:playback_speed")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 1.1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "death_animation_finished"
 } ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("AnimationPlayer:playback_speed")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 1.0 ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -174,6 +174,65 @@ tracks/2/keys = {
 "values": [ 1.0 ]
 }
 
+[sub_resource type="AnimationNodeStateMachine" id=32]
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "death"
+
+[sub_resource type="AnimationNodeStateMachine" id=20]
+states/death/node = SubResource( 19 )
+states/death/position = Vector2( 493, 61 )
+start_node = "death"
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "idle"
+
+[sub_resource type="AnimationNodeStateMachine" id=22]
+states/idle/node = SubResource( 21 )
+states/idle/position = Vector2( 487, 66 )
+start_node = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "melee_attack"
+
+[sub_resource type="AnimationNodeStateMachine" id=24]
+states/melee_attack/node = SubResource( 23 )
+states/melee_attack/position = Vector2( 479, 70 )
+start_node = "melee_attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+
+[sub_resource type="AnimationNodeStateMachine" id=17]
+states/Dead/node = SubResource( 32 )
+states/Dead/position = Vector2( 745, 61 )
+states/Dying/node = SubResource( 20 )
+states/Dying/position = Vector2( 594, 61 )
+states/Idle/node = SubResource( 22 )
+states/Idle/position = Vector2( 412, 61 )
+states/Melee_Attack/node = SubResource( 24 )
+states/Melee_Attack/position = Vector2( 501, 150 )
+transitions = [ "Idle", "Melee_Attack", SubResource( 25 ), "Melee_Attack", "Idle", SubResource( 26 ), "Idle", "Dying", SubResource( 27 ), "Melee_Attack", "Dying", SubResource( 35 ) ]
+start_node = "Idle"
+graph_offset = Vector2( 21.2413, 0 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=18]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=28]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=34]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=29]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=30]
+
 [sub_resource type="CapsuleShape2D" id=7]
 radius = 3.0
 height = 12.0
@@ -203,19 +262,27 @@ position = Vector2( 0, -16 )
 texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" parent="." index="1"]
-autoplay = "idle"
 anims/RESET = SubResource( 8 )
 anims/death = SubResource( 10 )
 anims/idle = SubResource( 9 )
 anims/melee_attack = SubResource( 11 )
 
-[node name="CollisionShape2D" parent="." index="2"]
+[node name="AnimationTree" parent="." index="2"]
+tree_root = SubResource( 17 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/playback = SubResource( 18 )
+parameters/Dead/playback = SubResource( 28 )
+parameters/Dying/playback = SubResource( 34 )
+parameters/Idle/playback = SubResource( 29 )
+parameters/Melee_Attack/playback = SubResource( 30 )
+
+[node name="CollisionShape2D" parent="." index="3"]
 visible = false
 position = Vector2( 1, 1 )
 rotation = 1.5708
 shape = SubResource( 7 )
 
-[node name="PlayerDetectionZone" parent="." index="4"]
+[node name="PlayerDetectionZone" parent="." index="5"]
 visible = false
 collision_layer = 0
 collision_mask = 2
@@ -223,7 +290,7 @@ collision_mask = 2
 [node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
 shape = SubResource( 2 )
 
-[node name="SoftCollision" parent="." index="6"]
+[node name="SoftCollision" parent="." index="7"]
 visible = false
 
 [node name="CollisionShape2D" parent="SoftCollision" index="0"]
@@ -238,7 +305,7 @@ position = Vector2( -8, -12 )
 rotation = 0.829031
 shape = SubResource( 12 )
 
-[node name="Hurtbox" parent="." index="8"]
+[node name="Hurtbox" parent="." index="9"]
 visible = false
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]

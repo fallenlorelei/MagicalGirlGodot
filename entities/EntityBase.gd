@@ -2,7 +2,7 @@ class_name EntityBase extends KinematicBody2D
 
 signal hp_max_changed(new_hp_max)
 signal hp_changed(new_hp)
-#signal died
+signal died
 
 #onready var sprite = $Sprite
 #onready var collisionShape = $CollisionShape2D
@@ -22,7 +22,7 @@ export(int) var ATTACK_FRICTION = 100
 var knockback = Vector2.ZERO
 var input_vector = Vector2.ZERO
 
-# Move 0, Jump 1, Attack 2, Wander 3, Idle 4, Chase 5, Dead 6
+# Move 0, Jump 1, Attack 2, Wander 3, Idle 4, Chase 5, Dead 6, Dying 7
 enum {
 	MOVE,
 	JUMP,
@@ -30,6 +30,7 @@ enum {
 	WANDER,
 	IDLE,
 	CHASE,
+	DYING,
 	DEAD
 }
 
@@ -50,7 +51,8 @@ func set_hp(value):
 		emit_signal("hp_changed", hp)
 		
 		if hp == 0:
-			state = DEAD
+			emit_signal("died")
+			state = DYING
 
 
 func _physics_process(delta):

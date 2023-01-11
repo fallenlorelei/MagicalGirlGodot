@@ -69,11 +69,18 @@ stretch_mode = 5
 [node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/Skill1" groups=["AbilityShortcut"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
+action_mode = 0
 button_mask = 0
 shortcut = SubResource( 2 )
 expand = true
 
+[node name="Label" type="Label" parent="Background/HBoxContainer/Skill1"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "1"
+
 [node name="ProgressBar" type="ProgressBar" parent="Background/HBoxContainer/Skill1"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -90,9 +97,15 @@ stretch_mode = 5
 [node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/Skill2" groups=["AbilityShortcut"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
+action_mode = 0
 button_mask = 0
 shortcut = SubResource( 4 )
 expand = true
+
+[node name="Label" type="Label" parent="Background/HBoxContainer/Skill2"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "2"
 
 [node name="Skill3" type="TextureRect" parent="Background/HBoxContainer"]
 margin_left = 68.0
@@ -107,9 +120,15 @@ stretch_mode = 5
 [node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/Skill3" groups=["AbilityShortcut"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
+action_mode = 0
 button_mask = 0
 shortcut = SubResource( 6 )
 expand = true
+
+[node name="Label" type="Label" parent="Background/HBoxContainer/Skill3"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "3"
 
 [node name="Skill4" type="TextureRect" parent="Background/HBoxContainer"]
 margin_left = 102.0
@@ -124,6 +143,12 @@ stretch_mode = 5
 [node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/Skill4" groups=["AbilityShortcut"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
+action_mode = 0
 button_mask = 0
 shortcut = SubResource( 8 )
 expand = true
+
+[node name="Label" type="Label" parent="Background/HBoxContainer/Skill4"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "4"

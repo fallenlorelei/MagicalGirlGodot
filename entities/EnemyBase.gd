@@ -5,6 +5,8 @@ onready var hurtbox = $Hurtbox
 onready var hitbox = $HitboxPivot/Hitbox
 onready var hitboxPivot = $HitboxPivot
 onready var animationPlayer = $AnimationPlayer
+onready var animationTree = $AnimationTree
+onready var animationState = animationTree.get("parameters/playback")
 onready var playerDetectionZone = $PlayerDetectionZone
 onready var softCollision = $SoftCollision
 onready var wanderTimer = $WanderTimer
@@ -20,9 +22,9 @@ var direction
 var beginAttack = false
 
 func _ready():
+	animationTree.active = true
 	update_wander_target_position()
 	state = WANDER
-#	pick_random_state([IDLE, WANDER])
 	
 func _physics_process(delta):	
 	match state:
@@ -32,6 +34,8 @@ func _physics_process(delta):
 			wander(delta)
 		CHASE:
 			chase(delta)
+		DYING:
+			dying_state()
 		DEAD:
 			dead_state()
 		
@@ -91,12 +95,13 @@ func check_range():
 #== ATTACKING ==
 func melee_attack():
 	beginAttack = true
+	
 	if direction.x >= 0:
 		hitboxPivot.rotation_degrees = 90
 	else:
 		hitboxPivot.rotation_degrees = 0
 		
-	animationPlayer.play("melee_attack")
+	animationState.travel("Melee_Attack")
 	
 func attackAnimation_hitbox_on():
 	hitbox.get_node("CollisionShape2D").disabled = false
@@ -104,7 +109,7 @@ func attackAnimation_hitbox_on():
 func attackAnimation_hitbox_off():
 	hitbox.get_node("CollisionShape2D").disabled = true
 	beginAttack = false
-	state = CHASE
+	state = IDLE
 	
 # == WANDER TIMER ==
 func check_wander_timer():
@@ -123,20 +128,25 @@ func _on_WanderTimer_timeout():
 	update_wander_target_position()
 
 # == DYING ==
-func dead_state():
-	velocity = Vector2.ZERO
+func dying_state():
 	hurtbox.set_deferred("monitoring", false)
 	hitbox.set_deferred("monitorable", false)
+	
+	animationState.travel("Dying")
+	velocity = Vector2.ZERO
+	
 	if is_instance_valid(randomCrystal):
 		randomCrystal.drop()
 		
 	if is_instance_valid(randomCrystal):
 		randomCrystal.queue_free()
 		
-	animationPlayer.play("death")
-	
 func death_animation_finished():
+	state = DEAD
+
+func dead_state():
+	animationState.travel("Dead")
 	die()
-
-
-
+	
+func _on_EnemyBase_died():
+	state = DYING
