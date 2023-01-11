@@ -17,7 +17,9 @@ var loaded_skills = {
 	"Skill1": "Basic",
 	"Skill2": "Smite",
 	"Skill3": "Healing_Light",
-	"Skill4": null
+	"Skill4": null,
+	"Skill5": null,
+	"Skill6": null
 }
 
 func _ready():
@@ -35,6 +37,7 @@ func SelectShortcut(shortcut):
 	get_parent().get_parent().get_node("YSort/Player").selected_skill = loaded_skills[shortcut]
 
 
+# Sends signal so player isn't left-click attacking when dragging abilities
 func _on_TextureButton_mouse_entered():
 	mouse_over_ui = true
 	emit_signal("mouseover")
