@@ -70,6 +70,7 @@ stretch_mode = 5
 [node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/Skill1" groups=["AbilityShortcut"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
+shortcut_in_tooltip = false
 action_mode = 0
 button_mask = 0
 shortcut = SubResource( 2 )
@@ -94,6 +95,7 @@ stretch_mode = 5
 [node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/Skill2" groups=["AbilityShortcut"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
+shortcut_in_tooltip = false
 action_mode = 0
 button_mask = 0
 shortcut = SubResource( 4 )
@@ -118,6 +120,7 @@ stretch_mode = 5
 [node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/Skill3" groups=["AbilityShortcut"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
+shortcut_in_tooltip = false
 action_mode = 0
 button_mask = 0
 shortcut = SubResource( 6 )
@@ -142,6 +145,7 @@ stretch_mode = 5
 [node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/Skill4" groups=["AbilityShortcut"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
+shortcut_in_tooltip = false
 action_mode = 0
 button_mask = 0
 shortcut = SubResource( 8 )
@@ -166,6 +170,7 @@ stretch_mode = 5
 [node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/Skill5" groups=["AbilityShortcut"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
+shortcut_in_tooltip = false
 action_mode = 0
 button_mask = 0
 shortcut = SubResource( 8 )
@@ -190,6 +195,7 @@ stretch_mode = 5
 [node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/Skill6" groups=["AbilityShortcut"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
+shortcut_in_tooltip = false
 action_mode = 0
 button_mask = 0
 shortcut = SubResource( 8 )
@@ -202,7 +208,9 @@ margin_bottom = 14.0
 text = "6"
 
 [connection signal="mouse_entered" from="Background/HBoxContainer/Skill1/TextureButton" to="." method="_on_TextureButton_mouse_entered"]
+[connection signal="mouse_entered" from="Background/HBoxContainer/Skill1/TextureButton" to="Background/HBoxContainer/Skill1/TextureButton" method="_on_TextureButton_mouse_entered"]
 [connection signal="mouse_exited" from="Background/HBoxContainer/Skill1/TextureButton" to="." method="_on_TextureButton_mouse_exited"]
+[connection signal="mouse_exited" from="Background/HBoxContainer/Skill1/TextureButton" to="Background/HBoxContainer/Skill1/TextureButton" method="_on_TextureButton_mouse_exited"]
 [connection signal="mouse_entered" from="Background/HBoxContainer/Skill2/TextureButton" to="." method="_on_TextureButton_mouse_entered"]
 [connection signal="mouse_exited" from="Background/HBoxContainer/Skill2/TextureButton" to="." method="_on_TextureButton_mouse_exited"]
 [connection signal="mouse_entered" from="Background/HBoxContainer/Skill3/TextureButton" to="." method="_on_TextureButton_mouse_entered"]
