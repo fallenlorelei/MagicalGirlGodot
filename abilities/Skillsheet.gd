@@ -73,7 +73,7 @@ func heal():
 	queue_free()
 	
 # == OTHER ==
-func _on_Skillsheet_area_entered(area):
+func _on_Skillsheet_area_entered(_area):
 	if destroyOnImpact == true:
 		destroy()
 

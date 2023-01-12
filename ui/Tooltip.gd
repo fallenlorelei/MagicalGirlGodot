@@ -16,9 +16,10 @@ var screensize = Vector2(640,360)
 var adj_pos = Vector2()
 
 func _ready():
+	# == SKILLBAR TOOLTIP ==
 	if origin == "Skillbar" and skill_name != null:
-		valid = true
-	
+		valid = true	
+		
 	if valid:
 		skillNameLabel.set_text(skill_name.capitalize())
 		

@@ -297,9 +297,6 @@ visible = false
 position = Vector2( 1, -1 )
 shape = SubResource( 6 )
 
-[node name="Hitbox" parent="HitboxPivot" index="0"]
-damage = 1
-
 [node name="CollisionShape2D" parent="HitboxPivot/Hitbox" index="0"]
 position = Vector2( -8, -12 )
 rotation = 0.829031

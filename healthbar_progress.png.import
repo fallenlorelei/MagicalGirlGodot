@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Basic_icon.png-1c271194341ba448e304f4f2ae057152.stex"
+path="res://.import/healthbar_progress.png-067fdca96f266be70b279a332c537643.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/skill_icons/Basic_icon.png"
-dest_files=[ "res://.import/Basic_icon.png-1c271194341ba448e304f4f2ae057152.stex" ]
+source_file="res://healthbar_progress.png"
+dest_files=[ "res://.import/healthbar_progress.png-067fdca96f266be70b279a332c537643.stex" ]
 
 [params]
 

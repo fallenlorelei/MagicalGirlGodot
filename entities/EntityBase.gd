@@ -71,11 +71,6 @@ func move():
 func die():
 	queue_free()
 
-func receive_damage(base_damage):
-	var actual_damage = base_damage
-	actual_damage -= defense	
-	self.hp -= actual_damage
-	return actual_damage
 	
 func _on_Hurtbox_area_entered(hitbox):
 	var actual_damage = receive_damage(hitbox.skillDamage)
@@ -86,6 +81,9 @@ func _on_Hurtbox_area_entered(hitbox):
 		
 	if hitbox.is_in_group("Projectile"):
 		hitbox.destroy()
-		
-	print(name + " received " + str(actual_damage) + " damage. Now has " + str(hp) + " hp.")
 
+func receive_damage(base_damage):
+	var actual_damage = base_damage
+	actual_damage -= defense	
+	self.hp -= actual_damage
+	return actual_damage
