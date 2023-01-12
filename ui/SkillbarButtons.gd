@@ -83,7 +83,7 @@ func _on_TextureButton_mouse_entered():
 	tooltip_instance.skillslot = skill_slot
 	tooltip_instance.skill_name = skill_name
 	
-	tooltip_instance.rect_position = get_parent().get_global_transform_with_canvas().origin - Vector2(40,80)
+#	tooltip_instance.rect_position = get_parent().get_global_transform_with_canvas().origin - Vector2(40,80)
 
 	add_child(tooltip_instance)
 	yield(get_tree().create_timer(0.35), "timeout")
