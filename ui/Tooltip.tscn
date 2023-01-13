@@ -4,7 +4,6 @@
 [ext_resource path="res://ui/Tooltip.gd" type="Script" id=2]
 
 [node name="Tooltip" type="Popup"]
-visible = true
 margin_right = 200.0
 margin_bottom = 150.0
 rect_min_size = Vector2( 200, 150 )

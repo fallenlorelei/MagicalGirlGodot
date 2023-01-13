@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/ui/Wenrexa_DarkTemplar_Cell.png" type="Texture" id=1]
 [ext_resource path="res://ui/SkillBar.gd" type="Script" id=2]
@@ -28,311 +28,17 @@ action = "ability4"
 [sub_resource type="ShortCut" id=8]
 shortcut = SubResource( 7 )
 
-[sub_resource type="GDScript" id=9]
-script/source = "extends TextureButton
-
-onready var tooltip = preload(\"res://ui/Tooltip.tscn\")
-
-
-func _ready():
-	pass
-
-func get_drag_data(_pos):
-	var skill_slot = get_parent().get_name()
-	var skill_name = get_owner().loaded_skills[skill_slot]
-	print(\"dragging \", skill_slot, \": \", skill_name)
-	if skill_name != null:
-		var data = {}
-		data[\"origin_node\"] = self
-		data[\"origin_texture\"] = texture_normal
-		data[\"origin_skill_name\"] = skill_name
-		data[\"origin_skill_slot\"] = skill_slot
-		
-		# Dragging texture
-		var drag_texture = TextureRect.new()
-		drag_texture.expand = true
-		drag_texture.texture = texture_normal
-		drag_texture.rect_size = Vector2(50,50)
-		
-		# Making a \"control node\" to trick the texture to being center on the cursor
-		var control = Control.new()
-		control.add_child(drag_texture)
-		drag_texture.rect_position = -0.5 * drag_texture.rect_size
-		
-		set_drag_preview(control)
-		
-		return data
-	
-func can_drop_data(_pos, data):
-	var target_skill_slot_scene = get_parent()
-	if target_skill_slot_scene.is_in_group(\"DraggableSkill\"):
-		
-		var target_skill_slot = get_parent().get_name()
-		var target_skill_name = get_owner().loaded_skills[target_skill_slot]
-
-		if get_owner().loaded_skills[target_skill_slot] == null:
-			data[\"target_texture\"] = null
-			data[\"target_skill_name\"] = null
-			data[\"target_skill_slot\"] = null
-			
-		else:
-			data[\"target_texture\"] = texture_normal
-			data[\"target_skill_name\"] = target_skill_name
-			data[\"target_skill_slot\"] = target_skill_slot
-			
-		
-		return true
-	else:
-		return false
-	
-func drop_data(_pos, data):
-	if has_node(\"Tooltip\") and get_node(\"Tooltip\").valid:
-		get_node(\"Tooltip\").free()
-		
-	var target_skill_slot = get_parent().get_name()
-	var origin_skill_slot = data[\"origin_node\"].get_parent().get_name()
-	
-	#Update data of origin
-	get_owner().loaded_skills[origin_skill_slot] = data[\"target_skill_name\"]
-	
-	#Update texture of orign
-	if data[\"target_skill_name\"] == null:
-		data[\"origin_node\"].texture_normal = null
-	else:
-		data[\"origin_node\"].texture_normal = data[\"target_texture\"]
-		
-	#Update both data and texture of target
-	get_owner().loaded_skills[target_skill_slot] = data[\"origin_skill_name\"]
-	texture_normal = data[\"origin_texture\"]
-	
-
-func _on_TextureButton_mouse_entered():
-	var tooltip_instance = tooltip.instance()
-	var skill_slot = get_parent().get_name()
-	var skill_name = get_owner().loaded_skills[skill_slot]
-	tooltip_instance.origin = \"Skillbar\"
-	tooltip_instance.skillslot = skill_slot
-	tooltip_instance.skill_name = skill_name
-	
-	tooltip_instance.rect_position = get_parent().get_global_transform_with_canvas().origin - Vector2(40,80)
-
-	add_child(tooltip_instance)
-	yield(get_tree().create_timer(0.35), \"timeout\")
-	if has_node(\"Tooltip\") and get_node(\"Tooltip\").valid:
-		get_node(\"Tooltip\").show()
-
-func _on_TextureButton_mouse_exited():
-	if has_node(\"Tooltip\") and get_node(\"Tooltip\").valid:
-		get_node(\"Tooltip\").free()
-"
-
 [sub_resource type="InputEventAction" id=10]
 action = "ability5"
 
 [sub_resource type="ShortCut" id=11]
 shortcut = SubResource( 10 )
 
-[sub_resource type="GDScript" id=12]
-script/source = "extends TextureButton
-
-onready var tooltip = preload(\"res://ui/Tooltip.tscn\")
-
-
-func _ready():
-	pass
-
-func get_drag_data(_pos):
-	var skill_slot = get_parent().get_name()
-	var skill_name = get_owner().loaded_skills[skill_slot]
-	print(\"dragging \", skill_slot, \": \", skill_name)
-	if skill_name != null:
-		var data = {}
-		data[\"origin_node\"] = self
-		data[\"origin_texture\"] = texture_normal
-		data[\"origin_skill_name\"] = skill_name
-		data[\"origin_skill_slot\"] = skill_slot
-		
-		# Dragging texture
-		var drag_texture = TextureRect.new()
-		drag_texture.expand = true
-		drag_texture.texture = texture_normal
-		drag_texture.rect_size = Vector2(50,50)
-		
-		# Making a \"control node\" to trick the texture to being center on the cursor
-		var control = Control.new()
-		control.add_child(drag_texture)
-		drag_texture.rect_position = -0.5 * drag_texture.rect_size
-		
-		set_drag_preview(control)
-		
-		return data
-	
-func can_drop_data(_pos, data):
-	var target_skill_slot_scene = get_parent()
-	if target_skill_slot_scene.is_in_group(\"DraggableSkill\"):
-		
-		var target_skill_slot = get_parent().get_name()
-		var target_skill_name = get_owner().loaded_skills[target_skill_slot]
-
-		if get_owner().loaded_skills[target_skill_slot] == null:
-			data[\"target_texture\"] = null
-			data[\"target_skill_name\"] = null
-			data[\"target_skill_slot\"] = null
-			
-		else:
-			data[\"target_texture\"] = texture_normal
-			data[\"target_skill_name\"] = target_skill_name
-			data[\"target_skill_slot\"] = target_skill_slot
-			
-		
-		return true
-	else:
-		return false
-	
-func drop_data(_pos, data):
-	if has_node(\"Tooltip\") and get_node(\"Tooltip\").valid:
-		get_node(\"Tooltip\").free()
-		
-	var target_skill_slot = get_parent().get_name()
-	var origin_skill_slot = data[\"origin_node\"].get_parent().get_name()
-	
-	#Update data of origin
-	get_owner().loaded_skills[origin_skill_slot] = data[\"target_skill_name\"]
-	
-	#Update texture of orign
-	if data[\"target_skill_name\"] == null:
-		data[\"origin_node\"].texture_normal = null
-	else:
-		data[\"origin_node\"].texture_normal = data[\"target_texture\"]
-		
-	#Update both data and texture of target
-	get_owner().loaded_skills[target_skill_slot] = data[\"origin_skill_name\"]
-	texture_normal = data[\"origin_texture\"]
-	
-
-func _on_TextureButton_mouse_entered():
-	var tooltip_instance = tooltip.instance()
-	var skill_slot = get_parent().get_name()
-	var skill_name = get_owner().loaded_skills[skill_slot]
-	tooltip_instance.origin = \"Skillbar\"
-	tooltip_instance.skillslot = skill_slot
-	tooltip_instance.skill_name = skill_name
-	
-	tooltip_instance.rect_position = get_parent().get_global_transform_with_canvas().origin - Vector2(40,80)
-
-	add_child(tooltip_instance)
-	yield(get_tree().create_timer(0.35), \"timeout\")
-	if has_node(\"Tooltip\") and get_node(\"Tooltip\").valid:
-		get_node(\"Tooltip\").show()
-
-func _on_TextureButton_mouse_exited():
-	if has_node(\"Tooltip\") and get_node(\"Tooltip\").valid:
-		get_node(\"Tooltip\").free()
-"
-
 [sub_resource type="InputEventAction" id=13]
 action = "ability6"
 
 [sub_resource type="ShortCut" id=14]
 shortcut = SubResource( 13 )
-
-[sub_resource type="GDScript" id=15]
-script/source = "extends TextureButton
-
-onready var tooltip = preload(\"res://ui/Tooltip.tscn\")
-
-
-func _ready():
-	pass
-
-func get_drag_data(_pos):
-	var skill_slot = get_parent().get_name()
-	var skill_name = get_owner().loaded_skills[skill_slot]
-	print(\"dragging \", skill_slot, \": \", skill_name)
-	if skill_name != null:
-		var data = {}
-		data[\"origin_node\"] = self
-		data[\"origin_texture\"] = texture_normal
-		data[\"origin_skill_name\"] = skill_name
-		data[\"origin_skill_slot\"] = skill_slot
-		
-		# Dragging texture
-		var drag_texture = TextureRect.new()
-		drag_texture.expand = true
-		drag_texture.texture = texture_normal
-		drag_texture.rect_size = Vector2(50,50)
-		
-		# Making a \"control node\" to trick the texture to being center on the cursor
-		var control = Control.new()
-		control.add_child(drag_texture)
-		drag_texture.rect_position = -0.5 * drag_texture.rect_size
-		
-		set_drag_preview(control)
-		
-		return data
-	
-func can_drop_data(_pos, data):
-	var target_skill_slot_scene = get_parent()
-	if target_skill_slot_scene.is_in_group(\"DraggableSkill\"):
-		
-		var target_skill_slot = get_parent().get_name()
-		var target_skill_name = get_owner().loaded_skills[target_skill_slot]
-
-		if get_owner().loaded_skills[target_skill_slot] == null:
-			data[\"target_texture\"] = null
-			data[\"target_skill_name\"] = null
-			data[\"target_skill_slot\"] = null
-			
-		else:
-			data[\"target_texture\"] = texture_normal
-			data[\"target_skill_name\"] = target_skill_name
-			data[\"target_skill_slot\"] = target_skill_slot
-			
-		
-		return true
-	else:
-		return false
-	
-func drop_data(_pos, data):
-	if has_node(\"Tooltip\") and get_node(\"Tooltip\").valid:
-		get_node(\"Tooltip\").free()
-		
-	var target_skill_slot = get_parent().get_name()
-	var origin_skill_slot = data[\"origin_node\"].get_parent().get_name()
-	
-	#Update data of origin
-	get_owner().loaded_skills[origin_skill_slot] = data[\"target_skill_name\"]
-	
-	#Update texture of orign
-	if data[\"target_skill_name\"] == null:
-		data[\"origin_node\"].texture_normal = null
-	else:
-		data[\"origin_node\"].texture_normal = data[\"target_texture\"]
-		
-	#Update both data and texture of target
-	get_owner().loaded_skills[target_skill_slot] = data[\"origin_skill_name\"]
-	texture_normal = data[\"origin_texture\"]
-	
-
-func _on_TextureButton_mouse_entered():
-	var tooltip_instance = tooltip.instance()
-	var skill_slot = get_parent().get_name()
-	var skill_name = get_owner().loaded_skills[skill_slot]
-	tooltip_instance.origin = \"Skillbar\"
-	tooltip_instance.skillslot = skill_slot
-	tooltip_instance.skill_name = skill_name
-	
-	tooltip_instance.rect_position = get_parent().get_global_transform_with_canvas().origin - Vector2(40,80)
-
-	add_child(tooltip_instance)
-	yield(get_tree().create_timer(0.35), \"timeout\")
-	if has_node(\"Tooltip\") and get_node(\"Tooltip\").valid:
-		get_node(\"Tooltip\").show()
-
-func _on_TextureButton_mouse_exited():
-	if has_node(\"Tooltip\") and get_node(\"Tooltip\").valid:
-		get_node(\"Tooltip\").free()
-"
 
 [node name="SkillBar" type="Control"]
 anchor_left = 0.5
@@ -456,7 +162,7 @@ action_mode = 0
 button_mask = 0
 shortcut = SubResource( 8 )
 expand = true
-script = SubResource( 9 )
+script = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="Background/HBoxContainer/Skill4"]
 margin_right = 40.0
@@ -481,7 +187,7 @@ action_mode = 0
 button_mask = 0
 shortcut = SubResource( 11 )
 expand = true
-script = SubResource( 12 )
+script = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="Background/HBoxContainer/Skill5"]
 margin_right = 40.0
@@ -506,7 +212,7 @@ action_mode = 0
 button_mask = 0
 shortcut = SubResource( 14 )
 expand = true
-script = SubResource( 15 )
+script = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="Background/HBoxContainer/Skill6"]
 margin_right = 40.0

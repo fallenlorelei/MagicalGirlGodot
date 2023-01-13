@@ -80,11 +80,8 @@ func _on_TextureButton_mouse_entered():
 	var skill_slot = get_parent().get_name()
 	var skill_name = get_owner().loaded_skills[skill_slot]
 	tooltip_instance.origin = "Skillbar"
-	tooltip_instance.skillslot = skill_slot
+	tooltip_instance.skill_slot = skill_slot
 	tooltip_instance.skill_name = skill_name
-	
-#	tooltip_instance.rect_position = get_parent().get_global_transform_with_canvas().origin - Vector2(40,80)
-
 	add_child(tooltip_instance)
 	yield(get_tree().create_timer(0.35), "timeout")
 	if has_node("Tooltip") and get_node("Tooltip").valid:
