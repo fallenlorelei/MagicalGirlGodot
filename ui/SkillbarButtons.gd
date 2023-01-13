@@ -72,7 +72,7 @@ func drop_data(_pos, data):
 	
 	#Update texture of orign
 	if data["target_skill_name"] == null:
-		data["origin_node"].texture_normal = null
+		data["origin_node"].texture_normal = load("res://assets/ui/Skillbar/skillbar-skillbg.png")
 	else:
 		data["origin_node"].texture_normal = data["target_texture"]
 		

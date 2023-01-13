@@ -7,7 +7,7 @@
 [ext_resource path="res://enemies/EnemyPortal.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui/CrystalCounter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://InitialFunctions.tscn" type="PackedScene" id=7]
-[ext_resource path="res://ui/SkillBar.tscn" type="PackedScene" id=8]
+[ext_resource path="res://ui/BottomUI.tscn" type="PackedScene" id=8]
 [ext_resource path="res://entities/Player.tscn" type="PackedScene" id=9]
 
 [node name="Tilemap World" type="Node2D"]
@@ -48,6 +48,7 @@ tile_data = PoolIntArray( 0, -1610612734, 2, 1, 7, 131072, 2, -1610612736, 2, 17
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 201, 263 )
 current = true
+zoom = Vector2( 0.5, 0.5 )
 process_mode = 0
 smoothing_enabled = true
 
@@ -68,4 +69,4 @@ spawnAmount = 5
 
 [node name="CrystalCounter" parent="CanvasLayer" instance=ExtResource( 6 )]
 
-[node name="SkillBar" parent="CanvasLayer" instance=ExtResource( 8 )]
+[node name="BottomUI" parent="CanvasLayer" instance=ExtResource( 8 )]

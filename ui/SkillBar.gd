@@ -34,7 +34,7 @@ func load_shortcuts():
 			get_node(shortcuts_path + shortcut + "/TextureButton").set_normal_texture(skill_icon)
 
 func SelectShortcut(shortcut):
-	get_parent().get_parent().get_node("YSort/Player").selected_skill = loaded_skills[shortcut]
+	get_parent().get_parent().get_node("../../YSort/Player").selected_skill = loaded_skills[shortcut]
 
 
 # Sends signal so player isn't left-click attacking when dragging abilities

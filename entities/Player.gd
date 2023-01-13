@@ -14,7 +14,7 @@ onready var hurtbox = $Hurtbox
 onready var attackManager = $AttackManager
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
-onready var skillbar = get_node("../../CanvasLayer/SkillBar")
+onready var skillbar = get_node("../../CanvasLayer/BottomUI/VBoxContainer/SkillBar")
 
 func _ready():
 	animationTree.active = true
