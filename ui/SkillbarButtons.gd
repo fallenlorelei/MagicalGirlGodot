@@ -3,13 +3,15 @@ extends TextureButton
 onready var tooltip = preload("res://ui/Tooltip.tscn")
 
 
+var tooltip_instance
+
+
 func _ready():
 	pass
 
 func get_drag_data(_pos):
 	var skill_slot = get_parent().get_name()
 	var skill_name = get_owner().loaded_skills[skill_slot]
-	print("dragging ", skill_slot, ": ", skill_name)
 	if skill_name != null:
 		var data = {}
 		data["origin_node"] = self
@@ -34,6 +36,10 @@ func get_drag_data(_pos):
 	
 func can_drop_data(_pos, data):
 	var target_skill_slot_scene = get_parent()
+	
+	if has_node("Tooltip"):
+		get_node("Tooltip").free()
+		
 	if target_skill_slot_scene.is_in_group("DraggableSkill"):
 		
 		var target_skill_slot = get_parent().get_name()

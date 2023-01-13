@@ -25,15 +25,11 @@ func _physics_process(_delta):
 	set_position(adj_pos)
 
 
-#BUG: When an ability is dragged from its original spot, to a new spot, the first
-# tooltip "spawn" is invalid. It only becomes valid at the 2nd mouseover but it won't
-# show because of an issue with the "mouse exited" from the first time it spawned
 func update_tooltip():
 	# == SKILLBAR TOOLTIP ==
 	if origin == "Skillbar" and skill_name != null:
 		valid = true	
 	if valid:
-		print("valid")
 		skillNameLabel.set_text(skill_name.capitalize())
 		
 		skillTypeLabel.set_text(DataImport.skill_data[skill_name].SkillType.capitalize())
