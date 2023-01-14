@@ -21,7 +21,6 @@ onready var earthProgress = $"%EarthProgress"
 onready var thunderProgress = $"%ThunderProgress"
 onready var waterProgress = $"%WaterProgress"
 
-onready var mouseCloseDetection = $TextureRect/MouseDetection_Open
 onready var mouseOpenDetection = $TextureRect/MouseDetection_Open
 
 var mouseOverLock = false
@@ -44,6 +43,8 @@ func set_text():
 		crystalCounter.crystalsThunder
 	]
 	
+	var crystalListMax = crystalList.max()
+	
 	crystalsLight.text = str(crystalCounter.crystalsLight)
 	crystalsDark.text = str(crystalCounter.crystalsDark)
 	crystalsPsychic.text = str(crystalCounter.crystalsPsychic)
@@ -62,14 +63,14 @@ func set_text():
 	earthProgress.value = crystalCounter.crystalsEarth
 	thunderProgress.value = crystalCounter.crystalsThunder
 	
-	lightProgress.max_value = crystalList.max()
-	darkProgress.max_value = crystalList.max()
-	psychicProgress.max_value = crystalList.max()
-	waterProgress.max_value = crystalList.max()
-	fireProgress.max_value = crystalList.max()
-	iceProgress.max_value = crystalList.max()
-	earthProgress.max_value = crystalList.max()
-	thunderProgress.max_value = crystalList.max()
+	lightProgress.max_value = crystalListMax
+	darkProgress.max_value = crystalListMax
+	psychicProgress.max_value = crystalListMax
+	waterProgress.max_value = crystalListMax
+	fireProgress.max_value = crystalListMax
+	iceProgress.max_value = crystalListMax
+	earthProgress.max_value = crystalListMax
+	thunderProgress.max_value = crystalListMax
 
 func update_crystals():
 	set_text()
@@ -94,9 +95,8 @@ func _on_MouseDetection_Open_mouse_entered():
 		mouseOpenDetection.hide()
 
 func _on_MouseDetection_Close_mouse_exited():
-	if lockedOpen == false:
-		yield(get_tree().create_timer(0.2), "timeout")
-		
+	if lockedOpen == false and windowOpen == true:
+		yield(get_tree().create_timer(0.2), "timeout")		
 		if mouseOverLock == false:
 			windowOpen = false
 			var TW = get_tree().create_tween()
