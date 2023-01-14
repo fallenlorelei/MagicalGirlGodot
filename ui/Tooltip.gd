@@ -1,12 +1,12 @@
 extends Popup
 
-#onready var skillbar = get_node("../../CanvasLayer/SkillBar")
 
-onready var skillNameLabel = $Background/MarginContainer/VBoxContainer/SkillName
-onready var skillTypeLabel = $Background/MarginContainer/VBoxContainer/SkillType
-onready var damageOrHealLabel = $Background/MarginContainer/VBoxContainer/HBoxContainer/DamageOrHeal
-onready var amountLabel = $Background/MarginContainer/VBoxContainer/HBoxContainer/DamageHealAmount
-onready var skillDescriptionLabel = $Background/MarginContainer/VBoxContainer/SkillDescription
+onready var skillNameLabel = $"%SkillName"
+onready var skillTypeLabel = $"%SkillType"
+onready var damageOrHealLabel = $"%DamageOrHeal"
+onready var amountLabel = $"%DamageHealAmount"
+onready var skillDescriptionLabel = $"%SkillDescription"
+onready var scrollContainer = $"%ScrollContainer"
 
 var origin = ""
 var skill_slot = ""
@@ -20,12 +20,19 @@ func _ready():
 
 func _physics_process(_delta):
 	var cursor_pos = get_global_mouse_position()
-#	adj_pos.x = clamp(cursor_pos.x, 0, screensize.x - rect_size.x - rect_pivot_offset.x)
-#	adj_pos.y = clamp(cursor_pos.y, 0 , screensize.y - rect_size.y - rect_pivot_offset.y)
 	adj_pos.x = clamp(cursor_pos.x, 0, screensize.x - rect_size.x - get_node("Background").rect_position.x)
 	adj_pos.y = clamp(cursor_pos.y, 0 , screensize.y - rect_size.y - get_node("Background").rect_position.y)
 	set_position(adj_pos)
-
+	
+func _input(event : InputEvent) -> void:
+	if event is InputEventMouseButton:
+		event as InputEventMouseButton
+		if event.pressed:
+			match event.button_index:
+				BUTTON_WHEEL_UP:
+					scrollContainer.scroll_vertical -= 3
+				BUTTON_WHEEL_DOWN:
+					scrollContainer.scroll_vertical += 3
 
 func update_tooltip():
 	# == SKILLBAR TOOLTIP ==
@@ -37,8 +44,10 @@ func update_tooltip():
 		skillTypeLabel.set_text(DataImport.skill_data[skill_name].SkillType.capitalize())
 		
 		if DataImport.skill_data[skill_name].CanDamage == true:
-			damageOrHealLabel.set_text("Damage Amount: ")
+			damageOrHealLabel.set_text("Damage: ")
 			amountLabel.set_text(str(DataImport.skill_data[skill_name].SkillDamage))
 		elif DataImport.skill_data[skill_name].CanHeal == true:
-			damageOrHealLabel.set_text("Heal Amount: ")
+			damageOrHealLabel.set_text("Heal: ")
 			amountLabel.set_text(str(DataImport.skill_data[skill_name].HealAmount))
+		
+		skillDescriptionLabel.set_text(str(DataImport.skill_data[skill_name].SkillDescription))

@@ -17,7 +17,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": false,
+    "SkillDescription": "Smite foes with weak Light energy."
   },
   "Healing_Light": {
     "Element": "Light",
@@ -37,7 +39,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": false,
+    "SkillDescription": "Heal yourself with miraculous Light."
   },
   "Starry_Eyed": {
     "Element": "Light",
@@ -57,7 +61,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": false,
+    "SkillDescription": "Blind foes in an area with a beam of blazing Light."
   },
   "Prismatica": {
     "Element": "Light",
@@ -77,7 +83,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": true,
+    "SkillDescription": "Blind and damage foes while healing yourself."
   },
   "Shadowstrike": {
     "Element": "Dark",
@@ -97,7 +105,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": false,
+    "SkillDescription": null
   },
   "Shadow_Meld": {
     "Element": "Dark",
@@ -117,7 +127,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": false,
+    "SkillDescription": null
   },
   "Twilight_Barrage": {
     "Element": "Dark",
@@ -137,7 +149,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": false,
+    "SkillDescription": null
   },
   "Wave_of_Darkness": {
     "Element": "Dark",
@@ -157,7 +171,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": true,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": true,
+    "SkillDescription": null
   },
   "Mind_Spike": {
     "Element": "Psychic",
@@ -177,7 +193,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": false,
+    "SkillDescription": null
   },
   "Madness": {
     "Element": "Psychic",
@@ -197,7 +215,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": false,
+    "SkillDescription": null
   },
   "Restless_Reveries": {
     "Element": "Psychic",
@@ -217,7 +237,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": false,
+    "SkillDescription": null
   },
   "Final_Delusion": {
     "Element": "Psychic",
@@ -237,7 +259,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": true,
+    "SkillDescription": null
   },
   "Trident_Missile": {
     "Element": "Water",
@@ -257,7 +281,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": true,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": false,
+    "SkillDescription": null
   },
   "Tidal_Wave": {
     "Element": "Water",
@@ -277,7 +303,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": true,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": false,
+    "SkillDescription": null
   },
   "Bubble_Shield": {
     "Element": "Water",
@@ -297,7 +325,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": false,
+    "SkillDescription": null
   },
   "Deluge": {
     "Element": "Water",
@@ -317,7 +347,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": true,
+    "SkillDescription": null
   },
   "Blazebolt": {
     "Element": "Fire",
@@ -337,7 +369,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": true,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": false,
+    "SkillDescription": null
   },
   "Mirage": {
     "Element": "Fire",
@@ -357,7 +391,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": false,
+    "SkillDescription": null
   },
   "Fiery_Barrage": {
     "Element": "Fire",
@@ -377,7 +413,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": false,
+    "SkillDescription": null
   },
   "Blaze_of_Glory": {
     "Element": "Fire",
@@ -397,7 +435,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": true,
+    "SkillDescription": null
   },
   "Icestream": {
     "Element": "Ice",
@@ -417,7 +457,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": true,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": false,
+    "SkillDescription": null
   },
   "Crystal_Gaze": {
     "Element": "Ice",
@@ -437,7 +479,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": false,
+    "SkillDescription": null
   },
   "Icy_Spiral": {
     "Element": "Ice",
@@ -457,7 +501,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": false,
+    "SkillDescription": null
   },
   "Hailstorm": {
     "Element": "Ice",
@@ -477,7 +523,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": true,
+    "SkillDescription": null
   },
   "Tremor_Strike": {
     "Element": "Earth",
@@ -497,7 +545,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": false,
+    "SkillDescription": null
   },
   "Entangle": {
     "Element": "Earth",
@@ -517,7 +567,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": false,
+    "SkillDescription": null
   },
   "Dig": {
     "Element": "Earth",
@@ -537,7 +589,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": false,
+    "SkillDescription": null
   },
   "Mountainous_Fury": {
     "Element": "Earth",
@@ -557,7 +611,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": true,
+    "SkillDescription": null
   },
   "Lightning_Strike": {
     "Element": "Thunder",
@@ -577,7 +633,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": false,
+    "SkillDescription": null
   },
   "Tempest_Step": {
     "Element": "Thunder",
@@ -597,7 +655,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": false,
+    "SkillDescription": null
   },
   "Chain_Lightning": {
     "Element": "Thunder",
@@ -617,7 +677,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": true,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": false,
+    "SkillDescription": null
   },
   "Squallstorm": {
     "Element": "Thunder",
@@ -637,7 +699,9 @@
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,
-    "DestroyDelayTime": 2
+    "DestroyDelayTime": 2,
+    "Ultimate": true,
+    "SkillDescription": null
   },
   "Basic": {
     "Element": "Neutral",
@@ -656,7 +720,9 @@
     "Distance": 100,
     "ProjectileSpeed": null,
     "DestroyedOnImpact": true,
-    "AoEDamageDelayTime": null,
-    "DestroyDelayTime": null
+    "AoEDamageDelayTime": 1,
+    "DestroyDelayTime": 2,
+    "Ultimate": false,
+    "SkillDescription": null
   }
 }
