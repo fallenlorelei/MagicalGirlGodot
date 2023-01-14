@@ -9,19 +9,43 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "ColorRect",
+"class": "ColorTile",
+"language": "GDScript",
+"path": "res://addons/color-palette/ColorTile.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "EntityBase",
 "language": "GDScript",
 "path": "res://entities/EntityBase.gd"
 }, {
+"base": "Container",
+"class": "FlexGridContainer",
+"language": "GDScript",
+"path": "res://addons/color-palette/utilities/FlexGridContainer.gd"
+}, {
 "base": "EditorVCSInterface",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
+}, {
+"base": "Reference",
+"class": "Palette",
+"language": "GDScript",
+"path": "res://addons/color-palette/Palette.gd"
+}, {
+"base": "Reference",
+"class": "PaletteImporter",
+"language": "GDScript",
+"path": "res://addons/color-palette/PaletteImporter.gd"
 } ]
 _global_script_class_icons={
+"ColorTile": "",
 "EntityBase": "",
-"GitAPI": ""
+"FlexGridContainer": "res://addons/color-palette/utilities/FlexGridContainerIcon.png",
+"GitAPI": "",
+"Palette": "",
+"PaletteImporter": ""
 }
 
 [application]
@@ -51,7 +75,7 @@ version_control_plugin_name="GitAPI"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/RPG_maker_Autotile2_3x3/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/RPG_maker_Autotile2_3x3/plugin.cfg", "res://addons/color-palette/plugin.cfg" )
 
 [gdnative]
 

@@ -5,7 +5,6 @@
 [ext_resource path="res://assets/ui/MainTheme.tres" type="Theme" id=3]
 
 [node name="Tooltip" type="Popup"]
-visible = true
 margin_right = 128.0
 margin_bottom = 125.0
 rect_min_size = Vector2( 128, 125 )

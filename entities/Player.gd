@@ -16,9 +16,11 @@ onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
 onready var skillbar = get_node("../../CanvasLayer/BottomUI/VBoxContainer/SkillBar")
 
+
 func _ready():
 	animationTree.active = true
-	
+	hpBar = get_node("../../CanvasLayer/BottomUI/VBoxContainer/HBoxContainer/HealthBar/PlayerHPBar")
+	hpBarAnimation = get_node("../../CanvasLayer/BottomUI/VBoxContainer/HBoxContainer/HealthBar/PlayerHPBar/AnimationPlayer")
 	# Connecting skillbar to stop left-click attack when dragging abilities
 #	skillbar = get_node("../../CanvasLayer/SkillBar")
 	skillbar.connect("mouseover", self, "set_mouseover")
@@ -112,6 +114,11 @@ func jump_animation_finished():
 	hurtbox.set_collision_layer_bit(5, true)
 	state = 0
 	
+
+# == TAKING DAMAGE ==
+func _on_Player_hp_changed(new_hp):
+	hpBarUpdate(new_hp)
+
 
 # == UTILITY ==
 func heal(healAmount):

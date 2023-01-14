@@ -1269,6 +1269,7 @@ collision_layer = 32
 position = Vector2( 0, -4 )
 shape = SubResource( 89 )
 
+[connection signal="hp_changed" from="." to="." method="_on_Player_hp_changed"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 
 [editable path="Hurtbox"]

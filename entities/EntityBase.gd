@@ -4,11 +4,6 @@ signal hp_max_changed(new_hp_max)
 signal hp_changed(new_hp)
 signal died
 
-#onready var sprite = $Sprite
-#onready var collisionShape = $CollisionShape2D
-#onready var animationPlayer = $AnimationPlayer
-#onready var hurtbox = $Hurtbox
-
 export(int) var hp_max = 100 setget set_hp_max
 export(int) var hp = hp_max setget set_hp
 export(int) var defense = 0
@@ -21,6 +16,9 @@ export(int) var ATTACK_FRICTION = 100
 
 var knockback = Vector2.ZERO
 var input_vector = Vector2.ZERO
+var hpPercentage
+var hpBar
+var hpBarAnimation
 
 # Move 0, Jump 1, Attack 2, Wander 3, Idle 4, Chase 5, Dead 6, Dying 7
 enum {
@@ -54,6 +52,8 @@ func set_hp(value):
 			emit_signal("died")
 			state = DYING
 
+func _ready():
+	pass
 
 func _physics_process(delta):
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -87,3 +87,23 @@ func receive_damage(base_damage):
 	actual_damage -= defense	
 	self.hp -= actual_damage
 	return actual_damage
+
+func hpBarUpdate(hp):
+	if hp < hp_max:
+		hpBar.show()
+		
+	hpPercentage = int((float(hp) / hp_max) * 100)
+
+	var TW = get_tree().create_tween()
+	TW.tween_property(hpBar, "value", float(hpPercentage), .2)
+	
+	if hpPercentage > 75:
+		hpBar.set_tint_progress("7ac240")
+	elif hpPercentage <= 75 and hpPercentage >=30:
+		TW.tween_property(hpBar, "tint_progress", Color(0.870588, 0.415686, 0.219608), .2)
+	else:
+		TW.tween_property(hpBar, "tint_progress", Color(0.65098, 0.192157, 0.27451), .2)
+	
+	if hpBar.is_in_group("Player"):
+		hpBarAnimation.play("shake")
+		yield(hpBarAnimation, "animation_finished")

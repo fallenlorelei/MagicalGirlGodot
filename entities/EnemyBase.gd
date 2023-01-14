@@ -11,7 +11,7 @@ onready var playerDetectionZone = $PlayerDetectionZone
 onready var softCollision = $SoftCollision
 onready var wanderTimer = $WanderTimer
 onready var randomCrystal = $RandomCrystal
-onready var hpBar = $HPBar
+
 
 onready var wanderStartPos = global_position
 onready var wanderTargetPos = global_position
@@ -21,10 +21,10 @@ export(int) var wander_range = 80
 
 var direction
 var beginAttack = false
-var hpPercentage
 
 func _ready():
 	animationTree.active = true
+	hpBar = $HPBar
 	update_wander_target_position()
 	state = WANDER
 	hp = hp_max
@@ -76,7 +76,8 @@ func accelerate_towards_point(wanderTargetPos, delta):
 func seek_player():		
 	if playerDetectionZone.can_see_player() and state != DYING:
 		state = CHASE
-	
+
+
 # == CHASING ==
 func chase(delta):
 	var player = playerDetectionZone.player
@@ -135,22 +136,6 @@ func _on_WanderTimer_timeout():
 # == TAKING DAMAGE ==
 func _on_EnemyBase_hp_changed(new_hp):
 	hpBarUpdate(new_hp)
-
-func hpBarUpdate(hp):
-	if hp < hp_max:
-		hpBar.show()
-		
-	hpPercentage = int((float(hp) / hp_max) * 100)
-
-	var TW = get_tree().create_tween()
-	TW.tween_property(hpBar, "value", float(hpPercentage), .2)
-	
-	if hpPercentage > 60:
-		hpBar.set_tint_progress("307d23") #green
-	elif hpPercentage <= 60 and hpPercentage >=30:
-		hpBar.set_tint_progress("ffad3b") #orange
-	else:
-		hpBar.set_tint_progress("a63146") #red
 
 # == DYING ==
 func dying_state():
