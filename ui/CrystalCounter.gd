@@ -1,5 +1,7 @@
 extends Control
 
+signal mouseOverLock
+
 onready var crystalCounter = ElementalCrystalCounter
 onready var crystalsLight = $"%LightAmount"
 onready var crystalsDark = $"%DarkAmount"
@@ -18,6 +20,13 @@ onready var iceProgress = $"%IceProgress"
 onready var earthProgress = $"%EarthProgress"
 onready var thunderProgress = $"%ThunderProgress"
 onready var waterProgress = $"%WaterProgress"
+
+onready var mouseCloseDetection = $TextureRect/MouseDetection_Open
+onready var mouseOpenDetection = $TextureRect/MouseDetection_Open
+
+var mouseOverLock = false
+var windowOpen = false
+var lockedOpen = false
 
 func _ready():
 	crystalCounter.connect("crystals_changed", self, "update_crystals")
@@ -65,11 +74,41 @@ func set_text():
 func update_crystals():
 	set_text()
 
-func _on_Container_mouse_entered():
+func _on_TextureButton_toggled(button_pressed):
+	if button_pressed == true and windowOpen == true:
+		lockedOpen = true
+	if button_pressed == false and windowOpen == true:
+		lockedOpen = false
+	if button_pressed == true and windowOpen == false:
+		lockedOpen = true
+	if button_pressed == false and windowOpen == false:
+		lockedOpen = false
+
+
+func _on_MouseDetection_Open_mouse_entered():
 	yield(get_tree().create_timer(0.2), "timeout")
-	var TW = get_tree().create_tween()
-	TW.tween_property(self, "rect_position:x", 0.0, .3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-	
-func _on_Container_mouse_exited():
-	var TW = get_tree().create_tween()
-	TW.tween_property(self, "rect_position:x", -165.0, .2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	if lockedOpen == false:
+		windowOpen = true
+		var TW = get_tree().create_tween()
+		TW.tween_property(self, "rect_position:x", 0.0, .3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+		mouseOpenDetection.hide()
+
+func _on_MouseDetection_Close_mouse_exited():
+	if lockedOpen == false:
+		yield(get_tree().create_timer(0.2), "timeout")
+		
+		if mouseOverLock == false:
+			windowOpen = false
+			var TW = get_tree().create_tween()
+			TW.tween_property(self, "rect_position:x", -165.0, .2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+			yield(get_tree().create_timer(0.2), "timeout")
+			mouseOpenDetection.show()
+
+func _on_TextureButton_mouse_entered():
+	mouseOverLock = true
+	emit_signal("mouseOverLock")
+
+func _on_TextureButton_mouse_exited():
+	mouseOverLock = false
+	emit_signal("mouseOverLock")
+	_on_MouseDetection_Close_mouse_exited()

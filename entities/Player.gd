@@ -15,6 +15,7 @@ onready var attackManager = $AttackManager
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
 onready var skillbar = get_node("../../CanvasLayer/BottomUI/VBoxContainer/SkillBar")
+onready var crystalMouseoverBox = get_node("../../CanvasLayer/CrystalCounter/")
 
 
 func _ready():
@@ -24,6 +25,7 @@ func _ready():
 	# Connecting skillbar to stop left-click attack when dragging abilities
 #	skillbar = get_node("../../CanvasLayer/SkillBar")
 	skillbar.connect("mouseover", self, "set_mouseover")
+	crystalMouseoverBox.connect("mouseOverLock", self, "set_mouseover")
 
 func _physics_process(delta): 
 	match state:
@@ -81,6 +83,11 @@ func attack_animation_finished():
 
 func set_mouseover():
 	if skillbar.mouse_over_ui == true:
+		mouse_over_ui = true
+	else:
+		mouse_over_ui = false
+		
+	if crystalMouseoverBox.mouseOverLock == true:
 		mouse_over_ui = true
 	else:
 		mouse_over_ui = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://ui/CrystalCounter.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/CrystalBox/crystalbox-bg.png" type="Texture" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://assets/ui/CrystalBox/crystalbox-element-whiteborder-water.png" type="Texture" id=13]
 [ext_resource path="res://assets/ui/CrystalBox/crystalbox-element-whiteborder-earth.png" type="Texture" id=14]
 [ext_resource path="res://assets/ui/CrystalBox/crystalbox-unlocked.png" type="Texture" id=15]
+[ext_resource path="res://assets/ui/CrystalBox/crystalbox-unlocked-hover.png" type="Texture" id=16]
+[ext_resource path="res://assets/ui/CrystalBox/crystalbox-locked.png" type="Texture" id=17]
 
 [node name="CrystalCounter" type="Control"]
 anchor_top = 0.5
@@ -34,29 +36,49 @@ rect_min_size = Vector2( 200, 294 )
 texture = ExtResource( 2 )
 expand = true
 
+[node name="MouseDetection_Close" type="Container" parent="TextureRect"]
+margin_right = 200.0
+margin_bottom = 294.0
+grow_vertical = 2
+rect_min_size = Vector2( 200, 294 )
+
+[node name="MouseDetection_Open" type="Container" parent="TextureRect"]
+margin_left = 166.0
+margin_top = 40.0
+margin_right = 198.0
+margin_bottom = 295.0
+grow_vertical = 2
+rect_min_size = Vector2( 32, 255 )
+
 [node name="HBoxContainer" type="HBoxContainer" parent="TextureRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
 margin_top = 5.0
 rect_min_size = Vector2( 201, 0 )
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/HBoxContainer"]
 margin_right = 191.0
 margin_bottom = 289.0
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/HBoxContainer/VBoxContainer"]
 margin_right = 191.0
 margin_bottom = 32.0
+mouse_filter = 2
 
 [node name="LightContainer" type="HBoxContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer"]
-margin_right = 145.0
+margin_right = 155.0
 margin_bottom = 32.0
+rect_min_size = Vector2( 155, 0 )
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer/LightContainer"]
 margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
+mouse_filter = 2
 texture = ExtResource( 5 )
 stretch_mode = 4
 
@@ -65,6 +87,7 @@ margin_left = 36.0
 margin_right = 41.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 5, 32 )
+mouse_filter = 2
 
 [node name="LightProgress" type="TextureProgress" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer/LightContainer"]
 unique_name_in_owner = true
@@ -73,6 +96,7 @@ margin_top = 5.0
 margin_right = 145.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 100, 21 )
+mouse_filter = 2
 size_flags_vertical = 4
 value = 90.0
 texture_under = ExtResource( 6 )
@@ -86,6 +110,7 @@ margin_top = 2.0
 margin_right = 80.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 0, 18 )
+mouse_filter = 2
 
 [node name="LightLabel" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer/LightContainer/LightProgress/HBoxContainer2"]
 margin_right = 38.0
@@ -105,13 +130,7 @@ theme = ExtResource( 3 )
 text = "<Amount>"
 valign = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 149.0
-margin_right = 155.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 6, 0 )
-
-[node name="TextureButton" type="TextureButton" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="LockButton" type="TextureButton" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 159.0
 margin_right = 191.0
 margin_bottom = 32.0
@@ -122,12 +141,15 @@ size_flags_vertical = 4
 toggle_mode = true
 shortcut_in_tooltip = false
 texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 17 )
+texture_hover = ExtResource( 16 )
 stretch_mode = 3
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="TextureRect/HBoxContainer/VBoxContainer"]
 margin_top = 36.0
 margin_right = 191.0
 margin_bottom = 284.0
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2"]
 margin_right = 155.0
@@ -135,16 +157,19 @@ margin_bottom = 248.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 155, 0 )
+mouse_filter = 2
 alignment = 1
 
 [node name="DarkContainer" type="HBoxContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
 margin_right = 155.0
 margin_bottom = 32.0
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/DarkContainer"]
 margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
+mouse_filter = 2
 texture = ExtResource( 12 )
 stretch_mode = 4
 
@@ -153,6 +178,7 @@ margin_left = 36.0
 margin_right = 41.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 5, 32 )
+mouse_filter = 2
 
 [node name="DarkProgress" type="TextureProgress" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/DarkContainer"]
 unique_name_in_owner = true
@@ -161,6 +187,7 @@ margin_top = 5.0
 margin_right = 145.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 100, 21 )
+mouse_filter = 2
 size_flags_vertical = 4
 value = 90.0
 texture_under = ExtResource( 6 )
@@ -174,6 +201,7 @@ margin_top = 2.0
 margin_right = 80.0
 margin_bottom = 23.0
 rect_min_size = Vector2( 0, 18 )
+mouse_filter = 2
 
 [node name="DarkLabel" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/DarkContainer/DarkProgress/HBoxContainer"]
 margin_top = 1.0
@@ -199,11 +227,13 @@ valign = 1
 margin_top = 36.0
 margin_right = 155.0
 margin_bottom = 68.0
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PsychicContainer"]
 margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
+mouse_filter = 2
 texture = ExtResource( 10 )
 stretch_mode = 4
 
@@ -212,6 +242,7 @@ margin_left = 36.0
 margin_right = 41.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 5, 32 )
+mouse_filter = 2
 
 [node name="PsychicProgress" type="TextureProgress" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PsychicContainer"]
 unique_name_in_owner = true
@@ -220,6 +251,7 @@ margin_top = 5.0
 margin_right = 145.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 100, 21 )
+mouse_filter = 2
 size_flags_vertical = 4
 value = 90.0
 texture_under = ExtResource( 6 )
@@ -233,6 +265,7 @@ margin_top = 2.0
 margin_right = 80.0
 margin_bottom = -13.0
 rect_min_size = Vector2( 0, 18 )
+mouse_filter = 2
 
 [node name="PsychicLabel" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PsychicContainer/PsychicProgress/HBoxContainer2"]
 margin_right = 38.0
@@ -256,11 +289,13 @@ valign = 1
 margin_top = 72.0
 margin_right = 155.0
 margin_bottom = 104.0
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/FireContainer"]
 margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
+mouse_filter = 2
 texture = ExtResource( 11 )
 stretch_mode = 4
 
@@ -269,6 +304,7 @@ margin_left = 36.0
 margin_right = 41.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 5, 32 )
+mouse_filter = 2
 
 [node name="FireProgress" type="TextureProgress" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/FireContainer"]
 unique_name_in_owner = true
@@ -277,6 +313,7 @@ margin_top = 5.0
 margin_right = 145.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 100, 21 )
+mouse_filter = 2
 size_flags_vertical = 4
 value = 90.0
 texture_under = ExtResource( 6 )
@@ -290,6 +327,7 @@ margin_top = 2.0
 margin_right = 91.0
 margin_bottom = -16.0
 rect_min_size = Vector2( 0, 18 )
+mouse_filter = 2
 
 [node name="FireLabel" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/FireContainer/FireProgress/HBoxContainer3"]
 margin_right = 38.0
@@ -313,11 +351,13 @@ valign = 1
 margin_top = 108.0
 margin_right = 155.0
 margin_bottom = 140.0
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/IceContainer"]
 margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
+mouse_filter = 2
 texture = ExtResource( 8 )
 stretch_mode = 4
 
@@ -326,6 +366,7 @@ margin_left = 36.0
 margin_right = 41.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 5, 32 )
+mouse_filter = 2
 
 [node name="IceProgress" type="TextureProgress" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/IceContainer"]
 unique_name_in_owner = true
@@ -334,6 +375,7 @@ margin_top = 5.0
 margin_right = 145.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 100, 21 )
+mouse_filter = 2
 size_flags_vertical = 4
 value = 90.0
 texture_under = ExtResource( 6 )
@@ -347,6 +389,7 @@ margin_top = 2.0
 margin_right = 91.0
 margin_bottom = -16.0
 rect_min_size = Vector2( 0, 18 )
+mouse_filter = 2
 
 [node name="IceLabel" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/IceContainer/IceProgress/HBoxContainer4"]
 margin_right = 38.0
@@ -370,11 +413,13 @@ valign = 1
 margin_top = 144.0
 margin_right = 155.0
 margin_bottom = 176.0
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/EarthContainer"]
 margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
+mouse_filter = 2
 texture = ExtResource( 14 )
 stretch_mode = 4
 
@@ -383,6 +428,7 @@ margin_left = 36.0
 margin_right = 41.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 5, 32 )
+mouse_filter = 2
 
 [node name="EarthProgress" type="TextureProgress" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/EarthContainer"]
 unique_name_in_owner = true
@@ -391,6 +437,7 @@ margin_top = 5.0
 margin_right = 145.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 100, 21 )
+mouse_filter = 2
 size_flags_vertical = 4
 value = 90.0
 texture_under = ExtResource( 6 )
@@ -404,6 +451,7 @@ margin_top = 2.0
 margin_right = 91.0
 margin_bottom = -16.0
 rect_min_size = Vector2( 0, 18 )
+mouse_filter = 2
 
 [node name="EarthLabel" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/EarthContainer/EarthProgress/HBoxContainer5"]
 margin_right = 38.0
@@ -427,11 +475,13 @@ valign = 1
 margin_top = 180.0
 margin_right = 155.0
 margin_bottom = 212.0
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/ThunderContainer"]
 margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
+mouse_filter = 2
 texture = ExtResource( 9 )
 stretch_mode = 4
 
@@ -440,6 +490,7 @@ margin_left = 36.0
 margin_right = 41.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 5, 32 )
+mouse_filter = 2
 
 [node name="ThunderProgress" type="TextureProgress" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/ThunderContainer"]
 unique_name_in_owner = true
@@ -448,6 +499,7 @@ margin_top = 5.0
 margin_right = 145.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 100, 21 )
+mouse_filter = 2
 size_flags_vertical = 4
 value = 90.0
 texture_under = ExtResource( 6 )
@@ -461,6 +513,7 @@ margin_top = 2.0
 margin_right = 91.0
 margin_bottom = -16.0
 rect_min_size = Vector2( 0, 18 )
+mouse_filter = 2
 
 [node name="ThunderLabel" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/ThunderContainer/ThunderProgress/HBoxContainer6"]
 margin_right = 38.0
@@ -484,11 +537,13 @@ valign = 1
 margin_top = 216.0
 margin_right = 155.0
 margin_bottom = 248.0
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/WaterContainer"]
 margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
+mouse_filter = 2
 texture = ExtResource( 13 )
 stretch_mode = 4
 
@@ -497,6 +552,7 @@ margin_left = 36.0
 margin_right = 41.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 5, 32 )
+mouse_filter = 2
 
 [node name="WaterProgress" type="TextureProgress" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/WaterContainer"]
 unique_name_in_owner = true
@@ -505,6 +561,7 @@ margin_top = 5.0
 margin_right = 145.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 100, 21 )
+mouse_filter = 2
 size_flags_vertical = 4
 value = 90.0
 texture_under = ExtResource( 6 )
@@ -518,6 +575,7 @@ margin_top = 2.0
 margin_right = 94.0
 margin_bottom = -16.0
 rect_min_size = Vector2( 0, 18 )
+mouse_filter = 2
 
 [node name="WarerLabel" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/WaterContainer/WaterProgress/HBoxContainer7"]
 margin_right = 38.0
@@ -560,11 +618,8 @@ theme_type_variation = "Label_larger"
 text = "Elemental Crystals"
 align = 1
 
-[node name="MouseDetection" type="Container" parent="TextureRect"]
-margin_right = 200.0
-margin_bottom = 294.0
-grow_vertical = 2
-rect_min_size = Vector2( 200, 294 )
-
-[connection signal="mouse_entered" from="TextureRect/MouseDetection" to="." method="_on_Container_mouse_entered"]
-[connection signal="mouse_exited" from="TextureRect/MouseDetection" to="." method="_on_Container_mouse_exited"]
+[connection signal="mouse_exited" from="TextureRect/MouseDetection_Close" to="." method="_on_MouseDetection_Close_mouse_exited"]
+[connection signal="mouse_entered" from="TextureRect/MouseDetection_Open" to="." method="_on_MouseDetection_Open_mouse_entered"]
+[connection signal="mouse_entered" from="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer/LockButton" to="." method="_on_TextureButton_mouse_entered"]
+[connection signal="mouse_exited" from="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer/LockButton" to="." method="_on_TextureButton_mouse_exited"]
+[connection signal="toggled" from="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer/LockButton" to="." method="_on_TextureButton_toggled"]
