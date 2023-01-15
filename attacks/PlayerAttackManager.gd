@@ -2,6 +2,7 @@ extends Node2D
 
 onready var attackAnimationTimer = $AttackAnimationTimer
 onready var globalCooldown = $GlobalCooldown
+onready var castingCircleSprite = $CastingCircle
 
 var cursorDirection
 var cursorLocation
@@ -13,7 +14,10 @@ func _ready():
 	pass
 
 func _physics_process(_delta):
-	pass
+	cursorDirection = (get_global_mouse_position() - position).normalized()
+	cursorLocation = get_global_mouse_position()
+	
+	castingCircleSprite.global_position = cursorLocation
 
 func check_global_cooldown():
 	return globalCooldown.is_stopped()
@@ -25,9 +29,17 @@ func attack_towards_mouse():
 	
 func use_ability(selected_skill):
 	if selected_skill != null:
-		cursorDirection = get_parent().cursorDirection
-		cursorLocation = get_parent().cursorLocation
 		attack_towards_mouse()	
+		
+		castingCircleSprite.show()
+		
+		#Resize casting circle to size of collision
+		var radiusSize = DataImport.skill_data[selected_skill].SkillRadius
+		var sizeto = Vector2(radiusSize,radiusSize)
+		var size = castingCircleSprite.texture.get_size()
+		var scale_factor = sizeto/size
+		castingCircleSprite.scale = scale_factor
+		
 		attack_animation()
 		globalCooldown.start()
 		skillElement = DataImport.skill_data[selected_skill].Element
@@ -69,6 +81,8 @@ func use_ability(selected_skill):
 				ability.rotation = ability_rotation
 				get_tree().get_current_scene().add_child(ability)
 				ability.projectile()
+				
+		castingCircleSprite.hide()
 
 
 
