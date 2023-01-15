@@ -38,11 +38,12 @@ func _ready():
 	set_text()
 
 func set_text():
+	var maxCrystals = ElementalCrystalCounter.most_crystals()
 
 	for crystal in crystalCounters:
 		crystalUi[crystal].text = str(crystalCounters[crystal])
 		crystalProgressUI[crystal].value = crystalCounters[crystal]
-		crystalProgressUI[crystal].max_value = ElementalCrystalCounter.most_crystals()
+		crystalProgressUI[crystal].max_value = maxCrystals
 	
 func update_crystals():
 	set_text()
