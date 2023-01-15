@@ -2,24 +2,30 @@ extends Control
 
 signal mouseOverLock
 
-onready var crystalCounter = ElementalCrystalCounter
-onready var crystalsLight = $"%LightAmount"
-onready var crystalsDark = $"%DarkAmount"
-onready var crystalsPsychic = $"%PsychicAmount"
-onready var crystalsFire = $"%FireAmount"
-onready var crystalsIce = $"%IceAmount"
-onready var crystalsEarth = $"%EarthAmount"
-onready var crystalsThunder = $"%ThunderAmount"
-onready var crystalsWater = $"%WaterAmount"
+onready var crystalCounters = ElementalCrystalCounter.crystals
 
-onready var lightProgress = $"%LightProgress"
-onready var darkProgress = $"%DarkProgress"
-onready var psychicProgress = $"%PsychicProgress"
-onready var fireProgress = $"%FireProgress"
-onready var iceProgress = $"%IceProgress"
-onready var earthProgress = $"%EarthProgress"
-onready var thunderProgress = $"%ThunderProgress"
-onready var waterProgress = $"%WaterProgress"
+onready var crystalUi = {
+	"LIGHT": $"%LightAmount",
+	"DARK": $"%DarkAmount",
+	"PSYCHIC": $"%PsychicAmount",
+	"WATER": $"%WaterAmount",
+	"FIRE": $"%FireAmount",
+	"ICE": $"%IceAmount",
+	"EARTH": $"%EarthAmount",
+	"THUNDER": $"%ThunderAmount"
+}
+
+onready var crystalProgressUI = {
+	"LIGHT": $"%LightProgress",
+	"DARK": $"%DarkProgress",
+	"PSYCHIC": $"%PsychicProgress",
+	"WATER": $"%WaterProgress",
+	"FIRE": $"%FireProgress",
+	"ICE": $"%IceProgress",
+	"EARTH": $"%EarthProgress",
+	"THUNDER": $"%ThunderProgress"
+}
+
 
 onready var mouseOpenDetection = $TextureRect/MouseDetection_Open
 
@@ -28,50 +34,16 @@ var windowOpen = false
 var lockedOpen = false
 
 func _ready():
-	crystalCounter.connect("crystals_changed", self, "update_crystals")
+	ElementalCrystalCounter.connect("crystals_changed", self, "update_crystals")
 	set_text()
 
 func set_text():
-	var crystalList = [
-		crystalCounter.crystalsLight,
-		crystalCounter.crystalsDark,
-		crystalCounter.crystalsPsychic,
-		crystalCounter.crystalsWater,
-		crystalCounter.crystalsFire,
-		crystalCounter.crystalsIce,
-		crystalCounter.crystalsEarth,
-		crystalCounter.crystalsThunder
-	]
-	
-	var crystalListMax = crystalList.max()
-	
-	crystalsLight.text = str(crystalCounter.crystalsLight)
-	crystalsDark.text = str(crystalCounter.crystalsDark)
-	crystalsPsychic.text = str(crystalCounter.crystalsPsychic)
-	crystalsWater.text = str(crystalCounter.crystalsWater)	
-	crystalsFire.text = str(crystalCounter.crystalsFire)
-	crystalsIce.text = str(crystalCounter.crystalsIce)
-	crystalsEarth.text = str(crystalCounter.crystalsEarth)
-	crystalsThunder.text = str(crystalCounter.crystalsThunder)
-	
-	lightProgress.value = crystalCounter.crystalsLight
-	darkProgress.value = crystalCounter.crystalsDark
-	psychicProgress.value = crystalCounter.crystalsPsychic
-	waterProgress.value = crystalCounter.crystalsWater
-	fireProgress.value = crystalCounter.crystalsFire
-	iceProgress.value = crystalCounter.crystalsIce
-	earthProgress.value = crystalCounter.crystalsEarth
-	thunderProgress.value = crystalCounter.crystalsThunder
-	
-	lightProgress.max_value = crystalListMax
-	darkProgress.max_value = crystalListMax
-	psychicProgress.max_value = crystalListMax
-	waterProgress.max_value = crystalListMax
-	fireProgress.max_value = crystalListMax
-	iceProgress.max_value = crystalListMax
-	earthProgress.max_value = crystalListMax
-	thunderProgress.max_value = crystalListMax
 
+	for crystal in crystalCounters:
+		crystalUi[crystal].text = str(crystalCounters[crystal])
+		crystalProgressUI[crystal].value = crystalCounters[crystal]
+		crystalProgressUI[crystal].max_value = ElementalCrystalCounter.most_crystals()
+	
 func update_crystals():
 	set_text()
 
