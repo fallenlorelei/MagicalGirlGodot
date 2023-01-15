@@ -17,7 +17,7 @@ var loaded_skills = {
 	"Skill1": "Basic",
 	"Skill2": "Smite",
 	"Skill3": "Healing_Light",
-	"Skill4": null,
+	"Skill4": "Prismatica",
 	"Skill5": null,
 	"Skill6": null
 }

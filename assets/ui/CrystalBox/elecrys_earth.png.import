@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/crystalbox-element-whiteborder-dark.png-9f0bc372ac606f4c0dde8bf87f2193ad.stex"
+path="res://.import/elecrys_earth.png-c22374eeb38b5dc5cb614016c056b823.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/CrystalBox/crystalbox-element-whiteborder-dark.png"
-dest_files=[ "res://.import/crystalbox-element-whiteborder-dark.png-9f0bc372ac606f4c0dde8bf87f2193ad.stex" ]
+source_file="res://assets/ui/CrystalBox/elecrys_earth.png"
+dest_files=[ "res://.import/elecrys_earth.png-c22374eeb38b5dc5cb614016c056b823.stex" ]
 
 [params]
 

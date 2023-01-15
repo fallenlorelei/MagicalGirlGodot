@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/crystalbox-element-whiteborder-light.png-b778a06d452ec9020b9d07508cfb39aa.stex"
+path="res://.import/elecrys_thunder.png-9c026c372e226d0ebc7391595f680a17.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/CrystalBox/crystalbox-element-whiteborder-light.png"
-dest_files=[ "res://.import/crystalbox-element-whiteborder-light.png-b778a06d452ec9020b9d07508cfb39aa.stex" ]
+source_file="res://assets/ui/CrystalBox/elecrys_thunder.png"
+dest_files=[ "res://.import/elecrys_thunder.png-9c026c372e226d0ebc7391595f680a17.stex" ]
 
 [params]
 

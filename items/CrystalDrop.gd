@@ -1,6 +1,7 @@
 extends Area2D
 
-onready var animatedCrystal = $AnimatedSpriteCrystal
+onready var crystalSprite = $ElementalCrystalSprite
+onready var animatedCrystal = $ElementalCrystalSprite/AnimationPlayer
 onready var pickupCollision = $ItemPickUpCollision
 onready var crystalCounter = ElementalCrystalCounter
 
@@ -18,7 +19,7 @@ func _ready():
 	
 	# Crystal drops and bounces
 	var TW = create_tween()
-	TW.tween_property(animatedCrystal, "position", new_distance, .5).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	TW.tween_property(crystalSprite, "position", new_distance, .5).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 	
 	update_pos()
 
@@ -36,7 +37,7 @@ func _on_CrystalDrop_area_entered(area):
 	set_deferred("monitorable", false)
 	set_collision_layer_bit(7, false)
 		
-	var element = animatedCrystal.get_animation()
+#	var element = crystalType
 	
 	var areaPosition = area.global_position
 	
@@ -50,5 +51,5 @@ func _on_CrystalDrop_area_entered(area):
 	
 	# Also stops duplicates
 	if pickingUp == false:
-		crystalCounter.update_crystals(element, 1)
+		crystalCounter.update_crystals(crystalType, 1)
 		pickingUp = true

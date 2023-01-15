@@ -23,15 +23,21 @@ func most_crystals():
 
 func update_crystals(element, amount):
 	match element:
-		"BLUE":
-			crystals["WATER"] += amount			
-		"GREEN":
-			crystals["EARTH"] += amount			
-		"PINK":
-			crystals["PSYCHIC"] += amount			
-		"PURPLE":
-			crystals["DARK"] += amount			
-		"RED":
+		"LIGHT":
+			crystals["LIGHT"] += amount
+		"DARK":
+			crystals["DARK"] += amount
+		"PSYCHIC":
+			crystals["PSYCHIC"] += amount
+		"FIRE":
 			crystals["FIRE"] += amount
-			
+		"ICE":
+			crystals["ICE"] += amount
+		"EARTH":
+			crystals["EARTH"] += amount
+		"THUNDER":
+			crystals["THUNDER"] += amount
+		"WATER":
+			crystals["WATER"] += amount
+
 	emit_signal("crystals_changed")

@@ -4,16 +4,16 @@
 [ext_resource path="res://assets/ui/CrystalBox/crystalbox-bg.png" type="Texture" id=2]
 [ext_resource path="res://assets/ui/MainTheme.tres" type="Theme" id=3]
 [ext_resource path="res://assets/ui/CrystalBox/crystalbox-progress-progress.png" type="Texture" id=4]
-[ext_resource path="res://assets/ui/CrystalBox/crystalbox-element-whiteborder-light.png" type="Texture" id=5]
+[ext_resource path="res://assets/ui/CrystalBox/elecrys_fire.png" type="Texture" id=5]
 [ext_resource path="res://assets/ui/CrystalBox/crystalbox-progress-under.png" type="Texture" id=6]
 [ext_resource path="res://assets/ui/CrystalBox/crystalbox-progress-over.png" type="Texture" id=7]
-[ext_resource path="res://assets/ui/CrystalBox/crystalbox-element-whiteborder-ice.png" type="Texture" id=8]
-[ext_resource path="res://assets/ui/CrystalBox/crystalbox-element-whiteborder-thunder.png" type="Texture" id=9]
-[ext_resource path="res://assets/ui/CrystalBox/crystalbox-element-whiteborder-psychic.png" type="Texture" id=10]
-[ext_resource path="res://assets/ui/CrystalBox/crystalbox-element-whiteborder-fire.png" type="Texture" id=11]
-[ext_resource path="res://assets/ui/CrystalBox/crystalbox-element-whiteborder-dark.png" type="Texture" id=12]
-[ext_resource path="res://assets/ui/CrystalBox/crystalbox-element-whiteborder-water.png" type="Texture" id=13]
-[ext_resource path="res://assets/ui/CrystalBox/crystalbox-element-whiteborder-earth.png" type="Texture" id=14]
+[ext_resource path="res://assets/ui/CrystalBox/elecrys_earth.png" type="Texture" id=8]
+[ext_resource path="res://assets/ui/CrystalBox/elecrys_water.png" type="Texture" id=9]
+[ext_resource path="res://assets/ui/CrystalBox/elecrys_light.png" type="Texture" id=10]
+[ext_resource path="res://assets/ui/CrystalBox/elecrys_ice.png" type="Texture" id=11]
+[ext_resource path="res://assets/ui/CrystalBox/elecrys_dark.png" type="Texture" id=12]
+[ext_resource path="res://assets/ui/CrystalBox/elecrys_thunder.png" type="Texture" id=13]
+[ext_resource path="res://assets/ui/CrystalBox/elecrys_psychic.png" type="Texture" id=14]
 [ext_resource path="res://assets/ui/CrystalBox/crystalbox-unlocked.png" type="Texture" id=15]
 [ext_resource path="res://assets/ui/CrystalBox/crystalbox-unlocked-hover.png" type="Texture" id=16]
 [ext_resource path="res://assets/ui/CrystalBox/crystalbox-locked.png" type="Texture" id=17]
@@ -79,7 +79,7 @@ margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 mouse_filter = 2
-texture = ExtResource( 5 )
+texture = ExtResource( 10 )
 stretch_mode = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer/LightContainer"]
@@ -234,7 +234,7 @@ margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 mouse_filter = 2
-texture = ExtResource( 10 )
+texture = ExtResource( 14 )
 stretch_mode = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PsychicContainer"]
@@ -296,7 +296,7 @@ margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 mouse_filter = 2
-texture = ExtResource( 11 )
+texture = ExtResource( 5 )
 stretch_mode = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/FireContainer"]
@@ -358,7 +358,7 @@ margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 mouse_filter = 2
-texture = ExtResource( 8 )
+texture = ExtResource( 11 )
 stretch_mode = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/IceContainer"]
@@ -420,7 +420,7 @@ margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 mouse_filter = 2
-texture = ExtResource( 14 )
+texture = ExtResource( 8 )
 stretch_mode = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/EarthContainer"]
@@ -482,7 +482,7 @@ margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 mouse_filter = 2
-texture = ExtResource( 9 )
+texture = ExtResource( 13 )
 stretch_mode = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/ThunderContainer"]
@@ -544,7 +544,7 @@ margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 mouse_filter = 2
-texture = ExtResource( 13 )
+texture = ExtResource( 9 )
 stretch_mode = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/WaterContainer"]

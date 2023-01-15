@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/crystalbox-element-whiteborder-ice.png-06f715319bd660a321c17e920a89c24a.stex"
+path="res://.import/elemental_crystals.png-c244a7b979a1b904342c51a009a6fcd6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/CrystalBox/crystalbox-element-whiteborder-ice.png"
-dest_files=[ "res://.import/crystalbox-element-whiteborder-ice.png-06f715319bd660a321c17e920a89c24a.stex" ]
+source_file="res://assets/crystals/elemental_crystals.png"
+dest_files=[ "res://.import/elemental_crystals.png-c244a7b979a1b904342c51a009a6fcd6.stex" ]
 
 [params]
 

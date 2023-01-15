@@ -2,16 +2,19 @@ extends Node2D
 
 #export(String, "BLUE","GREEN","PINK","PURPLE","RED") var ElementalCrystals
 
-onready var randomCrystalSprite = $"../AnimatedSpriteCrystal"
+onready var randomCrystalSprite = $"../ElementalCrystalSprite/AnimationPlayer"
 
 var elementalCrystal
 
 enum ElementalCrystals {
-	BLUE,
-	GREEN,
-	PINK,
-	PURPLE,
-	RED
+	LIGHT,
+	DARK,
+	PSYCHIC,
+	FIRE,
+	ICE,
+	EARTH,
+	THUNDER,
+	WATER
 }
 
 var spawned = false
@@ -21,8 +24,10 @@ func _ready():
 		random_element()
 	else:
 		pass
+	
 
 func random_element():
 	elementalCrystal = ElementalCrystals.keys()[randi() % ElementalCrystals.size()]
 	randomCrystalSprite.play(str(elementalCrystal))
+	randomCrystalSprite.seek(rand_range(0,.8),true)
 	spawned = true
