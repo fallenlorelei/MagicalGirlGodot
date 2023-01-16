@@ -36,7 +36,6 @@ func _on_CrystalDrop_area_entered(area):
 	
 	# Crystal moves to player
 	# I want to edit so that the crystals follow the player when they move	
-
 	var TW = create_tween()
 	TW.tween_property(self, "position", areaPosition, .3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
 	TW.tween_property(self, "scale", Vector2(0,0), .3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
