@@ -8,8 +8,6 @@ var parentCursorDirection
 var parentCursorLocation
 var skillName
 var skillShortcut
-var loadedAbility
-var ability
 var skillElement
 
 func _ready():
@@ -70,7 +68,7 @@ func start_ability(selected_skill, selected_shortcut):
 
 func release_ability():
 	skillElement = DataImport.skill_data[skillName].Element
-	loadedAbility = load_ability(skillName)
+	var loadedAbility = load_ability(skillName)
 	var ability = loadedAbility.instance()
 	ability.skillName = skillName
 

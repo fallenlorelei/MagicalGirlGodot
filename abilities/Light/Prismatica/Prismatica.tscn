@@ -98,7 +98,7 @@ tracks/3/keys = {
 
 [sub_resource type="CircleShape2D" id=3]
 
-[node name="Smite" instance=ExtResource( 1 )]
+[node name="Prismatica" instance=ExtResource( 1 )]
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
