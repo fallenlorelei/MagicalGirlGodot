@@ -42,9 +42,15 @@ func set_text():
 
 	for crystal in crystalCounters:
 		crystalUi[crystal].text = str(crystalCounters[crystal])
-		crystalProgressUI[crystal].value = crystalCounters[crystal]
-		crystalProgressUI[crystal].max_value = maxCrystals
-	
+		
+		var TW = get_tree().create_tween()
+
+#		crystalProgressUI[crystal].value = crystalCounters[crystal]
+#		crystalProgressUI[crystal].max_value = maxCrystals
+
+		TW.tween_property(crystalProgressUI[crystal], "value", float(crystalCounters[crystal]), .2)
+		TW.tween_property(crystalProgressUI[crystal], "max_value", float(maxCrystals), .2)
+			
 func update_crystals():
 	set_text()
 
