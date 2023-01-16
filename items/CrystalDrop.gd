@@ -19,18 +19,11 @@ func _ready():
 	
 	# Crystal drops and bounces
 	var TW = create_tween()
-	TW.tween_property(crystalSprite, "position", new_distance, .5).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
-	
-	update_pos()
+	TW.tween_property(self, "position", global_position + new_distance, .5).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 
 func _physics_process(_delta):
-#	playerPosition = get_node("../Player").get_position()
 	pass
 	
-# Updates position of the collision when crystal drops from monster
-func update_pos():
-	pickupCollision.position = new_distance
-
 
 func _on_CrystalDrop_area_entered(area):
 	# Removing collision kinda stops duplicates

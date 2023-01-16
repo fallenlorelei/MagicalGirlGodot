@@ -7,7 +7,7 @@
     "Cooldown": false,
     "CooldownDuration": null,
     "CanDamage": true,
-    "SkillDamage": 5,
+    "SkillDamage": 20,
     "CanHeal": false,
     "HealAmount": null,
     "Knocksback": false,

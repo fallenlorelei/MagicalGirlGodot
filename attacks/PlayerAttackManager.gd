@@ -20,7 +20,7 @@ func _physics_process(_delta):
 	
 	castingCircleSprite.global_position = parentCursorLocation
 
-	if skillShortcut != null:
+	if skillName != null:
 		get_parent().animationTree.set("parameters/Attack/blend_position", parentCursorDirection)
 		get_parent().animationTree.set("parameters/Idle/blend_position", parentCursorDirection)
 		get_parent().animationTree.set("parameters/Run/blend_position", parentCursorDirection)
@@ -34,13 +34,8 @@ func check_global_cooldown():
 func start_ability(selected_skill, selected_shortcut):
 	skillName = selected_skill
 	skillShortcut = selected_shortcut
-	
-	
+
 	if selected_skill != null:
-
-
-		castingCircleSprite.show()
-
 		#Resize casting circle to size of collision
 		var radiusSize = DataImport.skill_data[selected_skill].SkillRadius
 		if radiusSize != null:
@@ -49,7 +44,7 @@ func start_ability(selected_skill, selected_shortcut):
 			var scale_factor = sizeto/size
 			castingCircleSprite.scale = scale_factor
 			
-		
+			castingCircleSprite.show()
 
 
 func release_ability():
@@ -93,6 +88,7 @@ func release_ability():
 
 	castingCircleSprite.hide()
 	skillShortcut = null
+	skillName = null
 
 func load_ability(skillName):
 	if skillName != null:
