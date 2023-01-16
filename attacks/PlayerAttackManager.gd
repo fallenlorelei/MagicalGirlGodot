@@ -11,6 +11,7 @@ var skillShortcut
 var loadedAbility
 var ability
 var skillElement
+
 func _ready():
 	pass
 
@@ -24,8 +25,14 @@ func _physics_process(_delta):
 		get_parent().animationTree.set("parameters/Attack/blend_position", parentCursorDirection)
 		get_parent().animationTree.set("parameters/Idle/blend_position", parentCursorDirection)
 		get_parent().animationTree.set("parameters/Run/blend_position", parentCursorDirection)
-	
-		if Input.is_action_just_released(str(skillShortcut)):
+		
+		# Canceling ability
+		if Input.is_action_pressed(str(skillShortcut)):
+			if Input.is_action_just_pressed("right_click"):
+				castingCircleSprite.hide()
+				skillName = null
+				
+		if Input.is_action_just_released(str(skillShortcut)) and skillName != null:
 			release_ability()
 
 func check_global_cooldown():
@@ -42,10 +49,14 @@ func start_ability(selected_skill, selected_shortcut):
 			var sizeto = Vector2(radiusSize,radiusSize)
 			var size = castingCircleSprite.texture.get_size()
 			var scale_factor = sizeto/size
-			castingCircleSprite.scale = scale_factor
+			
+			castingCircleSprite.scale = Vector2(0,0)
+			
 			
 			match DataImport.skill_data[skillName].SkillType:
 				"at_cursor":
+					var TW = get_tree().create_tween()
+					TW.tween_property(castingCircleSprite, "scale", scale_factor, .2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 					castingCircleSprite.show()
 				"self_utility":
 					pass

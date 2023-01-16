@@ -71,10 +71,6 @@ func move_state(delta):
 
 #	== ATTACKING ==
 func set_attack(value):
-#	var skillSlot = selected_skillSlot
-#	cursorDirection = (get_global_mouse_position() - position).normalized()
-#	cursorLocation = get_global_mouse_position()
-	
 	velocity = velocity.move_toward(Vector2.ZERO, ATTACK_FRICTION)
 	
 	if attackManager.check_global_cooldown():
