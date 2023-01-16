@@ -29,7 +29,8 @@ func _physics_process(_delta):
 		# Canceling ability
 		if Input.is_action_pressed(str(skillShortcut)):
 			if Input.is_action_just_pressed("right_click"):
-				castingCircleSprite.hide()
+				var TW = get_tree().create_tween()
+				TW.tween_property(castingCircleSprite, "scale", Vector2(0,0), .2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 				skillName = null
 				
 		if Input.is_action_just_released(str(skillShortcut)) and skillName != null:
@@ -51,8 +52,7 @@ func start_ability(selected_skill, selected_shortcut):
 			var scale_factor = sizeto/size
 			
 			castingCircleSprite.scale = Vector2(0,0)
-			
-			
+
 			match DataImport.skill_data[skillName].SkillType:
 				"at_cursor":
 					var TW = get_tree().create_tween()
@@ -107,7 +107,8 @@ func release_ability():
 			get_tree().get_current_scene().add_child(ability)
 			ability.projectile()
 
-	castingCircleSprite.hide()
+	var TW = get_tree().create_tween()
+	TW.tween_property(castingCircleSprite, "scale", Vector2(0,0), .2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	skillShortcut = null
 	skillName = null
 
