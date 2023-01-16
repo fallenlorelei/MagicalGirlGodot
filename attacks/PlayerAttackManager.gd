@@ -44,7 +44,17 @@ func start_ability(selected_skill, selected_shortcut):
 			var scale_factor = sizeto/size
 			castingCircleSprite.scale = scale_factor
 			
-			castingCircleSprite.show()
+			match DataImport.skill_data[skillName].SkillType:
+				"at_cursor":
+					castingCircleSprite.show()
+				"self_utility":
+					pass
+				"around_self":
+					pass
+				"front_arc":
+					pass
+				"projectile":
+					pass
 
 
 func release_ability():
@@ -52,7 +62,7 @@ func release_ability():
 	loadedAbility = load_ability(skillName)
 	var ability = loadedAbility.instance()
 	ability.skillName = skillName
-				
+
 	attack_animation()
 	globalCooldown.start()
 	

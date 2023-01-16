@@ -8,7 +8,7 @@
 [ext_resource path="res://assets/sprites/magicalgirl/girl_attack1.png" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/magicalgirl/girl_death.png" type="Texture" id=7]
 [ext_resource path="res://attacks/PlayerAttackManager.gd" type="Script" id=8]
-[ext_resource path="res://assets/ui/castingcircle01.png" type="Texture" id=9]
+[ext_resource path="res://assets/ui/castingcircle02.png" type="Texture" id=9]
 [ext_resource path="res://attacks/Hurtbox.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Animation" id=50]
@@ -1263,6 +1263,8 @@ one_shot = true
 
 [node name="CastingCircle" type="Sprite" parent="AttackManager" index="2"]
 visible = false
+position = Vector2( -20, -20 )
+z_index = 1
 texture = ExtResource( 9 )
 
 [node name="Hurtbox" parent="." index="6" instance=ExtResource( 11 )]
