@@ -26,6 +26,7 @@ func _ready():
 	load_shortcuts()
 	for shortcut in get_tree().get_nodes_in_group("AbilityShortcut"):
 		shortcut.connect("pressed", self, "SelectShortcut", [shortcut.get_parent().get_name()])
+		
 
 func load_shortcuts():
 	for shortcut in loaded_skills.keys():
@@ -33,8 +34,11 @@ func load_shortcuts():
 			var skill_icon = load("res://assets/skill_icons/" + loaded_skills[shortcut] + "_icon.png")
 			get_node(shortcuts_path + shortcut + "/TextureButton").set_normal_texture(skill_icon)
 
+# == FIND PLAYER AND SEND SELECTED SKILL ==
 func SelectShortcut(shortcut):
+	get_parent().get_parent().get_node("../../YSort/Player").selected_skillSlot = shortcut
 	get_parent().get_parent().get_node("../../YSort/Player").selected_skill = loaded_skills[shortcut]
+	
 
 
 # Sends signal so player isn't left-click attacking when dragging abilities

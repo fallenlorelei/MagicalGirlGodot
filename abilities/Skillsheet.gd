@@ -1,6 +1,7 @@
 extends Area2D
 
 onready var animationPlayer = $AnimationPlayer
+onready var collisionShape = $CollisionShape2D
 
 var skillName = skillName
 var cursorDirection
@@ -24,7 +25,7 @@ var destroyDelayTime
 
 var knockback_vector = Vector2.ZERO
 
-func _ready():	
+func _ready():		
 	hasCastTime = DataImport.skill_data[skillName].HasCastTime
 	castTime = DataImport.skill_data[skillName].CastTime
 	cooldown = DataImport.skill_data[skillName].Cooldown

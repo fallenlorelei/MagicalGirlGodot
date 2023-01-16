@@ -7,6 +7,7 @@ var jump_vector = Vector2.LEFT
 var cursorDirection = Vector2()
 var cursorLocation = Vector2()
 var selected_skill = "skill" setget set_attack
+var selected_skillSlot = ""
 var mouse_over_ui = false
 
 onready var sprite = $Sprite
@@ -35,7 +36,9 @@ func _physics_process(delta):
 			jump_state()
 		DYING:
 			dead_state()
-			
+	
+	cursorDirection = (get_global_mouse_position() - position).normalized()
+	cursorLocation = get_global_mouse_position()
 			
 #	== USE ABILITIES ==
 	if state != JUMP or state != DEAD:
@@ -68,14 +71,32 @@ func move_state(delta):
 
 #	== ATTACKING ==
 func set_attack(value):
-	cursorDirection = (get_global_mouse_position() - position).normalized()
-	cursorLocation = get_global_mouse_position()
+#	var skillSlot = selected_skillSlot
+#	cursorDirection = (get_global_mouse_position() - position).normalized()
+#	cursorLocation = get_global_mouse_position()
 	
 	velocity = velocity.move_toward(Vector2.ZERO, ATTACK_FRICTION)
 	
 	if attackManager.check_global_cooldown():
-		print("Used ability: ", value)
-		attackManager.use_ability(value)
+		var skillShortcut
+		
+		if selected_skillSlot == "Skill1":
+			skillShortcut = "ability1"
+		if selected_skillSlot == "Skill2":
+			skillShortcut = "ability2"
+		if selected_skillSlot == "Skill3":
+			skillShortcut = "ability3"
+		if selected_skillSlot == "Skill4":
+			skillShortcut = "ability4"
+		if selected_skillSlot == "Skill5":
+			skillShortcut = "ability5"
+		if selected_skillSlot == "Skill6":
+			skillShortcut = "ability6"
+			
+		if skillShortcut != null:
+			if Input.is_action_pressed(str(skillShortcut)):
+				print("Used ability: ", value)
+				attackManager.start_ability(value, skillShortcut)
 		
 func attack_animation_finished():
 	state = MOVE

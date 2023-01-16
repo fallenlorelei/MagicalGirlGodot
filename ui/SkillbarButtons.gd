@@ -9,6 +9,8 @@ var tooltip_instance
 func _ready():
 	pass
 
+
+# == DRAG AND DROP ==
 func get_drag_data(_pos):
 	var skill_slot = get_parent().get_name()
 	var skill_name = get_owner().loaded_skills[skill_slot]
@@ -80,7 +82,7 @@ func drop_data(_pos, data):
 	get_owner().loaded_skills[target_skill_slot] = data["origin_skill_name"]
 	texture_normal = data["origin_texture"]
 	
-
+# == TOOLTIP ==
 func _on_TextureButton_mouse_entered():
 	var tooltip_instance = tooltip.instance()
 	var skill_slot = get_parent().get_name()
