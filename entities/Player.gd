@@ -81,23 +81,13 @@ func set_attack(value):
 		
 		if selected_skillSlot == "Skill0":
 			skillShortcut = "left_click"
-		if selected_skillSlot == "Skill1":
-			skillShortcut = "ability1"
-		if selected_skillSlot == "Skill2":
-			skillShortcut = "ability2"
-		if selected_skillSlot == "Skill3":
-			skillShortcut = "ability3"
-		if selected_skillSlot == "Skill4":
-			skillShortcut = "ability4"
-		if selected_skillSlot == "Skill5":
-			skillShortcut = "ability5"
-		if selected_skillSlot == "Skill6":
-			skillShortcut = "ability6"
-			
+		else:
+			#Changing "Skill1" to "ability1" etc.
+			skillShortcut = selected_skillSlot.replace("Skill", "ability")
+					
 		if value != null:
 			if Input.is_action_pressed(str(skillShortcut)):
 				state = CASTING
-				print("Used ability: ", value)
 				attackManager.start_ability(value, skillShortcut)
 
 func casting_state():
