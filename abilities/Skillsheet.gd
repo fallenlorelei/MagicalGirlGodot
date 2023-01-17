@@ -3,6 +3,8 @@ extends Area2D
 onready var skillSprite = $Sprite
 onready var animationPlayer = $AnimationPlayer
 onready var collisionShape = $CollisionShape2D
+onready var frontArcPivot = $PivotArc
+onready var frontArcCollisionShape = $PivotArc/CollisionShape2D
 
 var skillName = skillName
 var cursorDirection
@@ -45,7 +47,7 @@ func _ready():
 	destroyDelayTime = DataImport.skill_data[skillName].DestroyDelayTime
 
 	if skillRadius != null:
-		get_node("CollisionShape2D").get_shape().radius = skillRadius
+		collisionShape.get_shape().radius = skillRadius
 	
 	if canHeal == true:
 		heal()
@@ -72,6 +74,15 @@ func around_self():
 	collisionShape.position.y += 6
 	skillSprite.position.y += 6
 
+# == FRONT ARC ==
+func front_arc():
+	frontArcPivot.look_at(get_global_mouse_position())
+	frontArcCollisionShape.set_deferred("disabled",false)
+	frontArcCollisionShape.get_shape().extents.x = skillRadius/2
+
+func front_arc_animation_finished():
+	destroy()
+	
 # == SELF_UTILITY ==
 func heal():
 	get_parent().get_parent().heal(healAmount)

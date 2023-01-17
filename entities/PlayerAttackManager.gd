@@ -4,7 +4,8 @@ onready var attackAnimationTimer = $AttackAnimationTimer
 onready var globalCooldown = $GlobalCooldown
 onready var castingCircleSprite = $CastingCircle
 onready var castingCircleAnimation = $CastingCircle/AnimationPlayer
-onready var projectileLine = $Line2D
+onready var projectileLine = $ProjectilePreview
+onready var frontArcPreview = $FrontArcPreview
 
 var parentCursorDirection
 var parentCursorLocation
@@ -30,7 +31,7 @@ func _physics_process(_delta):
 		get_parent().animationTree.set("parameters/Idle/blend_position", parentCursorDirection)
 		get_parent().animationTree.set("parameters/Run/blend_position", parentCursorDirection)
 		
-		# Move casting circle/projectile preview
+		# MOVING CAST PREVIEWS
 		if DataImport.skill_data[skillName].SkillType == "at_cursor":
 			castingCircleSprite.global_position = parentCursorLocation
 			
@@ -41,6 +42,9 @@ func _physics_process(_delta):
 			projectileLine.set_point_position(0,Vector2(0,0))
 			var length = parentCursorDirection * distance
 			projectileLine.set_point_position(1,length)
+			
+		if DataImport.skill_data[skillName].SkillType == "front_arc":
+			frontArcPreview.look_at(parentCursorLocation)
 		
 		# Some abilities can still be cast if they are out of bounds
 		var canCastOutOfBounds
@@ -63,17 +67,19 @@ func _physics_process(_delta):
 				castingCircleAnimation.advance(castingCircleRotatingPosition)
 			outOfBounds = false
 		
-		# Canceling ability
+		# CANCELING
 		if Input.is_action_pressed(str(skillShortcut)):
 			if Input.is_action_just_pressed("right_click"):
 				stop_casting()
 		
+		# CANCELING OR RELEASING
 		if Input.is_action_just_released(str(skillShortcut)) and skillName != null:
 			if outOfBounds == true:
 				stop_casting()
 			else:
 				release_ability()
 		
+		# RELEASE IF LEFT CLICK
 		if skillShortcut == "left_click":
 			release_ability()
 
@@ -97,10 +103,11 @@ func start_ability(selected_skill, selected_shortcut):
 			"around_self":
 				show_casting(-1, "around_self")
 			"front_arc":
-				pass
+				show_casting(-1, "front_arc")
 			"projectile":
 				show_casting(-1, "projectile")
 
+# == HOLDING DOWN HOTKEY, SHOWING PREVIEW ==
 func show_casting(zindex, type):
 	#Resize casting circle to size of collision
 	var radiusSize = DataImport.skill_data[skillName].SkillRadius
@@ -121,7 +128,16 @@ func show_casting(zindex, type):
 		projectileLine.width = radiusSize * 2
 		projectileLine.z_index = zindex
 		projectileLine.show()
+	
+	if type == "front_arc":
+		var sizeto = Vector2(radiusSize,radiusSize)
+		var size = castingCircleSprite.texture.get_size()
+		var scale_factor = sizeto/size * 2
+		frontArcPreview.scale = scale_factor
+		frontArcPreview.z_index = zindex
+		frontArcPreview.show()
 
+# == RELEASE ABILITY ==
 func release_ability():
 	skillElement = DataImport.skill_data[skillName].Element
 	var loadedAbility = load_ability(skillName)
@@ -137,22 +153,19 @@ func release_ability():
 			ability.global_position = parentCursorLocation
 			get_tree().get_current_scene().add_child(ability)
 #
-#
 		"self_utility":
 			add_child(ability)
-#
-#
 #
 		"around_self":
 			ability.global_position = self.global_position
 			get_tree().get_current_scene().add_child(ability)
 			ability.around_self()
 
-
 		"front_arc":
-			pass
-#
-#
+			ability.cursorDirection = parentCursorDirection
+			ability.global_position = self.global_position
+			get_tree().get_current_scene().add_child(ability)
+			ability.front_arc()
 #
 		"projectile":
 			ability.cursorDirection = parentCursorDirection
@@ -169,6 +182,7 @@ func stop_casting():
 	var TW = get_tree().create_tween()
 	TW.tween_property(castingCircleSprite, "scale", Vector2(0,0), .2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	projectileLine.hide()
+	frontArcPreview.hide()
 	skillName = null
 	
 func load_ability(skillName):
