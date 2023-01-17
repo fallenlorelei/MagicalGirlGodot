@@ -34,9 +34,11 @@ func _physics_process(delta):
 			move_state(delta)
 		JUMP:
 			jump_state()
+		CASTING:
+			casting_state()
 		DYING:
 			dead_state()
-	
+
 	cursorDirection = (get_global_mouse_position() - position).normalized()
 	cursorLocation = get_global_mouse_position()
 			
@@ -94,9 +96,14 @@ func set_attack(value):
 			
 		if value != null:
 			if Input.is_action_pressed(str(skillShortcut)):
+				state = CASTING
 				print("Used ability: ", value)
 				attackManager.start_ability(value, skillShortcut)
-		
+
+func casting_state():
+	velocity = Vector2.ZERO
+	animationState.travel("Idle")
+	
 func attack_animation_finished():
 	state = MOVE
 	move()

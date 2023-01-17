@@ -52,18 +52,20 @@ func _physics_process(_delta):
 		# Canceling ability
 		if Input.is_action_pressed(str(skillShortcut)):
 			if Input.is_action_just_pressed("right_click"):
-				remove_circle()
+				stop_casting()
 		
 		if Input.is_action_just_released(str(skillShortcut)) and skillName != null:
 			if outOfBounds == true:
-				remove_circle()
+				stop_casting()
 			else:
 				release_ability()
 
-func remove_circle():
+func stop_casting():
+	get_parent().state = 0
 	var TW = get_tree().create_tween()
 	TW.tween_property(castingCircleSprite, "scale", Vector2(0,0), .2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	skillName = null
+	
 
 func check_global_cooldown():
 	return globalCooldown.is_stopped()
@@ -157,6 +159,7 @@ func load_ability_collision(skillName):
 
 
 func attack_animation():
+	get_parent().state = 5
 	get_parent().animationState.travel("Attack")
 	if attackAnimationTimer.is_stopped():
 		attackAnimationTimer.start()
