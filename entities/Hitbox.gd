@@ -1,7 +1,7 @@
 extends Area2D
 
 export(int) var skillDamage = 1
-export(bool) var knocksback = true
+export(bool) var canKnockback = true
 export(bool) var destroyOnImpact = true
 
 

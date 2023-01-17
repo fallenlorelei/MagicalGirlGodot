@@ -26,7 +26,7 @@ func _physics_process(_delta):
 	
 func _input(event : InputEvent) -> void:
 	if event is InputEventMouseButton:
-		event as InputEventMouseButton
+#		event as InputEventMouseButton
 		if event.pressed:
 			match event.button_index:
 				BUTTON_WHEEL_UP:

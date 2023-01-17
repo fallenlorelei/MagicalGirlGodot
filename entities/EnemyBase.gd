@@ -82,7 +82,7 @@ func seek_player():
 func chase(delta):
 	var player = playerDetectionZone.player
 
-	if player != null and beginAttack == false:
+	if player != null and beginAttack == false and player.state != DYING:
 		accelerate_towards_point(player.global_position, delta)
 		
 		if global_position.distance_to(player.global_position) <= check_range():

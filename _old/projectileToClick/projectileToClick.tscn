@@ -2,7 +2,7 @@
 
 [ext_resource path="res://abilities/projectileToClick/projectileToClick.gd" type="Script" id=1]
 [ext_resource path="res://assets/crystals/red/red_crystal_0000.png" type="Texture" id=2]
-[ext_resource path="res://attacks/Hitbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://entities/Hitbox.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 5.0

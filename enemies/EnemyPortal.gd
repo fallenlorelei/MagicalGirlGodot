@@ -33,7 +33,7 @@ func spawn_enemies():
 	enemySpawn.global_position = global_position
 	get_parent().add_child(enemySpawn)
 	spawnAmount -= 1
-	enemySpawn.state = 3
+	enemySpawn.state = 4
 	if spawnAmount >= 0:
 		timer.start(spawnTimer)
 

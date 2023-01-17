@@ -6,35 +6,35 @@ onready var collisionShape = $CollisionShape2D
 var skillName = skillName
 var cursorDirection
 
-var hasCastTime
-var castTime
-var cooldown
-var cooldownDuration
-var canDamage
-var skillDamage
-var canHeal
-var healAmount
-var knocksback
-var knockbackModifier
-var skillRadius
-var distance
-var projectileSpeed
-var destroyOnImpact
-var aoeDamageDelayTime
-var destroyDelayTime
+export var hasCastTime = false
+export var castTime = 0.0
+export var hasCooldown = false
+export var cooldownDuration = 0.0
+export var canDamage = true
+export var skillDamage = 10.0
+export var canHeal = false
+export var healAmount = 0.0
+export var canKnockback = true
+export var knockbackModifier = 0.0
+export var skillRadius = 0.0
+export var distance = 0.0
+export var projectileSpeed = 0.0
+export var destroyOnImpact = true
+export var aoeDamageDelayTime = 0.0
+export var destroyDelayTime = 0.0
 
 var knockback_vector = Vector2.ZERO
 
 func _ready():		
 	hasCastTime = DataImport.skill_data[skillName].HasCastTime
 	castTime = DataImport.skill_data[skillName].CastTime
-	cooldown = DataImport.skill_data[skillName].Cooldown
+	hasCooldown = DataImport.skill_data[skillName].HasCooldown
 	cooldownDuration = DataImport.skill_data[skillName].CooldownDuration
 	canDamage = DataImport.skill_data[skillName].CanDamage
 	skillDamage = DataImport.skill_data[skillName].SkillDamage
 	canHeal = DataImport.skill_data[skillName].CanHeal
 	healAmount = DataImport.skill_data[skillName].HealAmount
-	knocksback = DataImport.skill_data[skillName].Knocksback
+	canKnockback = DataImport.skill_data[skillName].CanKnockback
 	knockbackModifier = DataImport.skill_data[skillName].KnockbackModifier
 	skillRadius = DataImport.skill_data[skillName].SkillRadius
 	distance = DataImport.skill_data[skillName].Distance

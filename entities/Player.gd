@@ -43,6 +43,7 @@ func _physics_process(delta):
 #	== USE ABILITIES ==
 	if state != JUMP or state != DEAD:
 		if Input.is_action_just_pressed("left_click") and mouse_over_ui == false:
+			self.selected_skillSlot = "Skill0"
 			self.selected_skill = "Basic"
 
 	if Input.is_action_just_pressed("jump") and state != JUMP:
@@ -76,6 +77,8 @@ func set_attack(value):
 	if attackManager.check_global_cooldown():
 		var skillShortcut
 		
+		if selected_skillSlot == "Skill0":
+			skillShortcut = "left_click"
 		if selected_skillSlot == "Skill1":
 			skillShortcut = "ability1"
 		if selected_skillSlot == "Skill2":
@@ -89,7 +92,7 @@ func set_attack(value):
 		if selected_skillSlot == "Skill6":
 			skillShortcut = "ability6"
 			
-		if skillShortcut != null:
+		if value != null:
 			if Input.is_action_pressed(str(skillShortcut)):
 				print("Used ability: ", value)
 				attackManager.start_ability(value, skillShortcut)

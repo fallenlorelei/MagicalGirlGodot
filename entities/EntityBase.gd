@@ -20,11 +20,12 @@ var hpPercentage
 var hpBar
 var hpBarAnimation
 
-# Move 0, Jump 1, Attack 2, Wander 3, Idle 4, Chase 5, Dead 6, Dying 7
+# Move 0, Jump 1, Attack 2, Casting 3, Wander 4, Idle 5, Chase 6, Dead 7, Dying 8
 enum {
 	MOVE,
 	JUMP,
 	ATTACK,
+	CASTING,
 	WANDER,
 	IDLE,
 	CHASE,
@@ -73,10 +74,10 @@ func die():
 
 	
 func _on_Hurtbox_area_entered(hitbox):
-	var actual_damage = receive_damage(hitbox.skillDamage)
+	receive_damage(hitbox.skillDamage)
 	
 	# Knockback only works on enemies right now
-	if hitbox.knocksback == true and hitbox.is_in_group("Player"):
+	if hitbox.canKnockback == true and hitbox.is_in_group("Player"):
 		knockback = hitbox.knockback_vector * hitbox.knockbackModifier
 		
 	if hitbox.is_in_group("Projectile"):
