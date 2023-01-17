@@ -1,5 +1,6 @@
 extends Area2D
 
+onready var skillSprite = $Sprite
 onready var animationPlayer = $AnimationPlayer
 onready var collisionShape = $CollisionShape2D
 
@@ -14,7 +15,7 @@ export var canDamage = true
 export var skillDamage = 10.0
 export var canHeal = false
 export var healAmount = 0.0
-export var canKnockback = true
+export var canKnockback = false
 export var knockbackModifier = 0.0
 export var skillRadius = 0.0
 export var distance = 0.0
@@ -66,7 +67,11 @@ func at_cursor_starting_animation_finished():
 
 func at_cursor_ending_animation_finished():
 	destroy()
-	
+
+func around_self():
+	collisionShape.position.y += 6
+	skillSprite.position.y += 6
+
 # == SELF_UTILITY ==
 func heal():
 	get_parent().get_parent().heal(healAmount)

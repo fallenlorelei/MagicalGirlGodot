@@ -12,21 +12,26 @@ var skillShortcut
 var skillElement
 var distance
 var outOfBounds = false
-var rotatingPosition
+var castingCircleRotatingPosition
 
 func _ready():
-	rotatingPosition = 0.0
+	castingCircleRotatingPosition = 0.0
 
 func _physics_process(_delta):
 	parentCursorDirection = get_parent().cursorDirection
 	parentCursorLocation = get_parent().cursorLocation
 	
-	castingCircleSprite.global_position = parentCursorLocation
+	
 
 	if skillName != null:
 		get_parent().animationTree.set("parameters/Attack/blend_position", parentCursorDirection)
 		get_parent().animationTree.set("parameters/Idle/blend_position", parentCursorDirection)
 		get_parent().animationTree.set("parameters/Run/blend_position", parentCursorDirection)
+		
+		if DataImport.skill_data[skillName].SkillType == "at_cursor":
+			castingCircleSprite.global_position = parentCursorLocation
+		if DataImport.skill_data[skillName].SkillType == "around_self":
+			castingCircleSprite.global_position = global_position + Vector2(0,6)
 		
 		# Some abilities can still be cast if they are out of bounds
 		var canCastOutOfBounds
@@ -39,14 +44,14 @@ func _physics_process(_delta):
 		# Extra coding so switching back to "rotate" is seamless
 		if distance != null and global_position.distance_to(parentCursorLocation) > distance:
 			if castingCircleAnimation.current_animation == "rotate":
-				rotatingPosition = castingCircleAnimation.current_animation_position
+				castingCircleRotatingPosition = castingCircleAnimation.current_animation_position
 			castingCircleAnimation.play("flashing")
 			if canCastOutOfBounds == false:
 				outOfBounds = true
 		else:
 			castingCircleAnimation.play("rotate")
 			if castingCircleAnimation.current_animation_position == 0.0:
-				castingCircleAnimation.advance(rotatingPosition)
+				castingCircleAnimation.advance(castingCircleRotatingPosition)
 			outOfBounds = false
 		
 		# Canceling ability
@@ -77,30 +82,35 @@ func start_ability(selected_skill, selected_shortcut):
 	distance = DataImport.skill_data[skillName].Distance
 
 	if selected_skill != null:
-		#Resize casting circle to size of collision
-		var radiusSize = DataImport.skill_data[selected_skill].SkillRadius
-		if radiusSize != null:
-			var sizeto = Vector2(radiusSize,radiusSize)
-			var size = castingCircleSprite.texture.get_size()
-			var scale_factor = sizeto/size
-			
-			castingCircleSprite.scale = Vector2(0,0)
-			
-			#Showing casting circle if relevant
-			match DataImport.skill_data[skillName].SkillType:
-				"at_cursor":
-					var TW = get_tree().create_tween()
-					TW.tween_property(castingCircleSprite, "scale", scale_factor * 2, .2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-					castingCircleSprite.show()
-				"self_utility":
-					pass
-				"around_self":
-					pass
-				"front_arc":
-					pass
-				"projectile":
-					pass
 
+		#Showing casting circle if relevant
+		match DataImport.skill_data[skillName].SkillType:
+			"at_cursor":
+				show_casting_circle(1)
+			"self_utility":
+				pass
+			"around_self":
+				show_casting_circle(-1)
+			"front_arc":
+				pass
+			"projectile":
+				pass
+
+func show_casting_circle(zindex):
+	#Resize casting circle to size of collision
+	var radiusSize = DataImport.skill_data[skillName].SkillRadius
+
+	if radiusSize != null:
+		var sizeto = Vector2(radiusSize,radiusSize)
+		var size = castingCircleSprite.texture.get_size()
+		var scale_factor = sizeto/size * 2
+		
+		castingCircleSprite.scale = Vector2(0,0)
+		castingCircleSprite.z_index = zindex
+		
+		var TW = get_tree().create_tween()
+		TW.tween_property(castingCircleSprite, "scale", scale_factor, .2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		castingCircleSprite.show()
 
 func release_ability():
 	skillElement = DataImport.skill_data[skillName].Element
@@ -126,7 +136,7 @@ func release_ability():
 		"around_self":
 			ability.global_position = self.global_position
 			get_tree().get_current_scene().add_child(ability)
-
+			ability.around_self()
 
 
 		"front_arc":
