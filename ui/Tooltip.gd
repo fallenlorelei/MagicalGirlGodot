@@ -3,20 +3,21 @@ extends Popup
 
 onready var skillNameLabel = $"%SkillName"
 onready var skillTypeLabel = $"%SkillType"
-onready var damageOrHealLabel = $"%DamageOrHeal"
-onready var amountLabel = $"%DamageHealAmount"
+onready var cooldownDurationLabel = $"%CooldownDuration"
 onready var skillDescriptionLabel = $"%SkillDescription"
 onready var scrollContainer = $"%ScrollContainer"
 
 var origin = ""
 var skill_slot = ""
 var skill_name = ""
+var skillSize = ""
 var valid = false
 var screensize = Vector2(854,480)
 var adj_pos = Vector2()
 
 func _ready():
 	update_tooltip()
+	
 
 func _physics_process(_delta):
 	var cursor_pos = get_global_mouse_position()
@@ -34,20 +35,26 @@ func _input(event : InputEvent) -> void:
 				BUTTON_WHEEL_DOWN:
 					scrollContainer.scroll_vertical += 3
 
-func update_tooltip():
+func update_tooltip():		
 	# == SKILLBAR TOOLTIP ==
 	if origin == "Skillbar" and skill_name != null:
 		valid = true	
-	if valid:
+	if valid:		
 		skillNameLabel.set_text(skill_name.capitalize())
 		
 		skillTypeLabel.set_text(DataImport.skill_data[skill_name].SkillType.capitalize())
 		
-		if DataImport.skill_data[skill_name].CanDamage == true:
-			damageOrHealLabel.set_text("Damage: ")
-			amountLabel.set_text(str(DataImport.skill_data[skill_name].SkillDamage))
-		elif DataImport.skill_data[skill_name].CanHeal == true:
-			damageOrHealLabel.set_text("Heal: ")
-			amountLabel.set_text(str(DataImport.skill_data[skill_name].HealAmount))
+		cooldownDurationLabel.set_text(str(DataImport.skill_data[skill_name].CooldownDuration) + " seconds")
 		
-		skillDescriptionLabel.set_text(str(DataImport.skill_data[skill_name].SkillDescription))
+		var skillD1 = str(DataImport.skill_data[skill_name].SkillDescription1)
+		var damageAmount = DataImport.skill_data[skill_name].SkillDamage
+		var healAmount = DataImport.skill_data[skill_name].HealAmount
+			
+		var actual_string = skillD1.format(
+			{"damage": "[color=#ff8f8f]" + str(damageAmount) + "[/color]",
+			"hp": "[color=#7ac240]" + str(healAmount) + "[/color]",
+			"element": DataImport.skill_data[skill_name].Element
+			
+			})
+		
+		skillDescriptionLabel.bbcode_text = actual_string

@@ -7,23 +7,24 @@ onready var collisionShape = $CollisionShape2D
 var skillName = skillName
 var cursorDirection
 var skillType = ""
+var player
 
-export var hasCastTime = false
-export var castTime = 0.0
-export var hasCooldown = false
-export var cooldownDuration = 0.0
-export var canDamage = true
-export var skillDamage = 10.0
-export var canHeal = false
-export var healAmount = 0.0
-export var canKnockback = false
-export var knockbackModifier = 0.0
-export var skillRadius = 0.0
-export var distance = 0.0
-export var projectileSpeed = 0.0
-export var destroyOnImpact = true
-export var aoeDamageDelayTime = 0.0
-export var destroyDelayTime = 0.0
+var hasCastTime = false
+var castTime = 0.0
+var hasCooldown = false
+var cooldownDuration = 0.0
+var canDamage = true
+var skillDamage = 10.0
+var canHeal = false
+var healAmount = 0.0
+var canKnockback = false
+var knockbackModifier = 0.0
+var skillRadius = 0.0
+var distance = 0.0
+var projectileSpeed = 0.0
+var destroyOnImpact = true
+var aoeDamageDelayTime = 0.0
+var destroyDelayTime = 0.0
 
 var knockback_vector = Vector2.ZERO
 
@@ -50,7 +51,7 @@ func _ready():
 		collisionShape.get_shape().radius = skillRadius
 	
 	if canHeal == true:
-		heal()
+		start_heal()
 	
 # == PROJECTILES ==
 func projectile():
@@ -71,6 +72,7 @@ func at_cursor_starting_animation_finished():
 func at_cursor_ending_animation_finished():
 	destroy()
 
+# == AROUND SELF ==
 func around_self():
 	collisionShape.position.y += 6
 	skillSprite.position.y += 6
@@ -98,10 +100,17 @@ func front_arc_animation_finished():
 	destroy()
 	
 # == SELF_UTILITY ==
-func heal():
-	get_parent().get_parent().heal(healAmount)
-	yield(get_tree().create_timer(animationPlayer.current_animation_length),"timeout")
-	queue_free()
+func start_heal():
+	if skillType == "self_utility":
+		get_parent().get_parent().heal(healAmount)
+		yield(get_tree().create_timer(animationPlayer.current_animation_length),"timeout")
+		queue_free()
+	else:
+#		var player = PlayerStats
+#		player.heal(healAmount)
+		pass
+		
+	
 	
 # == OTHER ==
 	

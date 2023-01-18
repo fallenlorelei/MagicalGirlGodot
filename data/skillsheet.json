@@ -19,7 +19,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": false,
-    "SkillDescription": "Smite foes with weak Light energy."
+    "SkillDescription1": "Smite your foes for {damage} {element} damage."
   },
   "Healing_Light": {
     "Element": "Light",
@@ -41,7 +41,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": false,
-    "SkillDescription": "Heal yourself with miraculous Light."
+    "SkillDescription1": "Heal yourself for {hp} hp."
   },
   "Starry_Eyed": {
     "Element": "Light",
@@ -63,7 +63,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": false,
-    "SkillDescription": "Blind foes in an area with a beam of blazing Light."
+    "SkillDescription1": "Blind foes in an area with a beam of blazing light."
   },
   "Prismatica": {
     "Element": "Light",
@@ -75,7 +75,7 @@
     "CanDamage": true,
     "SkillDamage": 300,
     "CanHeal": false,
-    "HealAmount": null,
+    "HealAmount": 50,
     "CanKnockback": true,
     "KnockbackModifier": 100,
     "SkillRadius": 50,
@@ -85,7 +85,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": true,
-    "SkillDescription": "Blind and damage foes while healing yourself."
+    "SkillDescription1": "Blind and damage foes with {damage} {element} damage while healing yourself for {hp}."
   },
   "Shadowstrike": {
     "Element": "Dark",
@@ -96,7 +96,7 @@
     "CooldownDuration": 0,
     "CanDamage": true,
     "SkillDamage": 10,
-    "CanHeal": false,
+    "CanHeal": true,
     "HealAmount": null,
     "CanKnockback": true,
     "KnockbackModifier": 100,
@@ -107,7 +107,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": false,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Shadow_Meld": {
     "Element": "Dark",
@@ -129,7 +129,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": false,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Twilight_Barrage": {
     "Element": "Dark",
@@ -151,7 +151,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": false,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Wave_of_Darkness": {
     "Element": "Dark",
@@ -173,7 +173,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": true,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Mind_Spike": {
     "Element": "Psychic",
@@ -195,7 +195,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": false,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Madness": {
     "Element": "Psychic",
@@ -217,7 +217,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": false,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Restless_Reveries": {
     "Element": "Psychic",
@@ -239,7 +239,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": false,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Final_Delusion": {
     "Element": "Psychic",
@@ -261,7 +261,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": true,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Trident_Missile": {
     "Element": "Water",
@@ -283,7 +283,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": false,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Tidal_Wave": {
     "Element": "Water",
@@ -305,7 +305,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": false,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Bubble_Shield": {
     "Element": "Water",
@@ -327,7 +327,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": false,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Deluge": {
     "Element": "Water",
@@ -349,7 +349,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": true,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Blazebolt": {
     "Element": "Fire",
@@ -371,7 +371,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": false,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Mirage": {
     "Element": "Fire",
@@ -393,7 +393,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": false,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Fiery_Barrage": {
     "Element": "Fire",
@@ -415,7 +415,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": false,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Blaze_of_Glory": {
     "Element": "Fire",
@@ -437,7 +437,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": true,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Icestream": {
     "Element": "Ice",
@@ -459,7 +459,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": false,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Crystal_Gaze": {
     "Element": "Ice",
@@ -481,7 +481,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": false,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Icy_Spiral": {
     "Element": "Ice",
@@ -503,7 +503,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": false,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Hailstorm": {
     "Element": "Ice",
@@ -525,7 +525,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": true,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Tremor_Strike": {
     "Element": "Earth",
@@ -547,7 +547,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": false,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Entangle": {
     "Element": "Earth",
@@ -569,7 +569,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": false,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Dig": {
     "Element": "Earth",
@@ -591,7 +591,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": false,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Mountainous_Fury": {
     "Element": "Earth",
@@ -613,7 +613,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": true,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Lightning_Strike": {
     "Element": "Thunder",
@@ -635,7 +635,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": false,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Tempest_Step": {
     "Element": "Thunder",
@@ -657,7 +657,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": false,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Chain_Lightning": {
     "Element": "Thunder",
@@ -679,7 +679,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": false,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Squallstorm": {
     "Element": "Thunder",
@@ -701,7 +701,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": true,
-    "SkillDescription": null
+    "SkillDescription1": null
   },
   "Basic": {
     "Element": "Neutral",
@@ -723,6 +723,6 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": false,
-    "SkillDescription": null
+    "SkillDescription1": null
   }
 }

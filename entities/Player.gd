@@ -46,7 +46,6 @@ func _physics_process(delta):
 #	== USE ABILITIES ==
 	if state != JUMP or state != DEAD:
 		if Input.is_action_just_pressed("left_click") and mouse_over_ui == false:
-			print(mouse_over_ui)
 			self.selected_skillSlot = "left_click"
 			self.selected_skill = "Basic"
 

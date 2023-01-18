@@ -5,6 +5,7 @@
 [ext_resource path="res://assets/ui/MainTheme.tres" type="Theme" id=3]
 
 [node name="Tooltip" type="Popup"]
+visible = true
 margin_right = 128.0
 margin_bottom = 125.0
 rect_min_size = Vector2( 128, 125 )
@@ -46,10 +47,11 @@ margin_top = 20.0
 margin_right = 118.0
 margin_bottom = 105.0
 rect_min_size = Vector2( 118, 85 )
+theme = ExtResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Background/VBoxContainer/ScrollContainer"]
 margin_right = 118.0
-margin_bottom = 120.0
+margin_bottom = 61.0
 rect_min_size = Vector2( 118, 0 )
 mouse_filter = 2
 
@@ -60,26 +62,37 @@ margin_bottom = 12.0
 rect_min_size = Vector2( 118, 0 )
 theme = ExtResource( 3 )
 text = "<SkillType>"
+align = 1
 clip_text = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Background/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="SkillDescription" type="RichTextLabel" parent="Background/VBoxContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
 margin_top = 16.0
 margin_right = 118.0
-margin_bottom = 28.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 118, 0 )
+theme = ExtResource( 3 )
+bbcode_enabled = true
+fit_content_height = true
+scroll_active = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Background/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 33.0
+margin_right = 118.0
+margin_bottom = 45.0
 mouse_filter = 2
 
-[node name="DamageOrHeal" type="Label" parent="Background/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-margin_right = 35.0
+[node name="CooldownLabel" type="Label" parent="Background/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 41.0
 margin_bottom = 12.0
 theme = ExtResource( 3 )
-text = "Damage:"
+text = "Cooldown:"
 valign = 1
 
-[node name="DamageHealAmount" type="Label" parent="Background/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="CooldownDuration" type="Label" parent="Background/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
-margin_left = 39.0
-margin_right = 96.0
+margin_left = 45.0
+margin_right = 102.0
 margin_bottom = 12.0
 rect_min_size = Vector2( 57, 0 )
 theme = ExtResource( 3 )
@@ -87,19 +100,9 @@ text = "<Amount>"
 valign = 1
 clip_text = true
 
-[node name="SkillDescription" type="Label" parent="Background/VBoxContainer/ScrollContainer/VBoxContainer"]
-unique_name_in_owner = true
-margin_top = 32.0
+[node name="SkillUpgradesLabel" type="Label" parent="Background/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 49.0
 margin_right = 118.0
-margin_bottom = 104.0
-rect_min_size = Vector2( 118, 0 )
-theme = ExtResource( 3 )
-text = "Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. "
-autowrap = true
-
-[node name="Label" type="Label" parent="Background/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 108.0
-margin_right = 118.0
-margin_bottom = 120.0
+margin_bottom = 61.0
 theme = ExtResource( 3 )
 text = "Skill Upgrades:"

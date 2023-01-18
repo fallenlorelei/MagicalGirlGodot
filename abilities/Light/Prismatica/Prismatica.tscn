@@ -243,6 +243,7 @@ texture = ExtResource( 2 )
 flip_h = true
 hframes = 7
 vframes = 7
+frame = 17
 
 [node name="Sprite3" type="Sprite" parent="." index="4"]
 position = Vector2( -17, -78 )
@@ -256,3 +257,4 @@ position = Vector2( -7, -39 )
 texture = ExtResource( 2 )
 hframes = 7
 vframes = 7
+frame = 12
