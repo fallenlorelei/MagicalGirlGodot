@@ -7,6 +7,7 @@ onready var castingCircleAnimation = $CastingCircle/AnimationPlayer
 onready var projectileLine = $ProjectilePreview
 onready var frontArcPreview = $FrontArcPreview
 
+
 var cooldownTracker = CooldownTracker
 var parentCursorDirection
 var parentCursorLocation
@@ -81,7 +82,7 @@ func _physics_process(_delta):
 				release_ability()
 		
 		# RELEASE IF LEFT CLICK
-		if skillShortcut == "left_click":
+		if skillShortcut == "left_click" and get_parent().mouse_over_ui == false:
 			release_ability()
 
 func check_global_cooldown():

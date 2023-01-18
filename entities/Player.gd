@@ -21,10 +21,11 @@ onready var crystalMouseoverBox = get_node("../../CanvasLayer/CrystalCounter/")
 
 func _ready():
 	animationTree.active = true
+	
 	hpBar = get_node("../../CanvasLayer/BottomUI/VBoxContainer/HBoxContainer/HealthBar/PlayerHPBar")
 	hpBarAnimation = get_node("../../CanvasLayer/BottomUI/VBoxContainer/HBoxContainer/HealthBar/PlayerHPBar/AnimationPlayer")
+	
 	# Connecting skillbar to stop left-click attack when dragging abilities
-#	skillbar = get_node("../../CanvasLayer/SkillBar")
 	skillbar.connect("mouseover", self, "set_mouseover")
 	crystalMouseoverBox.connect("mouseOverLock", self, "set_mouseover")
 
@@ -45,6 +46,7 @@ func _physics_process(delta):
 #	== USE ABILITIES ==
 	if state != JUMP or state != DEAD:
 		if Input.is_action_just_pressed("left_click") and mouse_over_ui == false:
+			print(mouse_over_ui)
 			self.selected_skillSlot = "left_click"
 			self.selected_skill = "Basic"
 
@@ -91,15 +93,11 @@ func attack_animation_finished():
 	move()
 
 func set_mouseover():
-	if skillbar.mouse_over_ui == true:
+	if skillbar.mouse_over_ui == true or crystalMouseoverBox.mouseOverLock == true:
 		mouse_over_ui = true
 	else:
 		mouse_over_ui = false
-		
-	if crystalMouseoverBox.mouseOverLock == true:
-		mouse_over_ui = true
-	else:
-		mouse_over_ui = false
+
 
 #	== JUMPING ==	
 func jump_state():

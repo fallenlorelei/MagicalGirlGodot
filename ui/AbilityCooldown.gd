@@ -18,7 +18,7 @@ func start_cooldown(cooldown):
 	cooldownProgress.show()
 	onCooldown = true
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if cooldownTimer.time_left > 0:
 		var cooldownPercentageLeft = cooldownTimer.time_left/cooldownDuration
 		var durationToDegrees = cooldownPercentageLeft * 360
