@@ -2,13 +2,12 @@ extends TextureButton
 
 onready var tooltip = preload("res://ui/Tooltip.tscn")
 
-
 var tooltip_instance
-
+var skillName
+var skillShortcut
 
 func _ready():
-	pass
-
+	CooldownTracker.connect("start_cooldown", self, "get_progressbar")
 
 # == DRAG AND DROP ==
 func get_drag_data(_pos):
@@ -98,3 +97,8 @@ func _on_TextureButton_mouse_entered():
 func _on_TextureButton_mouse_exited():
 	if has_node("Tooltip") and get_node("Tooltip").valid:
 		get_node("Tooltip").free()
+
+# == COOLDOWNS ==
+func get_progressbar(skillShortcut, cooldown):
+	var progressBar = get_owner().get_node("Background/HBoxContainer/" + skillShortcut + "/TextureButton")
+	progressBar.start_cooldown(cooldown)

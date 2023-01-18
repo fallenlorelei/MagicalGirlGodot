@@ -1,12 +1,13 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://assets/ui/Skillbar/skillbar-skillbg.png" type="Texture" id=1]
 [ext_resource path="res://ui/SkillBar.gd" type="Script" id=2]
-[ext_resource path="res://ui/SkillbarButtons.gd" type="Script" id=3]
+[ext_resource path="res://ui/AbilityCooldown.gd" type="Script" id=3]
 [ext_resource path="res://assets/ui/Skillbar/skillbar-skillborder.png" type="Texture" id=4]
 [ext_resource path="res://assets/ui/Skillbar/skillbar-bg.png" type="Texture" id=5]
 [ext_resource path="res://shaders/CornerRadius.gdshader" type="Shader" id=6]
 [ext_resource path="res://assets/ui/MainTheme.tres" type="Theme" id=7]
+[ext_resource path="res://assets/ui/Skillbar/cooldown-bg.png" type="Texture" id=8]
 
 [sub_resource type="ShaderMaterial" id=16]
 shader = ExtResource( 6 )
@@ -101,17 +102,18 @@ margin_top = -16.0
 margin_bottom = 17.0
 alignment = 1
 
-[node name="Skill1" type="TextureRect" parent="Background/HBoxContainer" groups=["DraggableSkill"]]
+[node name="ability1" type="TextureRect" parent="Background/HBoxContainer" groups=["DraggableSkill"]]
 margin_left = 9.0
 margin_right = 43.0
 margin_bottom = 34.0
 rect_min_size = Vector2( 34, 34 )
+rect_pivot_offset = Vector2( 17, 17 )
 size_flags_vertical = 5
 texture = ExtResource( 4 )
 expand = true
 stretch_mode = 5
 
-[node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/Skill1" groups=["AbilityShortcut"]]
+[node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/ability1" groups=["AbilityShortcut"]]
 show_behind_parent = true
 material = SubResource( 16 )
 anchor_right = 1.0
@@ -129,7 +131,34 @@ texture_normal = ExtResource( 1 )
 expand = true
 script = ExtResource( 3 )
 
-[node name="Label" type="Label" parent="Background/HBoxContainer/Skill1"]
+[node name="Cooldown" type="TextureProgress" parent="Background/HBoxContainer/ability1/TextureButton"]
+visible = false
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+value = 100.0
+texture_under = ExtResource( 8 )
+texture_progress = ExtResource( 8 )
+fill_mode = 5
+tint_under = Color( 0.65098, 0.192157, 0.27451, 0.588235 )
+tint_progress = Color( 0.321569, 0.321569, 0.321569, 0.784314 )
+nine_patch_stretch = true
+
+[node name="Timer" type="Timer" parent="Background/HBoxContainer/ability1/TextureButton"]
+one_shot = true
+
+[node name="Label" type="Label" parent="Background/HBoxContainer/ability1/TextureButton"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -20.0
+margin_top = -14.0
+margin_right = 20.0
+theme = ExtResource( 7 )
+align = 1
+
+[node name="Label" type="Label" parent="Background/HBoxContainer/ability1"]
 anchor_right = 1.0
 margin_top = 3.0
 margin_bottom = 14.0
@@ -137,17 +166,18 @@ theme = ExtResource( 7 )
 text = "1"
 align = 1
 
-[node name="Skill2" type="TextureRect" parent="Background/HBoxContainer" groups=["DraggableSkill"]]
+[node name="ability2" type="TextureRect" parent="Background/HBoxContainer" groups=["DraggableSkill"]]
 margin_left = 47.0
 margin_right = 81.0
 margin_bottom = 34.0
 rect_min_size = Vector2( 34, 34 )
+rect_pivot_offset = Vector2( 17, 17 )
 size_flags_vertical = 5
 texture = ExtResource( 4 )
 expand = true
 stretch_mode = 5
 
-[node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/Skill2" groups=["AbilityShortcut"]]
+[node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/ability2" groups=["AbilityShortcut"]]
 show_behind_parent = true
 material = SubResource( 17 )
 anchor_right = 1.0
@@ -165,7 +195,34 @@ texture_normal = ExtResource( 1 )
 expand = true
 script = ExtResource( 3 )
 
-[node name="Label" type="Label" parent="Background/HBoxContainer/Skill2"]
+[node name="Cooldown" type="TextureProgress" parent="Background/HBoxContainer/ability2/TextureButton"]
+visible = false
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+value = 100.0
+texture_under = ExtResource( 8 )
+texture_progress = ExtResource( 8 )
+fill_mode = 5
+tint_under = Color( 0.65098, 0.192157, 0.27451, 0.588235 )
+tint_progress = Color( 0.321569, 0.321569, 0.321569, 0.784314 )
+nine_patch_stretch = true
+
+[node name="Timer" type="Timer" parent="Background/HBoxContainer/ability2/TextureButton"]
+one_shot = true
+
+[node name="Label" type="Label" parent="Background/HBoxContainer/ability2/TextureButton"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -20.0
+margin_top = -14.0
+margin_right = 20.0
+theme = ExtResource( 7 )
+align = 1
+
+[node name="Label" type="Label" parent="Background/HBoxContainer/ability2"]
 anchor_right = 1.0
 margin_top = 3.0
 margin_bottom = 14.0
@@ -173,17 +230,18 @@ theme = ExtResource( 7 )
 text = "2"
 align = 1
 
-[node name="Skill3" type="TextureRect" parent="Background/HBoxContainer" groups=["DraggableSkill"]]
+[node name="ability3" type="TextureRect" parent="Background/HBoxContainer" groups=["DraggableSkill"]]
 margin_left = 85.0
 margin_right = 119.0
 margin_bottom = 34.0
 rect_min_size = Vector2( 34, 34 )
+rect_pivot_offset = Vector2( 17, 17 )
 size_flags_vertical = 5
 texture = ExtResource( 4 )
 expand = true
 stretch_mode = 5
 
-[node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/Skill3" groups=["AbilityShortcut"]]
+[node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/ability3" groups=["AbilityShortcut"]]
 show_behind_parent = true
 material = SubResource( 18 )
 anchor_right = 1.0
@@ -201,7 +259,34 @@ texture_normal = ExtResource( 1 )
 expand = true
 script = ExtResource( 3 )
 
-[node name="Label" type="Label" parent="Background/HBoxContainer/Skill3"]
+[node name="Cooldown" type="TextureProgress" parent="Background/HBoxContainer/ability3/TextureButton"]
+visible = false
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+value = 100.0
+texture_under = ExtResource( 8 )
+texture_progress = ExtResource( 8 )
+fill_mode = 5
+tint_under = Color( 0.65098, 0.192157, 0.27451, 0.588235 )
+tint_progress = Color( 0.321569, 0.321569, 0.321569, 0.784314 )
+nine_patch_stretch = true
+
+[node name="Timer" type="Timer" parent="Background/HBoxContainer/ability3/TextureButton"]
+one_shot = true
+
+[node name="Label" type="Label" parent="Background/HBoxContainer/ability3/TextureButton"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -20.0
+margin_top = -14.0
+margin_right = 20.0
+theme = ExtResource( 7 )
+align = 1
+
+[node name="Label" type="Label" parent="Background/HBoxContainer/ability3"]
 anchor_right = 1.0
 margin_top = 3.0
 margin_bottom = 14.0
@@ -209,17 +294,17 @@ theme = ExtResource( 7 )
 text = "3"
 align = 1
 
-[node name="Skill4" type="TextureRect" parent="Background/HBoxContainer" groups=["DraggableSkill"]]
+[node name="ability4" type="TextureRect" parent="Background/HBoxContainer" groups=["DraggableSkill"]]
 margin_left = 123.0
 margin_right = 157.0
 margin_bottom = 34.0
 rect_min_size = Vector2( 34, 34 )
+rect_pivot_offset = Vector2( 17, 17 )
 size_flags_vertical = 5
 texture = ExtResource( 4 )
 expand = true
-stretch_mode = 5
 
-[node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/Skill4" groups=["AbilityShortcut"]]
+[node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/ability4" groups=["AbilityShortcut"]]
 show_behind_parent = true
 material = SubResource( 19 )
 anchor_right = 1.0
@@ -237,7 +322,34 @@ texture_normal = ExtResource( 1 )
 expand = true
 script = ExtResource( 3 )
 
-[node name="Label" type="Label" parent="Background/HBoxContainer/Skill4"]
+[node name="Cooldown" type="TextureProgress" parent="Background/HBoxContainer/ability4/TextureButton"]
+visible = false
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+value = 100.0
+texture_under = ExtResource( 8 )
+texture_progress = ExtResource( 8 )
+fill_mode = 5
+tint_under = Color( 0.65098, 0.192157, 0.27451, 0.588235 )
+tint_progress = Color( 0.321569, 0.321569, 0.321569, 0.784314 )
+nine_patch_stretch = true
+
+[node name="Timer" type="Timer" parent="Background/HBoxContainer/ability4/TextureButton"]
+one_shot = true
+
+[node name="Label" type="Label" parent="Background/HBoxContainer/ability4/TextureButton"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -20.0
+margin_top = -14.0
+margin_right = 20.0
+theme = ExtResource( 7 )
+align = 1
+
+[node name="Label" type="Label" parent="Background/HBoxContainer/ability4"]
 anchor_right = 1.0
 margin_top = 3.0
 margin_bottom = 14.0
@@ -245,17 +357,18 @@ theme = ExtResource( 7 )
 text = "4"
 align = 1
 
-[node name="Skill5" type="TextureRect" parent="Background/HBoxContainer" groups=["DraggableSkill"]]
+[node name="ability5" type="TextureRect" parent="Background/HBoxContainer" groups=["DraggableSkill"]]
 margin_left = 161.0
 margin_right = 195.0
 margin_bottom = 34.0
 rect_min_size = Vector2( 34, 34 )
+rect_pivot_offset = Vector2( 17, 17 )
 size_flags_vertical = 5
 texture = ExtResource( 4 )
 expand = true
 stretch_mode = 5
 
-[node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/Skill5" groups=["AbilityShortcut"]]
+[node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/ability5" groups=["AbilityShortcut"]]
 show_behind_parent = true
 material = SubResource( 20 )
 anchor_right = 1.0
@@ -273,7 +386,34 @@ texture_normal = ExtResource( 1 )
 expand = true
 script = ExtResource( 3 )
 
-[node name="Label" type="Label" parent="Background/HBoxContainer/Skill5"]
+[node name="Cooldown" type="TextureProgress" parent="Background/HBoxContainer/ability5/TextureButton"]
+visible = false
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+value = 100.0
+texture_under = ExtResource( 8 )
+texture_progress = ExtResource( 8 )
+fill_mode = 5
+tint_under = Color( 0.65098, 0.192157, 0.27451, 0.588235 )
+tint_progress = Color( 0.321569, 0.321569, 0.321569, 0.784314 )
+nine_patch_stretch = true
+
+[node name="Timer" type="Timer" parent="Background/HBoxContainer/ability5/TextureButton"]
+one_shot = true
+
+[node name="Label" type="Label" parent="Background/HBoxContainer/ability5/TextureButton"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -20.0
+margin_top = -14.0
+margin_right = 20.0
+theme = ExtResource( 7 )
+align = 1
+
+[node name="Label" type="Label" parent="Background/HBoxContainer/ability5"]
 anchor_right = 1.0
 margin_top = 3.0
 margin_bottom = 14.0
@@ -281,17 +421,18 @@ theme = ExtResource( 7 )
 text = "5"
 align = 1
 
-[node name="Skill6" type="TextureRect" parent="Background/HBoxContainer" groups=["DraggableSkill"]]
+[node name="ability6" type="TextureRect" parent="Background/HBoxContainer" groups=["DraggableSkill"]]
 margin_left = 199.0
 margin_right = 233.0
 margin_bottom = 34.0
 rect_min_size = Vector2( 34, 34 )
+rect_pivot_offset = Vector2( 17, 17 )
 size_flags_vertical = 5
 texture = ExtResource( 4 )
 expand = true
 stretch_mode = 5
 
-[node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/Skill6" groups=["AbilityShortcut"]]
+[node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/ability6" groups=["AbilityShortcut"]]
 show_behind_parent = true
 material = SubResource( 21 )
 anchor_right = 1.0
@@ -309,7 +450,34 @@ texture_normal = ExtResource( 1 )
 expand = true
 script = ExtResource( 3 )
 
-[node name="Label" type="Label" parent="Background/HBoxContainer/Skill6"]
+[node name="Cooldown" type="TextureProgress" parent="Background/HBoxContainer/ability6/TextureButton"]
+visible = false
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+value = 100.0
+texture_under = ExtResource( 8 )
+texture_progress = ExtResource( 8 )
+fill_mode = 5
+tint_under = Color( 0.65098, 0.192157, 0.27451, 0.588235 )
+tint_progress = Color( 0.321569, 0.321569, 0.321569, 0.784314 )
+nine_patch_stretch = true
+
+[node name="Timer" type="Timer" parent="Background/HBoxContainer/ability6/TextureButton"]
+one_shot = true
+
+[node name="Label" type="Label" parent="Background/HBoxContainer/ability6/TextureButton"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -20.0
+margin_top = -14.0
+margin_right = 20.0
+theme = ExtResource( 7 )
+align = 1
+
+[node name="Label" type="Label" parent="Background/HBoxContainer/ability6"]
 anchor_right = 1.0
 margin_top = 3.0
 margin_bottom = 14.0
@@ -317,27 +485,33 @@ theme = ExtResource( 7 )
 text = "6"
 align = 1
 
-[connection signal="mouse_entered" from="Background/HBoxContainer/Skill1/TextureButton" to="." method="_on_TextureButton_mouse_entered"]
-[connection signal="mouse_entered" from="Background/HBoxContainer/Skill1/TextureButton" to="Background/HBoxContainer/Skill1/TextureButton" method="_on_TextureButton_mouse_entered"]
-[connection signal="mouse_exited" from="Background/HBoxContainer/Skill1/TextureButton" to="." method="_on_TextureButton_mouse_exited"]
-[connection signal="mouse_exited" from="Background/HBoxContainer/Skill1/TextureButton" to="Background/HBoxContainer/Skill1/TextureButton" method="_on_TextureButton_mouse_exited"]
-[connection signal="mouse_entered" from="Background/HBoxContainer/Skill2/TextureButton" to="." method="_on_TextureButton_mouse_entered"]
-[connection signal="mouse_entered" from="Background/HBoxContainer/Skill2/TextureButton" to="Background/HBoxContainer/Skill2/TextureButton" method="_on_TextureButton_mouse_entered"]
-[connection signal="mouse_exited" from="Background/HBoxContainer/Skill2/TextureButton" to="." method="_on_TextureButton_mouse_exited"]
-[connection signal="mouse_exited" from="Background/HBoxContainer/Skill2/TextureButton" to="Background/HBoxContainer/Skill2/TextureButton" method="_on_TextureButton_mouse_exited"]
-[connection signal="mouse_entered" from="Background/HBoxContainer/Skill3/TextureButton" to="." method="_on_TextureButton_mouse_entered"]
-[connection signal="mouse_entered" from="Background/HBoxContainer/Skill3/TextureButton" to="Background/HBoxContainer/Skill3/TextureButton" method="_on_TextureButton_mouse_entered"]
-[connection signal="mouse_exited" from="Background/HBoxContainer/Skill3/TextureButton" to="." method="_on_TextureButton_mouse_exited"]
-[connection signal="mouse_exited" from="Background/HBoxContainer/Skill3/TextureButton" to="Background/HBoxContainer/Skill3/TextureButton" method="_on_TextureButton_mouse_exited"]
-[connection signal="mouse_entered" from="Background/HBoxContainer/Skill4/TextureButton" to="." method="_on_TextureButton_mouse_entered"]
-[connection signal="mouse_entered" from="Background/HBoxContainer/Skill4/TextureButton" to="Background/HBoxContainer/Skill4/TextureButton" method="_on_TextureButton_mouse_entered"]
-[connection signal="mouse_exited" from="Background/HBoxContainer/Skill4/TextureButton" to="." method="_on_TextureButton_mouse_exited"]
-[connection signal="mouse_exited" from="Background/HBoxContainer/Skill4/TextureButton" to="Background/HBoxContainer/Skill4/TextureButton" method="_on_TextureButton_mouse_exited"]
-[connection signal="mouse_entered" from="Background/HBoxContainer/Skill5/TextureButton" to="." method="_on_TextureButton_mouse_entered"]
-[connection signal="mouse_entered" from="Background/HBoxContainer/Skill5/TextureButton" to="Background/HBoxContainer/Skill5/TextureButton" method="_on_TextureButton_mouse_entered"]
-[connection signal="mouse_exited" from="Background/HBoxContainer/Skill5/TextureButton" to="." method="_on_TextureButton_mouse_exited"]
-[connection signal="mouse_exited" from="Background/HBoxContainer/Skill5/TextureButton" to="Background/HBoxContainer/Skill5/TextureButton" method="_on_TextureButton_mouse_exited"]
-[connection signal="mouse_entered" from="Background/HBoxContainer/Skill6/TextureButton" to="." method="_on_TextureButton_mouse_entered"]
-[connection signal="mouse_entered" from="Background/HBoxContainer/Skill6/TextureButton" to="Background/HBoxContainer/Skill6/TextureButton" method="_on_TextureButton_mouse_entered"]
-[connection signal="mouse_exited" from="Background/HBoxContainer/Skill6/TextureButton" to="." method="_on_TextureButton_mouse_exited"]
-[connection signal="mouse_exited" from="Background/HBoxContainer/Skill6/TextureButton" to="Background/HBoxContainer/Skill6/TextureButton" method="_on_TextureButton_mouse_exited"]
+[connection signal="mouse_entered" from="Background/HBoxContainer/ability1/TextureButton" to="." method="_on_TextureButton_mouse_entered"]
+[connection signal="mouse_entered" from="Background/HBoxContainer/ability1/TextureButton" to="Background/HBoxContainer/ability1/TextureButton" method="_on_TextureButton_mouse_entered"]
+[connection signal="mouse_exited" from="Background/HBoxContainer/ability1/TextureButton" to="." method="_on_TextureButton_mouse_exited"]
+[connection signal="mouse_exited" from="Background/HBoxContainer/ability1/TextureButton" to="Background/HBoxContainer/ability1/TextureButton" method="_on_TextureButton_mouse_exited"]
+[connection signal="timeout" from="Background/HBoxContainer/ability1/TextureButton/Timer" to="Background/HBoxContainer/ability4/TextureButton" method="_on_Timer_timeout"]
+[connection signal="mouse_entered" from="Background/HBoxContainer/ability2/TextureButton" to="." method="_on_TextureButton_mouse_entered"]
+[connection signal="mouse_entered" from="Background/HBoxContainer/ability2/TextureButton" to="Background/HBoxContainer/ability2/TextureButton" method="_on_TextureButton_mouse_entered"]
+[connection signal="mouse_exited" from="Background/HBoxContainer/ability2/TextureButton" to="." method="_on_TextureButton_mouse_exited"]
+[connection signal="mouse_exited" from="Background/HBoxContainer/ability2/TextureButton" to="Background/HBoxContainer/ability2/TextureButton" method="_on_TextureButton_mouse_exited"]
+[connection signal="timeout" from="Background/HBoxContainer/ability2/TextureButton/Timer" to="Background/HBoxContainer/ability4/TextureButton" method="_on_Timer_timeout"]
+[connection signal="mouse_entered" from="Background/HBoxContainer/ability3/TextureButton" to="." method="_on_TextureButton_mouse_entered"]
+[connection signal="mouse_entered" from="Background/HBoxContainer/ability3/TextureButton" to="Background/HBoxContainer/ability3/TextureButton" method="_on_TextureButton_mouse_entered"]
+[connection signal="mouse_exited" from="Background/HBoxContainer/ability3/TextureButton" to="." method="_on_TextureButton_mouse_exited"]
+[connection signal="mouse_exited" from="Background/HBoxContainer/ability3/TextureButton" to="Background/HBoxContainer/ability3/TextureButton" method="_on_TextureButton_mouse_exited"]
+[connection signal="timeout" from="Background/HBoxContainer/ability3/TextureButton/Timer" to="Background/HBoxContainer/ability3/TextureButton" method="_on_Timer_timeout"]
+[connection signal="mouse_entered" from="Background/HBoxContainer/ability4/TextureButton" to="." method="_on_TextureButton_mouse_entered"]
+[connection signal="mouse_entered" from="Background/HBoxContainer/ability4/TextureButton" to="Background/HBoxContainer/ability4/TextureButton" method="_on_TextureButton_mouse_entered"]
+[connection signal="mouse_exited" from="Background/HBoxContainer/ability4/TextureButton" to="." method="_on_TextureButton_mouse_exited"]
+[connection signal="mouse_exited" from="Background/HBoxContainer/ability4/TextureButton" to="Background/HBoxContainer/ability4/TextureButton" method="_on_TextureButton_mouse_exited"]
+[connection signal="timeout" from="Background/HBoxContainer/ability4/TextureButton/Timer" to="Background/HBoxContainer/ability4/TextureButton" method="_on_Timer_timeout"]
+[connection signal="mouse_entered" from="Background/HBoxContainer/ability5/TextureButton" to="." method="_on_TextureButton_mouse_entered"]
+[connection signal="mouse_entered" from="Background/HBoxContainer/ability5/TextureButton" to="Background/HBoxContainer/ability5/TextureButton" method="_on_TextureButton_mouse_entered"]
+[connection signal="mouse_exited" from="Background/HBoxContainer/ability5/TextureButton" to="." method="_on_TextureButton_mouse_exited"]
+[connection signal="mouse_exited" from="Background/HBoxContainer/ability5/TextureButton" to="Background/HBoxContainer/ability5/TextureButton" method="_on_TextureButton_mouse_exited"]
+[connection signal="timeout" from="Background/HBoxContainer/ability5/TextureButton/Timer" to="Background/HBoxContainer/ability4/TextureButton" method="_on_Timer_timeout"]
+[connection signal="mouse_entered" from="Background/HBoxContainer/ability6/TextureButton" to="." method="_on_TextureButton_mouse_entered"]
+[connection signal="mouse_entered" from="Background/HBoxContainer/ability6/TextureButton" to="Background/HBoxContainer/ability6/TextureButton" method="_on_TextureButton_mouse_entered"]
+[connection signal="mouse_exited" from="Background/HBoxContainer/ability6/TextureButton" to="." method="_on_TextureButton_mouse_exited"]
+[connection signal="mouse_exited" from="Background/HBoxContainer/ability6/TextureButton" to="Background/HBoxContainer/ability6/TextureButton" method="_on_TextureButton_mouse_exited"]
+[connection signal="timeout" from="Background/HBoxContainer/ability6/TextureButton/Timer" to="Background/HBoxContainer/ability4/TextureButton" method="_on_Timer_timeout"]

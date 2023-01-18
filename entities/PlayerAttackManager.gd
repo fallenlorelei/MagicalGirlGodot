@@ -7,6 +7,7 @@ onready var castingCircleAnimation = $CastingCircle/AnimationPlayer
 onready var projectileLine = $ProjectilePreview
 onready var frontArcPreview = $FrontArcPreview
 
+var cooldownTracker = CooldownTracker
 var parentCursorDirection
 var parentCursorLocation
 var skillName
@@ -146,7 +147,7 @@ func release_ability():
 
 	attack_animation()
 	globalCooldown.start()
-	
+	cooldownTracker.start_cooldown(skillName, skillShortcut)
 
 	match DataImport.skill_data[skillName].SkillType:
 		"at_cursor":			

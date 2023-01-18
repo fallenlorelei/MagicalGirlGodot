@@ -58,6 +58,7 @@ config/icon="res://icon.png"
 
 ElementalCrystalCounter="*res://ui/ElementalCrystalCounter.tscn"
 DataImport="*res://data/DataImport.gd"
+CooldownTracker="*res://abilities/CooldownTracker.tscn"
 
 [display]
 

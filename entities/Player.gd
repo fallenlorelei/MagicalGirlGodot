@@ -45,7 +45,7 @@ func _physics_process(delta):
 #	== USE ABILITIES ==
 	if state != JUMP or state != DEAD:
 		if Input.is_action_just_pressed("left_click") and mouse_over_ui == false:
-			self.selected_skillSlot = "Skill0"
+			self.selected_skillSlot = "left_click"
 			self.selected_skill = "Basic"
 
 	if Input.is_action_just_pressed("jump") and state != JUMP:
@@ -76,19 +76,11 @@ func move_state(delta):
 func set_attack(value):
 	velocity = velocity.move_toward(Vector2.ZERO, ATTACK_FRICTION)
 	
-	if attackManager.check_global_cooldown():
-		var skillShortcut
-		
-		if selected_skillSlot == "Skill0":
-			skillShortcut = "left_click"
-		else:
-			#Changing "Skill1" to "ability1" etc.
-			skillShortcut = selected_skillSlot.replace("Skill", "ability")
-					
+	if attackManager.check_global_cooldown():					
 		if value != null:
-			if Input.is_action_pressed(str(skillShortcut)):
+			if Input.is_action_pressed(str(selected_skillSlot)):
 				state = CASTING
-				attackManager.start_ability(value, skillShortcut)
+				attackManager.start_ability(value, selected_skillSlot)
 
 func casting_state():
 	velocity = Vector2.ZERO
