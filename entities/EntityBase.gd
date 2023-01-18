@@ -76,14 +76,17 @@ func die():
 	
 func _on_Hurtbox_area_entered(area):
 	
-	var AP = area.global_position.direction_to(global_position)
-	if AP.dot((get_global_mouse_position() - position).normalized()) > 0:
-		receive_damage(area.skillDamage)
-			
- #Knockback only works on enemies right now
-		if area.canKnockback == true:
-			knockback = area.knockback_vector * area.knockbackModifier
+	if area.is_in_group("Player") and area.skillType == "front_arc":
+		var AP = area.global_position.direction_to(global_position)
+		if AP.dot((get_global_mouse_position() - position).normalized()) > 0:
+			skill_damage(area)
+	else:
+		skill_damage(area)
 
+func skill_damage(area):
+	receive_damage(area.skillDamage)
+	if area.canKnockback == true and area.is_in_group("Player"):
+		knockback = area.knockback_vector * area.knockbackModifier
 	
 func receive_damage(base_damage):
 	var actual_damage = base_damage
