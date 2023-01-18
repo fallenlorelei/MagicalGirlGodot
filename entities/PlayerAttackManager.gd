@@ -23,8 +23,8 @@ func _physics_process(_delta):
 	parentCursorDirection = get_parent().cursorDirection
 	parentCursorLocation = get_parent().cursorLocation
 	
-	var cursorLocation = get_local_mouse_position()
-	var cursorDirection = (get_global_mouse_position() - position).normalized()
+#	var cursorLocation = get_local_mouse_position()
+#	var cursorDirection = (get_global_mouse_position() - position).normalized()
 
 	if skillName != null:
 		get_parent().animationTree.set("parameters/Attack/blend_position", parentCursorDirection)
@@ -164,6 +164,8 @@ func release_ability():
 		"front_arc":
 			ability.cursorDirection = parentCursorDirection
 			ability.global_position = self.global_position
+			var ability_rotation = self.global_position.direction_to(parentCursorLocation).angle()
+			ability.rotation = ability_rotation
 			get_tree().get_current_scene().add_child(ability)
 			ability.front_arc()
 #

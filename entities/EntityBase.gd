@@ -66,6 +66,7 @@ func _physics_process(delta):
 	
 	move()
 	
+	
 func move():
 	velocity = move_and_slide(velocity)
 
@@ -73,16 +74,13 @@ func die():
 	queue_free()
 
 	
-func _on_Hurtbox_area_entered(hitbox):
-	receive_damage(hitbox.skillDamage)
-	
+func _on_Hurtbox_area_entered(area):
+	receive_damage(area.skillDamage)
 	# Knockback only works on enemies right now
-	if hitbox.canKnockback == true and hitbox.is_in_group("Player"):
-		knockback = hitbox.knockback_vector * hitbox.knockbackModifier
-		
-	if hitbox.is_in_group("Projectile"):
-		hitbox.destroy()
+	if area.canKnockback == true and area.is_in_group("Player"):
+		knockback = area.knockback_vector * area.knockbackModifier
 
+	
 func receive_damage(base_damage):
 	var actual_damage = base_damage
 	actual_damage -= defense	

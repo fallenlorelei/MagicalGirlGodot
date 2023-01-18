@@ -7,6 +7,9 @@ onready var timer = $Timer
 signal invincibility_started
 signal invincibility_ended
 
+func _physics_process(_delta):
+	pass
+
 func set_invincible(value):
 	invincible = value
 	if invincible == true:

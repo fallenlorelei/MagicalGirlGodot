@@ -3,11 +3,12 @@ extends Area2D
 onready var skillSprite = $Sprite
 onready var animationPlayer = $AnimationPlayer
 onready var collisionShape = $CollisionShape2D
-onready var frontArcPivot = $PivotArc
-onready var frontArcCollisionShape = $PivotArc/CollisionShape2D
+onready var frontArcArea = $FrontArcArea
+onready var frontArcMask = $FrontArcArea/CollisionShape2DMask
 
 var skillName = skillName
 var cursorDirection
+var skillType = ""
 
 export var hasCastTime = false
 export var castTime = 0.0
@@ -26,9 +27,12 @@ export var destroyOnImpact = true
 export var aoeDamageDelayTime = 0.0
 export var destroyDelayTime = 0.0
 
+
+
 var knockback_vector = Vector2.ZERO
 
-func _ready():		
+func _ready():
+	skillType = DataImport.skill_data[skillName].SkillType
 	hasCastTime = DataImport.skill_data[skillName].HasCastTime
 	castTime = DataImport.skill_data[skillName].CastTime
 	hasCooldown = DataImport.skill_data[skillName].HasCooldown
@@ -55,10 +59,11 @@ func _ready():
 # == PROJECTILES ==
 func projectile():
 	var projectileRotation = Vector2.RIGHT.rotated(rotation)
-	var direction = cursorDirection * distance
-	var location = global_position + direction
 	knockback_vector = projectileRotation
 	
+	var direction = cursorDirection * distance
+	var location = global_position + direction
+
 	var TW = get_tree().create_tween()
 	TW.tween_property(self, "position", location, .5).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	TW.tween_callback(self, "destroy")
@@ -76,11 +81,23 @@ func around_self():
 
 # == FRONT ARC ==
 func front_arc():
-	frontArcPivot.look_at(get_global_mouse_position())
-	frontArcCollisionShape.set_deferred("disabled",false)
-	frontArcCollisionShape.get_shape().extents.x = skillRadius/2
+	frontArcMask.disabled = false
+	
+	if cursorDirection.y < 0:
+		skillSprite.z_index = -1
+	else:
+		skillSprite.z_index = 1
+		
+	var frontArcRotation = Vector2.RIGHT.rotated(rotation)	
+	knockback_vector = frontArcRotation
+	frontArcMask.shape.extents.x = skillRadius/2 + 1
+	frontArcMask.shape.extents.y = skillRadius + 1
+	frontArcMask.position.x = skillRadius/2
+	frontArcArea.look_at(get_global_mouse_position())
 
+	
 func front_arc_animation_finished():
+	frontArcMask.disabled = true
 	destroy()
 	
 # == SELF_UTILITY ==
