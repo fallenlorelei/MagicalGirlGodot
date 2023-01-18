@@ -75,10 +75,14 @@ func die():
 
 	
 func _on_Hurtbox_area_entered(area):
-	receive_damage(area.skillDamage)
-	# Knockback only works on enemies right now
-	if area.canKnockback == true and area.is_in_group("Player"):
-		knockback = area.knockback_vector * area.knockbackModifier
+	
+	var AP = area.global_position.direction_to(global_position)
+	if AP.dot((get_global_mouse_position() - position).normalized()) > 0:
+		receive_damage(area.skillDamage)
+			
+ #Knockback only works on enemies right now
+		if area.canKnockback == true:
+			knockback = area.knockback_vector * area.knockbackModifier
 
 	
 func receive_damage(base_damage):

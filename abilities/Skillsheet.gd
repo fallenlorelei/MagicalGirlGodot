@@ -3,8 +3,6 @@ extends Area2D
 onready var skillSprite = $Sprite
 onready var animationPlayer = $AnimationPlayer
 onready var collisionShape = $CollisionShape2D
-onready var frontArcArea = $FrontArcArea
-onready var frontArcMask = $FrontArcArea/CollisionShape2DMask
 
 var skillName = skillName
 var cursorDirection
@@ -26,8 +24,6 @@ export var projectileSpeed = 0.0
 export var destroyOnImpact = true
 export var aoeDamageDelayTime = 0.0
 export var destroyDelayTime = 0.0
-
-
 
 var knockback_vector = Vector2.ZERO
 
@@ -81,8 +77,6 @@ func around_self():
 
 # == FRONT ARC ==
 func front_arc():
-	frontArcMask.disabled = false
-	
 	if cursorDirection.y < 0:
 		skillSprite.z_index = -1
 	else:
@@ -90,14 +84,16 @@ func front_arc():
 		
 	var frontArcRotation = Vector2.RIGHT.rotated(rotation)	
 	knockback_vector = frontArcRotation
-	frontArcMask.shape.extents.x = skillRadius/2 + 1
-	frontArcMask.shape.extents.y = skillRadius + 1
-	frontArcMask.position.x = skillRadius/2
-	frontArcArea.look_at(get_global_mouse_position())
+	collisionShape.shape.radius = skillRadius
+	
+#	var rotation = get_angle_to(cursorDirection)
+#	collisionShape.rotation_degrees = rotation
+#
+#	collisionShape.shape.height = skillRadius
+#	collisionShape.shape.radius = skillRadius/2
 
 	
 func front_arc_animation_finished():
-	frontArcMask.disabled = true
 	destroy()
 	
 # == SELF_UTILITY ==
@@ -107,6 +103,7 @@ func heal():
 	queue_free()
 	
 # == OTHER ==
+	
 func _on_Skillsheet_area_entered(_area):
 	if destroyOnImpact == true:
 		destroy()
