@@ -19,7 +19,7 @@ var loaded_skills = {
 }
 
 func _ready():
-#	CooldownTracker.connect("start_cooldown", self, "get_progressbar")
+	pass
 	
 	load_shortcuts()
 	for shortcut in get_tree().get_nodes_in_group("AbilityShortcut"):

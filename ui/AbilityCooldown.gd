@@ -32,3 +32,9 @@ func _on_Timer_timeout():
 	var TW = get_tree().create_tween()
 	TW.tween_property(get_parent(),"rect_scale",Vector2(1.2,1.2), .2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	TW.tween_property(get_parent(),"rect_scale",Vector2(1,1), .3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+
+func cooldownCheck():
+	if onCooldown == true:
+		return true
+	else:
+		return false
