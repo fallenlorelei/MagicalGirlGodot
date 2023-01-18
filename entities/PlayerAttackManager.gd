@@ -191,11 +191,6 @@ func load_ability(skillName):
 	if skillName != null:
 		var path = "res://abilities/" + skillElement + "/" + skillName + "/" + skillName + ".tscn"
 		return load(path)
-		
-func load_ability_collision(skillName):
-	if skillName != null:
-		var path = "res://abilities/" + skillElement + "/" + skillName + "/" + skillName + "/CollisionShape2D.tscn"
-		return load(path)
 
 
 func attack_animation():

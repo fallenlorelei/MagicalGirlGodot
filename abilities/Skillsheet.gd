@@ -84,11 +84,12 @@ func front_arc():
 		
 	var frontArcRotation = Vector2.RIGHT.rotated(rotation)	
 	knockback_vector = frontArcRotation
+	
 	collisionShape.shape.radius = skillRadius
 	
+#When the shape was a capsule
 #	var rotation = get_angle_to(cursorDirection)
 #	collisionShape.rotation_degrees = rotation
-#
 #	collisionShape.shape.height = skillRadius
 #	collisionShape.shape.radius = skillRadius/2
 
