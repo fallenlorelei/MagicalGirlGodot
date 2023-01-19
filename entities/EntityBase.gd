@@ -59,9 +59,11 @@ func _on_Hurtbox_area_entered(area):
 #
 func skill_damage(area, group):
 	if group == "Enemy":
-		playerStats.receive_damage(area.skillDamage)
-		if area.canKnockback == true:
-			knockback = area.knockback_vector * area.knockbackModifier
+		if playerStats.hp > 0:
+			playerStats.receive_damage(area.skillDamage)
+			if area.canKnockback == true:
+				knockback = area.knockback_vector * area.knockbackModifier
 			
 	if group == "Player":
-		enemyStats.receive_damage(area.skillDamage)
+		if enemyStats.hp > 0:
+			enemyStats.receive_damage(area.skillDamage)

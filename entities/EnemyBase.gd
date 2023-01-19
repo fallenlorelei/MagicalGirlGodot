@@ -1,6 +1,7 @@
 extends "res://entities/EntityBase.gd"
 
 onready var sprite = $Sprite
+onready var collisionShape = $CollisionShape2D
 onready var hurtbox = $Hurtbox
 onready var hitbox = $HitboxPivot/Hitbox
 onready var hitboxPivot = $HitboxPivot
@@ -46,9 +47,9 @@ func _physics_process(delta):
 			dead_state()
 		
 	seek_player()
-	
+
 # Soft collision is so enemies don't overlap each other
-	if softCollision.is_colliding() and beginAttack == false:
+	if softCollision.is_colliding():
 		velocity += softCollision.get_push_vector() * delta * ACCELERATION
 
 func idle(delta):
@@ -88,7 +89,7 @@ func chase(delta):
 		accelerate_towards_point(player.global_position, delta)
 		
 		if global_position.distance_to(player.global_position) <= check_range():
-			velocity = velocity.move_toward(Vector2.ZERO, ATTACK_FRICTION)
+#			velocity = velocity.move_toward(Vector2.ZERO, ATTACK_FRICTION)
 			melee_attack()
 	else:
 		state = IDLE
@@ -101,8 +102,6 @@ func check_range():
 
 #== ATTACKING ==
 func melee_attack():
-	beginAttack = true
-	
 	if direction.x >= 0:
 		hitboxPivot.rotation_degrees = 90
 	else:
@@ -115,8 +114,7 @@ func attackAnimation_hitbox_on():
 	
 func attackAnimation_hitbox_off():
 	hitbox.get_node("CollisionShape2D").disabled = true
-	beginAttack = false
-	state = IDLE
+	state = WANDER
 	
 # == WANDER TIMER ==
 func check_wander_timer():
@@ -140,13 +138,13 @@ func _on_Stats_hp_changed(new_hp):
 
 # == DYING ==
 func _on_Stats_died():
+	collisionShape.disabled = true
 	state = DYING
 	hpBar.hide()
 	
 func dying_state():
 	hurtbox.monitoring = false
 	hitbox.monitorable = false
-	
 	animationState.travel("Dying")
 	velocity = Vector2.ZERO
 	

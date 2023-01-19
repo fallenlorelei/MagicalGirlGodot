@@ -7,24 +7,24 @@ onready var cooldownDurationLabel = $"%CooldownDuration"
 onready var skillDescriptionLabel = $"%SkillDescription"
 onready var scrollContainer = $"%ScrollContainer"
 
+var screensize = Vector2(854,480)
+var adj_pos = Vector2()	
+
 var origin = ""
 var skill_slot = ""
 var skill_name = ""
 var skillSize = ""
 var valid = false
-var screensize = Vector2(854,480)
-var adj_pos = Vector2()
 
 func _ready():
 	update_tooltip()
 	
-
 func _physics_process(_delta):
 	var cursor_pos = get_global_mouse_position()
 	adj_pos.x = clamp(cursor_pos.x, 0, screensize.x - rect_size.x - get_node("Background").rect_position.x)
 	adj_pos.y = clamp(cursor_pos.y, 0 , screensize.y - rect_size.y - get_node("Background").rect_position.y)
 	set_position(adj_pos)
-	
+
 func _input(event : InputEvent) -> void:
 	if event is InputEventMouseButton:
 #		event as InputEventMouseButton

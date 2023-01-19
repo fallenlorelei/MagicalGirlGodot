@@ -1,9 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/ui/HealthDodgeBar/healthdodgebar-under.png" type="Texture" id=1]
 [ext_resource path="res://assets/ui/HealthDodgeBar/healthdodgebar-progress.png" type="Texture" id=2]
 [ext_resource path="res://assets/ui/HealthDodgeBar/healthdodgebar-over.png" type="Texture" id=3]
 [ext_resource path="res://ui/SkillBar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/ui/MainTheme.tres" type="Theme" id=5]
+[ext_resource path="res://assets/ui/small_box.png" type="Texture" id=6]
+[ext_resource path="res://ui/HealthBar.gd" type="Script" id=7]
+[ext_resource path="res://ui/HPTooltip.gd" type="Script" id=8]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -64,13 +68,14 @@ alignment = 1
 [node name="HealthBar" type="Control" parent="VBoxContainer/HBoxContainer"]
 margin_left = 6.0
 margin_right = 119.0
-margin_bottom = 60.0
 rect_min_size = Vector2( 113, 12 )
+script = ExtResource( 7 )
 
 [node name="PlayerHPBar" type="TextureProgress" parent="VBoxContainer/HBoxContainer/HealthBar" groups=["Player"]]
 margin_right = 113.0
 margin_bottom = 12.0
 rect_min_size = Vector2( 113, 12 )
+mouse_filter = 2
 value = 100.0
 texture_under = ExtResource( 1 )
 texture_over = ExtResource( 3 )
@@ -81,6 +86,37 @@ nine_patch_stretch = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="VBoxContainer/HBoxContainer/HealthBar/PlayerHPBar"]
 anims/RESET = SubResource( 1 )
 anims/shake = SubResource( 2 )
+
+[node name="HPTooltip" type="Popup" parent="VBoxContainer/HBoxContainer/HealthBar"]
+visible = true
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+mouse_filter = 2
+script = ExtResource( 8 )
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/HealthBar/HPTooltip"]
+margin_left = -21.0
+margin_top = -19.0
+margin_right = 19.0
+margin_bottom = -5.0
+grow_horizontal = 2
+theme = ExtResource( 5 )
+theme_type_variation = "Label_larger"
+text = "60/1000"
+align = 1
+
+[node name="Background" type="TextureRect" parent="VBoxContainer/HBoxContainer/HealthBar/HPTooltip/Label"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -5.0
+margin_top = -3.0
+margin_right = 5.0
+grow_horizontal = 2
+mouse_filter = 2
+texture = ExtResource( 6 )
+expand = true
 
 [node name="DodgeBar" type="Control" parent="VBoxContainer/HBoxContainer"]
 margin_left = 123.0
@@ -108,3 +144,6 @@ margin_left = 0.0
 margin_top = 64.0
 margin_right = 243.0
 margin_bottom = 64.0
+
+[connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/HealthBar" to="VBoxContainer/HBoxContainer/HealthBar" method="_on_HealthBar_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/HBoxContainer/HealthBar" to="VBoxContainer/HBoxContainer/HealthBar" method="_on_HealthBar_mouse_exited"]

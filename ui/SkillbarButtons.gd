@@ -1,6 +1,6 @@
 extends TextureButton
 
-onready var tooltip = preload("res://ui/Tooltip.tscn")
+onready var tooltip = preload("res://ui/SkillbarTooltip.tscn")
 
 var tooltip_instance
 var skillName
@@ -38,8 +38,8 @@ func get_drag_data(_pos):
 func can_drop_data(_pos, data):
 	var target_skill_slot_scene = get_parent()
 	
-	if has_node("Tooltip"):
-		get_node("Tooltip").free()
+	if has_node("SkillbarTooltip"):
+		get_node("SkillbarTooltip").free()
 		
 	if target_skill_slot_scene.is_in_group("DraggableSkill"):
 		
@@ -62,8 +62,8 @@ func can_drop_data(_pos, data):
 		return false
 	
 func drop_data(_pos, data):
-	if has_node("Tooltip") and get_node("Tooltip").valid:
-		get_node("Tooltip").free()
+	if has_node("SkillbarTooltip") and get_node("SkillbarTooltip").valid:
+		get_node("SkillbarTooltip").free()
 		
 	var target_skill_slot = get_parent().get_name()
 	var origin_skill_slot = data["origin_node"].get_parent().get_name()
@@ -92,12 +92,12 @@ func _on_TextureButton_mouse_entered():
 	tooltip_instance.skill_name = skill_name
 	add_child(tooltip_instance)
 	yield(get_tree().create_timer(0.35), "timeout")
-	if has_node("Tooltip") and get_node("Tooltip").valid:
-		get_node("Tooltip").show()
+	if has_node("SkillbarTooltip") and get_node("SkillbarTooltip").valid:
+		get_node("SkillbarTooltip").show()
 
 func _on_TextureButton_mouse_exited():
-	if has_node("Tooltip") and get_node("Tooltip").valid:
-		get_node("Tooltip").free()
+	if has_node("SkillbarTooltip") and get_node("SkillbarTooltip").valid:
+		get_node("SkillbarTooltip").free()
 
 # == COOLDOWNS ==
 func get_progressbar(skillShortcut, cooldown):

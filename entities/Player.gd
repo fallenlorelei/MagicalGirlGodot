@@ -26,6 +26,7 @@ func _ready():
 	playerStats.hpBarAnimation = get_node("../../CanvasLayer/BottomUI/VBoxContainer/HBoxContainer/HealthBar/PlayerHPBar/AnimationPlayer")
 	playerStats.connect("hp_changed", self, "health_changed")
 	playerStats.connect("healed", self, "heal")
+	playerStats.connect("died", self, "begin_dying")
 	
 	# Connecting skillbar to stop left-click attack when dragging abilities
 	skillbar.connect("mouseover", self, "set_mouseover")
@@ -143,6 +144,9 @@ func heal(healAmount):
 	TW.tween_property(sprite, "modulate", Color(1, 1, 1), .2)
 
 #	== DYING ==	
+func begin_dying():
+	state = DYING
+	
 func dead_state():
 	velocity = Vector2.ZERO
 	animationState.travel("death")
