@@ -1,5 +1,6 @@
 extends Area2D
 
+onready var playerStats = PlayerStats
 onready var skillSprite = $Sprite
 onready var animationPlayer = $AnimationPlayer
 onready var collisionShape = $CollisionShape2D
@@ -101,17 +102,11 @@ func front_arc_animation_finished():
 	
 # == SELF_UTILITY ==
 func start_heal():
+	playerStats.heal(healAmount)
 	if skillType == "self_utility":
-		get_parent().get_parent().heal(healAmount)
 		yield(get_tree().create_timer(animationPlayer.current_animation_length),"timeout")
 		queue_free()
-	else:
-#		var player = PlayerStats
-#		player.heal(healAmount)
-		pass
-		
-	
-	
+
 # == OTHER ==
 	
 func _on_Skillsheet_area_entered(_area):

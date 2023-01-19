@@ -17,7 +17,6 @@ position = Vector2( 0, -1 )
 shape = SubResource( 1 )
 
 [node name="ElementalCrystalSprite" parent="." instance=ExtResource( 3 )]
-scale = Vector2( 0.4, 0.4 )
 
 [connection signal="area_entered" from="." to="." method="_on_CrystalDrop_area_entered"]
 

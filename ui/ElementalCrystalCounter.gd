@@ -11,6 +11,16 @@ var crystals = {
 	"THUNDER": 0, 
 }
 
+var crystalAnimationFrame = {
+	"LIGHT": 6,
+	"DARK": 7,
+	"PSYCHIC": 5,
+	"FIRE": 0,
+	"ICE": 1,
+	"THUNDER": 2,
+	"WATER": 3,
+	"EARTH": 4,
+}
 signal crystals_changed
 
 # This could be replaced by a max crystal var that is checked on crystals_changed

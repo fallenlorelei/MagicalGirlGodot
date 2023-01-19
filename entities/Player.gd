@@ -1,5 +1,14 @@
 extends "res://entities/EntityBase.gd"
 
+onready var sprite = $Sprite
+onready var hurtbox = $Hurtbox
+onready var attackManager = $AttackManager
+onready var animationTree = $AnimationTree
+onready var animationState = animationTree.get("parameters/playback")
+onready var skillbar = get_node("../../CanvasLayer/BottomUI/VBoxContainer/SkillBar")
+onready var crystalMouseoverBox = get_node("../../CanvasLayer/CrystalCounter/")
+
+	
 export(int) var JUMP_SPEED = 110
 
 var jump_vector = Vector2.LEFT
@@ -9,21 +18,14 @@ var cursorLocation = Vector2()
 var selected_skill = "skill" setget set_attack
 var selected_skillSlot = ""
 var mouse_over_ui = false
-
-onready var sprite = $Sprite
-onready var hurtbox = $Hurtbox
-onready var attackManager = $AttackManager
-onready var animationTree = $AnimationTree
-onready var animationState = animationTree.get("parameters/playback")
-onready var skillbar = get_node("../../CanvasLayer/BottomUI/VBoxContainer/SkillBar")
-onready var crystalMouseoverBox = get_node("../../CanvasLayer/CrystalCounter/")
-
+#var playerStats = PlayerStats
 
 func _ready():
 	animationTree.active = true
-	
-	hpBar = get_node("../../CanvasLayer/BottomUI/VBoxContainer/HBoxContainer/HealthBar/PlayerHPBar")
-	hpBarAnimation = get_node("../../CanvasLayer/BottomUI/VBoxContainer/HBoxContainer/HealthBar/PlayerHPBar/AnimationPlayer")
+	playerStats.hpBar = get_node("../../CanvasLayer/BottomUI/VBoxContainer/HBoxContainer/HealthBar/PlayerHPBar")
+	playerStats.hpBarAnimation = get_node("../../CanvasLayer/BottomUI/VBoxContainer/HBoxContainer/HealthBar/PlayerHPBar/AnimationPlayer")
+	playerStats.connect("hp_changed", self, "health_changed")
+	playerStats.connect("healed", self, "heal")
 	
 	# Connecting skillbar to stop left-click attack when dragging abilities
 	skillbar.connect("mouseover", self, "set_mouseover")
@@ -128,14 +130,14 @@ func jump_animation_finished():
 	state = 0
 	
 
-# == TAKING DAMAGE ==
-func _on_Player_hp_changed(new_hp):
-	hpBarUpdate(new_hp)
+# == TAKING DAMAGE ==	
+func health_changed(new_hp):
+	playerStats.hpBarUpdate(new_hp)
 
 
 # == UTILITY ==
 func heal(healAmount):
-	hp += healAmount
+	playerStats.hp += healAmount
 	var TW = create_tween()
 	TW.tween_property(sprite, "modulate", Color.green, .2)
 	TW.tween_property(sprite, "modulate", Color(1, 1, 1), .2)
@@ -146,4 +148,4 @@ func dead_state():
 	animationState.travel("death")
 	
 func death_animation_finished():
-	die()
+	playerStats.die()

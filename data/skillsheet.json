@@ -74,7 +74,7 @@
     "CooldownDuration": 30,
     "CanDamage": true,
     "SkillDamage": 300,
-    "CanHeal": false,
+    "CanHeal": true,
     "HealAmount": 50,
     "CanKnockback": true,
     "KnockbackModifier": 100,
@@ -96,7 +96,7 @@
     "CooldownDuration": 0,
     "CanDamage": true,
     "SkillDamage": 10,
-    "CanHeal": true,
+    "CanHeal": false,
     "HealAmount": null,
     "CanKnockback": true,
     "KnockbackModifier": 100,
@@ -107,7 +107,7 @@
     "AoEDamageDelayTime": 1,
     "DestroyDelayTime": 2,
     "Ultimate": false,
-    "SkillDescription1": null
+    "SkillDescription1": "Slash out in front of you for {damage} damage."
   },
   "Shadow_Meld": {
     "Element": "Dark",

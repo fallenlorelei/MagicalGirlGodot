@@ -17,20 +17,7 @@ var areaPosition
 var playerPosition = Vector2.ZERO
 	
 func _ready():
-#	animatedCrystal.play(str(crystalType))
-
-	var crystalSpriteFrame
-	match crystalType:
-		"LIGHT": crystalSpriteFrame = 6
-		"DARK": crystalSpriteFrame = 7
-		"PSYCHIC": crystalSpriteFrame = 5
-		"FIRE": crystalSpriteFrame = 0
-		"ICE": crystalSpriteFrame = 1
-		"THUNDER": crystalSpriteFrame = 2
-		"WATER": crystalSpriteFrame = 3
-		"EARTH": crystalSpriteFrame = 4
-
-	crystalSprite.frame = int(crystalSpriteFrame)
+	crystalSprite.frame = int(crystalCounter.crystalAnimationFrame[crystalType])
 	
 	# Crystal drops from enemy and bounces
 	var TW = create_tween()

@@ -11,8 +11,7 @@ onready var playerDetectionZone = $PlayerDetectionZone
 onready var softCollision = $SoftCollision
 onready var wanderTimer = $WanderTimer
 onready var randomCrystal = $RandomCrystal
-
-
+onready var hpBar = $HPBar
 onready var wanderStartPos = global_position
 onready var wanderTargetPos = global_position
 onready var TOLERANCE = sprite.texture.get_width() / 2
@@ -23,13 +22,16 @@ var direction
 var beginAttack = false
 
 func _ready():
-	animationTree.active = true
-	hpBar = $HPBar
-	update_wander_target_position()
-	state = WANDER
-	hp = hp_max
+	enemyStats = $Stats
+	enemyStats.hpBar = hpBar
+	enemyStats.hp = enemyStats.hp_max
 	hpBar.hide()
 	
+	animationTree.active = true
+	
+	update_wander_target_position()
+	state = WANDER
+
 func _physics_process(delta):	
 	match state:
 		IDLE:
@@ -132,12 +134,15 @@ func pick_random_state(state_list):
 func _on_WanderTimer_timeout():
 	update_wander_target_position()
 
-
-# == TAKING DAMAGE ==
-func _on_EnemyBase_hp_changed(new_hp):
-	hpBarUpdate(new_hp)
+# == TAKING DAMAGE ==	
+func _on_Stats_hp_changed(new_hp):
+	enemyStats.hpBarUpdate(new_hp)
 
 # == DYING ==
+func _on_Stats_died():
+	state = DYING
+	hpBar.hide()
+	
 func dying_state():
 	hurtbox.monitoring = false
 	hitbox.monitorable = false
@@ -156,9 +161,4 @@ func death_animation_finished():
 
 func dead_state():
 	animationState.travel("Dead")
-	die()
-	
-func _on_EnemyBase_died():
-	state = DYING
-
-
+	queue_free()
