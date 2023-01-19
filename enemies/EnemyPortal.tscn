@@ -68,6 +68,7 @@ tracks/0/keys = {
 }
 
 [node name="EnemyPortal" type="Node2D"]
+modulate = Color( 1.5, 1.5, 1.5, 1 )
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
