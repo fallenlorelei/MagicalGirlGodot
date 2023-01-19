@@ -255,6 +255,7 @@ radius = 6.0
 height = 6.0
 
 [node name="Slime" instance=ExtResource( 1 )]
+modulate = Color( 1.2, 1.2, 1.2, 1 )
 ACCELERATION = 300
 MAX_SPEED = 30
 FRICTION = 150

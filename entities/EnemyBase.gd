@@ -32,7 +32,7 @@ func _ready():
 	
 	update_wander_target_position()
 	state = WANDER
-
+	
 func _physics_process(delta):	
 	match state:
 		IDLE:
@@ -138,7 +138,7 @@ func _on_Stats_hp_changed(new_hp):
 
 # == DYING ==
 func _on_Stats_died():
-	collisionShape.disabled = true
+	collisionShape.set_deferred("disabled",true)
 	state = DYING
 	hpBar.hide()
 	
