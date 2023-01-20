@@ -1,9 +1,10 @@
-extends Control
+extends TextureProgress
 
-onready var tooltip = $HPTooltip
-onready var hpLabel = $HPTooltip/Label
-onready var background = $HPTooltip/Label/Background
+onready var tooltip = $ExpTooltip
+onready var expLabel = $ExpTooltip/Label
+onready var background = $ExpTooltip/Label/Background
 onready var playerStats = PlayerStats
+
 
 var screensize = Vector2(854,480)
 var adj_pos = Vector2()	
@@ -11,6 +12,13 @@ var playerAlive = true
 
 func _ready():
 	pass
+	
+func _on_ExpBar_mouse_entered():
+	tooltip.show()
+	yield(get_tree().create_timer(0.35), "timeout")
+
+func _on_ExpBar_mouse_exited():
+	tooltip.hide()
 
 func _physics_process(_delta):
 	var cursor_pos = get_global_mouse_position()
@@ -19,16 +27,4 @@ func _physics_process(_delta):
 	tooltip.set_position(adj_pos)
 	if playerAlive == true:
 		if playerStats.hp > 0:
-			hpLabel.set_text("Health:" + str(playerStats.hp) + "/" + str(playerStats.hp_max))
-		else:
-			playerAlive = false
-			hpLabel.set_text("RIP")
-
-
-func _on_HealthBar_mouse_entered():
-	tooltip.show()
-	yield(get_tree().create_timer(0.35), "timeout")
-
-
-func _on_HealthBar_mouse_exited():
-	tooltip.hide()
+			expLabel.set_text("Experience: 100/400")

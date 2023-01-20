@@ -4,6 +4,7 @@ onready var playerStats = PlayerStats
 onready var skillSprite = $Sprite
 onready var animationPlayer = $AnimationPlayer
 onready var collisionShape = $CollisionShape2D
+onready var particles = $Particles2D
 
 var skillName = skillName
 var cursorDirection
@@ -64,6 +65,7 @@ func projectile():
 
 	var TW = get_tree().create_tween()
 	TW.tween_property(self, "position", location, .5).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	TW.tween_property(self, "scale", Vector2.ZERO, .1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	TW.tween_callback(self, "destroy")
 
 # == AT_CURSORS ==
@@ -108,10 +110,11 @@ func start_heal():
 		queue_free()
 
 # == OTHER ==
-	
-func _on_Skillsheet_area_entered(_area):
+func _on_Skillsheet_body_entered(_body):
 	if destroyOnImpact == true:
 		destroy()
-
+		
 func destroy():
-	queue_free()
+	var TW = get_tree().create_tween()
+	TW.tween_property(self, "scale", Vector2.ZERO, .1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	TW.tween_callback(self, "queue_free")

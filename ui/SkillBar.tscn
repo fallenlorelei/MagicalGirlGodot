@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://assets/ui/Skillbar/skillbar-skillbg.png" type="Texture" id=1]
 [ext_resource path="res://ui/SkillBar.gd" type="Script" id=2]
@@ -8,8 +8,20 @@
 [ext_resource path="res://shaders/CornerRadius.gdshader" type="Shader" id=6]
 [ext_resource path="res://assets/ui/MainTheme.tres" type="Theme" id=7]
 [ext_resource path="res://assets/ui/Skillbar/cooldown-bg.png" type="Texture" id=8]
+[ext_resource path="res://assets/ui/Skillbar/leftclick-bg.png" type="Texture" id=9]
+[ext_resource path="res://assets/ui/Skillbar/leftclick-outline.png" type="Texture" id=10]
+[ext_resource path="res://ui/SkillbarButtons.gd" type="Script" id=11]
+[ext_resource path="res://assets/ui/Skillbar/expbar-over.png" type="Texture" id=12]
+[ext_resource path="res://assets/ui/Skillbar/expbar-progress.png" type="Texture" id=13]
+[ext_resource path="res://assets/ui/Skillbar/expbar-under.png" type="Texture" id=14]
+[ext_resource path="res://assets/ui/small_box.png" type="Texture" id=16]
+[ext_resource path="res://ui/ExpBar.gd" type="Script" id=17]
 
-[sub_resource type="ShaderMaterial" id=16]
+[sub_resource type="ShaderMaterial" id=22]
+shader = ExtResource( 6 )
+shader_param/corner_radius = 8.0
+
+[sub_resource type="ShaderMaterial" id=23]
 shader = ExtResource( 6 )
 shader_param/corner_radius = 10.0
 
@@ -74,10 +86,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -20.0
-margin_top = -40.0
-margin_right = 20.0
-margin_bottom = -16.0
+margin_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
 script = ExtResource( 2 )
 
 [node name="Background" type="TextureRect" parent="."]
@@ -85,43 +96,75 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -121.5
-margin_top = -48.0
-margin_right = 121.5
+margin_left = -138.0
+margin_top = -52.0
+margin_right = 139.0
 grow_horizontal = 2
-grow_vertical = 0
 rect_min_size = Vector2( 243, 48 )
 texture = ExtResource( 5 )
 expand = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Background"]
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-margin_top = -16.0
-margin_bottom = 17.0
+margin_left = -138.5
+margin_top = -22.0
+margin_right = 138.5
+margin_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 alignment = 1
 
+[node name="left_click" type="TextureRect" parent="Background/HBoxContainer"]
+margin_left = 6.0
+margin_right = 42.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 36, 44 )
+texture = ExtResource( 10 )
+
+[node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/left_click"]
+show_behind_parent = true
+material = SubResource( 22 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.5
+margin_top = 15.0
+margin_right = -4.5
+margin_bottom = -1.0
+rect_min_size = Vector2( 28, 28 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+shortcut_in_tooltip = false
+button_mask = 0
+texture_normal = ExtResource( 9 )
+expand = true
+script = ExtResource( 11 )
+
 [node name="ability1" type="TextureRect" parent="Background/HBoxContainer" groups=["DraggableSkill"]]
-margin_left = 9.0
-margin_right = 43.0
+margin_left = 46.0
+margin_right = 80.0
 margin_bottom = 34.0
 rect_min_size = Vector2( 34, 34 )
 rect_pivot_offset = Vector2( 17, 17 )
-size_flags_vertical = 5
+size_flags_horizontal = 4
+size_flags_vertical = 0
 texture = ExtResource( 4 )
 expand = true
 stretch_mode = 5
 
 [node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/ability1" groups=["AbilityShortcut"]]
 show_behind_parent = true
-material = SubResource( 16 )
+material = SubResource( 23 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.0
 margin_top = 1.0
 margin_right = -1.0
-margin_bottom = -1.0
+margin_bottom = -11.0
 rect_min_size = Vector2( 32, 32 )
 shortcut_in_tooltip = false
 action_mode = 0
@@ -167,12 +210,13 @@ text = "1"
 align = 1
 
 [node name="ability2" type="TextureRect" parent="Background/HBoxContainer" groups=["DraggableSkill"]]
-margin_left = 47.0
-margin_right = 81.0
+margin_left = 84.0
+margin_right = 118.0
 margin_bottom = 34.0
 rect_min_size = Vector2( 34, 34 )
 rect_pivot_offset = Vector2( 17, 17 )
-size_flags_vertical = 5
+size_flags_horizontal = 4
+size_flags_vertical = 0
 texture = ExtResource( 4 )
 expand = true
 stretch_mode = 5
@@ -185,7 +229,7 @@ anchor_bottom = 1.0
 margin_left = 1.0
 margin_top = 1.0
 margin_right = -1.0
-margin_bottom = -1.0
+margin_bottom = -11.0
 rect_min_size = Vector2( 32, 32 )
 shortcut_in_tooltip = false
 action_mode = 0
@@ -231,12 +275,13 @@ text = "2"
 align = 1
 
 [node name="ability3" type="TextureRect" parent="Background/HBoxContainer" groups=["DraggableSkill"]]
-margin_left = 85.0
-margin_right = 119.0
+margin_left = 122.0
+margin_right = 156.0
 margin_bottom = 34.0
 rect_min_size = Vector2( 34, 34 )
 rect_pivot_offset = Vector2( 17, 17 )
-size_flags_vertical = 5
+size_flags_horizontal = 4
+size_flags_vertical = 0
 texture = ExtResource( 4 )
 expand = true
 stretch_mode = 5
@@ -249,7 +294,7 @@ anchor_bottom = 1.0
 margin_left = 1.0
 margin_top = 1.0
 margin_right = -1.0
-margin_bottom = -1.0
+margin_bottom = -11.0
 rect_min_size = Vector2( 32, 32 )
 shortcut_in_tooltip = false
 action_mode = 0
@@ -295,12 +340,13 @@ text = "3"
 align = 1
 
 [node name="ability4" type="TextureRect" parent="Background/HBoxContainer" groups=["DraggableSkill"]]
-margin_left = 123.0
-margin_right = 157.0
+margin_left = 160.0
+margin_right = 194.0
 margin_bottom = 34.0
 rect_min_size = Vector2( 34, 34 )
 rect_pivot_offset = Vector2( 17, 17 )
-size_flags_vertical = 5
+size_flags_horizontal = 4
+size_flags_vertical = 0
 texture = ExtResource( 4 )
 expand = true
 
@@ -312,7 +358,7 @@ anchor_bottom = 1.0
 margin_left = 1.0
 margin_top = 1.0
 margin_right = -1.0
-margin_bottom = -1.0
+margin_bottom = -11.0
 rect_min_size = Vector2( 32, 32 )
 shortcut_in_tooltip = false
 action_mode = 0
@@ -358,12 +404,13 @@ text = "4"
 align = 1
 
 [node name="ability5" type="TextureRect" parent="Background/HBoxContainer" groups=["DraggableSkill"]]
-margin_left = 161.0
-margin_right = 195.0
+margin_left = 198.0
+margin_right = 232.0
 margin_bottom = 34.0
 rect_min_size = Vector2( 34, 34 )
 rect_pivot_offset = Vector2( 17, 17 )
-size_flags_vertical = 5
+size_flags_horizontal = 4
+size_flags_vertical = 0
 texture = ExtResource( 4 )
 expand = true
 stretch_mode = 5
@@ -376,7 +423,7 @@ anchor_bottom = 1.0
 margin_left = 1.0
 margin_top = 1.0
 margin_right = -1.0
-margin_bottom = -1.0
+margin_bottom = -11.0
 rect_min_size = Vector2( 32, 32 )
 shortcut_in_tooltip = false
 action_mode = 0
@@ -422,12 +469,13 @@ text = "5"
 align = 1
 
 [node name="ability6" type="TextureRect" parent="Background/HBoxContainer" groups=["DraggableSkill"]]
-margin_left = 199.0
-margin_right = 233.0
+margin_left = 236.0
+margin_right = 270.0
 margin_bottom = 34.0
 rect_min_size = Vector2( 34, 34 )
 rect_pivot_offset = Vector2( 17, 17 )
-size_flags_vertical = 5
+size_flags_horizontal = 4
+size_flags_vertical = 0
 texture = ExtResource( 4 )
 expand = true
 stretch_mode = 5
@@ -485,6 +533,49 @@ theme = ExtResource( 7 )
 text = "6"
 align = 1
 
+[node name="ExpBar" type="TextureProgress" parent="Background"]
+margin_left = 48.0
+margin_top = 40.0
+margin_right = 268.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 220, 8 )
+texture_under = ExtResource( 14 )
+texture_over = ExtResource( 12 )
+texture_progress = ExtResource( 13 )
+script = ExtResource( 17 )
+
+[node name="ExpTooltip" type="Popup" parent="Background/ExpBar"]
+visible = true
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Background/ExpBar/ExpTooltip"]
+margin_left = -21.0
+margin_top = -19.0
+margin_right = 19.0
+margin_bottom = -5.0
+grow_horizontal = 2
+theme = ExtResource( 7 )
+theme_type_variation = "Label_larger"
+text = "60/1000"
+align = 1
+
+[node name="Background" type="TextureRect" parent="Background/ExpBar/ExpTooltip/Label"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -5.0
+margin_top = -3.0
+margin_right = 5.0
+grow_horizontal = 2
+mouse_filter = 2
+texture = ExtResource( 16 )
+expand = true
+
+[connection signal="mouse_entered" from="Background/HBoxContainer/left_click/TextureButton" to="Background/HBoxContainer/left_click/TextureButton" method="_on_TextureButton_mouse_entered"]
+[connection signal="mouse_exited" from="Background/HBoxContainer/left_click/TextureButton" to="Background/HBoxContainer/left_click/TextureButton" method="_on_TextureButton_mouse_exited"]
 [connection signal="mouse_entered" from="Background/HBoxContainer/ability1/TextureButton" to="." method="_on_TextureButton_mouse_entered"]
 [connection signal="mouse_entered" from="Background/HBoxContainer/ability1/TextureButton" to="Background/HBoxContainer/ability1/TextureButton" method="_on_TextureButton_mouse_entered"]
 [connection signal="mouse_exited" from="Background/HBoxContainer/ability1/TextureButton" to="." method="_on_TextureButton_mouse_exited"]
@@ -515,3 +606,5 @@ align = 1
 [connection signal="mouse_exited" from="Background/HBoxContainer/ability6/TextureButton" to="." method="_on_TextureButton_mouse_exited"]
 [connection signal="mouse_exited" from="Background/HBoxContainer/ability6/TextureButton" to="Background/HBoxContainer/ability6/TextureButton" method="_on_TextureButton_mouse_exited"]
 [connection signal="timeout" from="Background/HBoxContainer/ability6/TextureButton/Timer" to="Background/HBoxContainer/ability6/TextureButton" method="_on_Timer_timeout"]
+[connection signal="mouse_entered" from="Background/ExpBar" to="Background/ExpBar" method="_on_ExpBar_mouse_entered"]
+[connection signal="mouse_exited" from="Background/ExpBar" to="Background/ExpBar" method="_on_ExpBar_mouse_exited"]

@@ -10,6 +10,8 @@ var mouse_over_ui
 # Otherwise, should pull from save file.
 
 var loaded_skills = {
+	"left_click": "Basic",
+	
 	"ability1": "Basic",
 	"ability2": "Smite",
 	"ability3": "Healing_Light",
@@ -30,6 +32,7 @@ func load_shortcuts():
 		if loaded_skills[shortcut] != null:
 			var skill_icon = load("res://assets/skill_icons/" + loaded_skills[shortcut] + "_icon.png")
 			get_node(shortcuts_path + shortcut + "/TextureButton").set_normal_texture(skill_icon)
+
 
 # == FIND PLAYER AND SEND SELECTED SKILL ==
 func SelectShortcut(shortcut):
