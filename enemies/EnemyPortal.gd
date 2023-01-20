@@ -5,16 +5,18 @@ onready var timer = $Timer
 onready var sprite = $Sprite
 
 export(float) var spawnTimer = 1.0
+export var spawnAmount = 1
+
 var randomEnemy
+var portalOpened = false
 
 var enemy_dict = {
 	"Slime": preload("res://enemies/Slime.tscn"),
 	}
 
-export var spawnAmount = 1
-
 func _ready():
-	randomEnemy = get_random_enemy()
+#	randomEnemy = get_random_enemy()
+	pass
 
 func get_random_enemy():
 	var random_id = randi() % enemy_dict.size()
@@ -29,7 +31,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		sprite.hide()
 
 func spawn_enemies():
-	var enemySpawn = randomEnemy.instance()
+	var enemySpawn = get_random_enemy().instance()
 	enemySpawn.global_position = global_position
 	get_parent().add_child(enemySpawn)
 	spawnAmount -= 1
@@ -43,3 +45,10 @@ func _on_Timer_timeout():
 		animationPlayer.play("closing")
 	else:
 		spawn_enemies()
+
+
+func _on_PlayerActivate_body_entered(body):
+	if portalOpened == false:
+		sprite.show()
+		animationPlayer.play("opening")
+		portalOpened = true

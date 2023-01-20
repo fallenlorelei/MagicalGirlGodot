@@ -5,7 +5,7 @@ onready var hpLabel = $HPTooltip/Label
 onready var background = $HPTooltip/Label/Background
 onready var playerStats = PlayerStats
 
-var screensize = Vector2(854,480)
+var screensize = OS.window_size
 var adj_pos = Vector2()	
 var playerAlive = true
 

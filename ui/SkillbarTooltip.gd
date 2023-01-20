@@ -6,8 +6,9 @@ onready var skillTypeLabel = $"%SkillType"
 onready var cooldownDurationLabel = $"%CooldownDuration"
 onready var skillDescriptionLabel = $"%SkillDescription"
 onready var scrollContainer = $"%ScrollContainer"
+onready var background = $Background
 
-var screensize = Vector2(854,480)
+var screensize = OS.window_size / 2
 var adj_pos = Vector2()	
 
 var origin = ""
@@ -21,13 +22,12 @@ func _ready():
 	
 func _physics_process(_delta):
 	var cursor_pos = get_global_mouse_position()
-	adj_pos.x = clamp(cursor_pos.x, 0, screensize.x - rect_size.x - get_node("Background").rect_position.x)
-	adj_pos.y = clamp(cursor_pos.y, 0 , screensize.y - rect_size.y - get_node("Background").rect_position.y)
-	set_position(adj_pos)
+#	adj_pos.x = cursor_pos.x
+#	adj_pos.y = cursor_pos.y - background.rect_size.y
+	set_position(cursor_pos)
 
-func _input(event : InputEvent) -> void:
+func _input(event):
 	if event is InputEventMouseButton:
-#		event as InputEventMouseButton
 		if event.pressed:
 			match event.button_index:
 				BUTTON_WHEEL_UP:

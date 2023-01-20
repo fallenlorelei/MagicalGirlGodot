@@ -44,33 +44,20 @@ func set_text():
 		crystalUi[crystal].text = str(crystalCounters[crystal])
 		
 		var TW = get_tree().create_tween()
-
-#		crystalProgressUI[crystal].value = crystalCounters[crystal]
-#		crystalProgressUI[crystal].max_value = maxCrystals
-
 		TW.tween_property(crystalProgressUI[crystal], "value", float(crystalCounters[crystal]), .2)
 		TW.tween_property(crystalProgressUI[crystal], "max_value", float(maxCrystals), .2)
 			
 func update_crystals():
 	set_text()
 
-func _on_TextureButton_toggled(button_pressed):
-	if button_pressed == true and windowOpen == true:
-		lockedOpen = true
-	if button_pressed == false and windowOpen == true:
-		lockedOpen = false
-	if button_pressed == true and windowOpen == false:
-		lockedOpen = true
-	if button_pressed == false and windowOpen == false:
-		lockedOpen = false
-
 
 func _on_MouseDetection_Open_mouse_entered():
 	yield(get_tree().create_timer(0.2), "timeout")
+	print("detected")
 	if lockedOpen == false:
 		windowOpen = true
 		var TW = get_tree().create_tween()
-		TW.tween_property(self, "rect_position:x", 0.0, .3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+		TW.tween_property(self, "rect_position:x", -5.0, .3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 		mouseOpenDetection.hide()
 
 func _on_MouseDetection_Close_mouse_exited():
@@ -83,11 +70,21 @@ func _on_MouseDetection_Close_mouse_exited():
 			yield(get_tree().create_timer(0.2), "timeout")
 			mouseOpenDetection.show()
 
-func _on_TextureButton_mouse_entered():
+func _on_LockButton_toggled(button_pressed):
+	if button_pressed == true and windowOpen == true:
+		lockedOpen = true
+	if button_pressed == false and windowOpen == true:
+		lockedOpen = false
+	if button_pressed == true and windowOpen == false:
+		lockedOpen = true
+	if button_pressed == false and windowOpen == false:
+		lockedOpen = false
+
+func _on_LockButton_mouse_entered():
 	mouseOverLock = true
 	emit_signal("mouseOverLock")
 
-func _on_TextureButton_mouse_exited():
+func _on_LockButton_mouse_exited():
 	mouseOverLock = false
 	emit_signal("mouseOverLock")
 	_on_MouseDetection_Close_mouse_exited()

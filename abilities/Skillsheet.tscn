@@ -16,5 +16,4 @@ script = ExtResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 
-[connection signal="area_entered" from="." to="." method="_on_Skillsheet_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_Skillsheet_body_entered"]

@@ -40,19 +40,24 @@ tracks/0/keys = {
 }
 
 [node name="BottomUI" type="Control"]
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+margin_left = -320.0
+margin_top = -360.0
+margin_right = 320.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -121.5
-margin_top = -64.0
-margin_right = 121.5
-margin_bottom = -8.0
+margin_left = -122.0
+margin_top = -69.0
+margin_right = 122.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_vertical = 0

@@ -62,7 +62,7 @@ func projectile():
 	
 	var direction = cursorDirection * distance
 	var location = global_position + direction
-
+	
 	var TW = get_tree().create_tween()
 	TW.tween_property(self, "position", location, .5).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	TW.tween_property(self, "scale", Vector2.ZERO, .1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
