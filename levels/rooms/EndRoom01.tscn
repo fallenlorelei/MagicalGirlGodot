@@ -12,7 +12,7 @@ position = Vector2( 335, 9 )
 position = Vector2( 336, 299 )
 
 [node name="EnemyPortal" type="Position2D" parent="."]
-position = Vector2( 209, 98 )
+position = Vector2( 318, 135 )
 
 [node name="sidewalk" type="TileMap" parent="."]
 z_index = -99

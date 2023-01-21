@@ -26,4 +26,4 @@ position = Vector2( 336, 6 )
 position = Vector2( 496, 384 )
 
 [node name="EnemyPortal" type="Position2D" parent="."]
-position = Vector2( 100, 213 )
+position = Vector2( 314, 206 )
