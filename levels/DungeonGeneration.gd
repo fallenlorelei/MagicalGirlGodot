@@ -55,7 +55,7 @@ func _spawn_rooms():
 		previous_room = room
 		
 
-#		var enemyPortal = ENEMY_PORTAL.instance()
-#		enemyPortal.global_position = room.get_node("EnemyPortal").global_position
-#		enemyPortal.spawnAmount = rand_range(3,8)
-#		ySort.add_child(enemyPortal)
+		var enemyPortal = ENEMY_PORTAL.instance()
+		enemyPortal.global_position = room.get_node("EnemyPortal").global_position
+		enemyPortal.spawnAmount = rand_range(3,8)
+		ySort.add_child(enemyPortal)
