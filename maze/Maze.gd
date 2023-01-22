@@ -18,13 +18,14 @@ var cell_walls = {
 	Vector2(-1,0): W}
 	
 var tile_size = 640
-var first_tile = Vector2(0,0)
+
 # fraction of walls to remove. How much removing do we want?
 var erase_fraction = 0.85
 
 export var map_seed = 0
 export var width = 7
 export var height = 5
+export var first_tile = Vector2(3,0)
 
 func _ready():
 	randomize()
