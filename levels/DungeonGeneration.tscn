@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://levels/DungeonGeneration.gd" type="Script" id=1]
 [ext_resource path="res://entities/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/CrystalCounter.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ui/BottomUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/MiniMap.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -29,7 +30,7 @@ color = Color( 0.74902, 0.780392, 0.890196, 1 )
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 201, 263 )
 current = true
-zoom = Vector2( 0.8, 0.8 )
+zoom = Vector2( 0.7, 0.7 )
 process_mode = 0
 smoothing_enabled = true
 
@@ -45,5 +46,16 @@ remote_path = NodePath("../../../Camera2D")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="BottomUI" parent="CanvasLayer" instance=ExtResource( 4 )]
+margin_top = -366.0
+margin_bottom = -6.0
 
 [node name="CrystalCounter" parent="CanvasLayer" instance=ExtResource( 3 )]
+
+[node name="MiniMap" parent="CanvasLayer" instance=ExtResource( 5 )]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -109.0
+margin_top = 9.0
+margin_right = -109.0
+margin_bottom = 9.0
+player = NodePath("../../YSort/Player")

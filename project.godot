@@ -18,16 +18,22 @@ _global_script_classes=[ {
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
+}, {
+"base": "TileMap",
+"class": "InteractiveTilemap",
+"language": "GDScript",
+"path": "res://maze/TileMap.gd"
 } ]
 _global_script_class_icons={
 "EntityBase": "",
-"GitAPI": ""
+"GitAPI": "",
+"InteractiveTilemap": ""
 }
 
 [application]
 
 config/name="Magical Girl Godot"
-run/main_scene="res://levels/DungeonGeneration.tscn"
+run/main_scene="res://maze/Maze.tscn"
 config/icon="res://icon.png"
 
 [autoload]

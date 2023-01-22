@@ -11,6 +11,8 @@ onready var crystalMouseoverBox = get_node("../../CanvasLayer/CrystalCounter/")
 	
 export(int) var JUMP_SPEED = 110
 
+export var minimap_icon = "icon"
+
 var jump_vector = Vector2.LEFT
 #var abilityPressed setget set_attack
 var cursorDirection = Vector2()
@@ -18,7 +20,7 @@ var cursorLocation = Vector2()
 var selected_skill = "skill" setget set_attack
 var selected_skillSlot = ""
 var mouse_over_ui = false
-#var playerStats = PlayerStats
+var map_pos
 
 func _ready():
 	animationTree.active = true

@@ -2,5 +2,5 @@
 
 [ext_resource path="res://entities/EntityBase.gd" type="Script" id=1]
 
-[node name="EntityBase" type="KinematicBody2D"]
+[node name="EntityBase" type="KinematicBody2D" groups=["Minimap_Object"]]
 script = ExtResource( 1 )

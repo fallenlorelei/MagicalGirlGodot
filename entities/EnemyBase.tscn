@@ -28,6 +28,7 @@ script = ExtResource( 9 )
 
 [node name="RandomCrystal" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0, -10 )
+scale = Vector2( 0.5, 0.5 )
 
 [node name="PlayerDetectionZone" type="Area2D" parent="."]
 script = ExtResource( 5 )
