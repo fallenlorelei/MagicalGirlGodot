@@ -18,7 +18,6 @@ var cell_walls = {
 	Vector2(-1,0): W}
 	
 var tile_size = 640
-
 # fraction of walls to remove. How much removing do we want?
 var erase_fraction = 0.85
 

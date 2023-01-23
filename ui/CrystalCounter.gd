@@ -53,7 +53,6 @@ func update_crystals():
 
 func _on_MouseDetection_Open_mouse_entered():
 	yield(get_tree().create_timer(0.2), "timeout")
-	print("detected")
 	if lockedOpen == false:
 		windowOpen = true
 		var TW = get_tree().create_tween()

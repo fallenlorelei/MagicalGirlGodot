@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/tiles/tilesets/city01_street.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/tiles/tilesets/city01_sidewalk.tres" type="TileSet" id=2]
+[ext_resource path="res://maze/rooms/Rooms.gd" type="Script" id=3]
 
 [node name="10-1" type="Node2D"]
+script = ExtResource( 3 )
 
 [node name="TileSize" type="MarginContainer" parent="."]
 margin_right = 640.0

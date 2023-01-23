@@ -3,10 +3,13 @@ extends Node2D
 onready var animationPlayer = $AnimationPlayer
 onready var timer = $Timer
 onready var sprite = $Sprite
+onready var ySort = $"../../YSort"
 
 export(float) var spawnTimer = 1.0
-export var spawnAmount = 1
+export var spawnAmount_min = 2
+export var spawnAmount_max = 6
 
+var spawnAmount
 var randomEnemy
 var portalOpened = false
 
@@ -15,8 +18,7 @@ var enemy_dict = {
 	}
 
 func _ready():
-#	randomEnemy = get_random_enemy()
-	pass
+	spawnAmount = int(rand_range(spawnAmount_min, spawnAmount_max))
 
 func get_random_enemy():
 	var random_id = randi() % enemy_dict.size()
@@ -33,7 +35,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 func spawn_enemies():
 	var enemySpawn = get_random_enemy().instance()
 	enemySpawn.global_position = global_position
-	get_parent().add_child(enemySpawn)
+	ySort.add_child(enemySpawn)
 	spawnAmount -= 1
 	enemySpawn.state = 4
 	if spawnAmount >= 0:

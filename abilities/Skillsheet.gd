@@ -51,6 +51,10 @@ func _ready():
 
 	if skillRadius != null:
 		collisionShape.get_shape().radius = skillRadius
+		var sizeto = Vector2(skillRadius,skillRadius)
+		var size = skillSprite.texture.get_size() / Vector2(skillSprite.hframes, skillSprite.vframes)
+		var scale_factor = sizeto/size
+		skillSprite.scale = scale_factor * 2.1
 	
 	if canHeal == true:
 		start_heal()
@@ -69,6 +73,9 @@ func projectile():
 	TW.tween_callback(self, "destroy")
 
 # == AT_CURSORS ==
+func at_cursor():
+	pass
+	
 func at_cursor_starting_animation_finished():
 	animationPlayer.play("end")
 
@@ -90,7 +97,7 @@ func front_arc():
 	var frontArcRotation = Vector2.RIGHT.rotated(rotation)	
 	knockback_vector = frontArcRotation
 	
-	collisionShape.shape.radius = skillRadius
+#	collisionShape.shape.radius = skillRadius
 	
 #When the shape was a capsule
 #	var rotation = get_angle_to(cursorDirection)

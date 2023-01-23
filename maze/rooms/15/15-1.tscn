@@ -1,8 +1,20 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/tiles/tilesets/city01_sidewalk.tres" type="TileSet" id=2]
 
-[node name="0-1" type="Node2D"]
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+const enemyPortal = preload(\"res://enemies/EnemyPortal.tscn\")
+
+func _ready():
+	var portalSpawn = enemyPortal.instance()
+	add_child(portalSpawn)
+	portalSpawn.position = Vector2(340,280)
+"
+
+[node name="15-1" type="Node2D"]
+script = SubResource( 1 )
 
 [node name="TileSize" type="MarginContainer" parent="."]
 margin_right = 640.0

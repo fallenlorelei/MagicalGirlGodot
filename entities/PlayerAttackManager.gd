@@ -153,7 +153,10 @@ func release_ability():
 	match DataImport.skill_data[skillName].SkillType:
 		"at_cursor":			
 			ability.global_position = parentCursorLocation
+			var ability_rotation = self.global_position.direction_to(parentCursorLocation)
 			get_tree().get_current_scene().add_child(ability)
+			ability.skillSprite.flip_h = ability_rotation.x < 0
+			ability.at_cursor()
 #
 		"self_utility":
 			add_child(ability)
