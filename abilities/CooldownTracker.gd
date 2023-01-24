@@ -11,7 +11,7 @@ func _ready():
 	pass
 	
 func start_cooldown(skillName, skillShortcut):
-	hasCooldown = DataImport.skill_data[skillName].HasCooldown
+#	hasCooldown = DataImport.skill_data[skillName].HasCooldown
 	cooldownDuration = DataImport.skill_data[skillName].CooldownDuration
-	if hasCooldown == true:
+	if cooldownDuration > 0:
 		emit_signal("start_cooldown", skillShortcut, cooldownDuration)

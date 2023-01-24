@@ -33,15 +33,10 @@ var knockback_vector = Vector2.ZERO
 
 func _ready():
 	skillType = DataImport.skill_data[skillName].SkillType
-	hasCastTime = DataImport.skill_data[skillName].HasCastTime
 	castTime = DataImport.skill_data[skillName].CastTime
-	hasCooldown = DataImport.skill_data[skillName].HasCooldown
 	cooldownDuration = DataImport.skill_data[skillName].CooldownDuration
-	canDamage = DataImport.skill_data[skillName].CanDamage
 	skillDamage = DataImport.skill_data[skillName].SkillDamage
-	canHeal = DataImport.skill_data[skillName].CanHeal
 	healAmount = DataImport.skill_data[skillName].HealAmount
-	canKnockback = DataImport.skill_data[skillName].CanKnockback
 	knockbackModifier = DataImport.skill_data[skillName].KnockbackModifier
 	skillRadius = DataImport.skill_data[skillName].SkillRadius
 	distance = DataImport.skill_data[skillName].Distance
@@ -54,8 +49,17 @@ func _ready():
 	if skillRadius != null and isUltimate == false:
 		collisionShape.get_shape().radius = skillRadius
 	
-	if canHeal == true:
+	if healAmount > 0.0:
 		start_heal()
+	
+	if knockbackModifier > 0.0:
+		canKnockback = true
+	
+	if castTime > 0.0:
+		hasCastTime = true
+		
+	if cooldownDuration > 0.0:
+		hasCooldown = true
 		
 	particles.emitting = true
 	if get_node_or_null("Particles2D2") != null:

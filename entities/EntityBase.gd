@@ -72,3 +72,5 @@ func skill_damage(area, group):
 	if group == "Player":
 		if enemyStats.hp > 0:
 			enemyStats.receive_damage(area.skillDamage)
+			if area.canKnockback == true:
+				knockback = area.knockback_vector * area.knockbackModifier
