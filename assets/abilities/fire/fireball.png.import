@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fiery_cast.png-74fe71f91ad635595ec71183d884d5ec.stex"
+path="res://.import/fireball.png-f4de63b15590a6fc6eaa0eee7b2e4a9f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/abilities/fiery_cast.png"
-dest_files=[ "res://.import/fiery_cast.png-74fe71f91ad635595ec71183d884d5ec.stex" ]
+source_file="res://assets/abilities/fire/fireball.png"
+dest_files=[ "res://.import/fireball.png-f4de63b15590a6fc6eaa0eee7b2e4a9f.stex" ]
 
 [params]
 

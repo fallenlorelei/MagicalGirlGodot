@@ -2,7 +2,7 @@ extends "res://entities/EntityBase.gd"
 
 onready var sprite = $Sprite
 onready var collisionShape = $CollisionShape2D
-onready var hurtbox = $Hurtbox
+#onready var hurtbox = $Hurtbox
 onready var hitbox = $HitboxPivot/Hitbox
 onready var hitboxPivot = $HitboxPivot
 onready var animationPlayer = $AnimationPlayer

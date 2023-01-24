@@ -125,16 +125,14 @@ func _on_Skillsheet_body_entered(_body):
 func scale_sprite():
 	if isUltimate == true:
 		var sizeto = OS.window_size / 2
-		
 		var spriteSize = skillSprite.texture.get_size() / Vector2(skillSprite.hframes, skillSprite.vframes)
 		var sprite_scale_factor = sizeto/spriteSize
 		skillSprite.scale = sprite_scale_factor
 		
 	else:
 		var sizeto = Vector2(skillRadius,skillRadius)
-		
 		var spriteSize = skillSprite.texture.get_size() / Vector2(skillSprite.hframes, skillSprite.vframes)
-		var sprite_scale_factor = sizeto/spriteSize * 5
+		var sprite_scale_factor = sizeto/spriteSize * 2
 		skillSprite.scale = sprite_scale_factor
 	
 		if particles.material != null:

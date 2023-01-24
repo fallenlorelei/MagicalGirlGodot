@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/magicshooting.png-8af7fb451027ac11153de44ace2d1d4b.stex"
+path="res://.import/fiery_circle.png-fd8ed9e39bb1f68d1c93671bd4b0e209.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/abilities/magicshooting.png"
-dest_files=[ "res://.import/magicshooting.png-8af7fb451027ac11153de44ace2d1d4b.stex" ]
+source_file="res://assets/abilities/fire/fiery_circle.png"
+dest_files=[ "res://.import/fiery_circle.png-fd8ed9e39bb1f68d1c93671bd4b0e209.stex" ]
 
 [params]
 

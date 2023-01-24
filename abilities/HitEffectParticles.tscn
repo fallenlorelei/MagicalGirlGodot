@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/abilities/holyprojectile01_impact_pimen.png" type="Texture" id=1]
+[ext_resource path="res://abilities/HitEffectParticles.gd" type="Script" id=2]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="CanvasItemMaterial" id=2]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 1
+emission_sphere_radius = 10.0
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.5
+scale_random = 0.2
+anim_speed = 1.0
+
+[node name="HitEffectParticles" type="Node2D"]
+material = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="FlashTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="YellowSparkle" type="Particles2D" parent="."]
+material = SubResource( 2 )
+emitting = false
+amount = 2
+lifetime = 0.5
+one_shot = true
+process_material = SubResource( 3 )
+texture = ExtResource( 1 )
+
+[connection signal="timeout" from="FlashTimer" to="." method="_on_FlashTimer_timeout"]

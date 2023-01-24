@@ -1,5 +1,7 @@
 extends Area2D
 
+const HitEffect = preload("res://abilities/HitEffectParticles.tscn")
+
 var invincible = false setget set_invincible
 
 onready var timer = $Timer
@@ -20,6 +22,16 @@ func set_invincible(value):
 func start_invincibility(duration):
 	self.invincible = true
 	timer.start(duration)
+	
+func create_hit_effect(ability, object):
+	
+	var effect = HitEffect.instance()
+	var main = get_tree().current_scene
+	effect.object = object
+	effect.ability = ability
+	main.add_child(effect)
+	effect.global_position = global_position
+	
 
 func _on_Timer_timeout():
 	self.invincible = false

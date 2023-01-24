@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fiery_circle.png-7d43310164de3394dde4094c9b848a89.stex"
+path="res://.import/fiery_barrage_mvanimations.png-86453c51f5190cedacb49bc62ad9c0f1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/abilities/fiery_circle.png"
-dest_files=[ "res://.import/fiery_circle.png-7d43310164de3394dde4094c9b848a89.stex" ]
+source_file="res://assets/abilities/fire/fiery_barrage_mvanimations.png"
+dest_files=[ "res://.import/fiery_barrage_mvanimations.png-86453c51f5190cedacb49bc62ad9c0f1.stex" ]
 
 [params]
 

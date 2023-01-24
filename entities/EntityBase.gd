@@ -1,5 +1,7 @@
 class_name EntityBase extends KinematicBody2D
 
+onready var hurtbox = $Hurtbox
+
 export(int) var ACCELERATION = 450
 export(int) var MAX_SPEED = 80
 export(int) var FRICTION = 550
@@ -56,6 +58,9 @@ func _on_Hurtbox_area_entered(area):
 		
 	else:
 		skill_damage(area, "Enemy")
+	
+	hurtbox.create_hit_effect(area, self)
+
 #
 func skill_damage(area, group):
 	if group == "Enemy":

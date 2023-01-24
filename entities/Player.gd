@@ -1,7 +1,7 @@
 extends "res://entities/EntityBase.gd"
 
 onready var sprite = $Sprite
-onready var hurtbox = $Hurtbox
+#onready var hurtbox = $Hurtbox
 onready var attackManager = $AttackManager
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
