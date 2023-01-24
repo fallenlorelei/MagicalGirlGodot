@@ -40,6 +40,9 @@ func _physics_process(_delta):
 			
 		if DataImport.skill_data[skillName].SkillType == "around_self":
 			castingCircleSprite.global_position = global_position + Vector2(0,6)
+		
+		if DataImport.skill_data[skillName].SkillType == "full_view":
+			castingCircleSprite.global_position = global_position + Vector2(0,6)
 			
 		if DataImport.skill_data[skillName].SkillType == "projectile":	
 			projectileLine.set_point_position(0,Vector2(0,0))
@@ -103,6 +106,8 @@ func start_ability(selected_skill, selected_shortcut):
 				show_casting(1, "at_cursor")
 			"self_utility":
 				pass
+			"full_view":
+				show_casting(-1, "around_self")
 			"around_self":
 				show_casting(-1, "around_self")
 			"front_arc":
@@ -115,7 +120,7 @@ func show_casting(zindex, type):
 	#Resize casting circle to size of collision
 	var radiusSize = DataImport.skill_data[skillName].SkillRadius
 	
-	if type == "at_cursor" or type == "around_self":
+	if type == "at_cursor" or type == "around_self" or type == "full_view":
 		var sizeto = Vector2(radiusSize,radiusSize)
 		var size = castingCircleSprite.texture.get_size()
 		var scale_factor = sizeto/size * 2
@@ -168,6 +173,11 @@ func release_ability():
 			add_child(ability)
 #
 		"around_self":
+			ability.global_position = self.global_position
+			get_tree().get_current_scene().add_child(ability)
+			ability.around_self()
+
+		"full_view":
 			ability.global_position = self.global_position
 			get_tree().get_current_scene().add_child(ability)
 			ability.around_self()

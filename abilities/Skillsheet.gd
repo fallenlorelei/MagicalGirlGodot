@@ -123,11 +123,14 @@ func _on_Skillsheet_body_entered(_body):
 		destroy()
 
 func scale_sprite():
-	if isUltimate == true:
+	if skillType == "full_view":
 		var sizeto = OS.window_size / 2
 		var spriteSize = skillSprite.texture.get_size() / Vector2(skillSprite.hframes, skillSprite.vframes)
 		var sprite_scale_factor = sizeto/spriteSize
 		skillSprite.scale = sprite_scale_factor
+		particles.process_material.set_emission_shape(2)
+		particles.process_material.emission_box_extents.x = OS.window_size.x / 2
+		particles.process_material.emission_box_extents.y = OS.window_size.y / 2
 		
 	else:
 		var sizeto = Vector2(skillRadius,skillRadius)
@@ -139,7 +142,6 @@ func scale_sprite():
 	#		var particleSize = particles.texture.get_size() / Vector2(particles.material.particles_anim_h_frames, particles.material.particles_anim_v_frames)
 	#		var particle_scale_factor = sizeto/particleSize
 	#		particles.process_material.scale = particle_scale_factor.x
-			
 			particles.process_material.emission_sphere_radius = skillRadius	
 	
 func destroy():

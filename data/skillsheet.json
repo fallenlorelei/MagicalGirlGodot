@@ -70,7 +70,7 @@
   },
   "Prismatica": {
     "Element": "Light",
-    "SkillType": "around_self",
+    "SkillType": "full_view",
     "HasCastTime": true,
     "CastTime": 3,
     "HasCooldown": true,
@@ -81,7 +81,7 @@
     "HealAmount": 50,
     "CanKnockback": true,
     "KnockbackModifier": 100,
-    "SkillRadius": 50,
+    "SkillRadius": 300,
     "Distance": null,
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,

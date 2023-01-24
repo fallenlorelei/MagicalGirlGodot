@@ -105,8 +105,8 @@ shader_param/speed = 0.5
 shader_param/angle = 0.0
 
 [sub_resource type="ParticlesMaterial" id=9]
-emission_shape = 1
-emission_sphere_radius = 128.0
+emission_shape = 2
+emission_box_extents = Vector3( 1, 1, 1 )
 flag_disable_z = true
 gravity = Vector3( 0, 98, 0 )
 orbit_velocity = 0.0
@@ -141,7 +141,7 @@ material = SubResource( 10 )
 position = Vector2( 1, -13 )
 rotation = 3.14159
 scale = Vector2( 0.5, 0.5 )
-amount = 20
+amount = 50
 explosiveness = 0.09
 randomness = 0.06
 process_material = SubResource( 9 )

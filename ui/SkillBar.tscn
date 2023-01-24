@@ -589,7 +589,9 @@ mouse_filter = 2
 texture = ExtResource( 16 )
 expand = true
 
+[connection signal="mouse_entered" from="Background/HBoxContainer/left_click/TextureButton" to="." method="_on_TextureButton_mouse_entered"]
 [connection signal="mouse_entered" from="Background/HBoxContainer/left_click/TextureButton" to="Background/HBoxContainer/left_click/TextureButton" method="_on_TextureButton_mouse_entered"]
+[connection signal="mouse_exited" from="Background/HBoxContainer/left_click/TextureButton" to="." method="_on_TextureButton_mouse_exited"]
 [connection signal="mouse_exited" from="Background/HBoxContainer/left_click/TextureButton" to="Background/HBoxContainer/left_click/TextureButton" method="_on_TextureButton_mouse_exited"]
 [connection signal="mouse_entered" from="Background/HBoxContainer/ability1/TextureButton" to="." method="_on_TextureButton_mouse_entered"]
 [connection signal="mouse_entered" from="Background/HBoxContainer/ability1/TextureButton" to="Background/HBoxContainer/ability1/TextureButton" method="_on_TextureButton_mouse_entered"]
