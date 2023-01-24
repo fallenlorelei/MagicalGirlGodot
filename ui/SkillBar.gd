@@ -30,7 +30,8 @@ func _ready():
 func load_shortcuts():
 	for shortcut in loaded_skills.keys():
 		if loaded_skills[shortcut] != null:
-			var skill_icon = load("res://assets/skill_icons/" + loaded_skills[shortcut] + "_icon.png")
+			var skill_element = DataImport.skill_data[loaded_skills[shortcut]].Element
+			var skill_icon = load("res://assets/skill_icons/" + skill_element + "/" + loaded_skills[shortcut] + "_icon.png")
 			get_node(shortcuts_path + shortcut + "/TextureButton").set_normal_texture(skill_icon)
 
 

@@ -149,6 +149,9 @@ func scale_sprite():
 			particles.process_material.emission_sphere_radius = skillRadius	
 	
 func destroy():
-	var TW = get_tree().create_tween()
-	TW.tween_property(self, "scale", Vector2.ZERO, .1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	TW.tween_callback(self, "queue_free")
+	if skillType != "full_view":
+		var TW = get_tree().create_tween()
+		TW.tween_property(self, "scale", Vector2.ZERO, .1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		TW.tween_callback(self, "queue_free")
+	else:
+		queue_free()

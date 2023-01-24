@@ -61,7 +61,7 @@
     "SkillDamage": 300,
     "HealAmount": 50,
     "KnockbackModifier": 100,
-    "SkillRadius": 300,
+    "SkillRadius": 200,
     "Distance": null,
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,

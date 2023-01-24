@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://abilities/Skillsheet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/particle_textures/smallpixelstar01.png" type="Texture" id=2]
@@ -16,33 +16,6 @@ shader = ExtResource( 4 )
 shader_param/strength = 0.5
 shader_param/speed = 0.5
 shader_param/angle = 0.0
-
-[sub_resource type="Animation" id=5]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Particles2D:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ) ]
-}
 
 [sub_resource type="Animation" id=2]
 resource_name = "start"
@@ -70,7 +43,7 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "at_cursor_ending_animation_finished"
+"method": "destroy"
 } ]
 }
 tracks/2/type = "value"
@@ -127,7 +100,6 @@ vframes = 9
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "start"
-anims/RESET = SubResource( 5 )
 anims/start = SubResource( 2 )
 
 [node name="CollisionShape2D" parent="." index="2"]
