@@ -27,6 +27,7 @@ var projectileSpeed = 0.0
 var destroyOnImpact = true
 var aoeDamageDelayTime = 0.0
 var destroyDelayTime = 0.0
+var isUltimate = false
 
 var knockback_vector = Vector2.ZERO
 
@@ -48,19 +49,22 @@ func _ready():
 	destroyOnImpact = DataImport.skill_data[skillName].DestroyedOnImpact
 	aoeDamageDelayTime = DataImport.skill_data[skillName].AoEDamageDelayTime
 	destroyDelayTime = DataImport.skill_data[skillName].DestroyDelayTime
+	isUltimate = DataImport.skill_data[skillName].Ultimate
 
-	if skillRadius != null:
+	if skillRadius != null and isUltimate == false:
 		collisionShape.get_shape().radius = skillRadius
-		var sizeto = Vector2(skillRadius,skillRadius)
-		var size = skillSprite.texture.get_size() / Vector2(skillSprite.hframes, skillSprite.vframes)
-		var scale_factor = sizeto/size
-		skillSprite.scale = scale_factor * 2.1
 	
 	if canHeal == true:
 		start_heal()
+		
+	particles.emitting = true
+	if get_node_or_null("Particles2D2") != null:
+		$Particles2D2.emitting = true
 	
 # == PROJECTILES ==
 func projectile():
+	scale_sprite()
+	
 	var projectileRotation = Vector2.RIGHT.rotated(rotation)
 	knockback_vector = projectileRotation
 	
@@ -74,21 +78,27 @@ func projectile():
 
 # == AT_CURSORS ==
 func at_cursor():
-	pass
+	scale_sprite()
 	
 func at_cursor_starting_animation_finished():
 	animationPlayer.play("end")
 
 func at_cursor_ending_animation_finished():
-	destroy()
+	var TW = get_tree().create_tween()
+	TW.tween_property(self, "scale", Vector2.ZERO, .5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	TW.tween_callback(self, "destroy")
+	pass
 
 # == AROUND SELF ==
 func around_self():
 	collisionShape.position.y += 6
 	skillSprite.position.y += 6
+	scale_sprite()
 
 # == FRONT ARC ==
 func front_arc():
+	scale_sprite()
+	
 	if cursorDirection.y < 0:
 		skillSprite.z_index = -1
 	else:
@@ -96,15 +106,6 @@ func front_arc():
 		
 	var frontArcRotation = Vector2.RIGHT.rotated(rotation)	
 	knockback_vector = frontArcRotation
-	
-#	collisionShape.shape.radius = skillRadius
-	
-#When the shape was a capsule
-#	var rotation = get_angle_to(cursorDirection)
-#	collisionShape.rotation_degrees = rotation
-#	collisionShape.shape.height = skillRadius
-#	collisionShape.shape.radius = skillRadius/2
-
 	
 func front_arc_animation_finished():
 	destroy()
@@ -120,7 +121,29 @@ func start_heal():
 func _on_Skillsheet_body_entered(_body):
 	if destroyOnImpact == true:
 		destroy()
+
+func scale_sprite():
+	if isUltimate == true:
+		var sizeto = OS.window_size / 2
 		
+		var spriteSize = skillSprite.texture.get_size() / Vector2(skillSprite.hframes, skillSprite.vframes)
+		var sprite_scale_factor = sizeto/spriteSize
+		skillSprite.scale = sprite_scale_factor
+		
+	else:
+		var sizeto = Vector2(skillRadius,skillRadius)
+		
+		var spriteSize = skillSprite.texture.get_size() / Vector2(skillSprite.hframes, skillSprite.vframes)
+		var sprite_scale_factor = sizeto/spriteSize * 5
+		skillSprite.scale = sprite_scale_factor
+	
+		if particles.material != null:
+	#		var particleSize = particles.texture.get_size() / Vector2(particles.material.particles_anim_h_frames, particles.material.particles_anim_v_frames)
+	#		var particle_scale_factor = sizeto/particleSize
+	#		particles.process_material.scale = particle_scale_factor.x
+			
+			particles.process_material.emission_sphere_radius = skillRadius	
+	
 func destroy():
 	var TW = get_tree().create_tween()
 	TW.tween_property(self, "scale", Vector2.ZERO, .1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)

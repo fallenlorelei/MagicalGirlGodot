@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/smite.png-cad8355d549fa2c034c5fc6af66cddcc.stex"
+path="res://.import/smite.png-dedaa0affcaa4398ed6fa0f7f3b0899c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/abilities/smite.png"
-dest_files=[ "res://.import/smite.png-cad8355d549fa2c034c5fc6af66cddcc.stex" ]
+source_file="res://assets/abilities/light/smite.png"
+dest_files=[ "res://.import/smite.png-dedaa0affcaa4398ed6fa0f7f3b0899c.stex" ]
 
 [params]
 

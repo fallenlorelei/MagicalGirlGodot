@@ -8,7 +8,7 @@ onready var playerStats = PlayerStats
 
 var screensize = OS.window_size
 var adj_pos = Vector2()	
-var playerAlive = true
+
 
 func _ready():
 	pass
@@ -25,6 +25,6 @@ func _physics_process(_delta):
 	adj_pos.x = clamp(cursor_pos.x, 0, screensize.x - rect_size.x - background.rect_position.x)
 	adj_pos.y = clamp(cursor_pos.y, 0 , screensize.y - rect_size.y - background.rect_position.y)
 	tooltip.set_position(adj_pos)
-	if playerAlive == true:
+	if is_instance_valid(playerStats):
 		if playerStats.hp > 0:
 			expLabel.set_text("Experience: 100/400")

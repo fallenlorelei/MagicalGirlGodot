@@ -12,12 +12,12 @@ var mouse_over_ui
 var loaded_skills = {
 	"left_click": "Basic",
 	
-	"ability1": "Basic",
-	"ability2": "Smite",
-	"ability3": "Healing_Light",
+	"ability1": "Smite",
+	"ability2": "Healing_Light",
+	"ability3": "Starry_Eyed",
 	"ability4": "Prismatica",
 	"ability5": "Shadowstrike",
-	"ability6": null
+	"ability6": "Fiery_Barrage"
 }
 
 func _ready():

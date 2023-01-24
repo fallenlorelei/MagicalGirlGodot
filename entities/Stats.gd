@@ -13,6 +13,7 @@ export(float) var invincibleDuration = .5
 var hpPercentage
 var hpBar
 var hpBarAnimation
+var playerAlive = true
 
 func _ready():
 	pass
@@ -59,4 +60,5 @@ func hpBarUpdate(hp):
 		yield(hpBarAnimation, "animation_finished")
 
 func die():
+	playerAlive = false
 	queue_free()

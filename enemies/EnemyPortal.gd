@@ -31,6 +31,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		spawn_enemies()
 	if anim_name == "closing":
 		sprite.hide()
+		queue_free()
 
 func spawn_enemies():
 	var enemySpawn = get_random_enemy().instance()

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/20_magicbubbles_spritesheet.png-88ba87adc4f6d0aa958fc26da396a118.stex"
+path="res://.import/prismatica_fullscreen.png-707bb04cab39a65ce76b3548d393d948.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/abilities/placeholder/20_magicbubbles_spritesheet.png"
-dest_files=[ "res://.import/20_magicbubbles_spritesheet.png-88ba87adc4f6d0aa958fc26da396a118.stex" ]
+source_file="res://assets/abilities/light/prismatica_fullscreen.png"
+dest_files=[ "res://.import/prismatica_fullscreen.png-707bb04cab39a65ce76b3548d393d948.stex" ]
 
 [params]
 

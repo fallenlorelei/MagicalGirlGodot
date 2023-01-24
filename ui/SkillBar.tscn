@@ -23,7 +23,7 @@ shader_param/corner_radius = 8.0
 
 [sub_resource type="ShaderMaterial" id=23]
 shader = ExtResource( 6 )
-shader_param/corner_radius = 10.0
+shader_param/corner_radius = 5.0
 
 [sub_resource type="InputEventAction" id=1]
 action = "ability1"
@@ -33,7 +33,7 @@ shortcut = SubResource( 1 )
 
 [sub_resource type="ShaderMaterial" id=17]
 shader = ExtResource( 6 )
-shader_param/corner_radius = 10.0
+shader_param/corner_radius = 5.0
 
 [sub_resource type="InputEventAction" id=3]
 action = "ability2"
@@ -43,7 +43,7 @@ shortcut = SubResource( 3 )
 
 [sub_resource type="ShaderMaterial" id=18]
 shader = ExtResource( 6 )
-shader_param/corner_radius = 10.0
+shader_param/corner_radius = 5.0
 
 [sub_resource type="InputEventAction" id=5]
 action = "ability3"
@@ -53,7 +53,7 @@ shortcut = SubResource( 5 )
 
 [sub_resource type="ShaderMaterial" id=19]
 shader = ExtResource( 6 )
-shader_param/corner_radius = 10.0
+shader_param/corner_radius = 3.0
 
 [sub_resource type="InputEventAction" id=7]
 action = "ability4"
@@ -63,7 +63,7 @@ shortcut = SubResource( 7 )
 
 [sub_resource type="ShaderMaterial" id=20]
 shader = ExtResource( 6 )
-shader_param/corner_radius = 10.0
+shader_param/corner_radius = 5.0
 
 [sub_resource type="InputEventAction" id=10]
 action = "ability5"
@@ -73,7 +73,7 @@ shortcut = SubResource( 10 )
 
 [sub_resource type="ShaderMaterial" id=21]
 shader = ExtResource( 6 )
-shader_param/corner_radius = 10.0
+shader_param/corner_radius = 5.0
 
 [sub_resource type="InputEventAction" id=13]
 action = "ability6"
@@ -164,11 +164,13 @@ show_behind_parent = true
 material = SubResource( 23 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.0
-margin_top = 1.0
-margin_right = -1.0
-margin_bottom = -11.0
-rect_min_size = Vector2( 32, 32 )
+margin_left = 3.0
+margin_top = 3.0
+margin_right = -3.0
+margin_bottom = -3.0
+rect_min_size = Vector2( 28, 28 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
 shortcut_in_tooltip = false
 action_mode = 0
 button_mask = 0
@@ -229,11 +231,13 @@ show_behind_parent = true
 material = SubResource( 17 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.0
-margin_top = 1.0
-margin_right = -1.0
-margin_bottom = -11.0
-rect_min_size = Vector2( 32, 32 )
+margin_left = 3.0
+margin_top = 3.0
+margin_right = -3.0
+margin_bottom = -3.0
+rect_min_size = Vector2( 28, 28 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
 shortcut_in_tooltip = false
 action_mode = 0
 button_mask = 0
@@ -294,11 +298,13 @@ show_behind_parent = true
 material = SubResource( 18 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.0
-margin_top = 1.0
-margin_right = -1.0
-margin_bottom = -11.0
-rect_min_size = Vector2( 32, 32 )
+margin_left = 3.0
+margin_top = 3.0
+margin_right = -3.0
+margin_bottom = -3.0
+rect_min_size = Vector2( 28, 28 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
 shortcut_in_tooltip = false
 action_mode = 0
 button_mask = 0
@@ -358,11 +364,13 @@ show_behind_parent = true
 material = SubResource( 19 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.0
-margin_top = 1.0
-margin_right = -1.0
-margin_bottom = -11.0
-rect_min_size = Vector2( 32, 32 )
+margin_left = 3.0
+margin_top = 4.0
+margin_right = -3.0
+margin_bottom = -3.0
+rect_min_size = Vector2( 28, 28 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
 shortcut_in_tooltip = false
 action_mode = 0
 button_mask = 0
@@ -423,11 +431,13 @@ show_behind_parent = true
 material = SubResource( 20 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.0
-margin_top = 1.0
-margin_right = -1.0
-margin_bottom = -11.0
-rect_min_size = Vector2( 32, 32 )
+margin_left = 3.0
+margin_top = 3.0
+margin_right = -3.0
+margin_bottom = -3.0
+rect_min_size = Vector2( 28, 28 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
 shortcut_in_tooltip = false
 action_mode = 0
 button_mask = 0
@@ -488,11 +498,13 @@ show_behind_parent = true
 material = SubResource( 21 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.0
-margin_top = 1.0
-margin_right = -1.0
-margin_bottom = -1.0
-rect_min_size = Vector2( 32, 32 )
+margin_left = 3.0
+margin_top = 3.0
+margin_right = -3.0
+margin_bottom = -3.0
+rect_min_size = Vector2( 28, 28 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
 shortcut_in_tooltip = false
 action_mode = 0
 button_mask = 0

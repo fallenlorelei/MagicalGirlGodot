@@ -7,7 +7,6 @@ onready var castingCircleAnimation = $CastingCircle/AnimationPlayer
 onready var projectileLine = $ProjectilePreview
 onready var frontArcPreview = $FrontArcPreview
 
-
 var cooldownTracker = CooldownTracker
 var parentCursorDirection
 var parentCursorLocation
@@ -17,21 +16,23 @@ var skillElement
 var distance
 var outOfBounds = false
 var castingCircleRotatingPosition
+var parent
 			
 func _ready():
+	parent = get_parent()
 	castingCircleRotatingPosition = 0.0
 
 func _physics_process(_delta):
-	parentCursorDirection = get_parent().cursorDirection
-	parentCursorLocation = get_parent().cursorLocation
+	parentCursorDirection = parent.cursorDirection
+	parentCursorLocation = parent.cursorLocation
 	
 #	var cursorLocation = get_local_mouse_position()
 #	var cursorDirection = (get_global_mouse_position() - position).normalized()
 
 	if skillName != null:
-		get_parent().animationTree.set("parameters/Attack/blend_position", parentCursorDirection)
-		get_parent().animationTree.set("parameters/Idle/blend_position", parentCursorDirection)
-		get_parent().animationTree.set("parameters/Run/blend_position", parentCursorDirection)
+		parent.animationTree.set("parameters/Attack/blend_position", parentCursorDirection)
+		parent.animationTree.set("parameters/Idle/blend_position", parentCursorDirection)
+		parent.animationTree.set("parameters/Run/blend_position", parentCursorDirection)
 		
 		# MOVING CAST PREVIEWS
 		if DataImport.skill_data[skillName].SkillType == "at_cursor":
@@ -82,7 +83,7 @@ func _physics_process(_delta):
 				release_ability()
 		
 		# RELEASE IF LEFT CLICK
-		if skillShortcut == "left_click" and get_parent().mouse_over_ui == false:
+		if skillShortcut == "left_click" and parent.mouse_over_ui == false:
 			release_ability()
 
 func check_global_cooldown():
@@ -155,7 +156,12 @@ func release_ability():
 			ability.global_position = parentCursorLocation
 			var ability_rotation = self.global_position.direction_to(parentCursorLocation)
 			get_tree().get_current_scene().add_child(ability)
+			
 			ability.skillSprite.flip_h = ability_rotation.x < 0
+			if ability_rotation.x > 0:
+				ability.particles.scale = Vector2(1,1)
+			else:
+				ability.particles.scale = Vector2(-1,1)
 			ability.at_cursor()
 #
 		"self_utility":
@@ -185,7 +191,7 @@ func release_ability():
 	stop_casting()
 
 func stop_casting():
-	get_parent().state = 0
+	parent.state = 0
 	var TW = get_tree().create_tween()
 	TW.tween_property(castingCircleSprite, "scale", Vector2(0,0), .2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	projectileLine.hide()
@@ -199,7 +205,7 @@ func load_ability(skillName):
 
 
 func attack_animation():
-	get_parent().state = 5
-	get_parent().animationState.travel("Attack")
+	parent.state = 5
+	parent.animationState.travel("Attack")
 	if attackAnimationTimer.is_stopped():
 		attackAnimationTimer.start()

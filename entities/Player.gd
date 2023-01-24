@@ -142,7 +142,7 @@ func health_changed(new_hp):
 func heal(healAmount):
 	playerStats.hp += healAmount
 	var TW = create_tween()
-	TW.tween_property(sprite, "modulate", Color.yellow, .2)
+	TW.tween_property(sprite, "modulate", Color(0.549451, 0.978881, 1), .2)
 	TW.tween_property(sprite, "modulate", Color(1, 1, 1), 1)
 
 #	== DYING ==	

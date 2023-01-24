@@ -279,14 +279,16 @@ margin_right = -106.0
 margin_bottom = 7.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 0, -2 )
+position = Vector2( 321, 140 )
 current = true
+zoom = Vector2( 0.7, 0.7 )
 process_mode = 0
 smoothing_enabled = true
 
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 321, 142 )
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSort/Player"]
 position = Vector2( 0, -2 )
