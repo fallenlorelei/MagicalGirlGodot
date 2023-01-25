@@ -5,6 +5,7 @@ onready var flashTimer = $FlashTimer
 var object
 var ability
 var particle
+var particlesSpawned
 
 func _ready():
 	var particleType = DataImport.skill_data[ability.name.rstrip("0123456789").trim_prefix("@").trim_suffix("@")].HitEffectParticles
@@ -21,9 +22,10 @@ func _physics_process(delta):
 func spawn_particle(particleType):
 	particle = get_node(str(particleType))
 	particle.emitting = true
-
+	particlesSpawned = true
 
 func _on_FlashTimer_timeout():
 	object.sprite.material.set_shader_param("solid_color", Color(1,1,1,0))
-	if particle.emitting == false:
-		queue_free()
+	if particlesSpawned == true:
+		if particle.emitting == false:
+			queue_free()

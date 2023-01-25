@@ -42,6 +42,7 @@ ElementalCrystalCounter="*res://ui/ElementalCrystalCounter.tscn"
 DataImport="*res://data/DataImport.gd"
 CooldownTracker="*res://abilities/CooldownTracker.tscn"
 PlayerStats="*res://entities/PlayerStats.tscn"
+SignalBus="*res://scripts/SignalBus.gd"
 
 [display]
 

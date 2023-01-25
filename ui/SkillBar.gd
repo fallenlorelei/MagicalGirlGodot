@@ -17,7 +17,7 @@ var loaded_skills = {
 	"ability3": "Starry_Eyed",
 	"ability4": "Prismatica",
 	"ability5": "Shadowstrike",
-	"ability6": "Fiery_Barrage"
+	"ability6": "Shadow_Meld"
 }
 
 func _ready():

@@ -1,20 +1,19 @@
 extends "res://entities/EntityBase.gd"
 
+
+
 onready var sprite = $Sprite
-#onready var hurtbox = $Hurtbox
 onready var attackManager = $AttackManager
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
 onready var skillbar = get_node("../../CanvasLayer/BottomUI/VBoxContainer/SkillBar")
 onready var crystalMouseoverBox = get_node("../../CanvasLayer/CrystalCounter/")
 
-	
 export(int) var JUMP_SPEED = 110
 
 export var minimap_icon = "icon"
 
 var jump_vector = Vector2.LEFT
-#var abilityPressed setget set_attack
 var cursorDirection = Vector2()
 var cursorLocation = Vector2()
 var selected_skill = "skill" setget set_attack
@@ -29,6 +28,8 @@ func _ready():
 	playerStats.connect("hp_changed", self, "health_changed")
 	playerStats.connect("healed", self, "heal")
 	playerStats.connect("died", self, "begin_dying")
+	
+	signalBus.connect("begin_shadowmeld", self, "begin_shadowmeld")
 	
 	# Connecting skillbar to stop left-click attack when dragging abilities
 	skillbar.connect("mouseover", self, "set_mouseover")
@@ -116,20 +117,14 @@ func jump_state():
 	# Sets collision mask so that girl can jump through enemies
 	# This is reset when jump animation is finished
 	# Current problem: I would like the slimes to still "see" her when she's jumping, to chase, just not collide
-	set_collision_layer_bit(1, false)
-	set_collision_layer_bit(4, true)
-	set_collision_mask_bit(2, false)
-	hurtbox.set_collision_layer_bit(5, false)
+	turn_off_collision_masks()
 
 func jump_landed():
 	velocity = Vector2.ZERO
 	
 func jump_animation_finished():
 	velocity = Vector2.ZERO
-	set_collision_layer_bit(1, true)
-	set_collision_layer_bit(4, false)
-	set_collision_mask_bit(2, true)
-	hurtbox.set_collision_layer_bit(5, true)
+	reset_collision_masks()
 	state = 0
 	
 
@@ -145,6 +140,31 @@ func heal(healAmount):
 	TW.tween_property(sprite, "modulate", Color(0.549451, 0.978881, 1), .2)
 	TW.tween_property(sprite, "modulate", Color(1, 1, 1), 1)
 
+func begin_shadowmeld(location, projectileSpeed):
+	var shadowmeldCoverSprite = load("res://abilities/Dark/ShadowMeldCoverSprite.tscn")
+	var shadowmeldCover = shadowmeldCoverSprite.instance()
+	turn_off_collision_masks()
+	add_child(shadowmeldCover)
+	shadowmeldCover.play("animate")
+	
+	var TW = get_tree().create_tween()
+	TW.tween_property(sprite, "modulate", Color(0.231373, 0.168627, 0.380392, .7), .1)
+	TW.tween_property(self, "position", location, projectileSpeed).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	TW.tween_property(sprite, "modulate", Color(1, 1, 1), 0.5)
+	TW.tween_callback(self, "reset_collision_masks")
+
+func turn_off_collision_masks():
+	set_collision_layer_bit(1, false)
+	set_collision_layer_bit(4, true)
+	set_collision_mask_bit(2, false)
+	hurtbox.set_collision_layer_bit(5, false)
+	
+func reset_collision_masks():
+	set_collision_layer_bit(1, true)
+	set_collision_layer_bit(4, false)
+	set_collision_mask_bit(2, true)
+	hurtbox.set_collision_layer_bit(5, true)
+		
 #	== DYING ==	
 func begin_dying():
 	state = DYING

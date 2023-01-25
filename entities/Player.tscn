@@ -12,10 +12,10 @@
 [ext_resource path="res://assets/ui/arc-circle.png" type="Texture" id=10]
 [ext_resource path="res://entities/Hurtbox.tscn" type="PackedScene" id=11]
 
-[sub_resource type="Animation" id=50]
+[sub_resource type="Animation" id=99]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -24,7 +24,31 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 8 ]
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -8 ) ]
 }
 
 [sub_resource type="Animation" id=51]
@@ -1183,7 +1207,7 @@ states/death/node = SubResource( 87 )
 states/death/position = Vector2( 293, -77 )
 transitions = [ "Idle", "Run", SubResource( 23 ), "Run", "Idle", SubResource( 24 ), "Run", "Jump", SubResource( 35 ), "Idle", "Attack", SubResource( 47 ), "Attack", "Idle", SubResource( 48 ), "Jump", "Run", SubResource( 49 ), "Idle", "death", SubResource( 88 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -392, -207 )
+graph_offset = Vector2( -359, -292 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=85]
 
@@ -1284,7 +1308,7 @@ frame = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 unique_name_in_owner = true
-anims/RESET = SubResource( 50 )
+anims/RESET = SubResource( 99 )
 anims/attack1_down = SubResource( 51 )
 anims/attack1_left = SubResource( 52 )
 anims/attack1_right = SubResource( 53 )

@@ -4,7 +4,7 @@
 [ext_resource path="res://items/ElementalCrystalSprite.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 9.0
+radius = 13.3333
 height = 0.0
 
 [node name="CrystalDrop" type="Area2D"]

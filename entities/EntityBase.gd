@@ -1,6 +1,7 @@
 class_name EntityBase extends KinematicBody2D
 
 onready var hurtbox = $Hurtbox
+onready var signalBus = SignalBus
 
 export(int) var ACCELERATION = 450
 export(int) var MAX_SPEED = 80

@@ -1,6 +1,7 @@
 extends Area2D
 
 onready var playerStats = PlayerStats
+onready var signalBus = SignalBus
 onready var skillSprite = $Sprite
 onready var animationPlayer = $AnimationPlayer
 onready var collisionShape = $CollisionShape2D
@@ -62,6 +63,7 @@ func _ready():
 		hasCooldown = true
 		
 	particles.emitting = true
+	
 	if get_node_or_null("Particles2D2") != null:
 		$Particles2D2.emitting = true
 	
@@ -76,7 +78,7 @@ func projectile():
 	var location = global_position + direction
 	
 	var TW = get_tree().create_tween()
-	TW.tween_property(self, "position", location, .5).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	TW.tween_property(self, "position", location, projectileSpeed).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	TW.tween_property(self, "scale", Vector2.ZERO, .1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	TW.tween_callback(self, "destroy")
 
@@ -105,8 +107,10 @@ func front_arc():
 	
 	if cursorDirection.y < 0:
 		skillSprite.z_index = -1
+		particles.z_index = -1
 	else:
 		skillSprite.z_index = 1
+		particles.z_index = 1
 		
 	var frontArcRotation = Vector2.RIGHT.rotated(rotation)	
 	knockback_vector = frontArcRotation

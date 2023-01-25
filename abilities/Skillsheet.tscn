@@ -4,11 +4,14 @@
 
 [sub_resource type="ParticlesMaterial" id=1]
 emission_shape = 1
-emission_sphere_radius = 1.0
+emission_sphere_radius = 20.0
 flag_disable_z = true
-gravity = Vector3( 0, 98, 0 )
+gravity = Vector3( 0, 0, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
+scale = 0.2
+scale_random = 0.1
+anim_speed = 1.0
 
 [node name="Skillsheet" type="Area2D" groups=["Player"]]
 modulate = Color( 1.5, 1.5, 1.5, 1 )
