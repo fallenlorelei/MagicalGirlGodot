@@ -1,6 +1,9 @@
 extends Node
 
-signal begin_shadowmeld(length, cursorDirection)
+#UI
+signal mouseover(TF)
+signal mouseOverLock(TF)
 
-func _ready():
-	pass
+
+#Skills
+signal begin_shadowmeld(length, cursorDirection)

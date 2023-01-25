@@ -1,6 +1,6 @@
 extends Control
 
-signal mouseover
+#signal mouseover
 
 onready var shortcuts_path = "Background/HBoxContainer/"
 
@@ -47,8 +47,8 @@ func SelectShortcut(shortcut):
 # Sends signal so player isn't left-click attacking when dragging abilities
 func _on_TextureButton_mouse_entered():
 	mouse_over_ui = true
-	emit_signal("mouseover")
+	SignalBus.emit_signal("mouseover", true)
 
 func _on_TextureButton_mouse_exited():
 	mouse_over_ui = false
-	emit_signal("mouseover")
+	SignalBus.emit_signal("mouseover", false)

@@ -1,12 +1,10 @@
 extends "res://entities/EntityBase.gd"
 
-
-
 onready var sprite = $Sprite
 onready var attackManager = $AttackManager
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
-onready var skillbar = get_node("../../CanvasLayer/BottomUI/VBoxContainer/SkillBar")
+
 onready var crystalMouseoverBox = get_node("../../CanvasLayer/CrystalCounter/")
 
 export(int) var JUMP_SPEED = 110
@@ -23,17 +21,18 @@ var map_pos
 
 func _ready():
 	animationTree.active = true
+	
 	playerStats.hpBar = get_node("../../CanvasLayer/BottomUI/VBoxContainer/HBoxContainer/HealthBar/PlayerHPBar")
 	playerStats.hpBarAnimation = get_node("../../CanvasLayer/BottomUI/VBoxContainer/HBoxContainer/HealthBar/PlayerHPBar/AnimationPlayer")
 	playerStats.connect("hp_changed", self, "health_changed")
 	playerStats.connect("healed", self, "heal")
 	playerStats.connect("died", self, "begin_dying")
+		
+	# Connecting skillbar to stop left-click attack when dragging abilities
+	signalBus.connect("mouseover", self, "set_mouseover")
+	signalBus.connect("mouseOverLock", self, "set_mouseover")
 	
 	signalBus.connect("begin_shadowmeld", self, "begin_shadowmeld")
-	
-	# Connecting skillbar to stop left-click attack when dragging abilities
-	skillbar.connect("mouseover", self, "set_mouseover")
-	crystalMouseoverBox.connect("mouseOverLock", self, "set_mouseover")
 
 func _physics_process(delta): 
 	match state:
@@ -97,8 +96,8 @@ func attack_animation_finished():
 	state = MOVE
 	move()
 
-func set_mouseover():
-	if skillbar.mouse_over_ui == true or crystalMouseoverBox.mouseOverLock == true:
+func set_mouseover(TF):
+	if TF == true:
 		mouse_over_ui = true
 	else:
 		mouse_over_ui = false

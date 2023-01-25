@@ -1,7 +1,5 @@
 extends Control
 
-signal mouseOverLock
-
 onready var crystalCounters = ElementalCrystalCounter.crystals
 
 onready var crystalUi = {
@@ -81,9 +79,9 @@ func _on_LockButton_toggled(button_pressed):
 
 func _on_LockButton_mouse_entered():
 	mouseOverLock = true
-	emit_signal("mouseOverLock")
+	SignalBus.emit_signal("mouseOverLock", true)
 
 func _on_LockButton_mouse_exited():
 	mouseOverLock = false
-	emit_signal("mouseOverLock")
+	SignalBus.emit_signal("mouseOverLock", false)
 	_on_MouseDetection_Close_mouse_exited()
