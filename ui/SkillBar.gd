@@ -1,7 +1,5 @@
 extends Control
 
-#signal mouseover
-
 onready var shortcuts_path = "Background/HBoxContainer/"
 
 var mouse_over_ui

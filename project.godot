@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "InteractiveTilemap",
 "language": "GDScript",
 "path": "res://maze/TileMap.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://StateMachine.gd"
 } ]
 _global_script_class_icons={
 "EntityBase": "",
 "GitAPI": "",
-"InteractiveTilemap": ""
+"InteractiveTilemap": "",
+"StateMachine": ""
 }
 
 [application]

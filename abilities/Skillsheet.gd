@@ -93,7 +93,6 @@ func at_cursor_ending_animation_finished():
 	var TW = get_tree().create_tween()
 	TW.tween_property(self, "scale", Vector2.ZERO, .5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	TW.tween_callback(self, "destroy")
-	pass
 
 # == AROUND SELF ==
 func around_self():
@@ -126,7 +125,7 @@ func start_heal():
 		queue_free()
 
 # == OTHER ==
-func _on_Skillsheet_body_entered(_body):
+func _on_Skillsheet_body_entered(body):
 	if destroyOnImpact == true:
 		destroy()
 
@@ -147,9 +146,6 @@ func scale_sprite():
 		skillSprite.scale = sprite_scale_factor
 	
 		if particles.material != null:
-	#		var particleSize = particles.texture.get_size() / Vector2(particles.material.particles_anim_h_frames, particles.material.particles_anim_v_frames)
-	#		var particle_scale_factor = sizeto/particleSize
-	#		particles.process_material.scale = particle_scale_factor.x
 			particles.process_material.emission_sphere_radius = skillRadius	
 	
 func destroy():

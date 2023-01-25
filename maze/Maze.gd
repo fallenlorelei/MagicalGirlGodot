@@ -90,7 +90,7 @@ func make_maze():
 
 func erase_walls():
 	#randomly remove a number of walls on map
-	for i in range(int(width * height * erase_fraction)):
+	for _i in range(int(width * height * erase_fraction)):
 		var x = int(rand_range(1,width-1))
 		var y = int(rand_range(1,height-1))
 		var cell = Vector2(x, y)

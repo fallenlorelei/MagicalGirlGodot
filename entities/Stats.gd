@@ -41,10 +41,10 @@ func receive_damage(base_damage):
 func heal(healAmount):
 	emit_signal("healed", healAmount)
 	
-func hpBarUpdate(hp):
+func hpBarUpdate(current_hp):
 	hpBar.show()
 	
-	hpPercentage = int((float(hp) / hp_max) * 100)
+	hpPercentage = int((float(current_hp) / hp_max) * 100)
 	var TW = get_tree().create_tween()
 	TW.tween_property(hpBar, "value", float(hpPercentage), .2)
 	
@@ -54,10 +54,9 @@ func hpBarUpdate(hp):
 		TW.tween_property(hpBar, "tint_progress", Color(0.870588, 0.415686, 0.219608), .2)
 	else:
 		TW.tween_property(hpBar, "tint_progress", Color(0.65098, 0.192157, 0.27451), .2)
-	
+
 	if hpBar.is_in_group("Player"):
-		hpBarAnimation.play("shake")
-		yield(hpBarAnimation, "animation_finished")
+		SignalBus.emit_signal("shake_hp_bar")
 
 func die():
 	playerAlive = false

@@ -14,7 +14,6 @@ var skillName
 var skillShortcut
 var skillElement
 var distance
-var outOfBounds = false
 var castingCircleRotatingPosition
 var parent
 			
@@ -25,72 +24,66 @@ func _ready():
 func _physics_process(_delta):
 	parentCursorDirection = parent.cursorDirection
 	parentCursorLocation = parent.cursorLocation
-	
-#	var cursorLocation = get_local_mouse_position()
-#	var cursorDirection = (get_global_mouse_position() - position).normalized()
-
 	if skillName != null:
-		parent.animationTree.set("parameters/Attack/blend_position", parentCursorDirection)
-		parent.animationTree.set("parameters/Idle/blend_position", parentCursorDirection)
-		parent.animationTree.set("parameters/Run/blend_position", parentCursorDirection)
-		
-		# MOVING CAST PREVIEWS
-		if DataImport.skill_data[skillName].SkillType == "at_cursor":
+		set_animation_blend()
+		update_visual_cast()
+		check_out_of_bounds()
+		check_input()
+
+func set_animation_blend():
+	parent.animationTree.set("parameters/Attack/blend_position", parentCursorDirection)
+	parent.animationTree.set("parameters/Idle/blend_position", parentCursorDirection)
+	parent.animationTree.set("parameters/Run/blend_position", parentCursorDirection)
+
+func update_visual_cast():
+	match DataImport.skill_data[skillName].SkillType:
+		"at_cursor":
 			castingCircleSprite.global_position = parentCursorLocation
 			
-		if DataImport.skill_data[skillName].SkillType == "around_self":
+		"around_self":
 			castingCircleSprite.global_position = global_position + Vector2(0,6)
 		
-		if DataImport.skill_data[skillName].SkillType == "full_view":
+		"full_view":
 			castingCircleSprite.global_position = global_position + Vector2(0,6)
 			
-		if DataImport.skill_data[skillName].SkillType == "projectile":	
+		"projectile":	
 			projectileLine.set_point_position(0,Vector2(0,0))
 			var length = parentCursorDirection * distance
 			projectileLine.set_point_position(1,length)
 			
-		if DataImport.skill_data[skillName].SkillType == "front_arc":
+		"front_arc":
 			frontArcPreview.look_at(parentCursorLocation)
-		
-		# Some abilities can still be cast if they are out of bounds
-		var canCastOutOfBounds
-		if DataImport.skill_data[skillName].SkillType == "at_cursor":
-			canCastOutOfBounds = false
-		else:
-			canCastOutOfBounds = true
 
-		# Checking "distance" of skill. Flashes circle if out of bounds.
-		# Extra coding so switching back to "rotate" is seamless
-		if distance != null and global_position.distance_to(parentCursorLocation) > distance:
+func check_out_of_bounds():
+# Only "at cursor" abilities can't be cast out of bounds
+	if DataImport.skill_data[skillName].SkillType == "at_cursor":
+		if global_position.distance_to(parentCursorLocation) > distance:
 			if castingCircleAnimation.current_animation == "rotate":
 				castingCircleRotatingPosition = castingCircleAnimation.current_animation_position
 			castingCircleAnimation.play("flashing")
-			if canCastOutOfBounds == false:
-				outOfBounds = true
+			return true
 		else:
 			castingCircleAnimation.play("rotate")
 			if castingCircleAnimation.current_animation_position == 0.0:
 				castingCircleAnimation.advance(castingCircleRotatingPosition)
-			outOfBounds = false
-		
-		# CANCELING
-		if Input.is_action_pressed(str(skillShortcut)):
-			if Input.is_action_just_pressed("right_click"):
-				stop_casting()
-		
-		# CANCELING OR RELEASING
-		if Input.is_action_just_released(str(skillShortcut)) and skillName != null:
-			if outOfBounds == true:
-				stop_casting()
-			else:
-				release_ability()
-		
-		# RELEASE IF LEFT CLICK
-		if skillShortcut == "left_click" and parent.mouse_over_ui == false:
-			release_ability()
+			return false
 
-func check_global_cooldown():
-	return globalCooldown.is_stopped()
+func check_input():
+# CANCELING
+	if Input.is_action_pressed(str(skillShortcut)):
+		if Input.is_action_just_pressed("right_click"):
+			stop_casting()
+	
+# OUT OF BOUNDS OR RELEASING
+	if Input.is_action_just_released(str(skillShortcut)) and skillName != null:
+		if check_out_of_bounds():
+			stop_casting()
+		else:
+			release_ability()
+	
+# AUTOMATIC RELEASE IF LEFT CLICK
+	if skillShortcut == "left_click":
+		release_ability()
 
 #Func starts from Player.gd
 func start_ability(selected_skill, selected_shortcut):
@@ -99,8 +92,6 @@ func start_ability(selected_skill, selected_shortcut):
 	distance = DataImport.skill_data[skillName].Distance
 
 	if selected_skill != null:
-
-		#Showing casting circle if relevant
 		match DataImport.skill_data[skillName].SkillType:
 			"at_cursor":
 				show_casting(1, "at_cursor")
@@ -119,49 +110,48 @@ func start_ability(selected_skill, selected_shortcut):
 func show_casting(zindex, type):
 	#Resize casting circle to size of collision
 	var radiusSize = DataImport.skill_data[skillName].SkillRadius
-	
-	if type == "at_cursor" or type == "around_self" or type == "full_view":
-		var sizeto = Vector2(radiusSize,radiusSize)
-		var size = castingCircleSprite.texture.get_size()
-		var scale_factor = sizeto/size * 2
+	match type:
+		"at_cursor", "around_self", "full_view":
+			var sizeto = Vector2(radiusSize,radiusSize)
+			var size = castingCircleSprite.texture.get_size()
+			var scale_factor = sizeto/size * 2
+			
+			castingCircleSprite.scale = Vector2(0,0)
+			castingCircleSprite.z_index = zindex
+			
+			var TW = get_tree().create_tween()
+			TW.tween_property(castingCircleSprite, "scale", scale_factor, .2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+			castingCircleSprite.show()
+			
+		"projectile":
+			projectileLine.width = radiusSize * 2
+			projectileLine.z_index = zindex
+			projectileLine.show()
 		
-		castingCircleSprite.scale = Vector2(0,0)
-		castingCircleSprite.z_index = zindex
-		
-		var TW = get_tree().create_tween()
-		TW.tween_property(castingCircleSprite, "scale", scale_factor, .2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-		castingCircleSprite.show()
-	
-	if type == "projectile":
-		projectileLine.width = radiusSize * 2
-		projectileLine.z_index = zindex
-		projectileLine.show()
-	
-	if type == "front_arc":
-		var sizeto = Vector2(radiusSize,radiusSize)
-		var size = castingCircleSprite.texture.get_size()
-		var scale_factor = sizeto/size * 2
-		frontArcPreview.scale = scale_factor
-		frontArcPreview.z_index = zindex
-		frontArcPreview.show()
+		"front_arc":
+			var sizeto = Vector2(radiusSize,radiusSize)
+			var size = castingCircleSprite.texture.get_size()
+			var scale_factor = sizeto/size * 2
+			frontArcPreview.scale = scale_factor
+			frontArcPreview.z_index = zindex
+			frontArcPreview.show()
 
 # == RELEASE ABILITY ==
 func release_ability():
+	attack_animation()
+	globalCooldown.start()
+	cooldownTracker.start_cooldown(skillName, skillShortcut)
+	
 	skillElement = DataImport.skill_data[skillName].Element
 	var loadedAbility = load_ability(skillName)
 	var ability = loadedAbility.instance()
 	ability.skillName = skillName
-
-	attack_animation()
-	globalCooldown.start()
-	cooldownTracker.start_cooldown(skillName, skillShortcut)
 
 	match DataImport.skill_data[skillName].SkillType:
 		"at_cursor":			
 			ability.global_position = parentCursorLocation
 			var ability_rotation = self.global_position.direction_to(parentCursorLocation)
 			get_tree().get_current_scene().add_child(ability)
-			
 			ability.skillSprite.flip_h = ability_rotation.x < 0
 			if ability_rotation.x > 0:
 				ability.particles.scale = Vector2(1,1)
@@ -172,50 +162,41 @@ func release_ability():
 		"self_utility":
 			add_child(ability)
 #
-		"around_self":
+		"around_self", "full_view":
 			ability.global_position = self.global_position
 			get_tree().get_current_scene().add_child(ability)
 			ability.around_self()
 
-		"full_view":
-			ability.global_position = self.global_position
-			get_tree().get_current_scene().add_child(ability)
-			ability.around_self()
 
-		"front_arc":
+		"front_arc", "projectile":
 			ability.cursorDirection = parentCursorDirection
 			ability.global_position = self.global_position
 			var ability_rotation = self.global_position.direction_to(parentCursorLocation).angle()
 			ability.rotation = ability_rotation
 			get_tree().get_current_scene().add_child(ability)
 			ability.front_arc()
-#
-		"projectile":
-			ability.cursorDirection = parentCursorDirection
-			ability.global_position = self.global_position
-			var ability_rotation = self.global_position.direction_to(parentCursorLocation).angle()
-			ability.rotation = ability_rotation
-			get_tree().get_current_scene().add_child(ability)
-			ability.projectile()
 
 	stop_casting()
 
 func stop_casting():
-	parent.state = 0
 	var TW = get_tree().create_tween()
 	TW.tween_property(castingCircleSprite, "scale", Vector2(0,0), .2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	projectileLine.hide()
 	frontArcPreview.hide()
 	skillName = null
+	parent.selected_skill = null
+	parent.selected_skillSlot = null
+	parent.attackFinished = true
 	
-func load_ability(skillName):
+func load_ability(skill_name):
 	if skillName != null:
-		var path = "res://abilities/" + skillElement + "/" + skillName + "/" + skillName + ".tscn"
+		var path = "res://abilities/" + skillElement + "/" + skill_name + "/" + skill_name + ".tscn"
 		return load(path)
 
-
 func attack_animation():
-	parent.state = 5
 	parent.animationState.travel("Attack")
 	if attackAnimationTimer.is_stopped():
 		attackAnimationTimer.start()
+
+func check_global_cooldown():
+	return globalCooldown.is_stopped()

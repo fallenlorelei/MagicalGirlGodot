@@ -61,7 +61,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.5 ),
+"times": PoolRealArray( 0.4 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -127,7 +127,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.5 ),
+"times": PoolRealArray( 0.4 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -193,7 +193,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.5 ),
+"times": PoolRealArray( 0.4 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -259,7 +259,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.5 ),
+"times": PoolRealArray( 0.4 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -1207,7 +1207,7 @@ states/death/node = SubResource( 87 )
 states/death/position = Vector2( 293, -77 )
 transitions = [ "Idle", "Run", SubResource( 23 ), "Run", "Idle", SubResource( 24 ), "Run", "Jump", SubResource( 35 ), "Idle", "Attack", SubResource( 47 ), "Attack", "Idle", SubResource( 48 ), "Jump", "Run", SubResource( 49 ), "Idle", "death", SubResource( 88 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -359, -292 )
+graph_offset = Vector2( -359, -114 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=85]
 
@@ -1294,17 +1294,16 @@ height = 8.0
 collision_layer = 2
 collision_mask = 133
 script = ExtResource( 2 )
-ACCELERATION = 300
-MAX_SPEED = 60
-FRICTION = 350
+ACCELERATION = 120
+FRICTION = 120
 JUMP_SPEED = 120
 minimap_icon = "icon"
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 position = Vector2( 0, -8 )
-texture = ExtResource( 4 )
-hframes = 24
-frame = 8
+texture = ExtResource( 6 )
+hframes = 20
+frame = 19
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 unique_name_in_owner = true
@@ -1354,7 +1353,7 @@ shape = SubResource( 90 )
 script = ExtResource( 8 )
 
 [node name="AttackAnimationTimer" type="Timer" parent="AttackManager" index="0"]
-wait_time = 0.6
+wait_time = 0.45
 one_shot = true
 
 [node name="GlobalCooldown" type="Timer" parent="AttackManager" index="1"]

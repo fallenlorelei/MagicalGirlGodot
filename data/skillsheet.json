@@ -44,7 +44,7 @@
     "HealAmount": 0,
     "KnockbackModifier": 100,
     "SkillRadius": 30,
-    "Distance": null,
+    "Distance": 140,
     "ProjectileSpeed": null,
     "DestroyedOnImpact": false,
     "AoEDamageDelayTime": 1,

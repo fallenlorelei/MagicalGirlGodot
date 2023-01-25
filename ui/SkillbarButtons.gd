@@ -7,7 +7,7 @@ var skillName
 var skillShortcut
 
 func _ready():
-	CooldownTracker.connect("start_cooldown", self, "get_progressbar")
+	SignalBus.connect("start_cooldown", self, "get_progressbar")
 
 # == DRAG AND DROP ==
 func get_drag_data(_pos):
@@ -84,7 +84,7 @@ func drop_data(_pos, data):
 	
 # == TOOLTIP ==
 func _on_TextureButton_mouse_entered():
-	var tooltip_instance = tooltip.instance()
+	tooltip_instance = tooltip.instance()
 	var skill_slot = get_parent().get_name()
 	var skill_name = get_owner().loaded_skills[skill_slot]
 	tooltip_instance.origin = "Skillbar"
@@ -100,8 +100,8 @@ func _on_TextureButton_mouse_exited():
 		get_node("SkillbarTooltip").free()
 
 # == COOLDOWNS ==
-func get_progressbar(skillShortcut, cooldown):
-	var progressBar = get_owner().get_node("Background/HBoxContainer/" + skillShortcut + "/TextureButton")
+func get_progressbar(skill_shortcut, cooldown):
+	var progressBar = get_owner().get_node("Background/HBoxContainer/" + skill_shortcut + "/TextureButton")
 	progressBar.start_cooldown(cooldown)
 
 func cooldownCheck():
