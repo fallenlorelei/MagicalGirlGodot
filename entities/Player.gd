@@ -219,26 +219,6 @@ func death_animation_finished():
 func health_changed(new_hp):
 	PlayerStats.hpBarUpdate(new_hp)
 
-# == UTILITY ==
-#func heal(healAmount):
-#	PlayerStats.hp += healAmount
-#	var TW = create_tween()
-#	TW.tween_property(sprite, "modulate", Color(0.549451, 0.978881, 1), .2)
-#	TW.tween_property(sprite, "modulate", Color(1, 1, 1), 1)
-#
-#func begin_shadowmeld(location, projectileSpeed):
-#	var shadowmeldCoverSprite = load("res://abilities/Dark/ShadowMeldCoverSprite.tscn")
-#	var shadowmeldCover = shadowmeldCoverSprite.instance()
-#	turn_off_collision_masks()
-#	add_child(shadowmeldCover)
-#	shadowmeldCover.play("animate")
-#
-#	var TW = get_tree().create_tween()
-#	TW.tween_property(sprite, "modulate", Color(0.231373, 0.168627, 0.380392, .7), .1)
-#	TW.tween_property(self, "position", location, projectileSpeed).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-#	TW.tween_property(sprite, "modulate", Color(1, 1, 1), 0.5)
-#	TW.tween_callback(self, "reset_collision_masks")
-
 func set_mouseover(TF):
 	if TF == true:
 		mouse_over_ui = true

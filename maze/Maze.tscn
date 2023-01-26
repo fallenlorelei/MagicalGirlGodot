@@ -281,6 +281,7 @@ margin_bottom = 7.0
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 321, 140 )
 current = true
+zoom = Vector2( 0.9, 0.9 )
 process_mode = 0
 smoothing_enabled = true
 

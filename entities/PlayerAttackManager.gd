@@ -82,7 +82,7 @@ func check_input():
 		else:
 			release_ability()
 	
-# AUTOMATIC RELEASE IF LEFT CLICK
+# IF LEFT CLICK, RELEASE AUTOMATICALLY
 	if skillShortcut == "left_click":
 		release_ability()
 
