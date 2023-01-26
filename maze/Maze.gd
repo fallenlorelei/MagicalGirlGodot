@@ -10,7 +10,6 @@ const E = 2
 const S = 4
 const W = 8
 
-
 var cell_walls = {
 	Vector2(0,-1): N,
 	Vector2(1,0): E,

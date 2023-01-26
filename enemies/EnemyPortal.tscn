@@ -55,7 +55,6 @@ func _on_Timer_timeout():
 
 
 func _on_PlayerActivate_body_entered(body):
-	print(\"hey\")
 	if portalOpened == false:
 		sprite.show()
 		animationPlayer.play(\"opening\")

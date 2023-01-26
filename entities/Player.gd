@@ -34,12 +34,10 @@ func _ready():
 	PlayerStats.hpBar = get_node("../../CanvasLayer/BottomUI/VBoxContainer/HBoxContainer/HealthBar/PlayerHPBar")
 	PlayerStats.hpBarAnimation = get_node("../../CanvasLayer/BottomUI/VBoxContainer/HBoxContainer/HealthBar/PlayerHPBar/AnimationPlayer")
 	PlayerStats.connect("hp_changed", self, "health_changed")
-	PlayerStats.connect("healed", self, "heal")
 	PlayerStats.connect("died", self, "begin_dying")
 		
 	SignalBus.connect("mouseover", self, "set_mouseover")
 	SignalBus.connect("mouseOverLock", self, "set_mouseover")
-	SignalBus.connect("begin_shadowmeld", self, "begin_shadowmeld")
 
 # == STATE MACHINE ==
 func _state_logic(delta):
@@ -222,24 +220,24 @@ func health_changed(new_hp):
 	PlayerStats.hpBarUpdate(new_hp)
 
 # == UTILITY ==
-func heal(healAmount):
-	PlayerStats.hp += healAmount
-	var TW = create_tween()
-	TW.tween_property(sprite, "modulate", Color(0.549451, 0.978881, 1), .2)
-	TW.tween_property(sprite, "modulate", Color(1, 1, 1), 1)
-
-func begin_shadowmeld(location, projectileSpeed):
-	var shadowmeldCoverSprite = load("res://abilities/Dark/ShadowMeldCoverSprite.tscn")
-	var shadowmeldCover = shadowmeldCoverSprite.instance()
-	turn_off_collision_masks()
-	add_child(shadowmeldCover)
-	shadowmeldCover.play("animate")
-	
-	var TW = get_tree().create_tween()
-	TW.tween_property(sprite, "modulate", Color(0.231373, 0.168627, 0.380392, .7), .1)
-	TW.tween_property(self, "position", location, projectileSpeed).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	TW.tween_property(sprite, "modulate", Color(1, 1, 1), 0.5)
-	TW.tween_callback(self, "reset_collision_masks")
+#func heal(healAmount):
+#	PlayerStats.hp += healAmount
+#	var TW = create_tween()
+#	TW.tween_property(sprite, "modulate", Color(0.549451, 0.978881, 1), .2)
+#	TW.tween_property(sprite, "modulate", Color(1, 1, 1), 1)
+#
+#func begin_shadowmeld(location, projectileSpeed):
+#	var shadowmeldCoverSprite = load("res://abilities/Dark/ShadowMeldCoverSprite.tscn")
+#	var shadowmeldCover = shadowmeldCoverSprite.instance()
+#	turn_off_collision_masks()
+#	add_child(shadowmeldCover)
+#	shadowmeldCover.play("animate")
+#
+#	var TW = get_tree().create_tween()
+#	TW.tween_property(sprite, "modulate", Color(0.231373, 0.168627, 0.380392, .7), .1)
+#	TW.tween_property(self, "position", location, projectileSpeed).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+#	TW.tween_property(sprite, "modulate", Color(1, 1, 1), 0.5)
+#	TW.tween_callback(self, "reset_collision_masks")
 
 func set_mouseover(TF):
 	if TF == true:
@@ -254,7 +252,6 @@ func turn_off_collision_masks():
 	hurtbox.set_collision_layer_bit(5, false)
 	
 func reset_collision_masks():
-	print("resetting")
 	set_collision_layer_bit(1, true)
 	set_collision_layer_bit(4, false)
 	set_collision_mask_bit(2, true)

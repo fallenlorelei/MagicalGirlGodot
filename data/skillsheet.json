@@ -582,7 +582,7 @@
     "CooldownDuration": 0,
     "SkillDamage": 10,
     "HealAmount": 0,
-    "KnockbackModifier": 80,
+    "KnockbackModifier": 40,
     "SkillRadius": 15,
     "Distance": 100,
     "ProjectileSpeed": 0.5,

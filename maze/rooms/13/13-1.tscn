@@ -36,3 +36,11 @@ tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1
 tile_data = PoolIntArray( 524297, 4, 0, 524298, 0, 2, 524299, 0, 2, 524300, 0, 2, 524301, 0, 2, 524302, 0, 1, 524303, 0, 0, 524304, 0, 1, 524305, 0, 0, 524306, 0, 0, 524307, 0, 1, 589833, 6, 0, 589834, 4, 131073, 589835, 5, 2, 589836, 1, 0, 589837, 1, 0, 589838, 1, 0, 589839, 1, 0, 589840, 1, 0, 589841, 1, 0, 589842, 1, 0, 589843, 1, 0, 655369, 4, 196608, 655370, 2, 2, 655371, 2, 2, 655372, 2, 2, 655373, 2, 0, 655374, 2, 2, 655375, 2, 1, 655376, 2, 2, 655377, 2, 0, 655378, 2, 1, 655379, 2, 1 )
+
+[node name="PortalPositions" type="Node2D" parent="."]
+
+[node name="Center" type="Position2D" parent="PortalPositions"]
+position = Vector2( 336, 304 )
+
+[node name="East" type="Position2D" parent="PortalPositions"]
+position = Vector2( 576, 304 )

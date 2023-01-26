@@ -7,6 +7,7 @@ onready var castingCircleAnimation = $CastingCircle/AnimationPlayer
 onready var projectileLine = $ProjectilePreview
 onready var frontArcPreview = $FrontArcPreview
 
+
 var cooldownTracker = CooldownTracker
 var parentCursorDirection
 var parentCursorLocation
@@ -152,6 +153,7 @@ func release_ability():
 			ability.global_position = parentCursorLocation
 			var ability_rotation = self.global_position.direction_to(parentCursorLocation)
 			get_tree().get_current_scene().add_child(ability)
+			
 			ability.skillSprite.flip_h = ability_rotation.x < 0
 			if ability_rotation.x > 0:
 				ability.particles.scale = Vector2(1,1)
@@ -162,19 +164,31 @@ func release_ability():
 		"self_utility":
 			add_child(ability)
 #
-		"around_self", "full_view":
+		"around_self":
 			ability.global_position = self.global_position
 			get_tree().get_current_scene().add_child(ability)
 			ability.around_self()
 
+		"full_view":
+			ability.global_position = self.global_position
+			get_tree().get_current_scene().add_child(ability)
+			ability.around_self()
 
-		"front_arc", "projectile":
+		"front_arc":
 			ability.cursorDirection = parentCursorDirection
 			ability.global_position = self.global_position
 			var ability_rotation = self.global_position.direction_to(parentCursorLocation).angle()
 			ability.rotation = ability_rotation
 			get_tree().get_current_scene().add_child(ability)
 			ability.front_arc()
+#
+		"projectile":
+			ability.cursorDirection = parentCursorDirection
+			ability.global_position = self.global_position
+			var ability_rotation = self.global_position.direction_to(parentCursorLocation).angle()
+			ability.rotation = ability_rotation
+			get_tree().get_current_scene().add_child(ability)
+			ability.projectile()
 
 	stop_casting()
 
