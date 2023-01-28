@@ -141,7 +141,7 @@ value = 70.0
 texture_under = ExtResource( 1 )
 texture_over = ExtResource( 3 )
 texture_progress = ExtResource( 2 )
-tint_progress = Color( 1, 0.678431, 0.231373, 1 )
+tint_progress = Color( 0.282353, 0.729412, 0.780392, 1 )
 nine_patch_stretch = true
 
 [node name="SkillBar" parent="VBoxContainer" instance=ExtResource( 4 )]

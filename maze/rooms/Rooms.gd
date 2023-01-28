@@ -5,6 +5,7 @@ const enemyPortal = preload("res://enemies/EnemyPortal.tscn")
 onready var portalPositionNodes = $PortalPositions
 
 var room_size = Vector2(640,640)
+var random_portal_position = 64
 
 func _ready():
 	yield(get_tree(), "idle_frame")
@@ -17,4 +18,4 @@ func _ready():
 				if range(portalPositions.size()).has(i):
 					var portalSpawn = enemyPortal.instance()
 					add_child(portalSpawn)
-					portalSpawn.position = portalPositions[i].position
+					portalSpawn.position = portalPositions[i].position + Vector2(rand_range(-random_portal_position, random_portal_position), rand_range(-random_portal_position, random_portal_position))

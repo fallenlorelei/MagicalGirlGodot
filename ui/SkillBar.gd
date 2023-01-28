@@ -10,10 +10,10 @@ var mouse_over_ui
 var loaded_skills = {
 	"left_click": "Basic",
 	
-	"ability1": "Smite",
-	"ability2": "Healing_Light",
-	"ability3": "Starry_Eyed",
-	"ability4": "Prismatica",
+	"ability1": "Shadowstrike",
+	"ability2": "Shadow_Meld",
+	"ability3": "Twilight_Barrage",
+	"ability4": "Wave_of_Darkness",
 	"ability5": "Shadowstrike",
 	"ability6": "Shadow_Meld"
 }

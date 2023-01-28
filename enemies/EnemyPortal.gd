@@ -6,8 +6,8 @@ onready var sprite = $Sprite
 onready var ySort = $"../../YSort"
 
 export(float) var spawnTimer = 1.0
-export var spawnAmount_min = 1
-export var spawnAmount_max = 1
+export var spawnAmount_min = 2
+export var spawnAmount_max = 6
 
 var spawnAmount
 var randomEnemy
@@ -19,7 +19,7 @@ var enemy_dict = {
 
 func _ready():
 	spawnAmount = int(rand_range(spawnAmount_min, spawnAmount_max))
-
+	
 func get_random_enemy():
 	var random_id = randi() % enemy_dict.size()
 	var random_value = enemy_dict.values()[random_id]
@@ -50,9 +50,8 @@ func _on_Timer_timeout():
 
 
 func _on_PlayerActivate_body_entered(body):
-	print("hey")
 	if portalOpened == false:
+		portalOpened = true
 		sprite.show()
 		animationPlayer.play("opening")
-		portalOpened = true
-
+		yield(animationPlayer, "animation_finished")

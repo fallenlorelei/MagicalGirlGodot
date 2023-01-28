@@ -279,7 +279,8 @@ FRICTION = 150
 [node name="Sprite" parent="." index="1"]
 modulate = Color( 0.5, 1.5, 0.5, 1 )
 material = SubResource( 36 )
-position = Vector2( 0, -16 )
+position = Vector2( -1, -19 )
+scale = Vector2( 1.1, 1.1 )
 texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" parent="." index="2"]
@@ -312,8 +313,7 @@ collision_mask = 2
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D" parent="SoftCollision" index="0"]
-visible = false
-position = Vector2( 1, -1 )
+position = Vector2( 0, -4 )
 shape = SubResource( 6 )
 
 [node name="Hitbox" parent="HitboxPivot" index="0"]
@@ -326,7 +326,7 @@ shape = SubResource( 12 )
 disabled = false
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2( 1, -1 )
+position = Vector2( 0, -4 )
 rotation = 1.5708
 shape = SubResource( 5 )
 

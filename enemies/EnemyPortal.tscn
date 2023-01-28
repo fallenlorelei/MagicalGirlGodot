@@ -1,69 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/sprites/Purple Portal Sprite Sheet recolored.png" type="Texture" id=1]
-
-[sub_resource type="GDScript" id=6]
-script/source = "extends Node2D
-
-onready var animationPlayer = $AnimationPlayer
-onready var timer = $Timer
-onready var sprite = $Sprite
-onready var ySort = $\"../../YSort\"
-
-export(float) var spawnTimer = 1.0
-export var spawnAmount_min = 1
-export var spawnAmount_max = 1
-
-var spawnAmount
-var randomEnemy
-var portalOpened = false
-
-var enemy_dict = {
-	\"Slime\": preload(\"res://enemies/Slime.tscn\"),
-	}
-
-func _ready():
-	spawnAmount = int(rand_range(spawnAmount_min, spawnAmount_max))
-
-func get_random_enemy():
-	var random_id = randi() % enemy_dict.size()
-	var random_value = enemy_dict.values()[random_id]
-	return random_value
-
-func _on_AnimationPlayer_animation_finished(anim_name):
-	if anim_name == \"opening\":
-		animationPlayer.play(\"idle\")
-		spawn_enemies()
-	if anim_name == \"closing\":
-		sprite.hide()
-		queue_free()
-
-func spawn_enemies():
-	var enemySpawn = get_random_enemy().instance()
-	enemySpawn.global_position = global_position
-	ySort.add_child(enemySpawn)
-	spawnAmount -= 1
-	if spawnAmount >= 0:
-		timer.start(spawnTimer)
-
-
-func _on_Timer_timeout():
-	if spawnAmount <= 0:
-		animationPlayer.play(\"closing\")
-	else:
-		spawn_enemies()
-
-
-func _on_PlayerActivate_body_entered(body):
-	if portalOpened == false:
-		sprite.show()
-		animationPlayer.play(\"opening\")
-		portalOpened = true
-
-
-func _on_PlayerActivate_body_exited(body):
-	portalOpened = false
-"
+[ext_resource path="res://enemies/EnemyPortal.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -130,10 +68,10 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=5]
-radius = 120.0
+radius = 160.0
 
 [node name="EnemyPortal" type="Node2D"]
-script = SubResource( 6 )
+script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 1 )
@@ -164,4 +102,3 @@ shape = SubResource( 5 )
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="body_entered" from="PlayerActivate" to="." method="_on_PlayerActivate_body_entered"]
-[connection signal="body_exited" from="PlayerActivate" to="." method="_on_PlayerActivate_body_exited"]

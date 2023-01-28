@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=68 format=2]
 
 [ext_resource path="res://entities/EntityBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/Player.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/ui/arc-circle.png" type="Texture" id=10]
 [ext_resource path="res://entities/Hurtbox.tscn" type="PackedScene" id=11]
 [ext_resource path="res://entities/PlayerSkillManager.gd" type="Script" id=12]
+[ext_resource path="res://entities/PlayerStateMachine.gd" type="Script" id=13]
 
 [sub_resource type="Animation" id=99]
 length = 0.001
@@ -1300,13 +1301,15 @@ FRICTION = 120
 JUMP_SPEED = 120
 minimap_icon = "icon"
 
-[node name="Sprite" type="Sprite" parent="." index="0"]
-position = Vector2( 0, -8 )
-texture = ExtResource( 6 )
-hframes = 20
-frame = 19
+[node name="PlayerStateMachine" type="Node" parent="." index="0"]
+script = ExtResource( 13 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+[node name="Sprite" type="Sprite" parent="." index="1"]
+position = Vector2( 0, -8 )
+texture = ExtResource( 4 )
+hframes = 24
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 unique_name_in_owner = true
 anims/RESET = SubResource( 99 )
 anims/attack1_down = SubResource( 51 )
@@ -1327,12 +1330,12 @@ anims/run_left = SubResource( 64 )
 anims/run_right = SubResource( 65 )
 anims/run_up = SubResource( 66 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
 visible = false
 position = Vector2( 0, 1 )
 shape = SubResource( 67 )
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="3"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="4"]
 unique_name_in_owner = true
 tree_root = SubResource( 84 )
 anim_player = NodePath("../AnimationPlayer")
@@ -1342,7 +1345,7 @@ parameters/Idle/blend_position = Vector2( 0, 0 )
 parameters/Jump/blend_position = Vector2( 0, 0 )
 parameters/Run/blend_position = Vector2( 0, 0 )
 
-[node name="ItemPickUp" type="Area2D" parent="." index="4"]
+[node name="ItemPickUp" type="Area2D" parent="." index="5"]
 collision_layer = 0
 collision_mask = 128
 
@@ -1350,7 +1353,7 @@ collision_mask = 128
 visible = false
 shape = SubResource( 90 )
 
-[node name="AttackManager" type="Node2D" parent="." index="5"]
+[node name="AttackManager" type="Node2D" parent="." index="6"]
 script = ExtResource( 8 )
 
 [node name="AttackAnimationTimer" type="Timer" parent="AttackManager" index="0"]
@@ -1388,10 +1391,10 @@ centered = false
 offset = Vector2( 0, -50 )
 flip_h = true
 
-[node name="SkillManager" type="Node2D" parent="." index="6"]
+[node name="SkillManager" type="Node2D" parent="." index="7"]
 script = ExtResource( 12 )
 
-[node name="Hurtbox" parent="." index="7" instance=ExtResource( 11 )]
+[node name="Hurtbox" parent="." index="8" instance=ExtResource( 11 )]
 visible = false
 collision_layer = 32
 

@@ -3,7 +3,7 @@ class_name StateMachine
 
 var state = null setget set_state
 var previous_state = null
-var states = []
+var states = {}
 
 onready var parent= get_parent()
 
@@ -35,5 +35,5 @@ func set_state(new_state):
 	if new_state != null:
 		_enter_state(new_state, previous_state)
 		
-func add_states(state_name):
+func add_state(state_name):
 	states[state_name] = states.size()

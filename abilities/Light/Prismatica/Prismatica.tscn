@@ -81,7 +81,7 @@ shader_param/angle = 0.0
 emission_shape = 2
 emission_box_extents = Vector3( 1, 1, 1 )
 flag_disable_z = true
-gravity = Vector3( 0, 98, 0 )
+gravity = Vector3( 700, 0, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 0.4
@@ -91,12 +91,14 @@ scale_random = 0.4
 material = SubResource( 8 )
 
 [node name="Sprite" parent="." index="0"]
+modulate = Color( 1, 1, 1, 0.784314 )
 material = SubResource( 7 )
 position = Vector2( 0, -37 )
 z_index = -1
 texture = ExtResource( 3 )
 hframes = 5
 vframes = 9
+frame = 10
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "start"
@@ -108,7 +110,6 @@ shape = ExtResource( 6 )
 disabled = true
 
 [node name="Particles2D" parent="." index="3"]
-modulate = Color( 1, 1, 1, 0 )
 material = SubResource( 10 )
 position = Vector2( 1, -13 )
 rotation = 3.14159

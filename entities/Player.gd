@@ -24,104 +24,13 @@ var saved_input_vector
 func _ready():
 	animationTree.active = true
 	
-	add_state("IDLE")
-	add_state("MOVE")
-	add_state("JUMP")
-	add_state("CASTING")
-	add_state("DYING")
-	call_deferred("set_state", states.IDLE)
-	
 	PlayerStats.hpBar = get_node("../../CanvasLayer/BottomUI/VBoxContainer/HBoxContainer/HealthBar/PlayerHPBar")
 	PlayerStats.hpBarAnimation = get_node("../../CanvasLayer/BottomUI/VBoxContainer/HBoxContainer/HealthBar/PlayerHPBar/AnimationPlayer")
 	PlayerStats.connect("hp_changed", self, "health_changed")
 	PlayerStats.connect("died", self, "begin_dying")
-		
+
 	SignalBus.connect("mouseover", self, "set_mouseover")
 	SignalBus.connect("mouseOverLock", self, "set_mouseover")
-
-# == STATE MACHINE ==
-func _state_logic(delta):
-	check_input()
-	get_cursor_info()
-	move(delta)
-	
-	match state:
-		states.IDLE:
-			idle_state(delta)
-		states.MOVE:
-			move_state(delta)
-		states.JUMP:
-			jump_state(delta)
-		states.CASTING:
-			casting_state()
-		states.DYING:
-			dying_state()
-
-#MOVING FROM ONE STATE TO ANOTHER
-func _get_transition(_delta):
-	match state:
-		states.IDLE:
-			if begin_dying():
-				return states.DYING
-			if check_input() == "left_click" && mouse_over_ui == false:
-				return states.CASTING
-			if check_input() == "using_skill" && attackManager.check_global_cooldown():
-				return states.CASTING
-			if check_input() == "jump":
-				return states.JUMP	
-			if check_input() == "moving":
-				return states.MOVE	
-
-		states.MOVE:
-			if begin_dying():
-				return states.DYING
-			if check_input() == "left_click" && mouse_over_ui == false:
-				return states.CASTING
-			if check_input() == "using_skill" && attackManager.check_global_cooldown():
-				return states.CASTING
-			if check_input() == "jump":
-				return states.JUMP	
-			if velocity == Vector2.ZERO:
-				return states.IDLE
-
-		states.JUMP:
-			if begin_dying():
-				return states.DYING
-			if jumpFinished == true:
-				return states.IDLE
-
-		states.CASTING:
-			if begin_dying():
-				return states.DYING
-			if attackFinished == true && attackManager.attackAnimationTimer.is_stopped():
-				return states.IDLE
-		
-		states.DYING:
-			pass
-			
-func _enter_state(new_state, old_state):
-	match new_state:
-		states.IDLE:
-			animationState.travel("Idle")
-		states.MOVE:
-			animationState.travel("Run")
-		states.JUMP:
-			update_input_vector()
-			animationState.travel("Jump")				
-		states.CASTING:
-			update_input_vector()
-		states.DYING:
-			animationState.travel("death")
-	
-func _exit_state(old_state, new_state):
-	match old_state:
-		states.JUMP:
-			jumpFinished = false
-			reset_collision_masks()
-		states.CASTING:
-			attackFinished = false
-	
-# ========================================
 
 func get_cursor_info():
 	cursorDirection = (get_global_mouse_position() - position).normalized()

@@ -90,15 +90,16 @@ func at_cursor_starting_animation_finished():
 	animationPlayer.play("end")
 
 func at_cursor_ending_animation_finished():
-	var TW = get_tree().create_tween()
-	TW.tween_property(self, "scale", Vector2.ZERO, .5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	TW.tween_callback(self, "destroy")
+	tween_shrink()
 
 # == AROUND SELF ==
 func around_self():
 	collisionShape.position.y += 6
 	skillSprite.position.y += 6
 	scale_sprite()
+
+func around_self_animation_finished():
+	tween_shrink()
 
 # == FRONT ARC ==
 func front_arc():
@@ -147,6 +148,11 @@ func scale_sprite():
 	
 		if particles.material != null:
 			particles.process_material.emission_sphere_radius = skillRadius	
+
+func tween_shrink():
+	var TW = get_tree().create_tween()
+	TW.tween_property(self, "scale", Vector2.ZERO, .5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	TW.tween_callback(self, "destroy")
 	
 func destroy():
 	if skillType != "full_view":
