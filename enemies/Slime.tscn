@@ -276,20 +276,20 @@ ACCELERATION = 300
 MAX_SPEED = 30
 FRICTION = 150
 
-[node name="Sprite" parent="." index="1"]
+[node name="Sprite" parent="." index="2"]
 modulate = Color( 0.5, 1.5, 0.5, 1 )
 material = SubResource( 36 )
 position = Vector2( -1, -19 )
 scale = Vector2( 1.1, 1.1 )
 texture = ExtResource( 2 )
 
-[node name="AnimationPlayer" parent="." index="2"]
+[node name="AnimationPlayer" parent="." index="3"]
 anims/RESET = SubResource( 8 )
 anims/death = SubResource( 10 )
 anims/idle = SubResource( 9 )
 anims/melee_attack = SubResource( 11 )
 
-[node name="AnimationTree" parent="." index="3"]
+[node name="AnimationTree" parent="." index="4"]
 tree_root = SubResource( 17 )
 anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource( 18 )
@@ -298,13 +298,13 @@ parameters/Dying/playback = SubResource( 34 )
 parameters/Idle/playback = SubResource( 29 )
 parameters/Melee_Attack/playback = SubResource( 30 )
 
-[node name="CollisionShape2D" parent="." index="4"]
+[node name="CollisionShape2D" parent="." index="5"]
 visible = false
 position = Vector2( 1, 1 )
 rotation = 1.5708
 shape = SubResource( 7 )
 
-[node name="PlayerDetectionZone" parent="." index="6"]
+[node name="PlayerDetectionZone" parent="." index="7"]
 visible = false
 collision_layer = 0
 collision_mask = 2

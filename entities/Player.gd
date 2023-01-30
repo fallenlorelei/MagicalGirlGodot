@@ -1,5 +1,7 @@
 extends "res://entities/EntityBase.gd"
 
+onready var ProjectileArc = preload("res://abilities/Light/Light_Bow/Light_Bow.tscn")
+
 onready var sprite = $Sprite
 onready var attackManager = $AttackManager
 onready var animationTree = $AnimationTree
@@ -12,11 +14,14 @@ export var minimap_icon = "icon"
 var jump_vector = Vector2.LEFT
 var cursorDirection = Vector2()
 var cursorLocation = Vector2()
-var selected_skill = null setget set_attack
+var selectedSkill = null setget set_attack
+var selected_skill = null
 var selected_skillSlot = null
 var mouse_over_ui = false
 var jumpFinished = false
-var attackFinished = false
+var attackAnimationFinished = false
+var releaseAbility = false
+var cancelled = false
 var dead = false
 var map_pos = Vector2()
 var saved_input_vector
@@ -35,27 +40,21 @@ func _ready():
 func get_cursor_info():
 	cursorDirection = (get_global_mouse_position() - position).normalized()
 	cursorLocation = get_global_mouse_position()
-
+	
 func check_input():
-	if selected_skill != null && selected_skillSlot != "left_click":
-		if Input.is_action_pressed(str(selected_skillSlot)):
+	if selected_skill != null:
+		if Input.is_action_just_pressed(str(selected_skillSlot)):
 			return "using_skill"
 			
 	if Input.is_action_just_pressed("jump"):
 		return "jump"
-		
-	if Input.is_action_just_pressed("left_click"):
-		selected_skill = "Basic"
-		selected_skillSlot = "left_click"
-		return "left_click"
 		
 	if Input.is_action_pressed("up") or \
 	Input.is_action_pressed("down") or \
 	Input.is_action_pressed("left") or \
 	Input.is_action_pressed("right"):
 		return "moving"
-	
-
+		
 func idle_state(delta):
 	velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	
@@ -82,16 +81,19 @@ func set_animation_blend():
 #	== ATTACKING ==
 func set_attack(value):
 	selected_skill = value
-
-func casting_state():
+	
+func begin_cast():
 	velocity = velocity.move_toward(Vector2.ZERO, ATTACK_FRICTION)	
 	if selected_skill != null:
 		if Input.is_action_pressed(str(selected_skillSlot)):
 			attackManager.start_ability(selected_skill, selected_skillSlot)
 
+func casting():
+	pass
+	
 func attack_animation_finished():
-	attackFinished = true
-
+	attackAnimationFinished = true
+	
 #	== JUMPING ==	
 func jump_state(_delta):
 	if input_vector != Vector2.ZERO:

@@ -24,7 +24,6 @@ func start_invincibility(duration):
 	timer.start(duration)
 	
 func create_hit_effect(ability, object):
-	
 	var effect = HitEffect.instance()
 	var main = get_tree().current_scene
 	effect.object = object

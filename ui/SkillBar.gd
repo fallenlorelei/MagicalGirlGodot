@@ -8,37 +8,39 @@ var mouse_over_ui
 # Otherwise, should pull from save file.
 
 var loaded_skills = {
-	"left_click": "Basic",
-	
-	"ability1": "Shadowstrike",
-	"ability2": "Shadow_Meld",
-	"ability3": "Twilight_Barrage",
-	"ability4": "Wave_of_Darkness",
-	"ability5": "Shadowstrike",
-	"ability6": "Shadow_Meld"
+	"left_click": "Light_Bow",
+	"ability1": "Starburst",
+	"ability2": null,
+	"ability3": null,
+	"ability4": null,
+	"ability5": null,
+	"ability6": null
 }
 
 func _ready():
-	pass
-	
 	load_shortcuts()
 	for shortcut in get_tree().get_nodes_in_group("AbilityShortcut"):
 		shortcut.connect("pressed", self, "SelectShortcut", [shortcut.get_parent().get_name()])
-	
+
+func _physics_process(_delta):
+	#For some reason the shortcut isn't working unless I do this
+	#Bandaid
+	if Input.is_action_just_pressed("left_click"):
+		get_node("Background/HBoxContainer/left_click/TextureButton").emit_signal("pressed")
+		
 func load_shortcuts():
 	for shortcut in loaded_skills.keys():
 		if loaded_skills[shortcut] != null:
 			var skill_element = DataImport.skill_data[loaded_skills[shortcut]].Element
-			var skill_icon = load("res://assets/skill_icons/" + skill_element + "/" + loaded_skills[shortcut] + "_icon.png")
+			var skill_icon = load("res://abilities/" + skill_element + "/" + loaded_skills[shortcut] + "/" + loaded_skills[shortcut] + "_icon.png")
 			get_node(shortcuts_path + shortcut + "/TextureButton").set_normal_texture(skill_icon)
-
 
 # == FIND PLAYER AND SEND SELECTED SKILL ==
 func SelectShortcut(shortcut):
 	var cooldownCheck = get_node(shortcuts_path + shortcut + "/TextureButton")
 	if cooldownCheck.onCooldown == false:
 		get_parent().get_parent().get_node("../../YSort/Player").selected_skillSlot = shortcut
-		get_parent().get_parent().get_node("../../YSort/Player").selected_skill = loaded_skills[shortcut]
+		get_parent().get_parent().get_node("../../YSort/Player").selectedSkill = loaded_skills[shortcut]
 	else:
 		print("This skill is on cooldown.")
 	

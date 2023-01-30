@@ -10,7 +10,8 @@ onready var crystalUi = {
 	"FIRE": $"%FireAmount",
 	"ICE": $"%IceAmount",
 	"EARTH": $"%EarthAmount",
-	"THUNDER": $"%ThunderAmount"
+	"THUNDER": $"%ThunderAmount",
+	"WIND": $"%WindAmount"
 }
 
 onready var crystalProgressUI = {
@@ -21,7 +22,8 @@ onready var crystalProgressUI = {
 	"FIRE": $"%FireProgress",
 	"ICE": $"%IceProgress",
 	"EARTH": $"%EarthProgress",
-	"THUNDER": $"%ThunderProgress"
+	"THUNDER": $"%ThunderProgress",
+	"WIND": $"%WindProgress"
 }
 
 
@@ -54,7 +56,7 @@ func _on_MouseDetection_Open_mouse_entered():
 	if lockedOpen == false:
 		windowOpen = true
 		var TW = get_tree().create_tween()
-		TW.tween_property(self, "rect_position:x", -5.0, .3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+		TW.tween_property(self, "rect_position:x", 0.0, .3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 		mouseOpenDetection.hide()
 
 func _on_MouseDetection_Close_mouse_exited():
@@ -63,7 +65,7 @@ func _on_MouseDetection_Close_mouse_exited():
 		if mouseOverLock == false:
 			windowOpen = false
 			var TW = get_tree().create_tween()
-			TW.tween_property(self, "rect_position:x", -165.0, .2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+			TW.tween_property(self, "rect_position:x", -140.0, .2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 			yield(get_tree().create_timer(0.2), "timeout")
 			mouseOpenDetection.show()
 

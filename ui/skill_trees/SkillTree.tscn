@@ -1,0 +1,3452 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/ui/MainTheme.tres" type="Theme" id=1]
+[ext_resource path="res://assets/ui/UI_bigbox01.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/UI_bigbox_bg.png" type="Texture" id=3]
+[ext_resource path="res://assets/skill_icons/skill_trees/Heart.png" type="Texture" id=4]
+[ext_resource path="res://assets/ui/smallbox.png" type="Texture" id=5]
+[ext_resource path="res://assets/skill_icons/skill_trees/Heart_blue.png" type="Texture" id=6]
+[ext_resource path="res://assets/skill_icons/skill_trees/Heart_green.png" type="Texture" id=7]
+[ext_resource path="res://ui/skill_trees/SkillTree.gd" type="Script" id=8]
+
+[node name="SkillTree" type="Control"]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -210.0
+margin_top = -128.5
+margin_right = 210.0
+margin_bottom = 128.5
+rect_pivot_offset = Vector2( 211, 149 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 8 )
+
+[node name="CloseButton" type="TextureButton" parent="."]
+margin_left = -110.0
+margin_top = -33.0
+margin_right = 532.0
+margin_bottom = 330.0
+
+[node name="BoxBorder" type="NinePatchRect" parent="."]
+margin_right = 420.0
+margin_bottom = 257.0
+texture = ExtResource( 2 )
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="BoxBG" type="TextureRect" parent="BoxBorder"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -1.5
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BoxBorder/BoxBG"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1.0
+
+[node name="MarginContainer" type="MarginContainer" parent="BoxBorder/BoxBG/VBoxContainer"]
+margin_right = 415.0
+margin_bottom = 3.0
+rect_min_size = Vector2( 0, 3 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer"]
+margin_top = 7.0
+margin_right = 415.0
+margin_bottom = 43.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="ActiveAbilitiesButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/HBoxContainer"]
+margin_left = 37.0
+margin_top = 5.0
+margin_right = 137.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 100, 25 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/HBoxContainer/ActiveAbilitiesButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+theme_type_variation = "Label_larger"
+text = "Active Skills"
+align = 1
+valign = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="BoxBorder/BoxBG/VBoxContainer/HBoxContainer"]
+margin_left = 141.0
+margin_right = 146.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 5, 0 )
+
+[node name="PassiveAbilitiesbutton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/HBoxContainer"]
+margin_left = 150.0
+margin_top = 5.0
+margin_right = 250.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 100, 25 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/HBoxContainer/PassiveAbilitiesbutton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+theme_type_variation = "Label_larger"
+text = "Passive Skills"
+align = 1
+valign = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="BoxBorder/BoxBG/VBoxContainer/HBoxContainer"]
+margin_left = 254.0
+margin_right = 274.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/HBoxContainer"]
+margin_left = 278.0
+margin_right = 378.0
+margin_bottom = 36.0
+
+[node name="AcceptButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_right = 100.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 100, 16 )
+texture_normal = ExtResource( 5 )
+expand = true
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/HBoxContainer/VBoxContainer/AcceptButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "Accept Changes"
+align = 1
+valign = 1
+
+[node name="ResetButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 20.0
+margin_right = 100.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 100, 16 )
+texture_normal = ExtResource( 5 )
+expand = true
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/HBoxContainer/VBoxContainer/ResetButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "Reset Changes"
+align = 1
+valign = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BoxBorder/BoxBG/VBoxContainer"]
+margin_top = 47.0
+margin_right = 415.0
+margin_bottom = 253.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+
+[node name="SkillTree" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer"]
+margin_right = 411.0
+margin_bottom = 892.0
+rect_min_size = Vector2( 0, 254 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree"]
+margin_right = 411.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+theme = ExtResource( 1 )
+theme_type_variation = "Label_larger"
+text = "Tier 0"
+align = 1
+valign = 1
+
+[node name="Tier0" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree"]
+margin_top = 20.0
+margin_right = 411.0
+margin_bottom = 88.0
+size_flags_vertical = 0
+custom_constants/separation = 0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier0"]
+margin_left = 161.0
+margin_right = 249.0
+margin_bottom = 68.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier0/VBoxContainer"]
+margin_right = 88.0
+margin_bottom = 32.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier0/VBoxContainer/HBoxContainer"]
+margin_right = 24.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="0a_passive1" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier0/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier0/VBoxContainer/HBoxContainer/VBoxContainer/0a_passive1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier0/VBoxContainer/HBoxContainer/VBoxContainer/0a_passive1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier0/VBoxContainer/HBoxContainer/VBoxContainer/0a_passive1/Amount"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="0a_core" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier0/VBoxContainer/HBoxContainer"]
+margin_left = 28.0
+margin_right = 60.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier0/VBoxContainer/HBoxContainer/0a_core"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 4 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier0/VBoxContainer/HBoxContainer/0a_core"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier0/VBoxContainer/HBoxContainer/0a_core/Amount"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier0/VBoxContainer/HBoxContainer"]
+margin_left = 64.0
+margin_right = 88.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="0a_passive2" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier0/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier0/VBoxContainer/HBoxContainer/VBoxContainer2/0a_passive2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier0/VBoxContainer/HBoxContainer/VBoxContainer2/0a_passive2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier0/VBoxContainer/HBoxContainer/VBoxContainer2/0a_passive2/Amount"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier0/VBoxContainer"]
+margin_top = 36.0
+margin_right = 88.0
+margin_bottom = 68.0
+alignment = 1
+
+[node name="0a_extra" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier0/VBoxContainer/HBoxContainer2"]
+margin_left = 28.0
+margin_right = 60.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier0/VBoxContainer/HBoxContainer2/0a_extra"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 7 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier0/VBoxContainer/HBoxContainer2/0a_extra"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier0/VBoxContainer/HBoxContainer2/0a_extra/Amount"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree"]
+margin_top = 88.0
+margin_right = 411.0
+margin_bottom = 98.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="Label2" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree"]
+margin_top = 98.0
+margin_right = 411.0
+margin_bottom = 118.0
+rect_min_size = Vector2( 0, 20 )
+theme = ExtResource( 1 )
+theme_type_variation = "Label_larger"
+text = "Tier 1"
+align = 1
+valign = 2
+
+[node name="Label3" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree"]
+margin_top = 118.0
+margin_right = 411.0
+margin_bottom = 138.0
+rect_min_size = Vector2( 0, 20 )
+theme = ExtResource( 1 )
+text = "0 / 2"
+align = 1
+valign = 2
+
+[node name="Tier1" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree"]
+margin_top = 138.0
+margin_right = 411.0
+margin_bottom = 262.0
+size_flags_vertical = 0
+custom_constants/separation = 0
+alignment = 1
+
+[node name="1a" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1"]
+margin_left = 101.0
+margin_right = 189.0
+margin_bottom = 124.0
+
+[node name="core_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a"]
+margin_right = 88.0
+margin_bottom = 24.0
+alignment = 1
+
+[node name="1a_passive2" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/core_passives"]
+margin_left = 32.0
+margin_right = 56.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/core_passives/1a_passive2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/core_passives/1a_passive2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/core_passives/1a_passive2/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="core_and_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a"]
+margin_top = 28.0
+margin_right = 88.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/core_and_passives"]
+margin_right = 24.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="1a_passive1" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/core_and_passives/VBoxContainer"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/core_and_passives/VBoxContainer/1a_passive1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/core_and_passives/VBoxContainer/1a_passive1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/core_and_passives/VBoxContainer/1a_passive1/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="1a_core" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/core_and_passives"]
+margin_left = 28.0
+margin_right = 60.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/core_and_passives/1a_core"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 4 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/core_and_passives/1a_core"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/core_and_passives/1a_core/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/core_and_passives"]
+margin_left = 64.0
+margin_right = 88.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="1a_passive3" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/core_and_passives/VBoxContainer2"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/core_and_passives/VBoxContainer2/1a_passive3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/core_and_passives/VBoxContainer2/1a_passive3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/core_and_passives/VBoxContainer2/1a_passive3/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="extra_and_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a"]
+margin_top = 64.0
+margin_right = 88.0
+margin_bottom = 96.0
+alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/extra_and_passives"]
+margin_right = 24.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="1a_extra_passive1" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/extra_and_passives/VBoxContainer3"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/extra_and_passives/VBoxContainer3/1a_extra_passive1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/extra_and_passives/VBoxContainer3/1a_extra_passive1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/extra_and_passives/VBoxContainer3/1a_extra_passive1/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="1a_extra" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/extra_and_passives"]
+margin_left = 28.0
+margin_right = 60.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/extra_and_passives/1a_extra"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 7 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/extra_and_passives/1a_extra"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/extra_and_passives/1a_extra/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/extra_and_passives"]
+margin_left = 64.0
+margin_right = 88.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="1a_extra_passive3" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/extra_and_passives/VBoxContainer4"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/extra_and_passives/VBoxContainer4/1a_extra_passive3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/extra_and_passives/VBoxContainer4/1a_extra_passive3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/extra_and_passives/VBoxContainer4/1a_extra_passive3/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="extra_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a"]
+margin_top = 100.0
+margin_right = 88.0
+margin_bottom = 124.0
+custom_constants/separation = 0
+alignment = 1
+
+[node name="1a_extra_passive2" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/extra_passives"]
+margin_left = 32.0
+margin_right = 56.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/extra_passives/1a_extra_passive2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/extra_passives/1a_extra_passive2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1a/extra_passives/1a_extra_passive2/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1"]
+margin_left = 189.0
+margin_right = 221.0
+margin_bottom = 124.0
+rect_min_size = Vector2( 32, 0 )
+
+[node name="1b" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1"]
+margin_left = 221.0
+margin_right = 309.0
+margin_bottom = 124.0
+
+[node name="core_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b"]
+margin_right = 88.0
+margin_bottom = 24.0
+alignment = 1
+
+[node name="1b_passive2" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/core_passives"]
+margin_left = 32.0
+margin_right = 56.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/core_passives/1b_passive2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/core_passives/1b_passive2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/core_passives/1b_passive2/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="core_and_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b"]
+margin_top = 28.0
+margin_right = 88.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/core_and_passives"]
+margin_right = 24.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="1b_passive1" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/core_and_passives/VBoxContainer"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/core_and_passives/VBoxContainer/1b_passive1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/core_and_passives/VBoxContainer/1b_passive1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/core_and_passives/VBoxContainer/1b_passive1/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="1b_core" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/core_and_passives"]
+margin_left = 28.0
+margin_right = 60.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/core_and_passives/1b_core"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 4 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/core_and_passives/1b_core"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/core_and_passives/1b_core/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/core_and_passives"]
+margin_left = 64.0
+margin_right = 88.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="1b_passive3" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/core_and_passives/VBoxContainer2"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/core_and_passives/VBoxContainer2/1b_passive3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/core_and_passives/VBoxContainer2/1b_passive3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/core_and_passives/VBoxContainer2/1b_passive3/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="extra_and_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b"]
+margin_top = 64.0
+margin_right = 88.0
+margin_bottom = 96.0
+alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/extra_and_passives"]
+margin_right = 24.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="1b_extra_passive1" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/extra_and_passives/VBoxContainer3"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/extra_and_passives/VBoxContainer3/1b_extra_passive1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/extra_and_passives/VBoxContainer3/1b_extra_passive1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/extra_and_passives/VBoxContainer3/1b_extra_passive1/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="1b_extra" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/extra_and_passives"]
+margin_left = 28.0
+margin_right = 60.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/extra_and_passives/1b_extra"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 7 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/extra_and_passives/1b_extra"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/extra_and_passives/1b_extra/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/extra_and_passives"]
+margin_left = 64.0
+margin_right = 88.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="1b_extra_passive3" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/extra_and_passives/VBoxContainer4"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/extra_and_passives/VBoxContainer4/1b_extra_passive3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/extra_and_passives/VBoxContainer4/1b_extra_passive3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/extra_and_passives/VBoxContainer4/1b_extra_passive3/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="extra_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b"]
+margin_top = 100.0
+margin_right = 88.0
+margin_bottom = 124.0
+alignment = 1
+
+[node name="1b_extra_passive2" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/extra_passives"]
+margin_left = 32.0
+margin_right = 56.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/extra_passives/1b_extra_passive2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/extra_passives/1b_extra_passive2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier1/1b/extra_passives/1b_extra_passive2/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree"]
+margin_top = 262.0
+margin_right = 411.0
+margin_bottom = 272.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="Label4" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree"]
+margin_top = 272.0
+margin_right = 411.0
+margin_bottom = 292.0
+rect_min_size = Vector2( 0, 20 )
+theme = ExtResource( 1 )
+theme_type_variation = "Label_larger"
+text = "Tier 2"
+align = 1
+valign = 2
+
+[node name="Label5" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree"]
+margin_top = 292.0
+margin_right = 411.0
+margin_bottom = 312.0
+rect_min_size = Vector2( 0, 20 )
+theme = ExtResource( 1 )
+text = "0 / 10"
+align = 1
+valign = 2
+
+[node name="Tier2" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree"]
+margin_top = 312.0
+margin_right = 411.0
+margin_bottom = 436.0
+size_flags_vertical = 0
+alignment = 1
+
+[node name="2a" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2"]
+margin_left = 97.0
+margin_right = 185.0
+margin_bottom = 124.0
+
+[node name="core_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a"]
+margin_right = 88.0
+margin_bottom = 24.0
+alignment = 1
+
+[node name="2a_passive2" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/core_passives"]
+margin_left = 32.0
+margin_right = 56.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/core_passives/2a_passive2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/core_passives/2a_passive2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/core_passives/2a_passive2/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="core_and_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a"]
+margin_top = 28.0
+margin_right = 88.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/core_and_passives"]
+margin_right = 24.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="2a_passive1" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/core_and_passives/VBoxContainer"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/core_and_passives/VBoxContainer/2a_passive1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/core_and_passives/VBoxContainer/2a_passive1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/core_and_passives/VBoxContainer/2a_passive1/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="2a_core" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/core_and_passives"]
+margin_left = 28.0
+margin_right = 60.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/core_and_passives/2a_core"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 4 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/core_and_passives/2a_core"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/core_and_passives/2a_core/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/core_and_passives"]
+margin_left = 64.0
+margin_right = 88.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="2a_passive3" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/core_and_passives/VBoxContainer2"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/core_and_passives/VBoxContainer2/2a_passive3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/core_and_passives/VBoxContainer2/2a_passive3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/core_and_passives/VBoxContainer2/2a_passive3/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="extra_and_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a"]
+margin_top = 64.0
+margin_right = 88.0
+margin_bottom = 96.0
+alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/extra_and_passives"]
+margin_right = 24.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="2a_extra_passive1" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/extra_and_passives/VBoxContainer3"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/extra_and_passives/VBoxContainer3/2a_extra_passive1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/extra_and_passives/VBoxContainer3/2a_extra_passive1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/extra_and_passives/VBoxContainer3/2a_extra_passive1/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="2a_extra" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/extra_and_passives"]
+margin_left = 28.0
+margin_right = 60.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/extra_and_passives/2a_extra"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 7 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/extra_and_passives/2a_extra"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/extra_and_passives/2a_extra/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/extra_and_passives"]
+margin_left = 64.0
+margin_right = 88.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="2a_extra_passive3" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/extra_and_passives/VBoxContainer4"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/extra_and_passives/VBoxContainer4/2a_extra_passive3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/extra_and_passives/VBoxContainer4/2a_extra_passive3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/extra_and_passives/VBoxContainer4/2a_extra_passive3/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="extra_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a"]
+margin_top = 100.0
+margin_right = 88.0
+margin_bottom = 124.0
+alignment = 1
+
+[node name="2a_extra_passive2" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/extra_passives"]
+margin_left = 32.0
+margin_right = 56.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/extra_passives/2a_extra_passive2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/extra_passives/2a_extra_passive2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2a/extra_passives/2a_extra_passive2/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2"]
+margin_left = 189.0
+margin_right = 221.0
+margin_bottom = 124.0
+rect_min_size = Vector2( 32, 0 )
+
+[node name="2b" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2"]
+margin_left = 225.0
+margin_right = 313.0
+margin_bottom = 124.0
+
+[node name="core_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b"]
+margin_right = 88.0
+margin_bottom = 24.0
+alignment = 1
+
+[node name="2b_passive2" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/core_passives"]
+margin_left = 32.0
+margin_right = 56.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/core_passives/2b_passive2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/core_passives/2b_passive2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/core_passives/2b_passive2/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="core_and_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b"]
+margin_top = 28.0
+margin_right = 88.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/core_and_passives"]
+margin_right = 24.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="2b_passive1" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/core_and_passives/VBoxContainer"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/core_and_passives/VBoxContainer/2b_passive1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/core_and_passives/VBoxContainer/2b_passive1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/core_and_passives/VBoxContainer/2b_passive1/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="2b_core" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/core_and_passives"]
+margin_left = 28.0
+margin_right = 60.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/core_and_passives/2b_core"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 4 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/core_and_passives/2b_core"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/core_and_passives/2b_core/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/core_and_passives"]
+margin_left = 64.0
+margin_right = 88.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="2b_passive3" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/core_and_passives/VBoxContainer2"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/core_and_passives/VBoxContainer2/2b_passive3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/core_and_passives/VBoxContainer2/2b_passive3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/core_and_passives/VBoxContainer2/2b_passive3/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="extra_and_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b"]
+margin_top = 64.0
+margin_right = 88.0
+margin_bottom = 96.0
+alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/extra_and_passives"]
+margin_right = 24.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="2b_extra_passive1" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/extra_and_passives/VBoxContainer3"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/extra_and_passives/VBoxContainer3/2b_extra_passive1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/extra_and_passives/VBoxContainer3/2b_extra_passive1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/extra_and_passives/VBoxContainer3/2b_extra_passive1/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="2b_extra" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/extra_and_passives"]
+margin_left = 28.0
+margin_right = 60.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/extra_and_passives/2b_extra"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 7 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/extra_and_passives/2b_extra"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/extra_and_passives/2b_extra/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/extra_and_passives"]
+margin_left = 64.0
+margin_right = 88.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="2b_extra_passive3" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/extra_and_passives/VBoxContainer4"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/extra_and_passives/VBoxContainer4/2b_extra_passive3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/extra_and_passives/VBoxContainer4/2b_extra_passive3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/extra_and_passives/VBoxContainer4/2b_extra_passive3/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="extra_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b"]
+margin_top = 100.0
+margin_right = 88.0
+margin_bottom = 124.0
+alignment = 1
+
+[node name="2b_extra_passive2" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/extra_passives"]
+margin_left = 32.0
+margin_right = 56.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/extra_passives/2b_extra_passive2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/extra_passives/2b_extra_passive2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier2/2b/extra_passives/2b_extra_passive2/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree"]
+margin_top = 436.0
+margin_right = 411.0
+margin_bottom = 446.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="Label6" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree"]
+margin_top = 446.0
+margin_right = 411.0
+margin_bottom = 466.0
+rect_min_size = Vector2( 0, 20 )
+theme = ExtResource( 1 )
+theme_type_variation = "Label_larger"
+text = "Tier 3"
+align = 1
+valign = 2
+
+[node name="Label7" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree"]
+margin_top = 466.0
+margin_right = 411.0
+margin_bottom = 486.0
+rect_min_size = Vector2( 0, 20 )
+theme = ExtResource( 1 )
+text = "0 / 30"
+align = 1
+valign = 2
+
+[node name="Tier3" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree"]
+margin_top = 486.0
+margin_right = 411.0
+margin_bottom = 610.0
+size_flags_vertical = 0
+custom_constants/separation = 0
+alignment = 1
+
+[node name="3a" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3"]
+margin_left = 41.0
+margin_right = 129.0
+margin_bottom = 124.0
+
+[node name="core_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a"]
+margin_right = 88.0
+margin_bottom = 24.0
+alignment = 1
+
+[node name="3a_passive2" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/core_passives"]
+margin_left = 32.0
+margin_right = 56.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/core_passives/3a_passive2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/core_passives/3a_passive2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/core_passives/3a_passive2/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="core_and_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a"]
+margin_top = 28.0
+margin_right = 88.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/core_and_passives"]
+margin_right = 24.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="3a_passive1" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/core_and_passives/VBoxContainer"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/core_and_passives/VBoxContainer/3a_passive1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/core_and_passives/VBoxContainer/3a_passive1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/core_and_passives/VBoxContainer/3a_passive1/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="3a_core" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/core_and_passives"]
+margin_left = 28.0
+margin_right = 60.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/core_and_passives/3a_core"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 4 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/core_and_passives/3a_core"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/core_and_passives/3a_core/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/core_and_passives"]
+margin_left = 64.0
+margin_right = 88.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="3a_passive3" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/core_and_passives/VBoxContainer2"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/core_and_passives/VBoxContainer2/3a_passive3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/core_and_passives/VBoxContainer2/3a_passive3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/core_and_passives/VBoxContainer2/3a_passive3/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="extra_and_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a"]
+margin_top = 64.0
+margin_right = 88.0
+margin_bottom = 96.0
+alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/extra_and_passives"]
+margin_right = 24.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="3a_extra_passive1" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/extra_and_passives/VBoxContainer3"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/extra_and_passives/VBoxContainer3/3a_extra_passive1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/extra_and_passives/VBoxContainer3/3a_extra_passive1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/extra_and_passives/VBoxContainer3/3a_extra_passive1/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="3a_extra" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/extra_and_passives"]
+margin_left = 28.0
+margin_right = 60.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/extra_and_passives/3a_extra"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 7 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/extra_and_passives/3a_extra"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/extra_and_passives/3a_extra/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/extra_and_passives"]
+margin_left = 64.0
+margin_right = 88.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="3a_extra_passive3" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/extra_and_passives/VBoxContainer4"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/extra_and_passives/VBoxContainer4/3a_extra_passive3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/extra_and_passives/VBoxContainer4/3a_extra_passive3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/extra_and_passives/VBoxContainer4/3a_extra_passive3/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="extra_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a"]
+margin_top = 100.0
+margin_right = 88.0
+margin_bottom = 124.0
+alignment = 1
+
+[node name="3a_extra_passive2" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/extra_passives"]
+margin_left = 32.0
+margin_right = 56.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/extra_passives/3a_extra_passive2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/extra_passives/3a_extra_passive2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3a/extra_passives/3a_extra_passive2/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3"]
+margin_left = 129.0
+margin_right = 161.0
+margin_bottom = 124.0
+rect_min_size = Vector2( 32, 0 )
+
+[node name="3b" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3"]
+margin_left = 161.0
+margin_right = 249.0
+margin_bottom = 124.0
+
+[node name="core_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b"]
+margin_right = 88.0
+margin_bottom = 24.0
+alignment = 1
+
+[node name="3b_passive2" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/core_passives"]
+margin_left = 32.0
+margin_right = 56.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/core_passives/3b_passive2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/core_passives/3b_passive2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/core_passives/3b_passive2/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="core_and_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b"]
+margin_top = 28.0
+margin_right = 88.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/core_and_passives"]
+margin_right = 24.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="3b_passive1" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/core_and_passives/VBoxContainer"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/core_and_passives/VBoxContainer/3b_passive1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/core_and_passives/VBoxContainer/3b_passive1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/core_and_passives/VBoxContainer/3b_passive1/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="3b_core" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/core_and_passives"]
+margin_left = 28.0
+margin_right = 60.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/core_and_passives/3b_core"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 4 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/core_and_passives/3b_core"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/core_and_passives/3b_core/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/core_and_passives"]
+margin_left = 64.0
+margin_right = 88.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="3b_passive3" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/core_and_passives/VBoxContainer2"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/core_and_passives/VBoxContainer2/3b_passive3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/core_and_passives/VBoxContainer2/3b_passive3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/core_and_passives/VBoxContainer2/3b_passive3/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="extra_and_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b"]
+margin_top = 64.0
+margin_right = 88.0
+margin_bottom = 96.0
+alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/extra_and_passives"]
+margin_right = 24.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="3b_extra_passive1" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/extra_and_passives/VBoxContainer3"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/extra_and_passives/VBoxContainer3/3b_extra_passive1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/extra_and_passives/VBoxContainer3/3b_extra_passive1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/extra_and_passives/VBoxContainer3/3b_extra_passive1/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="3b_extra" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/extra_and_passives"]
+margin_left = 28.0
+margin_right = 60.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/extra_and_passives/3b_extra"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 7 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/extra_and_passives/3b_extra"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/extra_and_passives/3b_extra/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/extra_and_passives"]
+margin_left = 64.0
+margin_right = 88.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="3b_extra_passive3" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/extra_and_passives/VBoxContainer4"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/extra_and_passives/VBoxContainer4/3b_extra_passive3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/extra_and_passives/VBoxContainer4/3b_extra_passive3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/extra_and_passives/VBoxContainer4/3b_extra_passive3/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="extra_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b"]
+margin_top = 100.0
+margin_right = 88.0
+margin_bottom = 124.0
+alignment = 1
+
+[node name="3b_extra_passive2" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/extra_passives"]
+margin_left = 32.0
+margin_right = 56.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/extra_passives/3b_extra_passive2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/extra_passives/3b_extra_passive2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3b/extra_passives/3b_extra_passive2/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3"]
+margin_left = 249.0
+margin_right = 281.0
+margin_bottom = 124.0
+rect_min_size = Vector2( 32, 0 )
+
+[node name="3c" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3"]
+margin_left = 281.0
+margin_right = 369.0
+margin_bottom = 124.0
+
+[node name="core_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c"]
+margin_right = 88.0
+margin_bottom = 24.0
+alignment = 1
+
+[node name="3c_passive2" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/core_passives"]
+margin_left = 32.0
+margin_right = 56.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/core_passives/3c_passive2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/core_passives/3c_passive2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/core_passives/3c_passive2/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="core_and_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c"]
+margin_top = 28.0
+margin_right = 88.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/core_and_passives"]
+margin_right = 24.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="3c_passive1" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/core_and_passives/VBoxContainer"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/core_and_passives/VBoxContainer/3c_passive1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/core_and_passives/VBoxContainer/3c_passive1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/core_and_passives/VBoxContainer/3c_passive1/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="3c_core" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/core_and_passives"]
+margin_left = 28.0
+margin_right = 60.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/core_and_passives/3c_core"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 4 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/core_and_passives/3c_core"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/core_and_passives/3c_core/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/core_and_passives"]
+margin_left = 64.0
+margin_right = 88.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="3c_passive3" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/core_and_passives/VBoxContainer2"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/core_and_passives/VBoxContainer2/3c_passive3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/core_and_passives/VBoxContainer2/3c_passive3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/core_and_passives/VBoxContainer2/3c_passive3/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="extra_and_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c"]
+margin_top = 64.0
+margin_right = 88.0
+margin_bottom = 96.0
+alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/extra_and_passives"]
+margin_right = 24.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="3c_extra_passive1" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/extra_and_passives/VBoxContainer3"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/extra_and_passives/VBoxContainer3/3c_extra_passive1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/extra_and_passives/VBoxContainer3/3c_extra_passive1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/extra_and_passives/VBoxContainer3/3c_extra_passive1/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="3c_extra" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/extra_and_passives"]
+margin_left = 28.0
+margin_right = 60.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/extra_and_passives/3c_extra"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 7 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/extra_and_passives/3c_extra"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/extra_and_passives/3c_extra/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/extra_and_passives"]
+margin_left = 64.0
+margin_right = 88.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="3c_extra_passive3" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/extra_and_passives/VBoxContainer4"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/extra_and_passives/VBoxContainer4/3c_extra_passive3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/extra_and_passives/VBoxContainer4/3c_extra_passive3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/extra_and_passives/VBoxContainer4/3c_extra_passive3/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="extra_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c"]
+margin_top = 100.0
+margin_right = 88.0
+margin_bottom = 124.0
+alignment = 1
+
+[node name="3c_extra_passive2" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/extra_passives"]
+margin_left = 32.0
+margin_right = 56.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/extra_passives/3c_extra_passive2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/extra_passives/3c_extra_passive2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier3/3c/extra_passives/3c_extra_passive2/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="MarginContainer4" type="MarginContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree"]
+margin_top = 610.0
+margin_right = 411.0
+margin_bottom = 620.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="Label8" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree"]
+margin_top = 620.0
+margin_right = 411.0
+margin_bottom = 640.0
+rect_min_size = Vector2( 0, 20 )
+theme = ExtResource( 1 )
+theme_type_variation = "Label_larger"
+text = "Tier 4"
+align = 1
+valign = 2
+
+[node name="Label9" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree"]
+margin_top = 640.0
+margin_right = 411.0
+margin_bottom = 660.0
+rect_min_size = Vector2( 0, 20 )
+theme = ExtResource( 1 )
+text = "0 / 60"
+align = 1
+valign = 2
+
+[node name="Tier4" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree"]
+margin_top = 660.0
+margin_right = 411.0
+margin_bottom = 784.0
+size_flags_vertical = 0
+custom_constants/separation = 0
+alignment = 1
+
+[node name="4a" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4"]
+margin_left = 101.0
+margin_right = 189.0
+margin_bottom = 124.0
+
+[node name="core_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a"]
+margin_right = 88.0
+margin_bottom = 24.0
+alignment = 1
+
+[node name="4a_passive2" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/core_passives"]
+margin_left = 32.0
+margin_right = 56.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/core_passives/4a_passive2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/core_passives/4a_passive2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/core_passives/4a_passive2/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="core_and_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a"]
+margin_top = 28.0
+margin_right = 88.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/core_and_passives"]
+margin_right = 24.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="4a_passive1" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/core_and_passives/VBoxContainer"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/core_and_passives/VBoxContainer/4a_passive1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/core_and_passives/VBoxContainer/4a_passive1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/core_and_passives/VBoxContainer/4a_passive1/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="4a_core" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/core_and_passives"]
+margin_left = 28.0
+margin_right = 60.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/core_and_passives/4a_core"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 4 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/core_and_passives/4a_core"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/core_and_passives/4a_core/Amount"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/core_and_passives"]
+margin_left = 64.0
+margin_right = 88.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="4a_passive3" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/core_and_passives/VBoxContainer2"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/core_and_passives/VBoxContainer2/4a_passive3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/core_and_passives/VBoxContainer2/4a_passive3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/core_and_passives/VBoxContainer2/4a_passive3/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="extra_and_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a"]
+margin_top = 64.0
+margin_right = 88.0
+margin_bottom = 96.0
+alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/extra_and_passives"]
+margin_right = 24.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="4a_extra_passive1" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/extra_and_passives/VBoxContainer3"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/extra_and_passives/VBoxContainer3/4a_extra_passive1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/extra_and_passives/VBoxContainer3/4a_extra_passive1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/extra_and_passives/VBoxContainer3/4a_extra_passive1/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="4a_extra" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/extra_and_passives"]
+margin_left = 28.0
+margin_right = 60.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/extra_and_passives/4a_extra"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 7 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/extra_and_passives/4a_extra"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/extra_and_passives/4a_extra/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/extra_and_passives"]
+margin_left = 64.0
+margin_right = 88.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="4a_extra_passive3" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/extra_and_passives/VBoxContainer4"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/extra_and_passives/VBoxContainer4/4a_extra_passive3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/extra_and_passives/VBoxContainer4/4a_extra_passive3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/extra_and_passives/VBoxContainer4/4a_extra_passive3/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="extra_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a"]
+margin_top = 100.0
+margin_right = 88.0
+margin_bottom = 124.0
+custom_constants/separation = 0
+alignment = 1
+
+[node name="4a_extra_passive2" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/extra_passives"]
+margin_left = 32.0
+margin_right = 56.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/extra_passives/4a_extra_passive2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/extra_passives/4a_extra_passive2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4a/extra_passives/4a_extra_passive2/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4"]
+margin_left = 189.0
+margin_right = 221.0
+margin_bottom = 124.0
+rect_min_size = Vector2( 32, 0 )
+
+[node name="4b" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4"]
+margin_left = 221.0
+margin_right = 309.0
+margin_bottom = 124.0
+
+[node name="core_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b"]
+margin_right = 88.0
+margin_bottom = 24.0
+custom_constants/separation = 0
+alignment = 1
+
+[node name="4b_passive2" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/core_passives"]
+margin_left = 32.0
+margin_right = 56.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/core_passives/4b_passive2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/core_passives/4b_passive2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/core_passives/4b_passive2/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="core_and_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b"]
+margin_top = 28.0
+margin_right = 88.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/core_and_passives"]
+margin_right = 24.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="4b_passive1" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/core_and_passives/VBoxContainer"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/core_and_passives/VBoxContainer/4b_passive1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/core_and_passives/VBoxContainer/4b_passive1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/core_and_passives/VBoxContainer/4b_passive1/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="4b_core" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/core_and_passives"]
+margin_left = 28.0
+margin_right = 60.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/core_and_passives/4b_core"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 4 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/core_and_passives/4b_core"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/core_and_passives/4b_core/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/core_and_passives"]
+margin_left = 64.0
+margin_right = 88.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="4b_passive3" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/core_and_passives/VBoxContainer2"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/core_and_passives/VBoxContainer2/4b_passive3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/core_and_passives/VBoxContainer2/4b_passive3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/core_and_passives/VBoxContainer2/4b_passive3/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="extra_and_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b"]
+margin_top = 64.0
+margin_right = 88.0
+margin_bottom = 96.0
+alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/extra_and_passives"]
+margin_right = 24.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="4b_extra_passive1" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/extra_and_passives/VBoxContainer3"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/extra_and_passives/VBoxContainer3/4b_extra_passive1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/extra_and_passives/VBoxContainer3/4b_extra_passive1"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/extra_and_passives/VBoxContainer3/4b_extra_passive1/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="4b_extra" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/extra_and_passives"]
+margin_left = 28.0
+margin_right = 60.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/extra_and_passives/4b_extra"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 7 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/extra_and_passives/4b_extra"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/extra_and_passives/4b_extra/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/extra_and_passives"]
+margin_left = 64.0
+margin_right = 88.0
+margin_bottom = 32.0
+alignment = 1
+
+[node name="4b_extra_passive3" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/extra_and_passives/VBoxContainer4"]
+margin_top = 4.0
+margin_right = 24.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/extra_and_passives/VBoxContainer4/4b_extra_passive3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/extra_and_passives/VBoxContainer4/4b_extra_passive3"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/extra_and_passives/VBoxContainer4/4b_extra_passive3/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="extra_passives" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b"]
+margin_top = 100.0
+margin_right = 88.0
+margin_bottom = 124.0
+custom_constants/separation = 0
+alignment = 1
+
+[node name="4b_extra_passive2" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/extra_passives"]
+margin_left = 32.0
+margin_right = 56.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 24, 24 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/extra_passives/4b_extra_passive2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/extra_passives/4b_extra_passive2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier4/4b/extra_passives/4b_extra_passive2/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="MarginContainer5" type="MarginContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree"]
+margin_top = 784.0
+margin_right = 411.0
+margin_bottom = 794.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="Label10" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree"]
+margin_top = 794.0
+margin_right = 411.0
+margin_bottom = 814.0
+rect_min_size = Vector2( 0, 20 )
+theme = ExtResource( 1 )
+theme_type_variation = "Label_larger"
+text = "Tier 5"
+align = 1
+valign = 2
+
+[node name="Label11" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree"]
+margin_top = 814.0
+margin_right = 411.0
+margin_bottom = 834.0
+rect_min_size = Vector2( 0, 20 )
+theme = ExtResource( 1 )
+text = "0 / 100"
+align = 1
+valign = 2
+
+[node name="Tier5" type="HBoxContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree"]
+margin_top = 834.0
+margin_right = 411.0
+margin_bottom = 882.0
+custom_constants/separation = 0
+alignment = 1
+
+[node name="5a_core" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier5"]
+margin_left = 181.0
+margin_right = 229.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+
+[node name="TextureButton" type="TextureButton" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier5/5a_core"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 32, 32 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 4 )
+expand = true
+
+[node name="Amount" type="TextureRect" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier5/5a_core"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 8.0
+
+[node name="Label" type="Label" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree/Tier5/5a_core/Amount"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="MarginContainer6" type="MarginContainer" parent="BoxBorder/BoxBG/VBoxContainer/ScrollContainer/SkillTree"]
+margin_top = 882.0
+margin_right = 411.0
+margin_bottom = 892.0
+rect_min_size = Vector2( 0, 10 )
+
+[connection signal="pressed" from="CloseButton" to="." method="_on_CloseButton_pressed"]

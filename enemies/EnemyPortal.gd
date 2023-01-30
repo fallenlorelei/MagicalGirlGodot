@@ -49,7 +49,7 @@ func _on_Timer_timeout():
 		spawn_enemies()
 
 
-func _on_PlayerActivate_body_entered(body):
+func _on_PlayerActivate_body_entered(_body):
 	if portalOpened == false:
 		portalOpened = true
 		sprite.show()

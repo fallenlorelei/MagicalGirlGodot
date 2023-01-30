@@ -56,7 +56,7 @@ void fragment()
 
 if(is_hid(vec2(UV.x*pixel_size_x,UV.y*pixel_size_y),vec2(pixel_size_x,pixel_size_y),min(corner_radius,max_r)))  
   {
-    COLOR = vec4(0.0);
+//    COLOR = vec4(0.0);
   }
   else 
   {

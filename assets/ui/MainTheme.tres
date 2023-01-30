@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=7 format=2]
+[gd_resource type="Theme" load_steps=8 format=2]
 
 [ext_resource path="res://assets/ui/fonts/BitPap.ttf" type="DynamicFontData" id=1]
 
@@ -7,6 +7,10 @@ size = 12
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 8
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=5]
@@ -37,6 +41,7 @@ Label/colors/font_color_shadow = Color( 0.113725, 0.176471, 0.411765, 1 )
 Label/constants/line_spacing = 0
 Label/fonts/font = SubResource( 1 )
 Label_larger/fonts/font = SubResource( 2 )
+Label_smaller/fonts/font = SubResource( 6 )
 RichTextLabel/colors/default_color = Color( 0.945098, 1, 0.74902, 1 )
 RichTextLabel/colors/font_color_shadow = Color( 0.113725, 0.176471, 0.411765, 1 )
 RichTextLabel/fonts/normal_font = SubResource( 5 )

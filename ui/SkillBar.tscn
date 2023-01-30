@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://assets/ui/Skillbar/skillbar-skillbg.png" type="Texture" id=1]
 [ext_resource path="res://ui/SkillBar.gd" type="Script" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://assets/ui/Skillbar/cooldown-bg.png" type="Texture" id=8]
 [ext_resource path="res://assets/ui/Skillbar/leftclick-bg.png" type="Texture" id=9]
 [ext_resource path="res://assets/ui/Skillbar/leftclick-outline.png" type="Texture" id=10]
-[ext_resource path="res://ui/SkillbarButtons.gd" type="Script" id=11]
 [ext_resource path="res://assets/ui/Skillbar/expbar-over.png" type="Texture" id=12]
 [ext_resource path="res://assets/ui/Skillbar/expbar-progress.png" type="Texture" id=13]
 [ext_resource path="res://assets/ui/Skillbar/expbar-under.png" type="Texture" id=14]
@@ -20,6 +19,12 @@
 [sub_resource type="ShaderMaterial" id=22]
 shader = ExtResource( 6 )
 shader_param/corner_radius = 8.0
+
+[sub_resource type="InputEventAction" id=26]
+action = "left_click"
+
+[sub_resource type="ShortCut" id=25]
+shortcut = SubResource( 26 )
 
 [sub_resource type="ShaderMaterial" id=23]
 shader = ExtResource( 6 )
@@ -129,7 +134,7 @@ margin_bottom = 44.0
 rect_min_size = Vector2( 36, 44 )
 texture = ExtResource( 10 )
 
-[node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/left_click"]
+[node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/left_click" groups=["AbilityShortcut"]]
 show_behind_parent = true
 material = SubResource( 22 )
 anchor_right = 1.0
@@ -141,11 +146,38 @@ margin_bottom = -1.0
 rect_min_size = Vector2( 28, 28 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
-shortcut_in_tooltip = false
-button_mask = 0
+action_mode = 0
+shortcut = SubResource( 25 )
 texture_normal = ExtResource( 9 )
 expand = true
-script = ExtResource( 11 )
+script = ExtResource( 3 )
+
+[node name="Cooldown" type="TextureProgress" parent="Background/HBoxContainer/left_click/TextureButton"]
+visible = false
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+value = 100.0
+texture_under = ExtResource( 8 )
+texture_progress = ExtResource( 8 )
+fill_mode = 5
+tint_under = Color( 0.65098, 0.192157, 0.27451, 0.588235 )
+tint_progress = Color( 0.321569, 0.321569, 0.321569, 0.784314 )
+nine_patch_stretch = true
+
+[node name="Timer" type="Timer" parent="Background/HBoxContainer/left_click/TextureButton"]
+one_shot = true
+
+[node name="Label" type="Label" parent="Background/HBoxContainer/left_click/TextureButton"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -20.0
+margin_top = -14.0
+margin_right = 20.0
+theme = ExtResource( 7 )
+align = 1
 
 [node name="ability1" type="TextureRect" parent="Background/HBoxContainer" groups=["DraggableSkill"]]
 margin_left = 46.0
@@ -173,7 +205,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 shortcut_in_tooltip = false
 action_mode = 0
-button_mask = 0
 shortcut = SubResource( 2 )
 texture_normal = ExtResource( 1 )
 expand = true
@@ -240,7 +271,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 shortcut_in_tooltip = false
 action_mode = 0
-button_mask = 0
 shortcut = SubResource( 4 )
 texture_normal = ExtResource( 1 )
 expand = true
@@ -307,7 +337,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 shortcut_in_tooltip = false
 action_mode = 0
-button_mask = 0
 shortcut = SubResource( 6 )
 texture_normal = ExtResource( 1 )
 expand = true
@@ -373,7 +402,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 shortcut_in_tooltip = false
 action_mode = 0
-button_mask = 0
 shortcut = SubResource( 8 )
 texture_normal = ExtResource( 1 )
 expand = true
@@ -440,7 +468,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 shortcut_in_tooltip = false
 action_mode = 0
-button_mask = 0
 shortcut = SubResource( 11 )
 texture_normal = ExtResource( 1 )
 expand = true
@@ -507,7 +534,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 shortcut_in_tooltip = false
 action_mode = 0
-button_mask = 0
 shortcut = SubResource( 14 )
 texture_normal = ExtResource( 1 )
 expand = true
@@ -593,6 +619,7 @@ expand = true
 [connection signal="mouse_entered" from="Background/HBoxContainer/left_click/TextureButton" to="Background/HBoxContainer/left_click/TextureButton" method="_on_TextureButton_mouse_entered"]
 [connection signal="mouse_exited" from="Background/HBoxContainer/left_click/TextureButton" to="." method="_on_TextureButton_mouse_exited"]
 [connection signal="mouse_exited" from="Background/HBoxContainer/left_click/TextureButton" to="Background/HBoxContainer/left_click/TextureButton" method="_on_TextureButton_mouse_exited"]
+[connection signal="timeout" from="Background/HBoxContainer/left_click/TextureButton/Timer" to="Background/HBoxContainer/left_click/TextureButton" method="_on_Timer_timeout"]
 [connection signal="mouse_entered" from="Background/HBoxContainer/ability1/TextureButton" to="." method="_on_TextureButton_mouse_entered"]
 [connection signal="mouse_entered" from="Background/HBoxContainer/ability1/TextureButton" to="Background/HBoxContainer/ability1/TextureButton" method="_on_TextureButton_mouse_entered"]
 [connection signal="mouse_exited" from="Background/HBoxContainer/ability1/TextureButton" to="." method="_on_TextureButton_mouse_exited"]

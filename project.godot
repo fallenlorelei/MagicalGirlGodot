@@ -44,11 +44,16 @@ config/icon="res://icon.png"
 
 [autoload]
 
-ElementalCrystalCounter="*res://ui/ElementalCrystalCounter.tscn"
 DataImport="*res://data/DataImport.gd"
-CooldownTracker="*res://abilities/CooldownTracker.tscn"
-PlayerStats="*res://entities/PlayerStats.tscn"
 SignalBus="*res://scripts/SignalBus.gd"
+ElementalCrystalCounter="*res://ui/ElementalCrystalCounter.gd"
+CooldownTracker="*res://abilities/CooldownTracker.gd"
+PlayerStats="*res://entities/Stats.gd"
+
+[debug]
+
+gdscript/warnings/unused_argument=false
+gdscript/warnings/unused_signal=false
 
 [display]
 
@@ -220,6 +225,7 @@ project/assembly_name="Magical Girl Godot"
 [physics]
 
 common/enable_pause_aware_picking=true
+2d/default_gravity_vector=Vector2( 0, 0 )
 
 [rendering]
 

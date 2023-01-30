@@ -1,14 +1,11 @@
 extends Node2D
 
-onready var attackAnimationTimer = $AttackAnimationTimer
 onready var globalCooldown = $GlobalCooldown
 onready var castingCircleSprite = $CastingCircle
 onready var castingCircleAnimation = $CastingCircle/AnimationPlayer
 onready var projectileLine = $ProjectilePreview
 onready var frontArcPreview = $FrontArcPreview
 
-
-var cooldownTracker = CooldownTracker
 var parentCursorDirection
 var parentCursorLocation
 var skillName
@@ -17,7 +14,7 @@ var skillElement
 var distance
 var castingCircleRotatingPosition
 var parent
-			
+
 func _ready():
 	parent = get_parent()
 	castingCircleRotatingPosition = 0.0
@@ -36,6 +33,27 @@ func set_animation_blend():
 	parent.animationTree.set("parameters/Idle/blend_position", parentCursorDirection)
 	parent.animationTree.set("parameters/Run/blend_position", parentCursorDirection)
 
+#Func starts from Player.gd
+func start_ability(selected_skill, selected_shortcut):
+	parent.releaseAbility = false
+	parent.attackAnimationFinished = false
+	parent.cancelled = false
+	
+	skillName = selected_skill
+	skillShortcut = selected_shortcut
+	distance = DataImport.skill_data[skillName].Distance
+
+	if selected_skill != null:
+		match DataImport.skill_data[skillName].SkillType:
+			"at_cursor":
+				show_casting(1, "at_cursor")
+			"around_self":
+				show_casting(-1, "around_self")
+			"front_arc":
+				show_casting(-1, "front_arc")
+			"projectile":
+				show_casting(-1, "projectile")
+				
 func update_visual_cast():
 	match DataImport.skill_data[skillName].SkillType:
 		"at_cursor":
@@ -73,6 +91,7 @@ func check_input():
 # CANCELING
 	if Input.is_action_pressed(str(skillShortcut)):
 		if Input.is_action_just_pressed("right_click"):
+			parent.cancelled = true
 			stop_casting()
 	
 # OUT OF BOUNDS OR RELEASING
@@ -86,33 +105,12 @@ func check_input():
 	if skillShortcut == "left_click":
 		release_ability()
 
-#Func starts from Player.gd
-func start_ability(selected_skill, selected_shortcut):
-	skillName = selected_skill
-	skillShortcut = selected_shortcut
-	distance = DataImport.skill_data[skillName].Distance
-
-	if selected_skill != null:
-		match DataImport.skill_data[skillName].SkillType:
-			"at_cursor":
-				show_casting(1, "at_cursor")
-			"self_utility":
-				pass
-			"full_view":
-				show_casting(-1, "around_self")
-			"around_self":
-				show_casting(-1, "around_self")
-			"front_arc":
-				show_casting(-1, "front_arc")
-			"projectile":
-				show_casting(-1, "projectile")
-
 # == HOLDING DOWN HOTKEY, SHOWING PREVIEW ==
 func show_casting(zindex, type):
 	#Resize casting circle to size of collision
 	var radiusSize = DataImport.skill_data[skillName].SkillRadius
 	match type:
-		"at_cursor", "around_self", "full_view":
+		"at_cursor", "around_self":
 			var sizeto = Vector2(radiusSize,radiusSize)
 			var size = castingCircleSprite.texture.get_size()
 			var scale_factor = sizeto/size * 2
@@ -139,15 +137,16 @@ func show_casting(zindex, type):
 
 # == RELEASE ABILITY ==
 func release_ability():
-	attack_animation()
+	parent.releaseAbility = true
 	globalCooldown.start()
-	cooldownTracker.start_cooldown(skillName, skillShortcut)
+	CooldownTracker.start_cooldown(skillName, skillShortcut)
 	
 	skillElement = DataImport.skill_data[skillName].Element
 	var loadedAbility = load_ability(skillName)
 	var ability = loadedAbility.instance()
 	ability.skillName = skillName
-
+	ability.attackManager = self
+	
 	match DataImport.skill_data[skillName].SkillType:
 		"at_cursor":			
 			ability.global_position = parentCursorLocation
@@ -159,17 +158,10 @@ func release_ability():
 				ability.particles.scale = Vector2(1,1)
 			else:
 				ability.particles.scale = Vector2(-1,1)
+			
 			ability.at_cursor()
-#
-		"self_utility":
-			add_child(ability)
-#
-		"around_self":
-			ability.global_position = self.global_position
-			get_tree().get_current_scene().add_child(ability)
-			ability.around_self()
 
-		"full_view":
+		"around_self":
 			ability.global_position = self.global_position
 			get_tree().get_current_scene().add_child(ability)
 			ability.around_self()
@@ -200,17 +192,11 @@ func stop_casting():
 	skillName = null
 	parent.selected_skill = null
 	parent.selected_skillSlot = null
-	parent.attackFinished = true
 	
 func load_ability(skill_name):
 	if skillName != null:
 		var path = "res://abilities/" + skillElement + "/" + skill_name + "/" + skill_name + ".tscn"
 		return load(path)
-
-func attack_animation():
-	parent.animationState.travel("Attack")
-	if attackAnimationTimer.is_stopped():
-		attackAnimationTimer.start()
 
 func check_global_cooldown():
 	return globalCooldown.is_stopped()

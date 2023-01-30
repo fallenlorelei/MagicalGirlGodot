@@ -11,8 +11,6 @@ var knockback = Vector2.ZERO
 var input_vector = Vector2.ZERO
 var velocity: Vector2 = Vector2.ZERO
 var enemyStats
-#var state = null setget set_state
-#var previous_state = null
 var states = {}
 
 func _ready():
@@ -20,38 +18,6 @@ func _ready():
 
 func _physics_process(delta):
 	pass
-#	if state !=null:
-#		_state_logic(delta)
-#		var transition = _get_transition(delta)
-#		if transition != null:
-#			set_state(transition)
-#
-## == STATE MACHINE ==
-#func _state_logic(delta):
-#	pass
-#
-#func _get_transition(delta):
-#	return null
-#
-#func _enter_state(new_state, old_state):
-#	pass
-#
-#func _exit_state(old_state, new_state):
-#	pass
-#
-#func set_state(new_state):
-#	previous_state = state
-#	state = new_state
-#
-#	if previous_state !=null:
-#		_exit_state(previous_state, new_state)
-#	if new_state != null:
-#		_enter_state(new_state, previous_state)
-#
-#func add_state(state_name):
-#	states[state_name] = states.size()
-	
-# ===========================================
 	
 func move(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, FRICTION * delta)
@@ -78,11 +44,9 @@ func skill_damage(area, group):
 	if group == "Enemy":
 		if is_instance_valid(PlayerStats) and PlayerStats.hp > 0:
 			PlayerStats.receive_damage(area.skillDamage)
-			if area.canKnockback == true:
-				knockback = area.knockback_vector * area.knockbackModifier
+			knockback = area.knockback_vector * area.knockbackModifier
 			
 	if group == "Player":
 		if enemyStats.hp > 0:
 			enemyStats.receive_damage(area.skillDamage)
-			if area.canKnockback == true:
-				knockback = area.knockback_vector * area.knockbackModifier
+			knockback = area.knockback_vector * area.knockbackModifier

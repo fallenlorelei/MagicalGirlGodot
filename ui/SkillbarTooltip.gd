@@ -46,11 +46,11 @@ func update_tooltip():
 		
 		cooldownDurationLabel.set_text(str(DataImport.skill_data[skill_name].CooldownDuration) + " seconds")
 		
-		var skillD1 = str(DataImport.skill_data[skill_name].SkillDescription1)
+		var skillD = str(DataImport.skill_data[skill_name].SkillDescription)
 		var damageAmount = DataImport.skill_data[skill_name].SkillDamage
 		var healAmount = DataImport.skill_data[skill_name].HealAmount
 			
-		var actual_string = skillD1.format(
+		var actual_string = skillD.format(
 			{"damage": "[color=#ff8f8f]" + str(damageAmount) + "[/color]",
 			"hp": "[color=#7ac240]" + str(healAmount) + "[/color]",
 			"element": DataImport.skill_data[skill_name].Element

@@ -9,6 +9,7 @@ var crystals = {
 	"ICE": 0,
 	"EARTH": 0,
 	"THUNDER": 0, 
+	"WIND": 0, 
 }
 
 var crystalAnimationFrame = {
@@ -20,6 +21,7 @@ var crystalAnimationFrame = {
 	"THUNDER": 2,
 	"WATER": 3,
 	"EARTH": 4,
+	"WIND": 4,
 }
 signal crystals_changed
 
@@ -49,5 +51,7 @@ func update_crystals(element, amount):
 			crystals["THUNDER"] += amount
 		"WATER":
 			crystals["WATER"] += amount
+		"WIND":
+			crystals["WIND"] += amount
 
 	emit_signal("crystals_changed")

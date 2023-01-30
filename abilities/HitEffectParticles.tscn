@@ -31,7 +31,7 @@ material = SubResource( 1 )
 script = ExtResource( 2 )
 
 [node name="FlashTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.2
 one_shot = true
 
 [node name="YellowSparkle" type="Particles2D" parent="."]
