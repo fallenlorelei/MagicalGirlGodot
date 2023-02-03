@@ -8,3 +8,6 @@
 [node name="Sprite" parent="." index="0"]
 position = Vector2( -3, 0 )
 texture = ExtResource( 2 )
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = ""

@@ -3,12 +3,13 @@ extends Popup
 
 onready var skillNameLabel = $"%SkillName"
 onready var skillTypeLabel = $"%SkillType"
+onready var skillElementLabel = $"%SkillElement"
 onready var cooldownDurationLabel = $"%CooldownDuration"
 onready var skillDescriptionLabel = $"%SkillDescription"
 onready var scrollContainer = $"%ScrollContainer"
-onready var background = $Background
+onready var background = $Border/Background
 
-var screensize = OS.window_size / 2
+var screensize = OS.window_size / 2 * 1.2
 var adj_pos = Vector2()	
 
 var origin = ""
@@ -22,9 +23,8 @@ func _ready():
 	
 func _physics_process(_delta):
 	var cursor_pos = get_global_mouse_position()
-#	adj_pos.x = cursor_pos.x
-#	adj_pos.y = cursor_pos.y - background.rect_size.y
 	set_position(cursor_pos)
+
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -43,6 +43,7 @@ func update_tooltip():
 		skillNameLabel.set_text(skill_name.capitalize())
 		
 		skillTypeLabel.set_text(DataImport.skill_data[skill_name].SkillType.capitalize())
+		skillElementLabel.set_text(DataImport.skill_data[skill_name].Element.capitalize())
 		
 		cooldownDurationLabel.set_text(str(DataImport.skill_data[skill_name].CooldownDuration) + " seconds")
 		

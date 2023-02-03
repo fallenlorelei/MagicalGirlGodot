@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
-"path": "res://StateMachine.gd"
+"path": "res://scripts/StateMachine.gd"
 } ]
 _global_script_class_icons={
 "EntityBase": "",
@@ -46,9 +46,10 @@ config/icon="res://icon.png"
 
 DataImport="*res://data/DataImport.gd"
 SignalBus="*res://scripts/SignalBus.gd"
-ElementalCrystalCounter="*res://ui/ElementalCrystalCounter.gd"
+ElementalCrystalCounter="*res://scripts/ElementalCrystalCounter.gd"
 CooldownTracker="*res://abilities/CooldownTracker.gd"
 PlayerStats="*res://entities/Stats.gd"
+SkillTreeTracker="*res://scripts/SkillTreeTracker.gd"
 
 [debug]
 

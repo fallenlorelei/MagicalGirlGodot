@@ -1,607 +1,602 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://ui/CrystalCounter.gd" type="Script" id=1]
-[ext_resource path="res://assets/ui/UI_bigbox01.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/Box/box_border_modular.png" type="Texture" id=2]
 [ext_resource path="res://assets/ui/MainTheme.tres" type="Theme" id=3]
-[ext_resource path="res://assets/ui/CrystalBox/crystalbox-progress-progress.png" type="Texture" id=4]
-[ext_resource path="res://assets/ui/CrystalBox/elecrys_fire.png" type="Texture" id=5]
-[ext_resource path="res://assets/ui/CrystalBox/crystalbox-progress-over.png" type="Texture" id=7]
-[ext_resource path="res://assets/ui/CrystalBox/elecrys_earth.png" type="Texture" id=8]
-[ext_resource path="res://assets/ui/CrystalBox/elecrys_water.png" type="Texture" id=9]
-[ext_resource path="res://assets/ui/CrystalBox/elecrys_light.png" type="Texture" id=10]
-[ext_resource path="res://assets/ui/CrystalBox/elecrys_ice.png" type="Texture" id=11]
-[ext_resource path="res://assets/ui/CrystalBox/elecrys_dark.png" type="Texture" id=12]
-[ext_resource path="res://assets/ui/CrystalBox/elecrys_thunder.png" type="Texture" id=13]
-[ext_resource path="res://assets/ui/CrystalBox/elecrys_psychic.png" type="Texture" id=14]
+[ext_resource path="res://assets/ui/ProgressBars/progress_bar_over_100.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/elemental_crystals/elecrys_light.png" type="Texture" id=5]
+[ext_resource path="res://assets/ui/Box/heart_pattern_bg.png" type="Texture" id=6]
+[ext_resource path="res://assets/ui/ProgressBars/progress_bar_progress_100.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/elemental_crystals/elecrys_fire.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/elemental_crystals/elecrys_thunder.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/elemental_crystals/elecrys_earth.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/elemental_crystals/elecrys_wind.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/elemental_crystals/elecrys_ice.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/elemental_crystals/elecrys_dark.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/elemental_crystals/elecrys_water.png" type="Texture" id=14]
 [ext_resource path="res://assets/ui/CrystalBox/crystalbox-unlocked.png" type="Texture" id=15]
 [ext_resource path="res://assets/ui/CrystalBox/crystalbox-unlocked-hover.png" type="Texture" id=16]
 [ext_resource path="res://assets/ui/CrystalBox/crystalbox-locked.png" type="Texture" id=17]
-[ext_resource path="res://assets/ui/UI_bigbox_bg.png" type="Texture" id=18]
+[ext_resource path="res://assets/sprites/elemental_crystals/elecrys_psychic.png" type="Texture" id=18]
 
 [node name="CrystalCounter" type="Control"]
+pause_mode = 2
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_left = -140.0
-margin_top = -129.0
-margin_right = 27.0
-margin_bottom = 129.0
+margin_left = -147.0
+margin_top = -180.0
+margin_right = 28.0
+margin_bottom = 150.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource( 1 )
 
-[node name="TextureRect" type="NinePatchRect" parent="."]
+[node name="Border" type="NinePatchRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -4.0
-margin_right = -4.0
-margin_bottom = -100.0
 rect_min_size = Vector2( 167, 258 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 2 )
-patch_margin_left = 2
-patch_margin_top = 2
-patch_margin_right = 2
-patch_margin_bottom = 2
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
 
-[node name="Background" type="TextureRect" parent="TextureRect"]
+[node name="Background" type="TextureRect" parent="Border"]
+show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 1.0
-margin_right = -1.0
-margin_bottom = -1.0
+margin_left = 3.0
+margin_top = 3.0
+margin_right = -3.0
+margin_bottom = -3.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 18 )
+texture = ExtResource( 6 )
 expand = true
 stretch_mode = 2
 
-[node name="MouseDetection_Close" type="Container" parent="TextureRect"]
-margin_right = 144.0
-margin_bottom = 257.0
-grow_vertical = 2
-
-[node name="MouseDetection_Open" type="Container" parent="TextureRect"]
-margin_left = 144.0
-margin_top = 26.0
-margin_right = 169.0
-margin_bottom = 257.0
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_left = 6.0
-margin_top = -126.0
-margin_right = 164.0
-margin_bottom = 126.0
+[node name="HBoxContainer" type="HBoxContainer" parent="Border"]
+margin_left = 9.0
+margin_top = 3.0
+margin_right = 175.0
+margin_bottom = 327.0
 mouse_filter = 2
-alignment = 2
+custom_constants/separation = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/HBoxContainer"]
-margin_left = 14.0
-margin_right = 158.0
-margin_bottom = 252.0
-mouse_filter = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="TextureRect/HBoxContainer/VBoxContainer"]
-margin_right = 144.0
-margin_bottom = 252.0
-mouse_filter = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2"]
-margin_right = 124.0
-margin_bottom = 252.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Border/HBoxContainer"]
+margin_right = 132.0
+margin_bottom = 324.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="MarginContainer9" type="MarginContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_right = 124.0
+[node name="MarginContainer9" type="MarginContainer" parent="Border/HBoxContainer/VBoxContainer"]
+margin_right = 132.0
 mouse_filter = 2
 
-[node name="LightContainer" type="HBoxContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="LightContainer" type="HBoxContainer" parent="Border/HBoxContainer/VBoxContainer"]
 margin_top = 4.0
-margin_right = 124.0
-margin_bottom = 24.0
+margin_right = 132.0
+margin_bottom = 32.0
 rect_min_size = Vector2( 120, 0 )
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/LightContainer"]
-margin_right = 20.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
+[node name="TextureRect" type="TextureRect" parent="Border/HBoxContainer/VBoxContainer/LightContainer"]
+margin_right = 28.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 28, 28 )
 mouse_filter = 2
-texture = ExtResource( 10 )
+texture = ExtResource( 5 )
 expand = true
+stretch_mode = 4
 
-[node name="LightProgress" type="TextureProgress" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/LightContainer"]
+[node name="LightProgress" type="TextureProgress" parent="Border/HBoxContainer/VBoxContainer/LightContainer"]
 unique_name_in_owner = true
-margin_left = 24.0
+margin_left = 32.0
 margin_top = 2.0
-margin_right = 124.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 100, 16 )
+margin_right = 132.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 100, 24 )
 mouse_filter = 2
 size_flags_vertical = 4
 max_value = 0.0
-texture_under = ExtResource( 4 )
-texture_over = ExtResource( 7 )
-texture_progress = ExtResource( 4 )
+texture_under = ExtResource( 7 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 7 )
 tint_under = Color( 0.321569, 0.321569, 0.321569, 1 )
 tint_progress = Color( 0.890196, 0.321569, 0.462745, 1 )
 
-[node name="LightLabel" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/LightContainer/LightProgress"]
+[node name="LightLabel" type="Label" parent="Border/HBoxContainer/VBoxContainer/LightContainer/LightProgress"]
 margin_left = 5.0
 margin_right = 43.0
-rect_min_size = Vector2( 38, 16 )
+rect_min_size = Vector2( 38, 24 )
 theme = ExtResource( 3 )
 text = "Light:"
 valign = 1
 
-[node name="LightAmount" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/LightContainer/LightProgress"]
+[node name="LightAmount" type="Label" parent="Border/HBoxContainer/VBoxContainer/LightContainer/LightProgress"]
 unique_name_in_owner = true
 margin_left = 47.0
 margin_right = 94.0
-rect_min_size = Vector2( 0, 16 )
+rect_min_size = Vector2( 0, 24 )
 theme = ExtResource( 3 )
 text = "<Amount>"
 valign = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 28.0
-margin_right = 124.0
-margin_bottom = 28.0
+[node name="MarginContainer" type="MarginContainer" parent="Border/HBoxContainer/VBoxContainer"]
+margin_top = 36.0
+margin_right = 132.0
+margin_bottom = 36.0
 mouse_filter = 2
 
-[node name="DarkContainer" type="HBoxContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 32.0
-margin_right = 124.0
-margin_bottom = 52.0
+[node name="DarkContainer" type="HBoxContainer" parent="Border/HBoxContainer/VBoxContainer"]
+margin_top = 40.0
+margin_right = 132.0
+margin_bottom = 68.0
 rect_min_size = Vector2( 120, 0 )
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/DarkContainer"]
-margin_right = 20.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
+[node name="TextureRect" type="TextureRect" parent="Border/HBoxContainer/VBoxContainer/DarkContainer"]
+margin_right = 28.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 28, 28 )
 mouse_filter = 2
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 expand = true
+stretch_mode = 4
 
-[node name="DarkProgress" type="TextureProgress" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/DarkContainer"]
+[node name="DarkProgress" type="TextureProgress" parent="Border/HBoxContainer/VBoxContainer/DarkContainer"]
 unique_name_in_owner = true
-margin_left = 24.0
+margin_left = 32.0
 margin_top = 2.0
-margin_right = 124.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 100, 16 )
+margin_right = 132.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 100, 24 )
 mouse_filter = 2
 size_flags_vertical = 4
 max_value = 0.0
-texture_under = ExtResource( 4 )
-texture_over = ExtResource( 7 )
-texture_progress = ExtResource( 4 )
+texture_under = ExtResource( 7 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 7 )
 tint_under = Color( 0.321569, 0.321569, 0.321569, 1 )
 tint_progress = Color( 0.890196, 0.321569, 0.462745, 1 )
 
-[node name="DarkLabel" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/DarkContainer/DarkProgress"]
+[node name="DarkLabel" type="Label" parent="Border/HBoxContainer/VBoxContainer/DarkContainer/DarkProgress"]
 margin_left = 5.0
 margin_right = 43.0
-rect_min_size = Vector2( 38, 16 )
+rect_min_size = Vector2( 38, 24 )
 theme = ExtResource( 3 )
 text = "Dark:"
 valign = 1
 
-[node name="DarkAmount" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/DarkContainer/DarkProgress"]
+[node name="DarkAmount" type="Label" parent="Border/HBoxContainer/VBoxContainer/DarkContainer/DarkProgress"]
 unique_name_in_owner = true
 margin_left = 47.0
 margin_right = 94.0
-rect_min_size = Vector2( 0, 16 )
+rect_min_size = Vector2( 0, 24 )
 theme = ExtResource( 3 )
 text = "<Amount>"
 valign = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 56.0
-margin_right = 124.0
-margin_bottom = 56.0
+[node name="MarginContainer2" type="MarginContainer" parent="Border/HBoxContainer/VBoxContainer"]
+margin_top = 72.0
+margin_right = 132.0
+margin_bottom = 72.0
 mouse_filter = 2
 
-[node name="PsychicContainer" type="HBoxContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 60.0
-margin_right = 124.0
-margin_bottom = 80.0
+[node name="PsychicContainer" type="HBoxContainer" parent="Border/HBoxContainer/VBoxContainer"]
+margin_top = 76.0
+margin_right = 132.0
+margin_bottom = 104.0
 rect_min_size = Vector2( 120, 0 )
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PsychicContainer"]
-margin_right = 20.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
+[node name="TextureRect" type="TextureRect" parent="Border/HBoxContainer/VBoxContainer/PsychicContainer"]
+margin_right = 28.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 28, 28 )
 mouse_filter = 2
-texture = ExtResource( 14 )
+texture = ExtResource( 18 )
 expand = true
+stretch_mode = 4
 
-[node name="PsychicProgress" type="TextureProgress" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PsychicContainer"]
+[node name="PsychicProgress" type="TextureProgress" parent="Border/HBoxContainer/VBoxContainer/PsychicContainer"]
 unique_name_in_owner = true
-margin_left = 24.0
+margin_left = 32.0
 margin_top = 2.0
-margin_right = 124.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 100, 16 )
+margin_right = 132.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 100, 24 )
 mouse_filter = 2
 size_flags_vertical = 4
 max_value = 0.0
-texture_under = ExtResource( 4 )
-texture_over = ExtResource( 7 )
-texture_progress = ExtResource( 4 )
+texture_under = ExtResource( 7 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 7 )
 tint_under = Color( 0.321569, 0.321569, 0.321569, 1 )
 tint_progress = Color( 0.890196, 0.321569, 0.462745, 1 )
 
-[node name="PsychicLabel" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PsychicContainer/PsychicProgress"]
+[node name="PsychicLabel" type="Label" parent="Border/HBoxContainer/VBoxContainer/PsychicContainer/PsychicProgress"]
 margin_left = 5.0
 margin_right = 43.0
-rect_min_size = Vector2( 38, 16 )
+rect_min_size = Vector2( 38, 24 )
 theme = ExtResource( 3 )
 text = "Psychic:"
 valign = 1
 
-[node name="PsychicAmount" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/PsychicContainer/PsychicProgress"]
+[node name="PsychicAmount" type="Label" parent="Border/HBoxContainer/VBoxContainer/PsychicContainer/PsychicProgress"]
 unique_name_in_owner = true
 margin_left = 47.0
 margin_right = 94.0
-rect_min_size = Vector2( 0, 16 )
+rect_min_size = Vector2( 0, 24 )
 theme = ExtResource( 3 )
 text = "<Amount>"
 valign = 1
 
-[node name="MarginContainer3" type="MarginContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 84.0
-margin_right = 124.0
-margin_bottom = 84.0
+[node name="MarginContainer3" type="MarginContainer" parent="Border/HBoxContainer/VBoxContainer"]
+margin_top = 108.0
+margin_right = 132.0
+margin_bottom = 108.0
 mouse_filter = 2
 
-[node name="FireContainer" type="HBoxContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 88.0
-margin_right = 124.0
-margin_bottom = 108.0
+[node name="FireContainer" type="HBoxContainer" parent="Border/HBoxContainer/VBoxContainer"]
+margin_top = 112.0
+margin_right = 132.0
+margin_bottom = 140.0
 rect_min_size = Vector2( 120, 0 )
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/FireContainer"]
-margin_right = 20.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
+[node name="TextureRect" type="TextureRect" parent="Border/HBoxContainer/VBoxContainer/FireContainer"]
+margin_right = 28.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 28, 28 )
 mouse_filter = 2
-texture = ExtResource( 5 )
+texture = ExtResource( 8 )
 expand = true
+stretch_mode = 4
 
-[node name="FireProgress" type="TextureProgress" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/FireContainer"]
+[node name="FireProgress" type="TextureProgress" parent="Border/HBoxContainer/VBoxContainer/FireContainer"]
 unique_name_in_owner = true
-margin_left = 24.0
+margin_left = 32.0
 margin_top = 2.0
-margin_right = 124.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 100, 16 )
+margin_right = 132.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 100, 24 )
 mouse_filter = 2
 size_flags_vertical = 4
 max_value = 0.0
-texture_under = ExtResource( 4 )
-texture_over = ExtResource( 7 )
-texture_progress = ExtResource( 4 )
+texture_under = ExtResource( 7 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 7 )
 tint_under = Color( 0.321569, 0.321569, 0.321569, 1 )
 tint_progress = Color( 0.890196, 0.321569, 0.462745, 1 )
 
-[node name="FireLabel" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/FireContainer/FireProgress"]
+[node name="FireLabel" type="Label" parent="Border/HBoxContainer/VBoxContainer/FireContainer/FireProgress"]
 margin_left = 5.0
 margin_right = 43.0
-rect_min_size = Vector2( 38, 16 )
+rect_min_size = Vector2( 38, 24 )
 theme = ExtResource( 3 )
 text = "Fire:"
 valign = 1
 
-[node name="FireAmount" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/FireContainer/FireProgress"]
+[node name="FireAmount" type="Label" parent="Border/HBoxContainer/VBoxContainer/FireContainer/FireProgress"]
 unique_name_in_owner = true
 margin_left = 47.0
 margin_right = 94.0
-rect_min_size = Vector2( 0, 16 )
+rect_min_size = Vector2( 0, 24 )
 theme = ExtResource( 3 )
 text = "<Amount>"
 valign = 1
 
-[node name="MarginContainer4" type="MarginContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 112.0
-margin_right = 124.0
-margin_bottom = 112.0
+[node name="MarginContainer4" type="MarginContainer" parent="Border/HBoxContainer/VBoxContainer"]
+margin_top = 144.0
+margin_right = 132.0
+margin_bottom = 144.0
 mouse_filter = 2
 
-[node name="IceContainer" type="HBoxContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 116.0
-margin_right = 124.0
-margin_bottom = 136.0
+[node name="IceContainer" type="HBoxContainer" parent="Border/HBoxContainer/VBoxContainer"]
+margin_top = 148.0
+margin_right = 132.0
+margin_bottom = 176.0
 rect_min_size = Vector2( 120, 0 )
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/IceContainer"]
-margin_right = 20.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
+[node name="TextureRect" type="TextureRect" parent="Border/HBoxContainer/VBoxContainer/IceContainer"]
+margin_right = 28.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 28, 28 )
 mouse_filter = 2
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 expand = true
+stretch_mode = 4
 
-[node name="IceProgress" type="TextureProgress" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/IceContainer"]
+[node name="IceProgress" type="TextureProgress" parent="Border/HBoxContainer/VBoxContainer/IceContainer"]
 unique_name_in_owner = true
-margin_left = 24.0
+margin_left = 32.0
 margin_top = 2.0
-margin_right = 124.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 100, 16 )
+margin_right = 132.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 100, 24 )
 mouse_filter = 2
 size_flags_vertical = 4
 max_value = 0.0
-texture_under = ExtResource( 4 )
-texture_over = ExtResource( 7 )
-texture_progress = ExtResource( 4 )
+texture_under = ExtResource( 7 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 7 )
 tint_under = Color( 0.321569, 0.321569, 0.321569, 1 )
 tint_progress = Color( 0.890196, 0.321569, 0.462745, 1 )
 
-[node name="IceLabel" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/IceContainer/IceProgress"]
+[node name="IceLabel" type="Label" parent="Border/HBoxContainer/VBoxContainer/IceContainer/IceProgress"]
 margin_left = 5.0
 margin_right = 43.0
-rect_min_size = Vector2( 38, 16 )
+rect_min_size = Vector2( 38, 24 )
 theme = ExtResource( 3 )
 text = "Ice:"
 valign = 1
 
-[node name="IceAmount" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/IceContainer/IceProgress"]
+[node name="IceAmount" type="Label" parent="Border/HBoxContainer/VBoxContainer/IceContainer/IceProgress"]
 unique_name_in_owner = true
 margin_left = 47.0
 margin_right = 94.0
-rect_min_size = Vector2( 0, 16 )
+rect_min_size = Vector2( 0, 24 )
 theme = ExtResource( 3 )
 text = "<Amount>"
 valign = 1
 
-[node name="MarginContainer5" type="MarginContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 140.0
-margin_right = 124.0
-margin_bottom = 140.0
+[node name="MarginContainer5" type="MarginContainer" parent="Border/HBoxContainer/VBoxContainer"]
+margin_top = 180.0
+margin_right = 132.0
+margin_bottom = 180.0
 mouse_filter = 2
 
-[node name="EarthContainer" type="HBoxContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 144.0
-margin_right = 124.0
-margin_bottom = 164.0
+[node name="EarthContainer" type="HBoxContainer" parent="Border/HBoxContainer/VBoxContainer"]
+margin_top = 184.0
+margin_right = 132.0
+margin_bottom = 212.0
 rect_min_size = Vector2( 120, 0 )
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/EarthContainer"]
-margin_right = 20.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
+[node name="TextureRect" type="TextureRect" parent="Border/HBoxContainer/VBoxContainer/EarthContainer"]
+margin_right = 28.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 28, 28 )
 mouse_filter = 2
-texture = ExtResource( 8 )
+texture = ExtResource( 10 )
 expand = true
+stretch_mode = 4
 
-[node name="EarthProgress" type="TextureProgress" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/EarthContainer"]
+[node name="EarthProgress" type="TextureProgress" parent="Border/HBoxContainer/VBoxContainer/EarthContainer"]
 unique_name_in_owner = true
-margin_left = 24.0
+margin_left = 32.0
 margin_top = 2.0
-margin_right = 124.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 100, 16 )
+margin_right = 132.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 100, 24 )
 mouse_filter = 2
 size_flags_vertical = 4
 max_value = 0.0
-texture_under = ExtResource( 4 )
-texture_over = ExtResource( 7 )
-texture_progress = ExtResource( 4 )
+texture_under = ExtResource( 7 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 7 )
 tint_under = Color( 0.321569, 0.321569, 0.321569, 1 )
 tint_progress = Color( 0.890196, 0.321569, 0.462745, 1 )
 
-[node name="EarthLabel" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/EarthContainer/EarthProgress"]
+[node name="EarthLabel" type="Label" parent="Border/HBoxContainer/VBoxContainer/EarthContainer/EarthProgress"]
 margin_left = 5.0
 margin_right = 43.0
-rect_min_size = Vector2( 38, 16 )
+rect_min_size = Vector2( 38, 24 )
 theme = ExtResource( 3 )
 text = "Earth:"
 valign = 1
 
-[node name="EarthAmount" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/EarthContainer/EarthProgress"]
+[node name="EarthAmount" type="Label" parent="Border/HBoxContainer/VBoxContainer/EarthContainer/EarthProgress"]
 unique_name_in_owner = true
 margin_left = 47.0
 margin_right = 94.0
-rect_min_size = Vector2( 0, 16 )
+rect_min_size = Vector2( 0, 24 )
 theme = ExtResource( 3 )
 text = "<Amount>"
 valign = 1
 
-[node name="MarginContainer6" type="MarginContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 168.0
-margin_right = 124.0
-margin_bottom = 168.0
+[node name="MarginContainer6" type="MarginContainer" parent="Border/HBoxContainer/VBoxContainer"]
+margin_top = 216.0
+margin_right = 132.0
+margin_bottom = 216.0
 mouse_filter = 2
 
-[node name="ThunderContainer" type="HBoxContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 172.0
-margin_right = 124.0
-margin_bottom = 192.0
+[node name="ThunderContainer" type="HBoxContainer" parent="Border/HBoxContainer/VBoxContainer"]
+margin_top = 220.0
+margin_right = 132.0
+margin_bottom = 248.0
 rect_min_size = Vector2( 120, 0 )
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/ThunderContainer"]
-margin_right = 20.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
+[node name="TextureRect" type="TextureRect" parent="Border/HBoxContainer/VBoxContainer/ThunderContainer"]
+margin_right = 28.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 28, 28 )
 mouse_filter = 2
-texture = ExtResource( 13 )
+texture = ExtResource( 9 )
 expand = true
+stretch_mode = 4
 
-[node name="ThunderProgress" type="TextureProgress" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/ThunderContainer"]
+[node name="ThunderProgress" type="TextureProgress" parent="Border/HBoxContainer/VBoxContainer/ThunderContainer"]
 unique_name_in_owner = true
-margin_left = 24.0
+margin_left = 32.0
 margin_top = 2.0
-margin_right = 124.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 100, 16 )
+margin_right = 132.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 100, 24 )
 mouse_filter = 2
 size_flags_vertical = 4
 max_value = 0.0
-texture_under = ExtResource( 4 )
-texture_over = ExtResource( 7 )
-texture_progress = ExtResource( 4 )
+texture_under = ExtResource( 7 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 7 )
 tint_under = Color( 0.321569, 0.321569, 0.321569, 1 )
 tint_progress = Color( 0.890196, 0.321569, 0.462745, 1 )
 
-[node name="ThunderLabel" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/ThunderContainer/ThunderProgress"]
+[node name="ThunderLabel" type="Label" parent="Border/HBoxContainer/VBoxContainer/ThunderContainer/ThunderProgress"]
 margin_left = 5.0
 margin_right = 43.0
-rect_min_size = Vector2( 38, 16 )
+rect_min_size = Vector2( 38, 24 )
 theme = ExtResource( 3 )
 text = "Thunder:"
 valign = 1
 
-[node name="ThunderAmount" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/ThunderContainer/ThunderProgress"]
+[node name="ThunderAmount" type="Label" parent="Border/HBoxContainer/VBoxContainer/ThunderContainer/ThunderProgress"]
 unique_name_in_owner = true
 margin_left = 47.0
 margin_right = 94.0
-rect_min_size = Vector2( 0, 16 )
+rect_min_size = Vector2( 0, 24 )
 theme = ExtResource( 3 )
 text = "<Amount>"
 valign = 1
 
-[node name="MarginContainer7" type="MarginContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 196.0
-margin_right = 124.0
-margin_bottom = 196.0
+[node name="MarginContainer7" type="MarginContainer" parent="Border/HBoxContainer/VBoxContainer"]
+margin_top = 252.0
+margin_right = 132.0
+margin_bottom = 252.0
 mouse_filter = 2
 
-[node name="WaterContainer" type="HBoxContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 200.0
-margin_right = 124.0
-margin_bottom = 220.0
+[node name="WaterContainer" type="HBoxContainer" parent="Border/HBoxContainer/VBoxContainer"]
+margin_top = 256.0
+margin_right = 132.0
+margin_bottom = 284.0
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/WaterContainer"]
-margin_right = 20.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
+[node name="TextureRect" type="TextureRect" parent="Border/HBoxContainer/VBoxContainer/WaterContainer"]
+margin_right = 28.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 28, 28 )
 mouse_filter = 2
-texture = ExtResource( 9 )
+texture = ExtResource( 14 )
 expand = true
+stretch_mode = 4
 
-[node name="WaterProgress" type="TextureProgress" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/WaterContainer"]
+[node name="WaterProgress" type="TextureProgress" parent="Border/HBoxContainer/VBoxContainer/WaterContainer"]
 unique_name_in_owner = true
-margin_left = 24.0
+margin_left = 32.0
 margin_top = 2.0
-margin_right = 124.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 100, 16 )
+margin_right = 132.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 100, 24 )
 mouse_filter = 2
 size_flags_vertical = 4
 max_value = 0.0
-texture_under = ExtResource( 4 )
-texture_over = ExtResource( 7 )
-texture_progress = ExtResource( 4 )
+texture_under = ExtResource( 7 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 7 )
 tint_under = Color( 0.321569, 0.321569, 0.321569, 1 )
 tint_progress = Color( 0.890196, 0.321569, 0.462745, 1 )
 
-[node name="WarerLabel" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/WaterContainer/WaterProgress"]
+[node name="WarerLabel" type="Label" parent="Border/HBoxContainer/VBoxContainer/WaterContainer/WaterProgress"]
 margin_left = 5.0
 margin_right = 43.0
-rect_min_size = Vector2( 38, 16 )
+rect_min_size = Vector2( 38, 24 )
 theme = ExtResource( 3 )
 text = "Water:"
 valign = 1
 
-[node name="WaterAmount" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/WaterContainer/WaterProgress"]
+[node name="WaterAmount" type="Label" parent="Border/HBoxContainer/VBoxContainer/WaterContainer/WaterProgress"]
 unique_name_in_owner = true
 margin_left = 47.0
 margin_right = 94.0
-rect_min_size = Vector2( 0, 16 )
+rect_min_size = Vector2( 0, 24 )
 theme = ExtResource( 3 )
 text = "<Amount>"
 valign = 1
 
-[node name="MarginContainer8" type="MarginContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 224.0
-margin_right = 124.0
-margin_bottom = 224.0
+[node name="MarginContainer8" type="MarginContainer" parent="Border/HBoxContainer/VBoxContainer"]
+margin_top = 288.0
+margin_right = 132.0
+margin_bottom = 288.0
 mouse_filter = 2
 
-[node name="WindContainer" type="HBoxContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 228.0
-margin_right = 124.0
-margin_bottom = 248.0
+[node name="WindContainer" type="HBoxContainer" parent="Border/HBoxContainer/VBoxContainer"]
+margin_top = 292.0
+margin_right = 132.0
+margin_bottom = 320.0
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/WindContainer"]
-margin_right = 20.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
+[node name="TextureRect" type="TextureRect" parent="Border/HBoxContainer/VBoxContainer/WindContainer"]
+margin_right = 28.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 28, 28 )
 mouse_filter = 2
-texture = ExtResource( 9 )
+texture = ExtResource( 11 )
 expand = true
+stretch_mode = 4
 
-[node name="WindProgress" type="TextureProgress" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/WindContainer"]
+[node name="WindProgress" type="TextureProgress" parent="Border/HBoxContainer/VBoxContainer/WindContainer"]
 unique_name_in_owner = true
-margin_left = 24.0
+margin_left = 32.0
 margin_top = 2.0
-margin_right = 124.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 100, 16 )
+margin_right = 132.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 100, 24 )
 mouse_filter = 2
 size_flags_vertical = 4
 max_value = 0.0
-texture_under = ExtResource( 4 )
-texture_over = ExtResource( 7 )
-texture_progress = ExtResource( 4 )
+texture_under = ExtResource( 7 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 7 )
 tint_under = Color( 0.321569, 0.321569, 0.321569, 1 )
 tint_progress = Color( 0.890196, 0.321569, 0.462745, 1 )
 
-[node name="WarerLabel" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/WindContainer/WindProgress"]
+[node name="WarerLabel" type="Label" parent="Border/HBoxContainer/VBoxContainer/WindContainer/WindProgress"]
 margin_left = 5.0
 margin_right = 43.0
-rect_min_size = Vector2( 38, 16 )
+rect_min_size = Vector2( 38, 24 )
 theme = ExtResource( 3 )
 text = "Wind:"
 valign = 1
 
-[node name="WindAmount" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/WindContainer/WindProgress"]
+[node name="WindAmount" type="Label" parent="Border/HBoxContainer/VBoxContainer/WindContainer/WindProgress"]
 unique_name_in_owner = true
 margin_left = 47.0
 margin_right = 94.0
-rect_min_size = Vector2( 0, 16 )
+rect_min_size = Vector2( 0, 24 )
 theme = ExtResource( 3 )
 text = "<Amount>"
 valign = 1
 
-[node name="MarginContainer10" type="MarginContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 252.0
-margin_right = 124.0
-margin_bottom = 252.0
+[node name="MarginContainer10" type="MarginContainer" parent="Border/HBoxContainer/VBoxContainer"]
+margin_top = 324.0
+margin_right = 132.0
+margin_bottom = 324.0
 mouse_filter = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 128.0
-margin_right = 144.0
-margin_bottom = 252.0
+[node name="MarginContainer" type="MarginContainer" parent="Border/HBoxContainer"]
+margin_left = 132.0
+margin_right = 138.0
+margin_bottom = 324.0
+rect_min_size = Vector2( 6, 0 )
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Border/HBoxContainer"]
+margin_left = 138.0
+margin_right = 162.0
+margin_bottom = 324.0
 mouse_filter = 2
 
-[node name="MarginContainer9" type="MarginContainer" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
-margin_right = 16.0
+[node name="MarginContainer9" type="MarginContainer" parent="Border/HBoxContainer/VBoxContainer2"]
+margin_right = 24.0
 margin_bottom = 1.0
 rect_min_size = Vector2( 0, 1 )
 mouse_filter = 2
 
-[node name="LockButton" type="TextureButton" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+[node name="LockButton" type="TextureButton" parent="Border/HBoxContainer/VBoxContainer2"]
+pause_mode = 2
 margin_top = 5.0
-margin_right = 16.0
-margin_bottom = 21.0
+margin_right = 24.0
+margin_bottom = 29.0
 grow_horizontal = 0
-rect_min_size = Vector2( 16, 16 )
+rect_min_size = Vector2( 24, 24 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 toggle_mode = true
@@ -611,23 +606,23 @@ texture_pressed = ExtResource( 17 )
 texture_hover = ExtResource( 16 )
 expand = true
 
-[node name="Control" type="Control" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
-margin_top = 25.0
-margin_right = 16.0
-margin_bottom = 252.0
+[node name="Control" type="Control" parent="Border/HBoxContainer/VBoxContainer2"]
+margin_top = 33.0
+margin_right = 24.0
+margin_bottom = 324.0
 rect_min_size = Vector2( 16, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/Control"]
+[node name="Label" type="Label" parent="Border/HBoxContainer/VBoxContainer2/Control"]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = 1.0
-margin_top = -90.0
-margin_right = 177.0
-margin_bottom = -70.0
+margin_left = -2.0
+margin_top = -89.5
+margin_right = 174.0
+margin_bottom = -69.5
 grow_vertical = 0
 rect_min_size = Vector2( 176, 0 )
 rect_rotation = 90.0
@@ -637,8 +632,20 @@ text = "Elemental Crystals"
 align = 1
 valign = 1
 
-[connection signal="mouse_exited" from="TextureRect/MouseDetection_Close" to="." method="_on_MouseDetection_Close_mouse_exited"]
-[connection signal="mouse_entered" from="TextureRect/MouseDetection_Open" to="." method="_on_MouseDetection_Open_mouse_entered"]
-[connection signal="mouse_entered" from="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/LockButton" to="." method="_on_LockButton_mouse_entered"]
-[connection signal="mouse_exited" from="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/LockButton" to="." method="_on_LockButton_mouse_exited"]
-[connection signal="toggled" from="TextureRect/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/LockButton" to="." method="_on_LockButton_toggled"]
+[node name="MouseDetection_Close" type="Container" parent="Border"]
+margin_right = 147.0
+margin_bottom = 328.0
+grow_vertical = 2
+
+[node name="MouseDetection_Open" type="Container" parent="Border"]
+margin_left = 148.0
+margin_top = 37.0
+margin_right = 173.0
+margin_bottom = 327.0
+grow_vertical = 2
+
+[connection signal="mouse_entered" from="Border/HBoxContainer/VBoxContainer2/LockButton" to="." method="_on_LockButton_mouse_entered"]
+[connection signal="mouse_exited" from="Border/HBoxContainer/VBoxContainer2/LockButton" to="." method="_on_LockButton_mouse_exited"]
+[connection signal="toggled" from="Border/HBoxContainer/VBoxContainer2/LockButton" to="." method="_on_LockButton_toggled"]
+[connection signal="mouse_exited" from="Border/MouseDetection_Close" to="." method="_on_MouseDetection_Close_mouse_exited"]
+[connection signal="mouse_entered" from="Border/MouseDetection_Open" to="." method="_on_MouseDetection_Open_mouse_entered"]

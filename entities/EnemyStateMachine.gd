@@ -1,4 +1,4 @@
-extends "res://StateMachine.gd"
+extends "res://scripts/StateMachine.gd"
 
 func _ready():
 	add_state("IDLE")

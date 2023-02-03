@@ -8,8 +8,8 @@
 [ext_resource path="res://assets/sprites/magicalgirl/girl_attack1.png" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/magicalgirl/girl_death.png" type="Texture" id=7]
 [ext_resource path="res://entities/PlayerAttackManager.gd" type="Script" id=8]
-[ext_resource path="res://assets/ui/castingcircle02.png" type="Texture" id=9]
-[ext_resource path="res://assets/ui/arc-circle.png" type="Texture" id=10]
+[ext_resource path="res://assets/ui/CastingCircles/castingcircle02.png" type="Texture" id=9]
+[ext_resource path="res://assets/ui/CastingCircles/arc-circle.png" type="Texture" id=10]
 [ext_resource path="res://entities/Hurtbox.tscn" type="PackedScene" id=11]
 [ext_resource path="res://entities/PlayerSkillManager.gd" type="Script" id=12]
 [ext_resource path="res://entities/PlayerStateMachine.gd" type="Script" id=13]
@@ -53,7 +53,7 @@ tracks/2/keys = {
 "values": [ Vector2( 0, -8 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite:frame")
+tracks/3/path = NodePath("Sprite:texture")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -62,24 +62,12 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 1 ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Sprite:texture")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
 "values": [ ExtResource( 4 ) ]
 }
 
 [sub_resource type="Animation" id=51]
 resource_name = "attack1_down"
-length = 0.5
+length = 0.4
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -145,7 +133,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id=52]
 resource_name = "attack1_left"
-length = 0.5
+length = 0.4
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -211,7 +199,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id=53]
 resource_name = "attack1_right"
-length = 0.5
+length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -267,7 +255,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0.5 ),
+"times": PoolRealArray( 0.4 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -277,7 +265,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id=54]
 resource_name = "attack1_up"
-length = 0.5
+length = 0.4
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -1332,7 +1320,6 @@ script = ExtResource( 13 )
 position = Vector2( 0, -8 )
 texture = ExtResource( 4 )
 hframes = 24
-frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 unique_name_in_owner = true

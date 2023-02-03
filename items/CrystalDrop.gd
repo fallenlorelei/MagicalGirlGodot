@@ -3,7 +3,6 @@ extends Area2D
 onready var crystalSprite = $ElementalCrystalSprite
 onready var animatedCrystal = $ElementalCrystalSprite/AnimationPlayer
 onready var pickupCollision = $ItemPickUpCollision
-onready var crystalCounter = ElementalCrystalCounter
 
 var crystalType
 var distance = 20
@@ -17,7 +16,7 @@ var areaPosition
 var playerPosition = Vector2.ZERO
 	
 func _ready():
-	crystalSprite.frame = int(crystalCounter.crystalAnimationFrame[crystalType])
+	crystalSprite.frame = int(ElementalCrystalCounter.crystalAnimationFrame[crystalType])
 	
 	# Crystal drops from enemy and bounces
 	var TW = create_tween()
@@ -37,5 +36,5 @@ func _on_CrystalDrop_area_entered(area):
 	player = area
 
 	if pickingUp == false:
-		crystalCounter.update_crystals(crystalType, 1)
+		ElementalCrystalCounter.update_crystals(crystalType, 1)
 		pickingUp = true

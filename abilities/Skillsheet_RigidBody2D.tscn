@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://shaders/FadeInOutGradient.tres" type="Gradient" id=1]
+[ext_resource path="res://abilities/Skillsheet_RigidBody2D.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=5]
+resource_name = "start"
+length = 0.75
+
+[sub_resource type="CircleShape2D" id=6]
+
+[sub_resource type="GradientTexture" id=4]
+gradient = ExtResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+emission_shape = 1
+emission_sphere_radius = 20.0
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.1
+scale_random = 0.3
+color_ramp = SubResource( 4 )
+anim_speed = 1.0
+
+[node name="Skillsheet_RigidBody2D" type="RigidBody2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "start"
+anims/start = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 6 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+process_material = SubResource( 7 )

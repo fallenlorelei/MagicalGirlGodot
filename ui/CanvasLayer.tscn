@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ui/MiniMap.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ui/TopUI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/CrystalCounter.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ui/BottomUI.tscn" type="PackedScene" id=4]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="TopUI" parent="." instance=ExtResource( 2 )]
+
+[node name="MiniMap" parent="." instance=ExtResource( 1 )]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -106.0
+margin_top = 7.0
+margin_right = -106.0
+margin_bottom = 7.0
+
+[node name="CrystalCounter" parent="." instance=ExtResource( 3 )]
+
+[node name="BottomUI" parent="." instance=ExtResource( 4 )]
+pause_mode = 2
+mouse_filter = 1

@@ -1,0 +1,541 @@
+{
+  "0a_core": {
+    "UnlockSkill": "investment",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "Light_Bow",
+    "Dark": "no_name"
+  },
+  "0a_passive1": {
+    "UnlockSkill": "0a_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "0a_passive2": {
+    "UnlockSkill": "0a_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "0a_extra": {
+    "UnlockSkill": "0a_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "1a_core": {
+    "UnlockSkill": "investment",
+    "RequiredInvestment": 3,
+    "Cost": 1,
+    "Light": "Starburst",
+    "Dark": "no_name"
+  },
+  "1a_passive1": {
+    "UnlockSkill": "1a_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "1a_passive2": {
+    "UnlockSkill": "1a_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "1a_passive3": {
+    "UnlockSkill": "1a_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "1a_extra": {
+    "UnlockSkill": "1a_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "1a_extra_passive1": {
+    "UnlockSkill": "1a_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "1a_extra_passive2": {
+    "UnlockSkill": "1a_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "1a_extra_passive3": {
+    "UnlockSkill": "1a_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "1b_core": {
+    "UnlockSkill": "investment",
+    "RequiredInvestment": 3,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "1b_passive1": {
+    "UnlockSkill": "1b_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "1b_passive2": {
+    "UnlockSkill": "1b_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "1b_passive3": {
+    "UnlockSkill": "1b_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "1b_extra": {
+    "UnlockSkill": "1b_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "1b_extra_passive1": {
+    "UnlockSkill": "1b_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "1b_extra_passive2": {
+    "UnlockSkill": "1b_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "1b_extra_passive3": {
+    "UnlockSkill": "1b_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "2a_core": {
+    "UnlockSkill": "investment",
+    "RequiredInvestment": 6,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "2a_passive1": {
+    "UnlockSkill": "2a_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "2a_passive2": {
+    "UnlockSkill": "2a_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "2a_passive3": {
+    "UnlockSkill": "2a_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "2a_extra": {
+    "UnlockSkill": "2a_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "2a_extra_passive1": {
+    "UnlockSkill": "2a_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "2a_extra_passive2": {
+    "UnlockSkill": "2a_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "2a_extra_passive3": {
+    "UnlockSkill": "2a_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "2b_core": {
+    "UnlockSkill": "investment",
+    "RequiredInvestment": 6,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "2b_passive1": {
+    "UnlockSkill": "2b_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "2b_passive2": {
+    "UnlockSkill": "2b_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "2b_passive3": {
+    "UnlockSkill": "2b_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "2b_extra": {
+    "UnlockSkill": "2b_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "2b_extra_passive1": {
+    "UnlockSkill": "2b_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "2b_extra_passive2": {
+    "UnlockSkill": "2b_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "2b_extra_passive3": {
+    "UnlockSkill": "2b_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "3a_core": {
+    "UnlockSkill": "investment",
+    "RequiredInvestment": 12,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "3a_passive1": {
+    "UnlockSkill": "3a_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "3a_passive2": {
+    "UnlockSkill": "3a_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "3a_passive3": {
+    "UnlockSkill": "3a_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "3a_extra": {
+    "UnlockSkill": "3a_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "3a_extra_passive1": {
+    "UnlockSkill": "3a_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "3a_extra_passive2": {
+    "UnlockSkill": "3a_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "3a_extra_passive3": {
+    "UnlockSkill": "3a_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "3b_core": {
+    "UnlockSkill": "investment",
+    "RequiredInvestment": 12,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "3b_passive1": {
+    "UnlockSkill": "3b_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "3b_passive2": {
+    "UnlockSkill": "3b_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "3b_passive3": {
+    "UnlockSkill": "3b_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "3b_extra": {
+    "UnlockSkill": "3b_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "3b_extra_passive1": {
+    "UnlockSkill": "3b_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "3b_extra_passive2": {
+    "UnlockSkill": "3b_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "3b_extra_passive3": {
+    "UnlockSkill": "3b_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "3c_core": {
+    "UnlockSkill": "investment",
+    "RequiredInvestment": 12,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "3c_passive1": {
+    "UnlockSkill": "3c_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "3c_passive2": {
+    "UnlockSkill": "3c_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "3c_passive3": {
+    "UnlockSkill": "3c_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "3c_extra": {
+    "UnlockSkill": "3c_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "3c_extra_passive1": {
+    "UnlockSkill": "3c_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "3c_extra_passive2": {
+    "UnlockSkill": "3c_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "3c_extra_passive3": {
+    "UnlockSkill": "3c_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "4a_core": {
+    "UnlockSkill": "investment",
+    "RequiredInvestment": 24,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "4a_passive1": {
+    "UnlockSkill": "4a_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "4a_passive2": {
+    "UnlockSkill": "4a_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "4a_passive3": {
+    "UnlockSkill": "4a_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "4a_extra": {
+    "UnlockSkill": "4a_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "4a_extra_passive1": {
+    "UnlockSkill": "4a_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "4a_extra_passive2": {
+    "UnlockSkill": "4a_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "4a_extra_passive3": {
+    "UnlockSkill": "4a_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "4b_core": {
+    "UnlockSkill": "investment",
+    "RequiredInvestment": 24,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "4b_passive1": {
+    "UnlockSkill": "4b_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "4b_passive2": {
+    "UnlockSkill": "4b_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "4b_passive3": {
+    "UnlockSkill": "4b_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "4b_extra": {
+    "UnlockSkill": "4b_core",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "4b_extra_passive1": {
+    "UnlockSkill": "4b_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "4b_extra_passive2": {
+    "UnlockSkill": "4b_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "4b_extra_passive3": {
+    "UnlockSkill": "4b_extra",
+    "RequiredInvestment": 0,
+    "Cost": 1,
+    "Light": "no_name",
+    "Dark": "no_name"
+  },
+  "5a_core": {
+    "UnlockSkill": "investment",
+    "RequiredInvestment": 50,
+    "Cost": 1,
+    "Light": "Prismatica",
+    "Dark": "no_name"
+  }
+}

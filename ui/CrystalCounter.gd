@@ -1,6 +1,7 @@
 extends Control
 
-onready var crystalCounters = ElementalCrystalCounter.crystals
+export var posClosedx = -147.0
+export var posOpenx = 10.0
 
 onready var crystalUi = {
 	"LIGHT": $"%LightAmount",
@@ -27,36 +28,36 @@ onready var crystalProgressUI = {
 }
 
 
-onready var mouseOpenDetection = $TextureRect/MouseDetection_Open
+onready var mouseOpenDetection = $Border/MouseDetection_Open
 
 var mouseOverLock = false
 var windowOpen = false
 var lockedOpen = false
 
 func _ready():
-	ElementalCrystalCounter.connect("crystals_changed", self, "update_crystals")
-	set_text()
+	ElementalCrystalCounter.connect("crystals_changed", self, "update_crystal_text_and_bar")
+	update_crystal_text_and_bar()
 
-func set_text():
+func update_crystal_text_and_bar():
 	var maxCrystals = ElementalCrystalCounter.most_crystals()
-
-	for crystal in crystalCounters:
-		crystalUi[crystal].text = str(crystalCounters[crystal])
+	for crystal in ElementalCrystalCounter.crystals:
+		crystalUi[crystal].text = str(ElementalCrystalCounter.crystals[crystal])
 		
 		var TW = get_tree().create_tween()
-		TW.tween_property(crystalProgressUI[crystal], "value", float(crystalCounters[crystal]), .2)
-		TW.tween_property(crystalProgressUI[crystal], "max_value", float(maxCrystals), .2)
-			
-func update_crystals():
-	set_text()
-
+		TW.tween_property(crystalProgressUI[crystal], "value", float(ElementalCrystalCounter.crystals[crystal]), .2)
+		TW.parallel().tween_property(crystalProgressUI[crystal], "max_value", float(maxCrystals), .2)
+		TW.tween_callback(self, "update_values", [crystal, maxCrystals])
+		
+func update_values(crystal, maxCrystals):
+	crystalProgressUI[crystal].value = float(ElementalCrystalCounter.crystals[crystal])
+	crystalProgressUI[crystal].max_value = float(maxCrystals)
 
 func _on_MouseDetection_Open_mouse_entered():
 	yield(get_tree().create_timer(0.2), "timeout")
 	if lockedOpen == false:
 		windowOpen = true
 		var TW = get_tree().create_tween()
-		TW.tween_property(self, "rect_position:x", 0.0, .3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+		TW.tween_property(self, "rect_position:x", posOpenx, .3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 		mouseOpenDetection.hide()
 
 func _on_MouseDetection_Close_mouse_exited():
@@ -65,7 +66,7 @@ func _on_MouseDetection_Close_mouse_exited():
 		if mouseOverLock == false:
 			windowOpen = false
 			var TW = get_tree().create_tween()
-			TW.tween_property(self, "rect_position:x", -140.0, .2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+			TW.tween_property(self, "rect_position:x", posClosedx, .2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 			yield(get_tree().create_timer(0.2), "timeout")
 			mouseOpenDetection.show()
 

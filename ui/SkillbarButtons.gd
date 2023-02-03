@@ -73,7 +73,7 @@ func drop_data(_pos, data):
 	
 	#Update texture of orign
 	if data["target_skill_name"] == null:
-		data["origin_node"].texture_normal = load("res://assets/ui/Skillbar/skillbar-skillbg.png")
+		data["origin_node"].texture_normal = load("res://assets/ui/background_colors/light_gray_bg.png")
 	else:
 		data["origin_node"].texture_normal = data["target_texture"]
 		
@@ -101,7 +101,7 @@ func _on_TextureButton_mouse_exited():
 
 # == COOLDOWNS ==
 func get_progressbar(skill_shortcut, cooldown):
-	var progressBar = get_owner().get_node("Background/HBoxContainer/" + skill_shortcut + "/TextureButton")
+	var progressBar = get_owner().get_node("Border/HBoxContainer/" + skill_shortcut + "/TextureButton")
 	progressBar.start_cooldown(cooldown)
 
 func cooldownCheck():

@@ -1,6 +1,6 @@
 extends Control
 
-onready var shortcuts_path = "Background/HBoxContainer/"
+onready var shortcuts_path = "Border/HBoxContainer/"
 
 var mouse_over_ui
 
@@ -26,7 +26,7 @@ func _physics_process(_delta):
 	#For some reason the shortcut isn't working unless I do this
 	#Bandaid
 	if Input.is_action_just_pressed("left_click"):
-		get_node("Background/HBoxContainer/left_click/TextureButton").emit_signal("pressed")
+		get_node(shortcuts_path + "/left_click/TextureButton").emit_signal("pressed")
 		
 func load_shortcuts():
 	for shortcut in loaded_skills.keys():

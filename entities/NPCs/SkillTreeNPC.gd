@@ -35,12 +35,15 @@ func _on_InteractionZone_body_exited(body):
 func open_skilltree():
 	var skillTreeInstance = skillTree.instance()
 	skillTreeInstance.rect_scale = Vector2(0,0)
-	get_tree().get_root().get_node("Tilemap World/CanvasLayer").add_child(skillTreeInstance)
+	skillTreeInstance.treeElement = "Light"
 	
 	var crystalCounter = get_tree().get_root().get_node("Tilemap World/CanvasLayer/CrystalCounter")
 	
+	get_tree().get_root().get_node("Tilemap World/CanvasLayer").add_child(skillTreeInstance)
+	get_tree().get_root().get_node("Tilemap World/CanvasLayer").move_child(skillTreeInstance,1)
+		
 	var TW = get_tree().create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-	TW.tween_property(crystalCounter, "rect_position:x", -5.0, .3)
+	TW.tween_property(crystalCounter, "rect_position:x", crystalCounter.posOpenx, .3)
 	TW.parallel().tween_property(skillTreeInstance, "rect_scale", Vector2(1,1), .3)
 	TW.tween_callback(self, "pause")
 	
