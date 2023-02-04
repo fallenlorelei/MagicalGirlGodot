@@ -1,6 +1,6 @@
 extends Area2D
 
-onready var playerStats = PlayerStats
+#onready var playerStats = PlayerStats
 onready var signalBus = SignalBus
 
 onready var skillSprite = $Sprite
@@ -90,7 +90,7 @@ func around_self_animation_finished():
 
 # == OTHER ==
 func start_heal():
-	playerStats.heal(healAmount)
+#	playerStats.heal(healAmount)
 	if skillType == "self_utility":
 		yield(get_tree().create_timer(animationPlayer.current_animation_length),"timeout")
 		queue_free()

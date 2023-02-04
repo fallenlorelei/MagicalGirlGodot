@@ -98,5 +98,5 @@ func _exit_state(old_state, new_state):
 			parent.reset_collision_masks()
 
 func check_if_dying():
-	if PlayerStats.hp == 0:
+	if get_parent().playerStats.hp == 0:
 		return true

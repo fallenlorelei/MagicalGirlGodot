@@ -1,12 +1,11 @@
 extends "res://entities/EntityBase.gd"
 
-#onready var ProjectileArc = preload("res://abilities/Light/Light_Bow/Light_Bow.tscn")
-
-
 onready var sprite = $Sprite
 onready var attackManager = $AttackManager
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
+#onready var playerStats = $PlayerStats
+
 
 export(int) var JUMP_SPEED = 110
 
@@ -29,13 +28,10 @@ var saved_input_vector
 
 func _ready():
 	animationTree.active = true
-	
-	PlayerStats.hpBar = get_node("../../CanvasLayer/BottomUI/VBoxContainer/HBoxContainer/HealthBar/PlayerHPBar")
-	PlayerStats.hpBarAnimation = get_node("../../CanvasLayer/BottomUI/VBoxContainer/HBoxContainer/HealthBar/PlayerHPBar/AnimationPlayer")
-	PlayerStats.connect("hp_changed", self, "health_changed")
-	PlayerStats.connect("died", self, "begin_dying")
-	PlayerStats.connect("damage_indicator", self, "damage_indicator")
-
+	playerStats = $PlayerStats
+	playerStats.parent_group = "Player"
+#	playerStats.hpBar = get_node("../../CanvasLayer/BottomUI/VBoxContainer/HBoxContainer/HealthBar/PlayerHPBar")
+	SignalBus.connect("died", self, "begin_dying")
 	SignalBus.connect("mouseover", self, "set_mouseover")
 	SignalBus.connect("mouseOverLock", self, "set_mouseover")
 
@@ -125,17 +121,7 @@ func dying_state():
 	velocity = Vector2.ZERO
 	
 func death_animation_finished():
-	PlayerStats.die()
-	
-# == HEALTH STUFF ==	
-func health_changed(new_hp):
-	PlayerStats.hpBarUpdate(new_hp)
-	
-func damage_indicator(type, amount):
-	var damage_indicator = floating_text.instance()
-	damage_indicator.amount = amount
-	damage_indicator.skillType = type
-	add_child(damage_indicator)
+	playerStats.die()
 
 func set_mouseover(TF):
 	if TF == true:

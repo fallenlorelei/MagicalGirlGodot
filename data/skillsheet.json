@@ -33,8 +33,8 @@
     "KnockbackModifier": 30,
     "ShakeStrength": 1,
     "SkillRadius": 10,
-    "Distance": 150,
-    "ProjectileSpeed": 1,
+    "Distance": 0.5,
+    "ProjectileSpeed": 150,
     "DestroyedOnImpact": true,
     "HitEffectParticles": null,
     "SkillDescription": "Use your staff to launch an arrow."

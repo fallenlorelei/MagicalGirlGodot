@@ -37,6 +37,14 @@ func _ready():
 	hitEffectParticles = DataImport.skill_data[skillName].HitEffectParticles
 	skillDescription = DataImport.skill_data[skillName].SkillDescription
 
+	if skillRadius != null:
+		collisionShape.get_shape().radius = skillRadius
+		
+#	particles.emitting = true
+#	if get_node_or_null("Particles2D2") != null:
+#		$Particles2D2.emitting = true
+	scale_sprite()
+	
 	var randomImpulse_x = rand_range(-300,300)
 	var randomImpulse_y = rand_range(-300,300)
 	apply_central_impulse(Vector2(randomImpulse_x,randomImpulse_y))
@@ -63,5 +71,14 @@ func enemy_effects():
 		TW.parallel().tween_property(skillSprite, "modulate", Color(1,1,1,0), .3)
 		TW.tween_callback(self, "destroy")
 
+func scale_sprite():		
+	var sizeto = Vector2(skillRadius,skillRadius)
+	var spriteSize = skillSprite.texture.get_size() / Vector2(skillSprite.hframes, skillSprite.vframes)
+	var sprite_scale_factor = sizeto/spriteSize * 2
+	skillSprite.scale = sprite_scale_factor
+#
+#	if particles.material != null:
+#		particles.process_material.emission_sphere_radius = skillRadius	
+#
 func destroy():
 	queue_free()

@@ -4,11 +4,11 @@ var parent
 
 func _ready():
 	parent = get_parent()
-	PlayerStats.connect("healed", self, "heal")
+	SignalBus.connect("healed", self, "heal")
 	SignalBus.connect("begin_shadowmeld", self, "shadowmeld")
 
 func heal(healAmount):
-	PlayerStats.hp += healAmount
+	get_parent().playerStats.hp += healAmount
 	var TW = create_tween()
 	TW.tween_property(parent.sprite, "modulate", Color(0.549451, 0.978881, 1), .2)
 	TW.tween_property(parent.sprite, "modulate", Color(1, 1, 1), 1)

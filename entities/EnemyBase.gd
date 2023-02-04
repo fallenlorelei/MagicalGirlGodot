@@ -12,6 +12,7 @@ onready var softCollision = $SoftCollision
 onready var wanderTimer = $WanderTimer
 onready var randomCrystal = $RandomCrystal
 onready var hpBar = $HPBar
+onready var hpBarUpdate = $HPBar/HPBarUpdate
 onready var enemyStateMachine = $EnemyStateMachine
 onready var wanderStartPos = global_position
 onready var wanderTargetPos = global_position
@@ -27,12 +28,9 @@ var random_state
 
 func _ready():
 	enemyStats = $EnemyStats
-	enemyStats.hpBar = hpBar
-	enemyStats.hp = enemyStats.hp_max
+	enemyStats.parent_group = "Enemy"
 	hpBar.hide()
-	
 	animationTree.active = true
-	
 	update_wander_target_position()
 
 func idle_state(delta):
@@ -73,7 +71,7 @@ func start_chasing_player(delta):
 		accelerate_towards_point(player.global_position, delta)
 
 func check_range():
-	var collisionSize = get_node("CollisionShape2D").shape.height
+	var collisionSize = get_node("CollisionShape2D").shape.radius
 	var hitboxSize = hitbox.get_node("CollisionShape2D").shape.radius
 	var attackDistance = collisionSize + hitboxSize
 	
@@ -100,15 +98,6 @@ func update_wander_timer():
 	
 func pick_random_state(state_list):
 	random_state = state_list[randi()%state_list.size()]
-	
-# == TAKING DAMAGE ==	
-func _on_EnemyStats_hp_changed(new_hp):
-	enemyStats.hpBarUpdate(new_hp)
-
-# == DYING ==
-func _on_EnemyStats_died():
-	if enemyStats.hp == 0:
-		return true
 
 func dying_state():
 	collisionShape.set_deferred("disabled",true)

@@ -5,6 +5,8 @@ onready var castingCircleSprite = $CastingCircle
 onready var castingCircleAnimation = $CastingCircle/AnimationPlayer
 onready var projectileLine = $ProjectilePreview
 onready var frontArcPreview = $FrontArcPreview
+onready var spawnPivot = $SpawnPivot
+onready var projectileSpawnPos = $SpawnPivot/ProjectileSpawnPos
 
 var parentCursorDirection
 var parentCursorLocation
@@ -175,8 +177,9 @@ func release_ability():
 			ability.front_arc()
 #
 		"projectile":
-			ability.cursorDirection = parentCursorDirection
-			ability.global_position = self.global_position
+			spawnPivot.look_at(parentCursorLocation)
+			ability.global_position = projectileSpawnPos.global_position
+			ability.velocity = parentCursorLocation - ability.position
 			var ability_rotation = self.global_position.direction_to(parentCursorLocation).angle()
 			ability.rotation = ability_rotation
 			get_tree().get_current_scene().add_child(ability)

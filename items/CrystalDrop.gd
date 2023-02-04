@@ -2,7 +2,7 @@ extends RigidBody2D
 
 onready var crystalSprite = $ElementalCrystalSprite
 onready var animatedCrystal = $ElementalCrystalSprite/AnimationPlayer
-onready var pickupCollision = $ItemPickUpCollision
+onready var pickupCollision = $Area2D/ItemPickUpCollision
 
 var crystalType
 var distance = 20

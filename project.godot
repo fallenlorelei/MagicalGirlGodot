@@ -48,7 +48,7 @@ DataImport="*res://data/DataImport.gd"
 SignalBus="*res://scripts/SignalBus.gd"
 ElementalCrystalCounter="*res://scripts/ElementalCrystalCounter.gd"
 CooldownTracker="*res://abilities/CooldownTracker.gd"
-PlayerStats="*res://entities/Stats.gd"
+PlayerStats="res://entities/Stats.gd"
 SkillTreeTracker="*res://scripts/SkillTreeTracker.gd"
 
 [debug]

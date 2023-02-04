@@ -11,7 +11,7 @@ var particleType
 var shakeStrength
 
 func _ready():
-	if abilityUsed.name == "ExtraAbilityHitbox":
+	if abilityUsed.name == "ExtraAbilityHitbox" or abilityUsed.name == "AbilityHitbox":
 		particleType = DataImport.skill_data[abilityParent.name.rstrip("0123456789").trim_prefix("@").trim_suffix("@")].HitEffectParticles
 		shakeStrength = DataImport.skill_data[abilityParent.name.rstrip("0123456789").trim_prefix("@").trim_suffix("@")].ShakeStrength
 	else:

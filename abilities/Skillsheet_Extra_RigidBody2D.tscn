@@ -3,8 +3,7 @@
 [ext_resource path="res://abilities/Skillsheet_Extra_RigidBody2D.gd" type="Script" id=2]
 [ext_resource path="res://abilities/AbilityHitbox.gd" type="Script" id=3]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 8.0
+[sub_resource type="CircleShape2D" id=3]
 
 [sub_resource type="CircleShape2D" id=2]
 
@@ -20,7 +19,7 @@ script = ExtResource( 2 )
 [node name="Sprite" type="Sprite" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="ExtraAbilityHitbox" type="Area2D" parent="." groups=["Player"]]
 collision_layer = 256

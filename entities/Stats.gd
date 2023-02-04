@@ -2,12 +2,6 @@ extends Node
 
 onready var floating_text = preload("res://ui/FloatingText.tscn")
 
-signal hp_max_changed(new_hp_max)
-signal hp_changed(new_hp)
-signal damage_indicator(type, amount)
-signal healed(healAmount)
-signal died
-
 export(int) var hp_max = 100 setget set_hp_max
 export(int) var hp = hp_max setget set_hp
 export(int) var defense = 0
@@ -15,8 +9,8 @@ export(float) var invincibleDuration = .5
 
 var hpPercentage
 var hpBar
-var hpBarAnimation
 var playerAlive = true
+var parent_group
 
 func _ready():
 	pass
@@ -24,17 +18,27 @@ func _ready():
 func set_hp_max(value):
 	if value != hp_max:
 		hp_max = max(0, value)
-		emit_signal("hp_max_changed", hp_max)
+#		SignalBus.emit_signal("hp_max_changed", hp_max)
 		self.hp = hp
+	update_hp_bar(hp, hp_max)
 
 func set_hp(value):
+	print(parent_group)
 	if value != hp:
 		hp = clamp(value, 0, hp_max)
-		emit_signal("hp_changed", hp)
-		
+#		SignalBus.emit_signal("hp_changed", hp)
 		if hp == 0:
-			emit_signal("died")
-		
+			SignalBus.emit_signal("died")
+	update_hp_bar(hp, hp_max)
+	if parent_group == "Enemy" and hp == hp_max:
+		get_parent().hpBar.hide()
+	
+func update_hp_bar(hp, hp_max):
+	if parent_group == "Player":
+		get_parent().update_player_hp_bar(hp, hp_max)
+	elif parent_group == "Enemy":
+		update_enemy_hp_bar(hp, hp_max)
+
 func receive_damage(base_damage):
 	var actual_damage = base_damage
 	actual_damage -= defense	
@@ -44,32 +48,18 @@ func receive_damage(base_damage):
 
 func heal(healAmount):
 	set_damage_indicator("Heal", healAmount)
-	emit_signal("healed", healAmount)
+	SignalBus.emit_signal("healed", healAmount)
 
 func set_damage_indicator(skillType, amount):
-	emit_signal("damage_indicator", skillType, amount)
 	var damage_indicator = floating_text.instance()
 	damage_indicator.amount = amount
 	damage_indicator.skillType = skillType
 	get_parent().add_child(damage_indicator)
-	
-func hpBarUpdate(current_hp):
-	hpBar.show()
-	
-	hpPercentage = int((float(current_hp) / hp_max) * 100)
-	var TW = get_tree().create_tween()
-	TW.tween_property(hpBar, "value", float(hpPercentage), .2)
-	
-	if hpPercentage > 75:
-		hpBar.set_tint_progress("7ac240")
-	elif hpPercentage <= 75 and hpPercentage >=30:
-		TW.tween_property(hpBar, "tint_progress", Color(0.870588, 0.415686, 0.219608), .2)
-	else:
-		TW.tween_property(hpBar, "tint_progress", Color(0.65098, 0.192157, 0.27451), .2)
 
-	if hpBar.is_in_group("Player"):
-		SignalBus.emit_signal("shake_hp_bar")
-
+func update_enemy_hp_bar(hp, hp_max):
+	get_parent().hpBar.show()
+	get_parent().hpBarUpdate.hpBarUpdate(hp, hp_max)
+	
 func die():
 	playerAlive = false
 	queue_free()

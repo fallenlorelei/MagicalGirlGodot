@@ -265,9 +265,9 @@ graph_offset = Vector2( 21.2413, 0 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=30]
 
-[sub_resource type="CapsuleShape2D" id=7]
-radius = 3.0
-height = 10.0
+[sub_resource type="CapsuleShape2D" id=40]
+radius = 6.0
+height = 4.0
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 67.1193
@@ -275,9 +275,8 @@ radius = 67.1193
 [sub_resource type="CircleShape2D" id=6]
 radius = 6.0
 
-[sub_resource type="CapsuleShape2D" id=12]
-radius = 8.96774
-height = 12.0
+[sub_resource type="CapsuleShape2D" id=39]
+height = 16.8672
 
 [sub_resource type="CapsuleShape2D" id=38]
 radius = 7.0
@@ -311,9 +310,9 @@ parameters/Idle/playback = SubResource( 29 )
 parameters/Melee_Attack/playback = SubResource( 30 )
 
 [node name="CollisionShape2D" parent="." index="5"]
-position = Vector2( 0, -2 )
+position = Vector2( 0, -3 )
 rotation = 1.5708
-shape = SubResource( 7 )
+shape = SubResource( 40 )
 
 [node name="PlayerDetectionZone" parent="." index="7"]
 visible = false
@@ -328,9 +327,9 @@ position = Vector2( 0, -4 )
 shape = SubResource( 6 )
 
 [node name="CollisionShape2D" parent="HitboxPivot/Hitbox" index="0"]
-position = Vector2( -8, -12 )
-rotation = 0.829031
-shape = SubResource( 12 )
+position = Vector2( -10, -15 )
+rotation = 0.837758
+shape = SubResource( 39 )
 disabled = false
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]

@@ -9,7 +9,7 @@ length = 0.75
 
 [sub_resource type="CircleShape2D" id=6]
 
-[sub_resource type="GradientTexture" id=4]
+[sub_resource type="GradientTexture" id=8]
 gradient = ExtResource( 1 )
 
 [sub_resource type="ParticlesMaterial" id=7]
@@ -21,7 +21,7 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 0.1
 scale_random = 0.3
-color_ramp = SubResource( 4 )
+color_ramp = SubResource( 8 )
 anim_speed = 1.0
 
 [node name="Skillsheet_RigidBody2D" type="RigidBody2D"]

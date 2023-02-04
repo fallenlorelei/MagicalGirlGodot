@@ -1,8 +1,7 @@
 class_name EntityBase extends KinematicBody2D
 
-onready var floating_text = preload("res://ui/FloatingText.tscn")
-
 onready var hurtbox = $Hurtbox
+
 
 export(int) var ACCELERATION = 100
 export(int) var MAX_SPEED = 120
@@ -12,8 +11,9 @@ export(int) var ATTACK_FRICTION = 100
 var knockback = Vector2.ZERO
 var input_vector = Vector2.ZERO
 var velocity = Vector2.ZERO
-var enemyStats
 var states = {}
+var enemyStats
+var playerStats
 
 func _ready():
 	pass
@@ -42,8 +42,8 @@ func _on_Hurtbox_area_entered(area):
 	hurtbox.create_hit_effect(area, self, area.get_parent())
 
 func enemyAttacking(area):
-	if is_instance_valid(PlayerStats) and PlayerStats.hp > 0:
-		PlayerStats.receive_damage(area.skillDamage)
+	if is_instance_valid(playerStats) and playerStats.hp > 0:
+		playerStats.receive_damage(area.skillDamage)
 		knockback = area.knockback_vector * area.knockbackModifier
 	
 func playerAttacking(area):
@@ -51,3 +51,9 @@ func playerAttacking(area):
 		enemyStats.receive_damage(area.skillDamage)
 		knockback = area.knockback_vector * area.knockbackModifier
 
+func update_player_hp_bar(hp, hp_max):
+	SignalBus.emit_signal("update_player_hp_bar", hp, hp_max)
+	SignalBus.emit_signal("shake_hp_bar")
+
+func update_enemy_hp_bar(hp, hp_max):
+	pass

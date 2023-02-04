@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://entities/EnemyBase.gd" type="Script" id=1]
 [ext_resource path="res://items/RandomCrystal.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://entities/Stats.gd" type="Script" id=9]
 [ext_resource path="res://shaders/ColorFlash.gdshader" type="Shader" id=10]
 [ext_resource path="res://entities/EnemyStateMachine.gd" type="Script" id=11]
+[ext_resource path="res://ui/HPBarUpdate.tscn" type="PackedScene" id=12]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -128,8 +129,8 @@ tint_under = Color( 0.321569, 0.321569, 0.321569, 1 )
 tint_progress = Color( 0.188235, 0.490196, 0.137255, 1 )
 nine_patch_stretch = true
 
-[connection signal="died" from="EnemyStats" to="." method="_on_EnemyStats_died"]
-[connection signal="hp_changed" from="EnemyStats" to="." method="_on_EnemyStats_hp_changed"]
+[node name="HPBarUpdate" parent="HPBar" instance=ExtResource( 12 )]
+
 [connection signal="body_entered" from="PlayerDetectionZone" to="PlayerDetectionZone" method="_on_PlayerDetectionZone_body_entered"]
 [connection signal="body_exited" from="PlayerDetectionZone" to="PlayerDetectionZone" method="_on_PlayerDetectionZone_body_exited"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
