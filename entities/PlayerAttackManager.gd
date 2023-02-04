@@ -44,6 +44,7 @@ func start_ability(selected_skill, selected_shortcut):
 	skillName = selected_skill
 	skillShortcut = selected_shortcut
 	distance = DataImport.skill_data[skillName].Distance
+	
 
 	if selected_skill != null:
 		match DataImport.skill_data[skillName].SkillType:
@@ -67,9 +68,11 @@ func update_visual_cast():
 		"full_view":
 			castingCircleSprite.global_position = global_position + Vector2(0,6)
 			
-		"projectile":	
-			projectileLine.set_point_position(0,Vector2(0,0))
-			var length = parentCursorDirection * distance
+		"projectile":
+			spawnPivot.look_at(parentCursorLocation)
+			var speed = DataImport.skill_data[skillName].ProjectileSpeed
+			var length = parentCursorDirection * (distance * speed) * 1.4
+			projectileLine.set_point_position(0,to_local(projectileSpawnPos.global_position))
 			projectileLine.set_point_position(1,length)
 			
 		"front_arc":
@@ -104,8 +107,8 @@ func check_input():
 			release_ability()
 	
 # IF LEFT CLICK, RELEASE AUTOMATICALLY
-	if skillShortcut == "left_click":
-		release_ability()
+#	if skillShortcut == "left_click":
+#		release_ability()
 
 # == HOLDING DOWN HOTKEY, SHOWING PREVIEW ==
 func show_casting(zindex, type):
@@ -177,7 +180,7 @@ func release_ability():
 			ability.front_arc()
 #
 		"projectile":
-			spawnPivot.look_at(parentCursorLocation)
+			
 			ability.global_position = projectileSpawnPos.global_position
 			ability.velocity = parentCursorLocation - ability.position
 			var ability_rotation = self.global_position.direction_to(parentCursorLocation).angle()

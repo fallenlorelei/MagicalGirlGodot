@@ -1408,6 +1408,7 @@ script = ExtResource( 8 )
 position = Vector2( 16, 0 )
 
 [node name="ColorRect" type="ColorRect" parent="AttackManager/SpawnPivot" index="1"]
+visible = false
 margin_left = 13.0
 margin_top = -3.0
 margin_right = 18.0

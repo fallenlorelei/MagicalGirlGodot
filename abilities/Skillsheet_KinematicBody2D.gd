@@ -73,7 +73,7 @@ func projectile():
 	starting_pos = position
 	
 func move_bullet(delta):
-	move_and_collide(velocity.normalized() * delta * projectileSpeed)
+	var _collision_info = move_and_collide(velocity.normalized() * delta * projectileSpeed)
 	
 func scale_sprite():		
 	var sizeto = Vector2(skillRadius,skillRadius)

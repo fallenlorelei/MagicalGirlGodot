@@ -4,8 +4,6 @@ onready var sprite = $Sprite
 onready var attackManager = $AttackManager
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
-#onready var playerStats = $PlayerStats
-
 
 export(int) var JUMP_SPEED = 110
 
@@ -30,7 +28,6 @@ func _ready():
 	animationTree.active = true
 	playerStats = $PlayerStats
 	playerStats.parent_group = "Player"
-#	playerStats.hpBar = get_node("../../CanvasLayer/BottomUI/VBoxContainer/HBoxContainer/HealthBar/PlayerHPBar")
 	SignalBus.connect("died", self, "begin_dying")
 	SignalBus.connect("mouseover", self, "set_mouseover")
 	SignalBus.connect("mouseOverLock", self, "set_mouseover")
