@@ -1,7 +1,7 @@
 extends Node2D
 
 var crystals = {
-	"LIGHT": 10,
+	"LIGHT": 0,
 	"DARK": 0,
 	"PSYCHIC": 0,
 	"WATER": 0,

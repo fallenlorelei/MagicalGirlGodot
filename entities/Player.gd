@@ -1,6 +1,7 @@
 extends "res://entities/EntityBase.gd"
 
-onready var ProjectileArc = preload("res://abilities/Light/Light_Bow/Light_Bow.tscn")
+#onready var ProjectileArc = preload("res://abilities/Light/Light_Bow/Light_Bow.tscn")
+
 
 onready var sprite = $Sprite
 onready var attackManager = $AttackManager
@@ -33,6 +34,7 @@ func _ready():
 	PlayerStats.hpBarAnimation = get_node("../../CanvasLayer/BottomUI/VBoxContainer/HBoxContainer/HealthBar/PlayerHPBar/AnimationPlayer")
 	PlayerStats.connect("hp_changed", self, "health_changed")
 	PlayerStats.connect("died", self, "begin_dying")
+	PlayerStats.connect("damage_indicator", self, "damage_indicator")
 
 	SignalBus.connect("mouseover", self, "set_mouseover")
 	SignalBus.connect("mouseOverLock", self, "set_mouseover")
@@ -117,8 +119,7 @@ func jump_animation_finished():
 
 #	== DYING ==	
 func begin_dying():
-	if PlayerStats.hp == 0:
-		dead = true
+	dead = true
 	
 func dying_state():
 	velocity = Vector2.ZERO
@@ -126,9 +127,15 @@ func dying_state():
 func death_animation_finished():
 	PlayerStats.die()
 	
-# == TAKING DAMAGE ==	
+# == HEALTH STUFF ==	
 func health_changed(new_hp):
 	PlayerStats.hpBarUpdate(new_hp)
+	
+func damage_indicator(type, amount):
+	var damage_indicator = floating_text.instance()
+	damage_indicator.amount = amount
+	damage_indicator.skillType = type
+	add_child(damage_indicator)
 
 func set_mouseover(TF):
 	if TF == true:

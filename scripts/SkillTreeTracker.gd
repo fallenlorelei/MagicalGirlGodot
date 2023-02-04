@@ -1,25 +1,24 @@
 extends Node
 
-var dark_investment = true
-
 var treeInvestment = {
 	"Light": 0,
 	"Dark": 0
 }
 
 var fullTree = {
+	#Change this so the skills are appended during runtime
 	"light_investment": true,
 	
-	"light_0a_core": false,
+	"light_0a_core": true,
 	"light_0a_passive1": false,
 	"light_0a_passive2": false,
 	"light_0a_extra": false,
 	
-	"light_1a_core": false,
+	"light_1a_core": true,
 	"light_1a_passive1": false,
 	"light_1a_passive2": false,
 	"light_1a_passive3": false,
-	"light_1a_extra": false,
+	"light_1a_extra": true,
 	"light_1a_extra_passive1": false,
 	"light_1a_extra_passive2": false,
 	"light_1a_extra_passive3": false,
@@ -99,5 +98,9 @@ var fullTree = {
 	"light_5a_core": false
 }
 
-func _ready():
-	pass
+func get_skill_name(skill, element):
+	var skill_name
+	match element:
+		"Light":
+			skill_name = DataImport.skilltree_data[skill].Light
+	return skill_name

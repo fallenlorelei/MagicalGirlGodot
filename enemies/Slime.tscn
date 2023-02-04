@@ -75,6 +75,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [ false ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -1, -19 ) ]
+}
 
 [sub_resource type="Animation" id=10]
 resource_name = "death"
@@ -267,9 +279,9 @@ radius = 6.0
 radius = 8.96774
 height = 12.0
 
-[sub_resource type="CapsuleShape2D" id=5]
-radius = 6.0
-height = 6.0
+[sub_resource type="CapsuleShape2D" id=38]
+radius = 7.0
+height = 6.00001
 
 [node name="Slime" instance=ExtResource( 1 )]
 ACCELERATION = 300
@@ -299,8 +311,7 @@ parameters/Idle/playback = SubResource( 29 )
 parameters/Melee_Attack/playback = SubResource( 30 )
 
 [node name="CollisionShape2D" parent="." index="5"]
-visible = false
-position = Vector2( 1, 1 )
+position = Vector2( 0, -2 )
 rotation = 1.5708
 shape = SubResource( 7 )
 
@@ -316,9 +327,6 @@ shape = SubResource( 2 )
 position = Vector2( 0, -4 )
 shape = SubResource( 6 )
 
-[node name="Hitbox" parent="HitboxPivot" index="0"]
-skillDamage = 5
-
 [node name="CollisionShape2D" parent="HitboxPivot/Hitbox" index="0"]
 position = Vector2( -8, -12 )
 rotation = 0.829031
@@ -328,7 +336,7 @@ disabled = false
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( 0, -4 )
 rotation = 1.5708
-shape = SubResource( 5 )
+shape = SubResource( 38 )
 
 [editable path="HitboxPivot/Hitbox"]
 [editable path="Hurtbox"]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/ui/MainTheme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/FloatingText.gd" type="Script" id=2]
+
+[node name="FloatingText" type="Position2D"]
+scale = Vector2( 0.7, 0.7 )
+z_index = 1
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -10.0
+margin_right = 20.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 40, 20 )
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0.870588, 0.415686, 0.219608, 1 )
+custom_colors/font_color_shadow = Color( 0.945098, 1, 0.74902, 1 )
+custom_constants/shadow_as_outline = 1
+text = "200"
+align = 1
+valign = 1

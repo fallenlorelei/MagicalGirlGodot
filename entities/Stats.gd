@@ -1,7 +1,10 @@
-extends Node2D
+extends Node
+
+onready var floating_text = preload("res://ui/FloatingText.tscn")
 
 signal hp_max_changed(new_hp_max)
 signal hp_changed(new_hp)
+signal damage_indicator(type, amount)
 signal healed(healAmount)
 signal died
 
@@ -36,10 +39,19 @@ func receive_damage(base_damage):
 	var actual_damage = base_damage
 	actual_damage -= defense	
 	self.hp -= actual_damage
+	set_damage_indicator("Damage", actual_damage)
 	return actual_damage
 
 func heal(healAmount):
+	set_damage_indicator("Heal", healAmount)
 	emit_signal("healed", healAmount)
+
+func set_damage_indicator(skillType, amount):
+	emit_signal("damage_indicator", skillType, amount)
+	var damage_indicator = floating_text.instance()
+	damage_indicator.amount = amount
+	damage_indicator.skillType = skillType
+	get_parent().add_child(damage_indicator)
 	
 func hpBarUpdate(current_hp):
 	hpBar.show()

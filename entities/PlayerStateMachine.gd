@@ -32,7 +32,7 @@ func _state_logic(delta):
 func _get_transition(_delta):
 	match state:
 		states.IDLE:
-			if parent.begin_dying():
+			if check_if_dying():
 				return states.DYING
 			if parent.check_input() == "using_skill" && parent.mouse_over_ui == false && parent.attackManager.check_global_cooldown():
 				return states.BEGIN_CAST
@@ -42,7 +42,7 @@ func _get_transition(_delta):
 				return states.MOVE	
 
 		states.MOVE:
-			if parent.begin_dying():
+			if check_if_dying():
 				return states.DYING
 			if parent.check_input() == "using_skill" && parent.mouse_over_ui == false && parent.attackManager.check_global_cooldown():
 				return states.BEGIN_CAST
@@ -52,13 +52,13 @@ func _get_transition(_delta):
 				return states.IDLE
 
 		states.JUMP:
-			if parent.begin_dying():
+			if check_if_dying():
 				return states.DYING
 			if parent.jumpFinished == true:
 				return states.IDLE
 		
 		states.BEGIN_CAST:
-			if parent.begin_dying():
+			if check_if_dying():
 				return states.DYING
 			if parent.releaseAbility == true:
 				return states.CASTING
@@ -66,7 +66,7 @@ func _get_transition(_delta):
 				return states.IDLE
 				
 		states.CASTING:
-			if parent.begin_dying():
+			if check_if_dying():
 				return states.DYING
 			if parent.attackAnimationFinished == true:
 				return states.IDLE
@@ -96,3 +96,7 @@ func _exit_state(old_state, new_state):
 		states.JUMP:
 			parent.jumpFinished = false
 			parent.reset_collision_masks()
+
+func check_if_dying():
+	if PlayerStats.hp == 0:
+		return true

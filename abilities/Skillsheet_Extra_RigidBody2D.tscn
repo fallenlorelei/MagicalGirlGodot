@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://abilities/Skillsheet_Extra_RigidBody2D.gd" type="Script" id=2]
+[ext_resource path="res://abilities/AbilityHitbox.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id=2]
+
+[node name="Skillsheet_Extra" type="RigidBody2D" groups=["Player"]]
+modulate = Color( 1.5, 1.5, 1.5, 1 )
+collision_layer = 257
+collision_mask = 69
+mass = 0.102041
+linear_damp = 5.0
+angular_velocity = 5.0
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="ExtraAbilityHitbox" type="Area2D" parent="." groups=["Player"]]
+collision_layer = 256
+collision_mask = 96
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExtraAbilityHitbox"]
+shape = SubResource( 2 )
+
+[connection signal="area_entered" from="ExtraAbilityHitbox" to="." method="_on_AbilityHitbox_area_entered"]

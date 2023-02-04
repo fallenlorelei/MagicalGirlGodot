@@ -31,7 +31,7 @@ func _state_logic(delta):
 func _get_transition(delta):
 	match state:
 		states.IDLE:
-			if parent._on_EnemyStats_died():
+			if check_if_dying():
 				return states.DYING
 			if parent.playerDetectionZone.can_see_player() && !parent.softCollision.is_colliding():
 				return states.CHASE
@@ -40,7 +40,7 @@ func _get_transition(delta):
 					return states.WANDER
 			
 		states.WANDER:
-			if parent._on_EnemyStats_died():
+			if check_if_dying():
 				return states.DYING
 			if parent.playerDetectionZone.can_see_player() && !parent.softCollision.is_colliding():
 				return states.CHASE
@@ -49,7 +49,7 @@ func _get_transition(delta):
 					return states.IDLE
 				
 		states.CHASE:
-			if parent._on_EnemyStats_died():
+			if check_if_dying():
 				return states.DYING
 			if parent.softCollision.is_colliding():
 				return states.WANDER
@@ -61,7 +61,7 @@ func _get_transition(delta):
 				return states.WANDER
 		
 		states.MELEE_ATTACK:
-			if parent._on_EnemyStats_died():
+			if check_if_dying():
 				return states.DYING
 			if parent.softCollision.is_colliding():
 				return states.WANDER
@@ -89,3 +89,7 @@ func _enter_state(new_state, old_state):
 	
 func _exit_state(old_state, new_state):
 	pass
+
+func check_if_dying():
+	if get_parent().enemyStats.hp == 0:
+		return true

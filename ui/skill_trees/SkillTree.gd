@@ -142,12 +142,12 @@ func load_skill_costs():
 func load_skill_icons():
 	for skill in get_tree().get_nodes_in_group("TreeSkills"):
 		var skill_node_name = skill.get_name()
-		var skill_name = get_skill_name(skill)
+		var skill_name = SkillTreeTracker.get_skill_name(skill.get_name(), treeElement)
 		var skill_icon = load("res://abilities/" + treeElement + "/" + skill_name + "/" + skill_name + "_icon.png")
 		get_node("%" + skill_node_name + "/TextureButton").texture_normal = skill_icon
 
 func set_disabled_icon(skill):
-	var skill_name = get_skill_name(skill)
+	var skill_name = SkillTreeTracker.get_skill_name(skill.get_name(), treeElement)
 	var skill_node_name = skill.get_name()
 	var skill_icon = load("res://abilities/" + treeElement + "/" + skill_name + "/" + skill_name + "_disabled_icon.png")
 	get_node("%" + skill_node_name + "/TextureButton").texture_disabled = skill_icon
@@ -165,13 +165,13 @@ func update_bottom_text():
 			
 	elementDescriptionNode.set_text(str(elementDescription))
 	
-func get_skill_name(skill):
-	var skill_node_name = skill.get_name()
-	var skill_name
-	match treeElement:
-		"Light":
-			skill_name = DataImport.skilltree_data[skill_node_name].Light
-	return skill_name
+#func get_skill_name(skill):
+#	var skill_node_name = skill.get_name()
+#	var skill_name
+#	match treeElement:
+#		"Light":
+#			skill_name = DataImport.skilltree_data[skill_node_name].Light
+#	return skill_name
 
 func mouseover(skill):
 	var skill_node_name = skill.get_name()

@@ -59,7 +59,7 @@
     "UnlockSkill": "1a_core",
     "RequiredInvestment": 0,
     "Cost": 1,
-    "Light": "no_name",
+    "Light": "Starburst_extra",
     "Dark": "no_name"
   },
   "1a_extra_passive1": {
