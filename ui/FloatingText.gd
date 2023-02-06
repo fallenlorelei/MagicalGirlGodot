@@ -26,9 +26,9 @@ func _ready():
 
 func random_vector():
 	var random_range_x = 10
-	var random_range_y = 30
+	var random_range_y = -30
 	var random_x = rand_range(-random_range_x ,random_range_x )
-	var random_y = rand_range(0,-random_range_y)
+	var random_y = rand_range(0, random_range_y)
 	var random_vector = Vector2(random_x, random_y)
 	return random_vector
 	

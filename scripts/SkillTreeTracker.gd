@@ -32,11 +32,11 @@ var fullTree = {
 	"light_1b_extra_passive2": false,
 	"light_1b_extra_passive3": false,
 	
-	"light_2a_core": false,
+	"light_2a_core": true,
 	"light_2a_passive1": false,
 	"light_2a_passive2": false,
 	"light_2a_passive3": false,
-	"light_2a_extra": false,
+	"light_2a_extra": true,
 	"light_2a_extra_passive1": false,
 	"light_2a_extra_passive2": false,
 	"light_2a_extra_passive3": false,

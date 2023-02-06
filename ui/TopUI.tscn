@@ -1,55 +1,80 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ui/ExpBar.gd" type="Script" id=1]
-[ext_resource path="res://assets/ui/ProgressBars/expbar-progress.png" type="Texture" id=2]
-[ext_resource path="res://assets/ui/ProgressBars/expbar-under.png" type="Texture" id=3]
-[ext_resource path="res://assets/ui/small_box.png" type="Texture" id=4]
-[ext_resource path="res://assets/ui/ProgressBars/expbar-over.png" type="Texture" id=5]
+[ext_resource path="res://assets/ui/Box/box_border_basic.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/ProgressBars/progress_bar_progress_100.png" type="Texture" id=3]
+[ext_resource path="res://assets/ui/Box/heart_pattern_bg.png" type="Texture" id=4]
 [ext_resource path="res://assets/ui/MainTheme.tres" type="Theme" id=6]
 
 [node name="TopUI" type="Control"]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
 
 [node name="ExpBar" type="TextureProgress" parent="."]
-margin_right = 640.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -110.0
+margin_top = 5.0
+margin_right = 110.0
 margin_bottom = 8.0
 rect_min_size = Vector2( 220, 8 )
+value = 50.0
 texture_under = ExtResource( 3 )
-texture_over = ExtResource( 5 )
-texture_progress = ExtResource( 2 )
+texture_over = ExtResource( 2 )
+texture_progress = ExtResource( 3 )
+tint_under = Color( 0.188235, 0.188235, 0.188235, 1 )
+tint_progress = Color( 0.890196, 0.321569, 0.462745, 1 )
+nine_patch_stretch = true
+stretch_margin_left = 5
+stretch_margin_top = 5
+stretch_margin_right = 5
+stretch_margin_bottom = 5
 script = ExtResource( 1 )
 
 [node name="ExpTooltip" type="Popup" parent="ExpBar"]
 visible = true
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="ExpBar/ExpTooltip"]
-margin_left = -21.0
-margin_top = -19.0
-margin_right = 19.0
-margin_bottom = -5.0
-grow_horizontal = 2
-theme = ExtResource( 6 )
-theme_type_variation = "Label_larger"
-text = "60/1000"
-align = 1
+[node name="NinePatchRect" type="NinePatchRect" parent="ExpBar/ExpTooltip"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -35.0
+margin_top = 2.0
+margin_right = 35.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 70, 20 )
+texture = ExtResource( 2 )
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
 
-[node name="Background" type="TextureRect" parent="ExpBar/ExpTooltip/Label"]
+[node name="Background" type="TextureRect" parent="ExpBar/ExpTooltip/NinePatchRect"]
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -5.0
-margin_top = -3.0
-margin_right = 5.0
-grow_horizontal = 2
+margin_left = 3.0
+margin_top = 3.0
+margin_right = -3.0
+margin_bottom = -3.0
 mouse_filter = 2
 texture = ExtResource( 4 )
 expand = true
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="ExpBar/ExpTooltip/NinePatchRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 3.0
+theme = ExtResource( 6 )
+text = "60/1000"
+align = 1
+valign = 1
 
 [connection signal="mouse_entered" from="ExpBar" to="ExpBar" method="_on_ExpBar_mouse_entered"]
 [connection signal="mouse_exited" from="ExpBar" to="ExpBar" method="_on_ExpBar_mouse_exited"]

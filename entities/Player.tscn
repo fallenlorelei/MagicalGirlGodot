@@ -1355,7 +1355,6 @@ script = ExtResource( 13 )
 
 [node name="PlayerStats" type="Node" parent="." index="1"]
 script = ExtResource( 14 )
-hp_max = 10
 
 [node name="Sprite" type="Sprite" parent="." index="2"]
 position = Vector2( 0, -8 )
@@ -1463,7 +1462,5 @@ collision_layer = 32
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( 0, -4 )
 shape = SubResource( 89 )
-
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 
 [editable path="Hurtbox"]

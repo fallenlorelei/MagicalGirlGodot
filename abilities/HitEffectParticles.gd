@@ -11,7 +11,7 @@ var particleType
 var shakeStrength
 
 func _ready():
-	if abilityUsed.name == "ExtraAbilityHitbox" or abilityUsed.name == "AbilityHitbox":
+	if abilityUsed.name == "AbilityHitbox":
 		particleType = DataImport.skill_data[abilityParent.name.rstrip("0123456789").trim_prefix("@").trim_suffix("@")].HitEffectParticles
 		shakeStrength = DataImport.skill_data[abilityParent.name.rstrip("0123456789").trim_prefix("@").trim_suffix("@")].ShakeStrength
 	else:
@@ -19,7 +19,7 @@ func _ready():
 		shakeStrength = DataImport.skill_data[abilityUsed.name.rstrip("0123456789").trim_prefix("@").trim_suffix("@")].ShakeStrength
 	
 	if particleType != null:
-		spawn_particle(particleType)
+		spawn_particle()
 		
 	if objectHit.sprite.material != null:
 		objectHit.sprite.material.set_shader_param("solid_color", Color.white)
@@ -33,7 +33,7 @@ func _physics_process(delta):
 	if is_instance_valid(objectHit):
 		position = objectHit.position
 
-func spawn_particle(particleType):
+func spawn_particle():
 	particle = get_node(str(particleType))
 	particle.emitting = true
 	particlesSpawned = true

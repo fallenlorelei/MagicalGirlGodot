@@ -24,6 +24,26 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://maze/TileMap.gd"
 }, {
+"base": "Area2D",
+"class": "SkillInit_Area2D",
+"language": "GDScript",
+"path": "res://abilities/SkillInit_Area2D.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "SkillInit_KB2D",
+"language": "GDScript",
+"path": "res://abilities/SkillInit_KB2D.gd"
+}, {
+"base": "RigidBody2D",
+"class": "SkillInit_RB2D",
+"language": "GDScript",
+"path": "res://abilities/SkillInit_RB2D.gd"
+}, {
+"base": "Resource",
+"class": "SkillInitialize",
+"language": "GDScript",
+"path": "res://abilities/SkillInitialize.gd"
+}, {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
@@ -33,6 +53,10 @@ _global_script_class_icons={
 "EntityBase": "",
 "GitAPI": "",
 "InteractiveTilemap": "",
+"SkillInit_Area2D": "",
+"SkillInit_KB2D": "",
+"SkillInit_RB2D": "",
+"SkillInitialize": "",
 "StateMachine": ""
 }
 

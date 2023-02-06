@@ -143,7 +143,7 @@
     "UnlockSkill": "investment",
     "RequiredInvestment": 6,
     "Cost": 1,
-    "Light": "no_name",
+    "Light": "Sparkle_Heal",
     "Dark": "no_name"
   },
   "2a_passive1": {
@@ -171,7 +171,7 @@
     "UnlockSkill": "2a_core",
     "RequiredInvestment": 0,
     "Cost": 1,
-    "Light": "no_name",
+    "Light": "Sparkle_Heal_extra",
     "Dark": "no_name"
   },
   "2a_extra_passive1": {

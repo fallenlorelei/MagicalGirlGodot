@@ -4,6 +4,7 @@ onready var sprite = $Sprite
 onready var attackManager = $AttackManager
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
+onready var skillManager = $SkillManager
 
 export(int) var JUMP_SPEED = 110
 
@@ -31,6 +32,7 @@ func _ready():
 	SignalBus.connect("died", self, "begin_dying")
 	SignalBus.connect("mouseover", self, "set_mouseover")
 	SignalBus.connect("mouseOverLock", self, "set_mouseover")
+	SignalBus.emit_signal("update_player_hp_bar", playerStats.hp, playerStats.hp_max)
 
 func get_cursor_info():
 	cursorDirection = (get_global_mouse_position() - position).normalized()

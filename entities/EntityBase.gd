@@ -27,29 +27,23 @@ func move(delta):
 	
 	velocity = move_and_slide(velocity)
 
-func _on_Hurtbox_area_entered(area):
-#	if area.is_in_group("Player") and area.skillType == "front_arc":
-#		var AP = area.global_position.direction_to(global_position)
-#		if AP.dot((get_global_mouse_position() - position).normalized()) > 0:
-#			playerAttacking(area)
-
-	if area.is_in_group("Player"):
-		playerAttacking(area)
-		
-	else:
-		enemyAttacking(area)
+func on_hit(targetAttacked, skillUsed):
+	if targetAttacked.is_in_group("Player"):
+		playerAttacked(targetAttacked, skillUsed)
+	elif targetAttacked.is_in_group("Enemy"):
+		enemyAttacked(targetAttacked, skillUsed)
 	
-	hurtbox.create_hit_effect(area, self, area.get_parent())
+#	hurtbox.create_hit_effect(area, self, area.get_parent())
 
-func enemyAttacking(area):
+func playerAttacked(targetAttacked, skillUsed):
 	if is_instance_valid(playerStats) and playerStats.hp > 0:
-		playerStats.receive_damage(area.skillDamage)
-		knockback = area.knockback_vector * area.knockbackModifier
+		playerStats.receive_damage(skillUsed.skillDamage)
+		knockback = skillUsed.knockback_vector * skillUsed.knockbackModifier
 	
-func playerAttacking(area):
+func enemyAttacked(targetAttacked, skillUsed):
 	if is_instance_valid(enemyStats) and enemyStats.hp > 0:
-		enemyStats.receive_damage(area.skillDamage)
-		knockback = area.knockback_vector * area.knockbackModifier
+		enemyStats.receive_damage(skillUsed.skillDamage)
+		knockback = skillUsed.knockback_vector * skillUsed.knockbackModifier
 
 func update_player_hp_bar(hp, hp_max):
 	SignalBus.emit_signal("update_player_hp_bar", hp, hp_max)
@@ -57,3 +51,4 @@ func update_player_hp_bar(hp, hp_max):
 
 func update_enemy_hp_bar(hp, hp_max):
 	pass
+	

@@ -1,10 +1,9 @@
 extends Node
 
 #Stats
-signal hp_max_changed(new_hp_max)
-signal hp_changed(new_hp, max_hp)
-signal damage_indicator(type, amount)
-signal healed(healAmount)
+#signal hp_max_changed(new_hp_max)
+#signal hp_changed(new_hp, max_hp)
+#signal damage_indicator(type, amount)
 signal died
 
 #UI

@@ -22,6 +22,9 @@ func set_invincible(value):
 func start_invincibility(duration):
 	self.invincible = true
 	timer.start(duration)
+
+func heal(healAmount):
+	get_parent().skillManager.heal(healAmount)
 	
 func create_hit_effect(ability, object, abilityparent):
 	var effect = HitEffect.instance()
