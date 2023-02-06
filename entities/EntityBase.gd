@@ -33,7 +33,7 @@ func on_hit(targetAttacked, skillUsed):
 	elif targetAttacked.is_in_group("Enemy"):
 		enemyAttacked(targetAttacked, skillUsed)
 	
-#	hurtbox.create_hit_effect(area, self, area.get_parent())
+	hurtbox.create_hit_effect(skillUsed, self, skillUsed.get_parent())
 
 func playerAttacked(targetAttacked, skillUsed):
 	if is_instance_valid(playerStats) and playerStats.hp > 0:

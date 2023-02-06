@@ -2,10 +2,11 @@ extends Node
 
 var skillName
 var skillElement
+var parent = get_parent()
 
 func _ready():
 	pass
-
+	
 func check_extra():
 	for skill in DataImport.skilltree_data:
 		if DataImport.skilltree_data[skill].get(skillElement) == skillName + "_extra":

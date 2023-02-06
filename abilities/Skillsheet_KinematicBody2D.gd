@@ -6,7 +6,7 @@ var starting_pos: Vector2
 var velocity = Vector2.ZERO
 
 func _ready():		
-	start_timer()
+	start_distance_timer()
 
 func _physics_process(delta):
 	move_bullet(delta)
@@ -22,31 +22,11 @@ func projectile():
 func move_bullet(delta):
 	var _collision_info = move_and_collide(velocity.normalized() * delta * projectileSpeed)
 
-func start_timer():
+func start_distance_timer():
 	skillDistanceTimer.wait_time = skillDistance
 	skillDistanceTimer.connect("timeout", self, "destroy")
 	skillDistanceTimer.start()
-	
-# == OTHER ==
-func scale_sprite():		
-	var sizeto = Vector2(skillRadius,skillRadius)
-	var spriteSize = skillSprite.texture.get_size() / Vector2(skillSprite.hframes, skillSprite.vframes)
-	var sprite_scale_factor = sizeto/spriteSize * 2
-	skillSprite.scale = sprite_scale_factor
 
-	if particles.material != null:
-		particles.process_material.emission_sphere_radius = skillRadius	
-
-
-func _on_AbilityHitbox_area_entered(area):
-	targetAttacked = area
-	if area.is_in_group("Player") and healAmount > 0:
-		area.heal(healAmount)
-	elif area.is_in_group("Enemy"):
-		area.get_parent().on_hit(targetAttacked, self)
-		
-	if destroyOnImpact == true:
-		destroy()
 
 func destroy():
 	animationPlayer.play("death")
