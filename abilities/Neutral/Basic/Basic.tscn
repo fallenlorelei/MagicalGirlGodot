@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/abilities/basic_wand_attack.png" type="Texture" id=2]
 [ext_resource path="res://assets/particle_textures/pixelcircle.png" type="Texture" id=3]
 [ext_resource path="res://shaders/FadeInOutGradient.tres" type="Gradient" id=4]
-[ext_resource path="res://abilities/Neutral/Basic/TrailingLine.gd" type="Script" id=5]
+[ext_resource path="res://scripts/TrailingLine.gd" type="Script" id=5]
 
 [sub_resource type="Animation" id=6]
 length = 0.001

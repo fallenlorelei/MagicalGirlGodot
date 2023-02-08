@@ -8,6 +8,7 @@
 
 [node name="SkillbarTooltip" type="Popup"]
 pause_mode = 2
+visible = true
 margin_right = 128.0
 margin_bottom = 115.0
 rect_min_size = Vector2( 128, 115 )
@@ -17,7 +18,7 @@ script = ExtResource( 2 )
 
 [node name="Border" type="NinePatchRect" parent="."]
 margin_left = -84.0
-margin_top = -133.0
+margin_top = -120.0
 margin_right = 81.0
 margin_bottom = -8.0
 size_flags_horizontal = 3
@@ -75,8 +76,8 @@ stretch_mode = 4
 unique_name_in_owner = true
 margin_top = 22.0
 margin_right = 151.0
-margin_bottom = 111.0
-rect_min_size = Vector2( 118, 84 )
+margin_bottom = 98.0
+rect_min_size = Vector2( 118, 73 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
@@ -156,6 +157,7 @@ valign = 1
 clip_text = true
 
 [node name="SkillUpgradesLabel" type="Label" parent="Border/Background/VBoxContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
 margin_top = 53.0
 margin_right = 151.0
 margin_bottom = 65.0

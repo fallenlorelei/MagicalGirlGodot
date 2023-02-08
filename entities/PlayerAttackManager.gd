@@ -93,10 +93,8 @@ func update_visual_cast():
 		
 		"curved_dash":
 			spawnPivot.look_at(parentCursorLocation)
+			rainbowLine.width = DataImport.skill_data[skillName].SkillRadius
 			rainbowLine.show()
-			rainbowLine.material = ShaderMaterial.new()
-			rainbowLine.material.shader = rainbowShader
-			rainbowLine.material.set_shader_param("angle", 90)
 			
 
 func check_out_of_bounds():
@@ -172,7 +170,7 @@ func show_casting(zindex, type):
 			#x is ending position
 			p_B = get_local_mouse_position().limit_length(distance)
 			#y is how high it goes up
-			p_postA = Vector2(p_A.x, -(distance / PI))
+			p_postA = Vector2(p_A.x, -(distance / PI) - distance/2)
 			p_preB = Vector2(p_A.x/2, p_postA.y/2)
 			rainbowPath = Path2D.new()
 			rainbowCurve = Curve2D.new()

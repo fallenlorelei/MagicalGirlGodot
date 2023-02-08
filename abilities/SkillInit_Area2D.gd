@@ -85,6 +85,7 @@ func scale_sprite():
 		var spriteSize = skillSprite.texture.get_size() / Vector2(skillSprite.hframes, skillSprite.vframes)
 		var sprite_scale_factor = sizeto/spriteSize * 2
 		skillSprite.scale = sprite_scale_factor
+		
 	scale_particles()
 
 func scale_particles():

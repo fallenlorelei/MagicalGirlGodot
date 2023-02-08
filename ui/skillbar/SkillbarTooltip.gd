@@ -7,13 +7,13 @@ onready var skillElementLabel = $"%SkillElement"
 onready var cooldownDurationLabel = $"%CooldownDuration"
 onready var skillDescriptionLabel = $"%SkillDescription"
 onready var scrollContainer = $"%ScrollContainer"
+onready var skillUpgradesLabel = $"%SkillUpgradesLabel"
 onready var background = $Border/Background
 
 var screensize = OS.window_size / 2 * 1.2
 var adj_pos = Vector2()	
 
 var origin = ""
-var skill_slot = ""
 var skill_name = ""
 var skillSize = ""
 var valid = false
@@ -37,8 +37,9 @@ func _input(event):
 
 func update_tooltip():		
 	# == SKILLBAR TOOLTIP ==
-	if origin == "Skillbar" and skill_name != null:
-		valid = true	
+	if origin == "Skillbar" or origin == "SkillTree":
+		if skill_name != null:
+			valid = true	
 	if valid:		
 		skillNameLabel.set_text(skill_name.capitalize())
 		
@@ -59,3 +60,6 @@ func update_tooltip():
 			})
 		
 		skillDescriptionLabel.bbcode_text = actual_string
+
+		if origin == "SkillTree":
+			skillUpgradesLabel.hide()

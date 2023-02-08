@@ -102,7 +102,7 @@ func _on_TextureButton_mouse_entered():
 	var skill_slot = get_parent().get_name()
 	var skill_name = get_owner().loaded_skills[skill_slot]
 	tooltip_instance.origin = "Skillbar"
-	tooltip_instance.skill_slot = skill_slot
+#	tooltip_instance.skill_slot = skill_slot
 	tooltip_instance.skill_name = skill_name
 	add_child(tooltip_instance)
 	yield(get_tree().create_timer(0.35), "timeout")

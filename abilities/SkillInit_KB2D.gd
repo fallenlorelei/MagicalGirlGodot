@@ -70,10 +70,14 @@ func _ready():
 		damageDelayTimer.connect("timeout", hitbox, "damage")
 
 func scale_sprite():
-	var sizeto = Vector2(skillRadius,skillRadius)
-	var spriteSize = skillSprite.texture.get_size() / Vector2(skillSprite.hframes, skillSprite.vframes)
-	var sprite_scale_factor = sizeto/spriteSize * 2
-	skillSprite.scale = sprite_scale_factor
+	if skillSprite.texture != null:
+		var sizeto = Vector2(skillRadius,skillRadius)
+		var spriteSize = skillSprite.texture.get_size() / Vector2(skillSprite.hframes, skillSprite.vframes)
+		var sprite_scale_factor = sizeto/spriteSize * 2
+		skillSprite.scale = sprite_scale_factor
+		
+	scale_particles()
 
-	if particles.process_material.emission_sphere_radius != null:
-		particles.process_material.emission_sphere_radius = skillRadius
+func scale_particles():
+	if particles.material != null:
+		particles.process_material.emission_sphere_radius = skillRadius	

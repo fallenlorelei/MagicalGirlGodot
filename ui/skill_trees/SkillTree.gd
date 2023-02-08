@@ -1,5 +1,6 @@
 extends Control
 
+onready var tooltip = preload("res://ui/skillbar/SkillbarTooltip.tscn")
 onready var outlineShader = preload("res://shaders/Outline.gdshader")
 onready var skilltreeUnlockEffectSprite = preload("res://assets/sprites/SkillTree_Unlock_Effect_Sprite.tscn")
 
@@ -25,11 +26,14 @@ func _ready():
 	load_skill_icons()
 	load_skill_costs()
 	update_bottom_text()
+	update_invested_points(totalInvestedPoints)
 
 	for button in get_tree().get_nodes_in_group("TreeSkillButtons"):
 		button.connect("pressed", self, "unlock_skills", [button.get_parent()])
 		button.connect("mouse_entered", self, "mouseover", [button.get_parent()])
+		button.connect("mouse_entered", self, "tooltip_on", [button.get_parent()])
 		button.connect("mouse_exited", self, "mouseexit", [button.get_parent()])
+		button.connect("mouse_exited", self, "tooltip_off")
 		
 func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -164,14 +168,6 @@ func update_bottom_text():
 			elementDescription = "Use Stars and Rainbows to both deal damage and heal."
 			
 	elementDescriptionNode.set_text(str(elementDescription))
-	
-#func get_skill_name(skill):
-#	var skill_node_name = skill.get_name()
-#	var skill_name
-#	match treeElement:
-#		"Light":
-#			skill_name = DataImport.skilltree_data[skill_node_name].Light
-#	return skill_name
 
 func mouseover(skill):
 	var skill_node_name = skill.get_name()
@@ -234,3 +230,19 @@ func update_invested_points(value):
 	tier3Requirements.set_text(tierText + " / " + tier3RequiredAmount)
 	tier4Requirements.set_text(tierText + " / " + tier4RequiredAmount)
 	tier5Requirements.set_text(tierText + " / " + tier5RequiredAmount)
+
+
+func tooltip_on(skill):
+	var skill_node_name = skill.get_name()
+	var skill_name = SkillTreeTracker.get_skill_name(skill.get_name(), treeElement)
+	var tooltip_instance = tooltip.instance()
+	tooltip_instance.origin = "SkillTree"
+	tooltip_instance.skill_name = skill_name
+	add_child(tooltip_instance)
+	yield(get_tree().create_timer(0.35), "timeout")
+	if has_node("SkillbarTooltip") and get_node("SkillbarTooltip").valid:
+		get_node("SkillbarTooltip").show()
+
+func tooltip_off():
+	if has_node("SkillbarTooltip") and get_node("SkillbarTooltip").valid:
+		get_node("SkillbarTooltip").free()

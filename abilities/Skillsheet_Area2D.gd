@@ -12,8 +12,8 @@ func _physics_process(delta):
 		follow.set_offset(follow.get_offset() + 300 * delta)
 		if follow.unit_offset == 1:
 			rainbowDashing = false
-			destroy()
-		
+
+
 # == AT_CURSORS ==
 func at_cursor():
 	scale_sprite()
@@ -28,7 +28,11 @@ func around_self():
 func curved_dash(rainbowFollow):
 	z_index = -1
 	follow = rainbowFollow
+	$Line2D.length = skillDistance/PI
 	rainbowDashing = true #Sending to physics_process
+	
+	yield(get_tree().create_timer(skillDistance/60), "timeout")
+	destroy()
 	
 # == END ==
 func _on_AnimationPlayer_animation_finished(anim_name):
