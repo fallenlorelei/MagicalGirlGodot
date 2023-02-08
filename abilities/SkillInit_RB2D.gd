@@ -55,7 +55,7 @@ func _ready():
 	skillDescription = DataImport.skill_data[skillName].SkillDescription
 
 	if skillRadius != null:
-		hitboxCollisionShape.get_shape().radius = skillRadius
+		hitboxCollisionShape.get_shape().radius = skillRadius + 2
 		
 	particles.emitting = true
 	if get_node_or_null("Particles2D2") != null:

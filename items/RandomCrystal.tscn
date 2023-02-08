@@ -11,5 +11,6 @@ script = ExtResource( 21 )
 script = ExtResource( 22 )
 
 [node name="ElementalCrystalSprite" parent="." instance=ExtResource( 23 )]
+rotation = -0.174533
 
 [editable path="ElementalCrystalSprite"]

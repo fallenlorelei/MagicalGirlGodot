@@ -52,7 +52,7 @@ func set_damage_indicator(skillType, amount):
 	var damage_indicator = floating_text.instance()
 	damage_indicator.amount = amount
 	damage_indicator.skillType = skillType
-	var sprite_height = get_parent().sprite.texture.get_height()/2
+	var sprite_height = get_parent().sprite.texture.get_height()/2  + get_parent().sprite.position.y
 	damage_indicator.position = Vector2(0, -sprite_height)
 	get_parent().add_child(damage_indicator)
 

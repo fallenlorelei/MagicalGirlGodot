@@ -14,4 +14,5 @@ signal update_player_hp_bar(current_hp, max_hp)
 
 #Skills
 signal start_cooldown
+signal curved_dash(object)
 signal begin_shadowmeld(length, cursorDirection)

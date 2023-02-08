@@ -87,7 +87,7 @@
     "UnlockSkill": "investment",
     "RequiredInvestment": 3,
     "Cost": 1,
-    "Light": "no_name",
+    "Light": "Sparkle_Heal",
     "Dark": "no_name"
   },
   "1b_passive1": {
@@ -115,7 +115,7 @@
     "UnlockSkill": "1b_core",
     "RequiredInvestment": 0,
     "Cost": 1,
-    "Light": "no_name",
+    "Light": "Sparkle_Heal_extra",
     "Dark": "no_name"
   },
   "1b_extra_passive1": {
@@ -143,7 +143,7 @@
     "UnlockSkill": "investment",
     "RequiredInvestment": 6,
     "Cost": 1,
-    "Light": "Sparkle_Heal",
+    "Light": "Rainbow_Dash",
     "Dark": "no_name"
   },
   "2a_passive1": {
@@ -171,7 +171,7 @@
     "UnlockSkill": "2a_core",
     "RequiredInvestment": 0,
     "Cost": 1,
-    "Light": "Sparkle_Heal_extra",
+    "Light": "Rainbow_Dash_extra",
     "Dark": "no_name"
   },
   "2a_extra_passive1": {

@@ -1,5 +1,7 @@
 extends Node2D
 
+onready var rainbowShader = preload("res://shaders/AnimatedRainbow.gdshader")
+
 onready var globalCooldown = $GlobalCooldown
 onready var castingCircleSprite = $CastingCircle
 onready var castingCircleAnimation = $CastingCircle/AnimationPlayer
@@ -7,6 +9,8 @@ onready var projectileLine = $ProjectilePreview
 onready var frontArcPreview = $FrontArcPreview
 onready var spawnPivot = $SpawnPivot
 onready var projectileSpawnPos = $SpawnPivot/ProjectileSpawnPos
+onready var rainbowLine = $RainbowLine
+
 
 var parentCursorDirection
 var parentCursorLocation
@@ -16,6 +20,13 @@ var skillElement
 var distance
 var castingCircleRotatingPosition
 var parent
+var rainbowPath
+var rainbowCurve
+var rainbowFollow
+var p_A
+var p_B
+var p_postA
+var p_preB
 
 func _ready():
 	parent = get_parent()
@@ -56,6 +67,8 @@ func start_ability(selected_skill, selected_shortcut):
 				show_casting(-1, "front_arc")
 			"projectile":
 				show_casting(-1, "projectile")
+			"curved_dash":
+				show_casting(0, "curved_dash")
 				
 func update_visual_cast():
 	match DataImport.skill_data[skillName].SkillType:
@@ -77,6 +90,14 @@ func update_visual_cast():
 			
 		"front_arc":
 			frontArcPreview.look_at(parentCursorLocation)
+		
+		"curved_dash":
+			spawnPivot.look_at(parentCursorLocation)
+			rainbowLine.show()
+			rainbowLine.material = ShaderMaterial.new()
+			rainbowLine.material.shader = rainbowShader
+			rainbowLine.material.set_shader_param("angle", 90)
+			
 
 func check_out_of_bounds():
 # Only "at cursor" abilities can't be cast out of bounds
@@ -139,7 +160,27 @@ func show_casting(zindex, type):
 			frontArcPreview.scale = scale_factor
 			frontArcPreview.z_index = zindex
 			frontArcPreview.show()
-
+			
+		"curved_dash":
+			if parentCursorDirection.y < 0:
+				rainbowLine.z_index = -1
+			else:
+				rainbowLine.z_index = 1
+			var startingPos = to_local(projectileSpawnPos.global_position)
+			#x,y is starting position
+			p_A = Vector2(startingPos)
+			#x is ending position
+			p_B = get_local_mouse_position().limit_length(distance)
+			#y is how high it goes up
+			p_postA = Vector2(p_A.x, -(distance / PI))
+			p_preB = Vector2(p_A.x/2, p_postA.y/2)
+			rainbowPath = Path2D.new()
+			rainbowCurve = Curve2D.new()
+			rainbowFollow = PathFollow2D.new()
+			rainbowCurve.add_point(p_A, Vector2.ZERO, p_postA)
+			rainbowCurve.add_point(p_B, p_preB, Vector2.ZERO)
+			rainbowLine.points = rainbowCurve.get_baked_points()
+			
 # == RELEASE ABILITY ==
 func release_ability():
 	parent.releaseAbility = true
@@ -180,13 +221,21 @@ func release_ability():
 			ability.front_arc()
 #
 		"projectile":
-			
 			ability.global_position = projectileSpawnPos.global_position
 			ability.velocity = parentCursorLocation - ability.position
 			var ability_rotation = self.global_position.direction_to(parentCursorLocation).angle()
 			ability.rotation = ability_rotation
 			get_tree().get_current_scene().add_child(ability)
 			ability.projectile()
+			
+		"curved_dash":
+			rainbowPath.set_curve(rainbowCurve)
+			rainbowPath.global_position = projectileSpawnPos.global_position
+			get_tree().get_current_scene().add_child(rainbowPath)
+			rainbowPath.add_child(rainbowFollow)
+			rainbowFollow.loop = false
+			rainbowFollow.add_child(ability)
+			ability.curved_dash(rainbowFollow)
 
 	stop_casting()
 
@@ -195,6 +244,7 @@ func stop_casting():
 	TW.tween_property(castingCircleSprite, "scale", Vector2(0,0), .2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	projectileLine.hide()
 	frontArcPreview.hide()
+	rainbowLine.hide()
 	skillName = null
 	parent.selected_skill = null
 	parent.selected_skillSlot = null

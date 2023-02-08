@@ -19,6 +19,11 @@ margin_right = -106.0
 margin_bottom = 7.0
 
 [node name="CrystalCounter" parent="." instance=ExtResource( 3 )]
+margin_left = -147.0
+margin_top = 28.0
+margin_right = 27.0
+margin_bottom = 358.0
+rect_min_size = Vector2( 0, 330 )
 
 [node name="BottomUI" parent="." instance=ExtResource( 4 )]
 pause_mode = 2

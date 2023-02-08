@@ -10,6 +10,8 @@ onready var collisionShape = $CollisionShape2D
 onready var particles = $Particles2D
 onready var checkExtra = $CheckExtraAbility
 onready var damageDelayTimer = $StartingDelay
+onready var aoeTickTimer = $AoETickTimer
+onready var aoeDurationTimer = $AoEDuration
 
 var cursorDirection: Vector2
 var knockback_vector = Vector2.ZERO
@@ -67,7 +69,15 @@ func _ready():
 	
 	if startingDamageDelay > 0:
 		damageDelayTimer.wait_time = startingDamageDelay
-		damageDelayTimer.connect("timeout", hitbox, "damage")
+		damageDelayTimer.connect("timeout", hitbox, "check_ticktimer")
+		
+	if aoeDuration > 0:
+		aoeDurationTimer.wait_time = startingDamageDelay + aoeDuration
+		aoeDurationTimer.start()
+		
+	if aoeTickDelay > 0:
+		aoeTickTimer.wait_time = aoeTickDelay
+		aoeTickTimer.connect("timeout", hitbox, "check_ticktimer")
 
 func scale_sprite():
 	if skillSprite.texture != null:

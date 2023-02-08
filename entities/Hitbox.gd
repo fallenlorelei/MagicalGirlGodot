@@ -8,3 +8,7 @@ var knockbackModifier = 0
 
 func _ready():
 	pass
+
+
+func _on_Hitbox_area_entered(area):
+	area.on_hit(area, self)

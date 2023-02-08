@@ -6,8 +6,8 @@ onready var sprite = $Sprite
 onready var ySort = $"../../YSort"
 
 export(float) var spawnTimer = 1.0
-export var spawnAmount_min = 2
-export var spawnAmount_max = 6
+export var spawnAmount_min = 1
+export var spawnAmount_max = 1
 
 var spawnAmount
 var randomEnemy

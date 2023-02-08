@@ -4,9 +4,11 @@
 [ext_resource path="res://abilities/Skillsheet_RigidBody2D.tscn" type="PackedScene" id=2]
 
 [node name="Starburst_extra" instance=ExtResource( 2 )]
+collision_layer = 129
+collision_mask = 0
 
-[node name="Sprite" parent="." index="1"]
+[node name="Sprite" parent="." index="2"]
 texture = ExtResource( 1 )
 
-[node name="AbilityHitbox" parent="." index="5"]
+[node name="AbilityHitbox" parent="." index="6"]
 collision_mask = 96

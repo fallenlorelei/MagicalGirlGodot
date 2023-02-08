@@ -11,7 +11,7 @@ var loaded_skills = {
 	"left_click": "Light_Bow",
 	"ability1": "Starburst",
 	"ability2": "Sparkle_Heal",
-	"ability3": null,
+	"ability3": "Rainbow_Dash",
 	"ability4": null,
 	"ability5": null,
 	"ability6": null

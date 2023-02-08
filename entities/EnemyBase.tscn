@@ -133,6 +133,7 @@ nine_patch_stretch = true
 
 [connection signal="body_entered" from="PlayerDetectionZone" to="PlayerDetectionZone" method="_on_PlayerDetectionZone_body_entered"]
 [connection signal="body_exited" from="PlayerDetectionZone" to="PlayerDetectionZone" method="_on_PlayerDetectionZone_body_exited"]
+[connection signal="area_entered" from="HitboxPivot/Hitbox" to="HitboxPivot/Hitbox" method="_on_Hitbox_area_entered"]
 
 [editable path="HitboxPivot/Hitbox"]
 [editable path="Hurtbox"]

@@ -34,4 +34,3 @@ func set_invincible(value):
 func _on_InvincibilityTimer_timeout():
 	monitoring = true
 	self.invincible = false
-	print("done")

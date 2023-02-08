@@ -114,8 +114,8 @@
     "HealAmount": 100,
     "ProjectileAmount": 1,
     "StartingDamageDelay": 0,
-    "AoEDuration": 3,
-    "AoETickDelay": 3,
+    "AoEDuration": 0,
+    "AoETickDelay": 0,
     "KnockbackModifier": 0,
     "ShakeStrength": 0,
     "SkillRadius": 40,
@@ -146,13 +146,13 @@
     "HitEffectParticles": null,
     "SkillDescription": "The falling sparkles now deal {damage} damage every second to enemies underneath."
   },
-  "Rainbow_Teleport": {
+  "Rainbow_Dash": {
     "Element": "Light",
     "TreeType": "core",
-    "SkillType": "projectile",
+    "SkillType": "curved_dash",
     "Animation": "none",
     "CooldownDuration": 10,
-    "SkillDamage": 100,
+    "SkillDamage": 0,
     "HealAmount": 0,
     "ProjectileAmount": 1,
     "StartingDamageDelay": 0,
@@ -163,17 +163,17 @@
     "SkillRadius": 20,
     "Distance": 150,
     "ProjectileSpeed": 1,
-    "DestroyedOnImpact": true,
+    "DestroyedOnImpact": false,
     "HitEffectParticles": null,
     "SkillDescription": "Ride a rainbow to a target location."
   },
-  "Rainbow_Teleport_extra": {
+  "Rainbow_Dash_extra": {
     "Element": "Light",
     "TreeType": "extra",
     "SkillType": "skill_addition",
     "Animation": "none",
     "CooldownDuration": null,
-    "SkillDamage": 33.333333333333336,
+    "SkillDamage": 33,
     "HealAmount": 0,
     "ProjectileAmount": 0,
     "StartingDamageDelay": 0,
