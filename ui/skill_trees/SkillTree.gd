@@ -205,7 +205,7 @@ func skill_unlock_effect(skill):
 
 func close_window():
 	get_tree().paused = false
-	var crystalCounter = get_tree().get_root().get_node("Tilemap World/CanvasLayer/CrystalCounter")
+	var crystalCounter = get_tree().get_root().get_node("Station/CanvasLayer/CrystalCounter")
 	var TW = get_tree().create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	TW.tween_property(crystalCounter, "rect_position:x", crystalCounter.posClosedx, .3)
 	TW.parallel().tween_property(self, "rect_scale", Vector2(0,0), .3)

@@ -37,10 +37,10 @@ func open_skilltree():
 	skillTreeInstance.rect_scale = Vector2(0,0)
 	skillTreeInstance.treeElement = "Light"
 	
-	var crystalCounter = get_tree().get_root().get_node("Tilemap World/CanvasLayer/CrystalCounter")
+	var crystalCounter = get_tree().get_root().get_node("Station/CanvasLayer/CrystalCounter")
 	
-	get_tree().get_root().get_node("Tilemap World/CanvasLayer").add_child(skillTreeInstance)
-	get_tree().get_root().get_node("Tilemap World/CanvasLayer").move_child(skillTreeInstance,1)
+	get_tree().get_root().get_node("Station/CanvasLayer").add_child(skillTreeInstance)
+	get_tree().get_root().get_node("Station/CanvasLayer").move_child(skillTreeInstance,1)
 		
 	var TW = get_tree().create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	TW.tween_property(crystalCounter, "rect_position:x", crystalCounter.posOpenx, .3)

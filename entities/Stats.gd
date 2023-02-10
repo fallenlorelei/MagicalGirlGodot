@@ -52,9 +52,14 @@ func set_damage_indicator(skillType, amount):
 	var damage_indicator = floating_text.instance()
 	damage_indicator.amount = amount
 	damage_indicator.skillType = skillType
+	var sprite_width = 15 * pick_random()
 	var sprite_height = get_parent().sprite.texture.get_height()/2  + get_parent().sprite.position.y
-	damage_indicator.position = Vector2(0, -sprite_height)
+	damage_indicator.position = Vector2(sprite_width, -sprite_height)
 	get_parent().add_child(damage_indicator)
+
+func pick_random():
+	var nums = [-1,1] #list to choose from
+	return nums[randi() % nums.size()]
 
 func update_enemy_hp_bar():
 	get_parent().hpBar.show()

@@ -80,7 +80,7 @@ func set_attack(value):
 	selected_skill = value
 	
 func begin_cast():
-	velocity = velocity.move_toward(Vector2.ZERO, ATTACK_FRICTION)	
+	velocity = velocity.move_toward(input_vector * (MAX_SPEED/2), FRICTION)	
 	if selected_skill != null:
 		if Input.is_action_pressed(str(selected_skillSlot)):
 			attackManager.start_ability(selected_skill, selected_skillSlot)
