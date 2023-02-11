@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://entities/EntityBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://entities/Player.gd" type="Script" id=2]
@@ -15,6 +15,83 @@
 [ext_resource path="res://entities/PlayerStateMachine.gd" type="Script" id=13]
 [ext_resource path="res://entities/Stats.gd" type="Script" id=14]
 [ext_resource path="res://assets/sprites/rainbow.png" type="Texture" id=15]
+[ext_resource path="res://entities/RandomPlayerColor.gd" type="Script" id=16]
+
+[sub_resource type="Shader" id=101]
+code = "shader_type canvas_item;
+
+
+uniform vec4 original_0: hint_color;
+uniform vec4 original_1: hint_color;
+uniform vec4 original_2: hint_color;
+uniform vec4 original_3: hint_color;
+uniform vec4 original_4: hint_color;
+uniform vec4 original_5: hint_color;
+uniform vec4 original_6: hint_color;
+uniform vec4 original_7: hint_color;
+uniform vec4 original_8: hint_color;
+uniform vec4 original_9: hint_color;
+uniform vec4 original_10: hint_color;
+uniform vec4 original_11: hint_color;
+uniform vec4 replace_0: hint_color;
+uniform vec4 replace_1: hint_color;
+uniform vec4 replace_2: hint_color;
+uniform vec4 replace_3: hint_color;
+uniform vec4 replace_4: hint_color;
+uniform vec4 replace_5: hint_color;
+uniform vec4 replace_6: hint_color;
+uniform vec4 replace_7: hint_color;
+uniform vec4 replace_8: hint_color;
+uniform vec4 replace_9: hint_color;
+uniform vec4 replace_10: hint_color;
+uniform vec4 replace_11: hint_color;
+
+const float precision = 0.1;
+
+
+vec4 swap_color(vec4 color){
+	vec4 original_colors[12] = vec4[12] (original_0, original_1, original_2, original_3, original_4, original_5, original_6, original_7, original_8, original_9, original_10, original_11);
+	vec4 replace_colors[12] = vec4[12] (replace_0, replace_1, replace_2, replace_3, replace_4, replace_5, replace_6, replace_7, replace_8, replace_9, replace_10, replace_11);
+	for (int i = 0; i < 12; i ++) {
+		if (distance(color, original_colors[i]) <= precision){
+			return replace_colors[i];
+		}
+	}
+	return color;
+}
+
+
+void fragment() {
+	COLOR = swap_color(texture(TEXTURE, UV));
+}"
+
+[sub_resource type="ShaderMaterial" id=102]
+resource_local_to_scene = true
+shader = SubResource( 101 )
+shader_param/original_0 = Color( 0.65098, 0.192157, 0.27451, 1 )
+shader_param/original_1 = Color( 0.65098, 0.192157, 0.27451, 1 )
+shader_param/original_2 = Color( 0.65098, 0.192157, 0.27451, 1 )
+shader_param/original_3 = Color( 0.321569, 0.321569, 0.321569, 1 )
+shader_param/original_4 = Color( 0.690196, 0.45098, 0.301961, 1 )
+shader_param/original_5 = Color( 0.321569, 0.321569, 0.321569, 1 )
+shader_param/original_6 = Color( 0.945098, 1, 0.74902, 1 )
+shader_param/original_7 = Color( 0.921569, 0.713726, 0.580392, 1 )
+shader_param/original_8 = Color( 0.631373, 0.631373, 0.631373, 1 )
+shader_param/original_9 = Color( 0.945098, 1, 0.74902, 1 )
+shader_param/original_10 = Color( 0.690196, 0.45098, 0.301961, 1 )
+shader_param/original_11 = Color( 0.65098, 0.192157, 0.27451, 1 )
+shader_param/replace_0 = Color( 0, 0, 0, 1 )
+shader_param/replace_1 = null
+shader_param/replace_2 = null
+shader_param/replace_3 = Color( 0, 0, 0, 1 )
+shader_param/replace_4 = null
+shader_param/replace_5 = null
+shader_param/replace_6 = Color( 0, 0, 0, 1 )
+shader_param/replace_7 = null
+shader_param/replace_8 = null
+shader_param/replace_9 = null
+shader_param/replace_10 = null
+shader_param/replace_11 = null
 
 [sub_resource type="Animation" id=99]
 length = 0.001
@@ -1362,10 +1439,12 @@ script = ExtResource( 13 )
 script = ExtResource( 14 )
 
 [node name="Sprite" type="Sprite" parent="." index="2"]
+material = SubResource( 102 )
 position = Vector2( 0, -8 )
 texture = ExtResource( 4 )
 hframes = 24
 frame = 2
+script = ExtResource( 16 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 unique_name_in_owner = true

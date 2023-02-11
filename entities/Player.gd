@@ -34,10 +34,12 @@ func _ready():
 	SignalBus.connect("mouseover", self, "set_mouseover")
 	SignalBus.connect("mouseOverLock", self, "set_mouseover")
 	SignalBus.emit_signal("update_player_hp_bar", playerStats.hp, playerStats.hp_max)
+	sprite.randomize_color()
 
 func get_cursor_info():
 	cursorDirection = (get_global_mouse_position() - position).normalized()
 	cursorLocation = get_global_mouse_position()
+
 	
 func check_input():
 	if selected_skill != null:

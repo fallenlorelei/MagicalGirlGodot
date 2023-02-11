@@ -16,8 +16,6 @@ onready var tier4Requirements = $"%Tier4_Requirements_Label"
 onready var tier5Requirements = $"%Tier5_Requirements_Label"
 
 var treeElement: String
-#export(String, "Light", "Dark", "Psychic", "Fire", "Ice", "Earth", "Thunder", "Wind", "Water") var treeElement
-
 var totalInvestedPoints: int setget update_invested_points
 
 func _ready():
