@@ -7,6 +7,7 @@ onready var animationState = animationTree.get("parameters/playback")
 onready var skillManager = $SkillManager
 
 export(int) var JUMP_SPEED = 110
+export(int) var ATTACK_FRICTION = 1000
 
 export var minimap_icon = "icon"
 
@@ -80,7 +81,7 @@ func set_attack(value):
 	selected_skill = value
 	
 func begin_cast():
-	velocity = velocity.move_toward(input_vector * (MAX_SPEED/2), FRICTION)	
+	velocity = velocity.move_toward(input_vector * (MAX_SPEED/2), ATTACK_FRICTION)	
 	if selected_skill != null:
 		if Input.is_action_pressed(str(selected_skillSlot)):
 			attackManager.start_ability(selected_skill, selected_skillSlot)

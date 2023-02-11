@@ -1,7 +1,9 @@
 extends StaticBody2D
 
 onready var skillTree = preload("res://ui/skill_trees/SkillTree.tscn")
-onready var sprite = $Sprite
+onready var sprite = $AnimatedSprite
+
+export(String, "Light", "Dark", "Psychic", "Fire", "Ice", "Earth", "Thunder", "Wind", "Water") var treeElement
 
 var interactable = false
 var mouseOverNPC = false
@@ -11,7 +13,27 @@ func _physics_process(delta):
 		open_skilltree()
 	
 func _ready():
-	pass
+	var nums = [-1,1]
+	sprite.scale.x = nums[randi() % nums.size()]
+	match treeElement:
+		"Light":
+			sprite.play("light_sit")
+		"Dark":
+			sprite.play("dark_sit")
+		"Psychic":
+			sprite.play("psychic_sit")
+		"Fire":
+			sprite.play("fire_sit")
+		"Water":
+			sprite.play("water_sit")
+		"Ice":
+			sprite.play("ice_sit")
+		"Thunder":
+			sprite.play("thunder_sit")
+		"Wind":
+			sprite.play("wind_sit")
+		"Earth":
+			sprite.play("earth_sit")
 
 func _on_Mouseover_mouse_entered():
 	sprite.material.set_shader_param("line_color", Color(0.945098, 1, 0.74902))
@@ -35,7 +57,7 @@ func _on_InteractionZone_body_exited(body):
 func open_skilltree():
 	var skillTreeInstance = skillTree.instance()
 	skillTreeInstance.rect_scale = Vector2(0,0)
-	skillTreeInstance.treeElement = "Light"
+	skillTreeInstance.treeElement = treeElement
 	
 	var crystalCounter = get_tree().get_root().get_node("Station/CanvasLayer/CrystalCounter")
 	

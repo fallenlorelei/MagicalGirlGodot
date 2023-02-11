@@ -6,7 +6,6 @@ onready var hurtbox = $Hurtbox
 export(int) var ACCELERATION = 100
 export(int) var MAX_SPEED = 120
 export(int) var FRICTION = 100
-export(int) var ATTACK_FRICTION = 100
 
 var knockback = Vector2.ZERO
 var input_vector = Vector2.ZERO

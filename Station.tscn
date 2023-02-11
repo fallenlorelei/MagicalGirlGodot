@@ -39,7 +39,7 @@ environment = SubResource( 1 )
 color = Color( 0.621705, 0.61806, 0.636719, 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 433, 232 )
+position = Vector2( 744, -110 )
 current = true
 zoom = Vector2( 0.8, 0.8 )
 process_mode = 0
@@ -86,11 +86,53 @@ tile_data = PoolIntArray( -393222, 8, 131076, -458734, 8, 131076, -393202, 8, 6,
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( 433, 234 )
+position = Vector2( 744, -108 )
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSort/Player"]
 position = Vector2( 0, -2 )
 remote_path = NodePath("../../../Camera2D")
 
-[node name="LightSkillTreeNPC" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 782, -183 )
+[node name="SkillTreeNPC_Light" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 782, -160 )
+input_pickable = true
+treeElement = "Light"
+
+[node name="SkillTreeNPC_Dark" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 664, -166 )
+input_pickable = true
+treeElement = "Dark"
+
+[node name="SkillTreeNPC_Psychic" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 806, 13 )
+input_pickable = true
+treeElement = "Psychic"
+
+[node name="SkillTreeNPC_Thunder" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 502, -137 )
+input_pickable = true
+treeElement = "Thunder"
+
+[node name="SkillTreeNPC_Wind" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 101, -41 )
+input_pickable = true
+treeElement = "Wind"
+
+[node name="SkillTreeNPC_Ice" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 589, -23 )
+input_pickable = true
+treeElement = "Ice"
+
+[node name="SkillTreeNPC_Earth" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( -110, -161 )
+input_pickable = true
+treeElement = "Earth"
+
+[node name="SkillTreeNPC_Fire" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 109, -147 )
+input_pickable = true
+treeElement = "Earth"
+
+[node name="SkillTreeNPC_Water" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( -153, 1 )
+input_pickable = true
+treeElement = "Water"

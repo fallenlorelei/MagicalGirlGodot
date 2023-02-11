@@ -1350,8 +1350,9 @@ collision_layer = 2
 collision_mask = 133
 script = ExtResource( 2 )
 ACCELERATION = 120
-FRICTION = 120
+FRICTION = 500
 JUMP_SPEED = 120
+ATTACK_FRICTION = 1000
 minimap_icon = "icon"
 
 [node name="PlayerStateMachine" type="Node" parent="." index="0"]
