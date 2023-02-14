@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://items/CrystalDrop.gd" type="Script" id=1]
-[ext_resource path="res://items/ElementalCrystalSprite.tscn" type="PackedScene" id=3]
+[ext_resource path="res://items/crystals/CrystalDrop.gd" type="Script" id=1]
+[ext_resource path="res://items/crystals/ElementalCrystalSprite.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CircleShape2D" id=2]
 
@@ -28,7 +28,7 @@ collision_mask = 2
 [node name="ItemPickUpCollision" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
 
-[node name="ElementalCrystalSprite" parent="." instance=ExtResource( 3 )]
+[node name="ElementalCrystalSprite" parent="." instance=ExtResource( 2 )]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 

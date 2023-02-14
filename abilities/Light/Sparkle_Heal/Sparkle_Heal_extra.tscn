@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://abilities/Skillsheet_Area2D.tscn" type="PackedScene" id=1]
+[ext_resource path="res://abilities/_SKILLBASES/Skillsheet_Area2D.tscn" type="PackedScene" id=1]
 
 [sub_resource type="Animation" id=5]
 resource_name = "start"

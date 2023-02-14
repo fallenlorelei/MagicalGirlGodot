@@ -10,11 +10,14 @@ onready var collisionShape = $CollisionShape2D
 onready var particles = $Particles2D
 onready var checkExtra = $CheckExtraAbility
 onready var damageDelayTimer = $StartingDelay
+onready var skillDistanceTimer = $SkillDistanceTimer
 
 var cursorDirection: Vector2
 var knockback_vector = Vector2.ZERO
 var attackManager: Node2D
 var attackedGroup
+var starting_pos: Vector2
+var velocity = Vector2.ZERO
 
 var skillName: String
 var skillElement: String

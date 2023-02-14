@@ -1,7 +1,5 @@
 extends Node2D
 
-#export(String, "BLUE","GREEN","PINK","PURPLE","RED") var ElementalCrystals
-
 onready var randomCrystalSprite = $"../ElementalCrystalSprite"
 onready var randomCrystalAnimation = $"../ElementalCrystalSprite/AnimationPlayer"
 onready var crystalCounter = ElementalCrystalCounter

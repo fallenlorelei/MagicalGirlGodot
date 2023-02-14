@@ -27,22 +27,17 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "SkillInit_Area2D",
 "language": "GDScript",
-"path": "res://abilities/SkillInit_Area2D.gd"
+"path": "res://abilities/_SKILLBASES/SkillInit_Area2D.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "SkillInit_KB2D",
 "language": "GDScript",
-"path": "res://abilities/SkillInit_KB2D.gd"
+"path": "res://abilities/_SKILLBASES/SkillInit_KB2D.gd"
 }, {
-"base": "RigidBody2D",
+"base": "Reference",
 "class": "SkillInit_RB2D",
 "language": "GDScript",
-"path": "res://abilities/SkillInit_RB2D.gd"
-}, {
-"base": "Resource",
-"class": "SkillInitialize",
-"language": "GDScript",
-"path": "res://abilities/SkillInitialize.gd"
+"path": "res://abilities/_SKILLBASES/SkillInit_RB2D.gd"
 }, {
 "base": "Node",
 "class": "StateMachine",
@@ -56,7 +51,6 @@ _global_script_class_icons={
 "SkillInit_Area2D": "",
 "SkillInit_KB2D": "",
 "SkillInit_RB2D": "",
-"SkillInitialize": "",
 "StateMachine": ""
 }
 

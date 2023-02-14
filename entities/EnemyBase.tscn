@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://entities/EnemyBase.gd" type="Script" id=1]
-[ext_resource path="res://items/RandomCrystal.tscn" type="PackedScene" id=2]
+[ext_resource path="res://items/crystals/RandomCrystal.tscn" type="PackedScene" id=2]
 [ext_resource path="res://entities/Hitbox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://entities/Hurtbox.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/enemies/PlayerDetectionZone.gd" type="Script" id=5]

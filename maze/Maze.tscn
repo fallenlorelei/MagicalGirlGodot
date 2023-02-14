@@ -271,7 +271,6 @@ smoothing_enabled = true
 
 [node name="Player" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 321, 142 )
-ATTACK_FRICTION = 1000
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSort/Player"]
 position = Vector2( 0, -2 )

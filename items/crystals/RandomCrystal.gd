@@ -1,6 +1,6 @@
 extends Area2D
 
-const CrystalDrop = preload("res://items/CrystalDrop.tscn")
+const CrystalDrop = preload("res://items/crystals/CrystalDrop.tscn")
 
 onready var randomCrystalScript = $RandomizeCrystal
 
